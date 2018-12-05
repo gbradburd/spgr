@@ -1,0 +1,849 @@
+% template.tex, dated April 5 2013
+% This is a template file for Annual Reviews 1 column Journals
+%
+% Compilation using ar-1col.cls' - version 1.0, Aptara Inc.
+% (c) 2013 AR
+%
+% Steps to compile: latex latex latex
+%
+% For tracking purposes => this is v1.0 - Apr. 2013
+
+\documentclass{ar-1col}
+
+\setcounter{secnumdepth}{4}
+
+% Metadata Information
+\jname{Xxxx. Xxx. Xxx. Xxx.}
+\jvol{AA}
+\jyear{YYYY}
+\doi{10.1146/((please add article doi))}
+
+
+% Document starts
+\begin{document}
+
+% Page header
+\markboth{Bradburd}{Spatial Population Genetics}
+
+% Title
+\title{Spatial Population Genetics: It's About Time}
+
+
+%Authors, affiliations address.
+\author{Gideon S. Bradburd,$^1$ Peter L. Ralph, $^2$
+\affil{$^1$Ecology, Evolutionary Biology, and Behavior Group, Department of Integrative Biology, Michigan State University, East Lansing, MI, USA, 48824;
+email: bradburd@msu.edu}
+\affil{$^2$Institute of Ecology and Evolution, Departments of Mathematics and Biology, University of Oregon, Eugene, OR 97403}
+}
+
+%Abstract
+\begin{abstract}
+Abstract text, approximately 150 words. 
+\end{abstract}
+
+%Keywords, etc.
+\begin{keywords}
+population genetics, isolation by distance, population structure, local adaptation
+%keywords, separated by comma, no full stop, lowercase
+\end{keywords}
+\maketitle
+
+%Table of Contents
+\tableofcontents
+
+
+% Heading 1
+\section{INTRODUCTION}
+
+\begin{itemize}
+\item The field of population genetics is shaped by a continuing conversation 
+between theory, methods, and data.
+\item With some notable exceptions (wright, malecot), 
+much of early theory was population-centric, 
+both informing and informed by early empirical datasets.
+	\subitem Again, with some notable exceptions, e.g. Dobzhansky 47.
+\item In reality, well-delineated demes or clearly defined discrete populations are rare.
+Rather, organisms are living, moving, reproducing, and dying somewhere in space, 
+all connected to each other by a pedigree that spans the history of all species.
+\item \emph{Something happened}, 
+and now there's a growing body of theory and datasets 
+that approaches this reality.
+\item Methods are playing catch-up, 
+and it's a very exciting time to be a spatial population geneticist.
+\item What is spatial popgen?
+\item What is this review?
+\subitem This review is organized around a small number of 
+fundamental questions about the biology and history of organisms 
+that underlie many of the things we want to know about our study species.
+\end{itemize}
+
+\section{The spatial pedigree}
+\begin{itemize}
+\item What is the spatial pedigree and why is it useful?
+\item Spatial pedigree figure
+\end{itemize}
+
+\section{Where are they?}
+\begin{itemize}
+\item When considering a species, 
+perhaps the first thing we want to know is where they are: 
+where they can be found, and how many of them there are there.
+If we are only interested in the modern distribution of a species, 
+we can answer this question by going outside and counting individuals.
+However, we may be interested in the distribution of individuals over time, 
+especially as the distribution of abundance of many species is changing rapidly 
+in response to anthropogenic disturbance.
+\item The history of abundance is recorded in the spatial pedigree.
+\subitem What is this on the spatial pedigree
+\item We can use data that were generated under this spatial pedigree 
+to get a peek at the process
+\subitem Types of data, methods (SMC-ish methods, Ne methods)
+\end{itemize}
+
+\section{How do they move?}
+
+\section{How have things changed over time?}
+
+
+\section{Are there groups of them?}
+
+
+\section{Exciting directions for the field}
+
+%Disclosure
+\section*{DISCLOSURE STATEMENT}
+If the authors have nothing to disclose, the following statement will be used: The authors are not aware of any affiliations, memberships, funding, or financial holdings that
+might be perceived as affecting the objectivity of this review. 
+
+% Acknowledgements
+\section*{ACKNOWLEDGMENTS}
+Brandvain, Marge, JoNo, Graham, Schemske, friendly reviewers
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+% TEXT GRAVEYARD
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+
+
+Population genetics stands out as a discipline 
+in which the development of theory was far ahead of empirical possibilities.
+Lewontin (1974) described the early state of the field as 
+``an immensely rich and powerful theory with virtually no suitable facts on which to operate."
+For example, the foundations of modern population genetic theory were laid down in XXX, 
+some XXX years before the first empirical, 
+molecular measurements of genetic variation were made.
+Since then, advances in genotyping and sequencing 
+have allowed empirical datasets to begin to catch up to theory, 
+and increasingly, to spur the development of methods to study those new data.
+The study of the spatial partitioning of population genetic variation 
+is an excellent example of this progression.
+A large body of early work, 
+especially that contributed by Wright and Mal\'ecot, 
+developed theory for populations in an explicit spatial context.
+%MORE DETAIL ON THEORY HERE?
+%\begin{itemize}
+%	\item early theory (continuous and discrete)
+%	\begin{itemize}
+%		\item wright, malecot, maruyama, nagylaki, felsenstein, slatkin, barton, etheridge, etc.
+%         		\item something about isolation by distances and the First Law of Geography (Tobler 1970):
+%		            ``everything is related to everything else, but near things are more related than distant things."
+%	\end{itemize}
+%	\item early empirical popgen out of spatial context (limited by sampling)
+%	\begin{itemize}
+%		\item e.g., Lewontin and Hubby (``find em and grind em")
+%		\item Maybe some stuff on early phenotypable genotypes (pepper moths? )
+%		\item chromosomes types (dobzhansky and others)
+%		\item But see also wright's work on Linanthes and maybe early stuff on human blood group (cavalli-sforza and others?)
+%		\item disconnect between early theory that anticipated the data we'd have now and data then
+%\end{itemize}
+However, early genotyping methods were limiting. 
+The earliest empirical measurements of molecular genetic variation 
+-- the inaugural ``find 'em and grind 'em" work of Lewontin and Hubby (1966) -- 
+focused on data from 43 fly strains sampled from 5 locations, 
+which were largely treated as experimental replicates 
+(rather than studied in their geographic context).
+Within a decade, genotyping by electrophoresis was being used to quantify  
+genetic variation in large geographic samples (summarized in Lewontin 1974).
+Each subsequent development of a new technique for measuring genetic variation, 
+starting with counting visible mutations and ending in whole genome re-sequencing,
+has followed a similar trajectory from few populations to many.
+The major challenge of method development has been 
+to build models that can keep pace with these new data 
+to describe the ever greater biological realism and complexity.
+Tracing the trajectory of growing richness of empirical datasets, 
+early methods focused on results in a single panmictic population (ref method?), 
+then iteratively relaxed the assumption of panmixia with, e.g., 
+implementations of the island model (ref method?) 
+and the stepping-stone model (ref method?).
+In reality, well-delineated demes or clearly defined discrete populations are rare.
+Rather, organisms are living, moving, reproducing, and dying somewhere in space, 
+all connected to each other by a pedigree that spans the history of all species.
+
+The current acceleration of empirical sequence generation
+has spurred a revolution in the richness of datasets, 
+which now requires an accompanying revolution in the development of 
+methods to analyze this wealth of data. 
+Large and geographically dense samples are now 
+in genotype-able range in most non-model systems, 
+and indeed, there are now a handful of populations in which 
+\emph{every individual} has been sequenced over the past XX generations.
+In addition, 
+the growing ability to genotype historical or ancient individuals 
+is transforming the study of population genetics, 
+much of which is predicated on the idea that we can glimpse processes 
+acting in the past from genetic data obtained from samples in the present, 
+and for which these direct observations into the past are therefore particularly powerful.  
+The focus of these datasets has, in many cases, 
+shifted from discrete populations to the continuous sampling of individuals, 
+especially within an explicit spatial context.
+Taken together, these advances in genotyping make it 
+an exciting time for method development in population genetics 
+and, especially, in spatial population genetics.
+
+The field of spatial population genetics is the study of population genetics, in space.
+That is, the principal goals of population genetics -- 
+to study patterns of genetic variation within and between populations and 
+learn about the processes generating those patterns -- 
+are the same as those of spatial population genetics. 
+However, spatial population genetics as a field is particularly concerned 
+with the spatial context of these patterns,
+leveraging information in the position of samples 
+to learn about processes governing the distribution of genetic diversity across landscapes.
+Spatial population genetics allows researchers
+to unite the quantitative descriptions of population genetics 
+with fundamental questions about the ecology and evolution of organisms.
+
+This review is organized around a definition of the field of spatial population genetics 
+and its principal applications.
+My goal is to provide an introduction for empirical researchers 
+to the types of questions that can be answered 
+with spatial population genetics, 
+and the signals in data that can be used to answer them.
+This is a rapidly changing field, 
+and to a reader of this review five years from now, 
+many methods currently in use may no longer be relevant 
+(although hopefully my own contributions will be immortal).
+So, rather than discuss the existing methods for inference in detail, 
+I have instead organized this review around the principal questions in the field 
+and will focus on the different types of information in genetic and genomic data 
+that can be brought to bear on those questions.
+
+\section{THE SPATIAL PEDIGREE}
+Before diving in, it is useful to define a helpful concept: the spatial pedigree.
+The fundamental quantity in the field of population genetics is the ancestral recombination graph (ARG), 
+which describes the coalescent history of each locus in the genome (argweaver).
+This set of gene genealogies is embedded within the pedigree of a species, 
+in the sense that a pair of sampled alleles cannot coalesce until 
+the pedigrees of the individuals they are sampled from overlap in a shared ancestor.
+The pedigree of a sample is in turn embedded within some spatial context. 
+Say we start with a sample of two alleles, one from each of two individuals.
+If we trace their ancestors across space and back through time, 
+starting from that focal pair of individuals in the present, 
+we find that their pedigrees cannot overlap until their ancestors coexist in space.
+(The geographic radius within which ancestors can coexist 
+and pedigrees can overlap is a function of the biology of the specific organism; 
+broadcast spawners or highly mobile animals can mate over much larger distances than, say, snails.)
+Therefore, a useful quantity to consider in the study of 
+spatial population genetics is the spatial pedigree: 
+a graph denoting relatedness between all individuals in a sample, 
+indexed with the geographic position of each individual.
+If we had complete knowledge of the spatial pedigree of a species, 
+including the parentage and location of individuals 
+who contribute no ancestry to the present-day population, 
+we would know everything we wished to know of the history of dispersal and gene flow, 
+population structure and admixture, and selection and fitness in a system.
+For example, if we wanted to know the average natal dispersal distance in the species, 
+we could simply take the mean of the distribution of distances between parents and offspring, 
+or if we wanted to know the dispersal rate between a pair of locations, 
+we could count all the times an individual from one dispersed to the other 
+over the number of generations sampled.
+In practice, we never have such a complete understanding of the spatial pedigree, 
+but it leaves its imprint on different types of genetic and genomic data, 
+and, by collecting and analyzing these data, 
+we can try to catch glimpses of it.
+SPATIAL PEDIGREE FIGURE
+
+\section{Population Structure and Admixture}
+\subsection{What do researchers want to do?}
+One of the first steps in the analysis of population genetic data 
+is to look for and visualize population structure in the sample ? 
+systematic differences in genetic similarity between groups of individuals.
+The goal 
+This type of analysis can take many forms, such as
+dimensionality reduction plots (e.g., PCA, spacemix)
+population assignment methods (structure, admixture, conStruct),
+population phylogenies (treemix)
+plotting pairwise divergence against pairwise geographic distance, 
+chromosome painting (globetrotter, fineStructure) or ancestry tract inference (Ralph and Coop, Kelly, palamara), 
+or modeling the site frequency spectrum (dadi, hickerson).
+These methods analyze different types of data and employ different models of population history, 
+but all seek to summarize patterns of genetic variation produced by the spatial pedigree 
+connecting the individuals in the sample.
+Below, I describe different types of population structure, 
+explain how they arise on the spatial pedigree, 
+and classify existing methods based on the data they model.
+
+\subsection{What mechanisms underly these patterns on the spatial pedigree?}
+Population structure is often well described by a pattern of isolation by distance (Wright), 
+which is best summed up by the First Law of Geography (Tobler 1970):
+``Everything is related to everything else, but near things are more related than distant things."
+this pattern emerges from the spatial pedigree when
+there is a geographically limited radius within which individuals mate, 
+and spatial autocorrelation in the geographic positions of parents and offspring. 
+The result is that individuals farther away from each other in the present 
+tend not to overlap in their pedigrees until farther back in the past, 
+leading to higher relatedness between nearby individuals 
+(wright, barton-etheridge, felsenstein torus, kelleher).
+Individuals distributed across a featureless plain in migration-drift equilibrium (Slatkin review) 
+are expected to exhibit this continuous pattern of isolation by distance. 
+How quickly this relatedness decays with distance is determined 
+by the specifics of the biology of an organism: 
+organisms that move themselves or their gametes over long distances, 
+and that have high population densities may 
+exhibit high average relatedness over long spatial lags (Wright 1946).
+
+Sometimes, features of the landscape, 
+the specific population history, 
+or quirks of biology
+can generate discrete population genetic structure 
+above and beyond this continuous spatial process.
+For example, patchily distributed demes might experience very limited migration (islands, isolated valleys, etc.), 
+or range expansions might have recently brought two populations that historically 
+were isolated into close proximity,
+and populations in this scenario of secondary contact may 
+evince some behavioral or intrinsic reproductive isolation.
+Although still governed by the same spatial processes, 
+these scenarios lead to spatial pedigrees in which 
+the median parent-offspring distance is small relative to the total range.
+Note that the mean parent-offspring distance may be much larger 
+than the median if migrants rarely disperse a long distance, 
+e.g. between isolated demes (Endler 1977, Rousset 2004).
+
+Admixture is most commonly considered 
+within the context of discrete population structure, 
+and is used to describe populations that are composed of ancestry from 
+multiple discrete groups. 
+However, admixture can also occur against a backdrop of 
+continuous geographic structure, 
+in which case it can be interpreted as relatedness 
+between the samples from a set of locations 
+that is unusually high given the geographic distance that separates them (spacemix).
+In both continuous and discrete contexts then, 
+admixture represents a transgressive force, 
+breaking across population boundaries between discrete demes 
+or spatial patterns of divergence between distant locations.
+
+In the spatial pedigree, 
+we describe an individual as ``admixed" when they have recent ancestors 
+from either a different discrete population or a distant location, 
+and a population as admixed when many individuals in it share this property.
+As has been noted elsewhere (falush, globetrotter, reich), 
+the ability to identify a population as admixed 
+is a function of the recency of admixture and 
+the inclusion of populations descended from the sources of admixture in the modern day sample. 
+Indeed, the concept of admixture becomes slipperier when considered over deeper timescales, 
+as inferred sources of admixture are themselves almost certainly admixed, 
+and have either been isolated for long enough that the admixture is no longer detectable, 
+or, more likely, the descendants of those sources of admixture are lost in the modern sample.
+
+
+
+%FIGURE 2: multipanel figure like Schraiber and Akey Fig 2:
+%a) pedigree w/ 3 individuals highlighted (one distant, two nearby)
+%b) 
+
+\subsection{How do existing methods get at this mechanism?}
+
+
+
+\begin{itemize}
+\item Estimate Gene Flow and Dispersal
+	\item What do researchers want to do?
+	\subsubitem 
+\item The geography of genetic variation
+	\item What do researchers want to do?
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{POPULATION STRUCTURE AND ADMIXTURE}
+One of the principal aims of spatial population genetics is to describe 
+and visualize the distribution of genetic variation in a geographic sample. 
+Most commonly, this means quantifying \emph{population structure} -- 
+systematic differences in genetic similarity between groups of individuals.
+Often, population structure is well described by a pattern of isolation by distance (Wright), 
+which is perhaps best summed up by the First Law of Geography (Tobler 1970):
+``Everything is related to everything else, but near things are more related than distant things."
+This pattern can be considered under two paradigms: 
+continuous and discrete.
+In the continuous worldview, 
+population structure is described continuously on a landscape, 
+by, e.g., considering the rate at which relatedness between individuals decays 
+with the geographic distance between them.
+In the discrete worldview, 
+population structure is described by defining discrete populations,
+within which all individuals are more or less equally related, 
+and between which there are varying degrees of divergence.
+Defined populations may then be used for 
+management and conservation (``management units" Moritz),
+systematics and taxonomy (e.g., describing species or subspecies, ref?)
+or delineating evolutionary units of analysis for further study (e.g., GWAS).
+These paradigms are often invoked to explain the same 
+pattern of isolation by distance (IBD), 
+and, indeed, are not mutually exclusive.
+Under both the continuous and discrete worldviews,
+individuals or populations can be \emph{admixed}: 
+composed of a combination of ancestry 
+from two or more discrete groups or locations.
+
+\subsection{Approaches}
+There are a variety of existing approaches for inferring 
+and visualizing population structure and admixture, 
+including model-based clustering approaches 
+(e.g., STRUCTURE, ADMIXTURE, fineStructure, faststructure, tess, geneland, conStruct),
+estimating population phylogenies (e.g, TREEMIX,mixmapper?),
+reduced-dimensionality analyses (PCA, novembre and stephens, spacemix, SPAmix),
+and several heuristics or statistics that range from the simple (Fst, f-statistics) 
+to the complex (roloff, globetrotter).
+
+These methods employ different models or inference algorithms 
+and leverage different types of signal 
+in genetic and genomic data to learn about 
+the spatial history of population structure and admixture.
+To see where that signal comes from, 
+it is useful to first consider how these processes manifest in the spatial pedigree.
+
+\subsection{Continuous and Discrete Structure, and Admixture}
+
+\paragraph{Continuous Structure}
+Continuous, geographically distributed population structure is the simplest to consider: 
+this pattern emerges from the spatial pedigree when
+there is a geographically limited radius within which individuals mate, 
+and spatial autocorrelation in the geographic positions of parents and offspring. 
+The result is that individuals farther away from each other in the present 
+tend not to overlap in their pedigrees until farther back in the past, 
+leading to higher relatedness between nearby individuals 
+(wright, barton-etheridge, felsenstein torus, kelleher).
+
+\paragraph{Discrete Structure}
+Discrete structure between populations arises 
+when the coalescent time of alleles sampled 
+from individuals within a particular group are, on average, lower than 
+that of a pair of alleles sampled from individuals in different groups (maruyama, nagylaki?). 
+Because the coalescent is embedded within the pedigree, 
+this can arise when individuals within a cluster 
+have more recent pedigree overlap with each other than 
+they do with individuals between clusters.
+Indeed, clusters are defined by this property, 
+without which ``clusters'' would only be meaningless labels 
+ randomly assigned to individuals.
+In a geographic context, discrete structure is most frequently (and parsimoniously) 
+ascribed to a reduction in migration between groups 
+due to geographic separation between patchily distributed demes.
+	-something about how this can be due to modern or historical isolation.
+		-Note also that equilibrium vs. nonequlibrium 
+			-for example, discrete population structure can be generated due to historical \emph{or} modern isolation, 
+
+\paragraph{Admixture}
+Admixture is most commonly considered 
+within the context of discrete population structure, 
+and is used to describe populations that are composed of ancestry from 
+multiple discrete groups. 
+However, admixture can also occur against a backdrop of 
+continuous geographic structure, 
+in which case it can be interpreted as relatedness 
+between the samples from a set of locations 
+that is unusually high given the geographic distance that separates them (spacemix).
+In both continuous and discrete contexts then, 
+admixture represents a transgressive force, 
+breaking across population boundaries between discrete demes 
+or spatial patterns of divergence between distant locations.
+
+In the spatial pedigree, 
+we describe an individual as ``admixed" when they have recent ancestors 
+from either a different discrete population or a distant location, 
+and a population as admixed when many individuals in it share this property.
+As has been noted elsewhere (falush, globetrotter, reich), 
+the ability to identify a population as admixed 
+is a function of the recency of admixture and 
+the inclusion of populations descended from the sources of admixture in the modern day sample. 
+Indeed, the concept of admixture becomes slipperier when considered over deeper timescales, 
+as inferred sources of admixture are themselves almost certainly admixed, 
+and have either been isolated for long enough that the admixture is no longer detectable, 
+or, more likely, the descendants of those sources of admixture are lost in the modern sample.
+
+\subsection{The Signals in Data}
+The pedigree connecting a set of samples under consideration, 
+along with the geographic position of each ancestor and descendant, 
+is almost never known; 
+to identify the signatures left by continuous and discrete population structure and admixture, 
+we must rely on inferences from patterns of genetic and genomic variation 
+shaped by the coalescent history embedded within that spatial history. 
+Methods for detecting population structure and admixture 
+generally model patterns in one of two types of data: 
+single-locus and two-locus. 
+
+\subsubsection{Single-locus}
+In a single-locus analysis, 
+each locus is treated as an independent draw from the coalescent, 
+and the data considered are the frequencies of alleles at one or more loci.
+These data are generally considered in one of two ways:
+patterns of allele frequency divergence or the site frequency spectrum.
+
+\paragraph{Site frequency spectrum}
+The site frequency spectrum (SFS) is a summary of population genomic data 
+that describes the number of derived alleles at a particular frequency 
+in a sample of individuals.
+Under neutrality, and within a panmictic population of constant size, 
+the proportion of derived alleles found in $i$ out of $n$ genotyped chromosomes 
+is proportional to $1/i$ (Wakeley).
+This expected distribution is derived by considering a mutational process 
+that drops mutations at random onto the coalescent history of the samples.
+In a population of constant size under no selection, 
+the majority of the length of the coalescent tree is in terminal branches. 
+The majority of mutations dropped onto this tree at random will therefore be unshared
+(only found on a single chromosome). 
+Relatively few will fall on deeper branches, 
+which would make them shared by more individuals in the sample.
+To develop an intuition for how deviations from panmixia can leave an imprint on the SFS, 
+it is useful to return to the spatial pedigree and the coalescent it contains.
+
+As described above, discrete population structure in the spatial pedigree manifests as, 
+on average, more recent pedigree overlap between individuals in the same group 
+compared to pairs of individuals from different groups.
+This leads to a coalescent tree with short intra-group branch lengths 
+and long inter-group branch lengths, 
+as individuals in different groups have to go farther back in time until their 
+ancestors co-occur in the same group and their pedigrees can overlap (nagylaki, maruyama?).
+As more of the total tree branch length is in deep branches between groups, 
+a greater number of mutations on the tree are found in all members of a group, 
+but not shared between groups, 
+leading to an unusual number of intermediate-frequency alleles 
+in the SFS.
+
+SFS in continuous space?
+	-no work that I know of
+		-presumably shape of SFS is strongly affected by the sampling configuration relative to relevant biological quantities
+		-e.g., clumped spatial sampling might be indistinguishable from discrete pop structure
+	-a parameterized spatial model should generate an expected coalescent history, 
+		so I guess you could calculate the likelihood of some observed SFS under a particular spatial model?
+
+Admixture and the SFS?
+	-Admixture describes a transgression in the spatial pedigree: 
+		an ancestor of provenance that is unusual given time and space separating it from its descendant.
+
+-what type of glimpse does the SFS offer into the spatial pedigree?
+-Methods that use the SFS
+
+\paragraph{Allele frequency divergence}
+
+Drift and selection act locally to generate differentiation between 
+discrete populations or locations in continuous space, 
+and migration acts to homogenize those differences that arise.
+Under drift, 
+the frequency of a given allele at a particular location 
+is not expected to change through time, 
+but the variance around that expectation grows with the amount of time 
+the individuals at that location are isolated, 
+and the expected difference in the frequency of that allele between 
+two samples grows (non-linearly) with the amount of isolation between them.
+Within populations or locations that are less isolated from each other, 
+allele frequencies are less free to corkscrew off on independent evolutionary trajectories, 
+as any changes that arise locally are quickly equalized by migration between them.
+
+Drift is random, 
+and may be quite slow to differentiate samples if effective population sizes are large,
+so the amount of divergence in frequency at any particular locus 
+may not be informative about their isolation. 
+However, measured in aggregate across many independent loci, 
+divergence in allele frequencies can detect even very subtle population structure (Patterson 2006).
+Allele frequency divergence offers a glimpse at gene flow averaged 
+over the history of the spatial pedigree.
+
+
+-Methods that use allele frequency divergence
+ 
+\paragraph{Two-locus}
+
+In contrast to a single locus analysis, 
+a two-locus analysis leverages information contained 
+in the spatial distribution of loci on the genome.
+
+
+-two locus Methods
+
+
+\subsection{Spatial Assignment}
+	-SCAT (and others?)
+	-identifying origins of expansions/invasions
+	-estimating wright's neighborhood size
+
+\section{ESTIMATING DISPERSAL AND GENE FLOW}
+
+	\subsection{Identifying barriers and quantifying resistance}
+	present: barriers and dispersal (box: gene flow vs. dispersal)
+		-IBD-squared, globetrotter, actual pedigrees, MAPS, harald's stuff
+			-field of ``landscape genetics"
+			-historical data
+			-noneq vs. eq
+	past: historical migration (and asymmetries)
+	-EEMS, BEDASSLE, MAPS, harald's stuff
+	\subsection{Inferring demography}
+	-SFS models, PSMC/SMSC (covariance in histories)
+		-two pop problems vs. many inds
+	-colonization/expansion routes
+	-identifying invasion sources
+	-abundant center hypothesis
+\section{THE GENETIC BASIS OF LOCAL ADAPTATION}
+	-could also be ``the geography of genetic variation"
+		-focus shifts from patterns of divergence in allele frequencies
+		 to how the frequency of a particular allele is geographically distributred 
+		 (novembre and dirienzo)
+		 	-e.g., skin color alleles, duffy/malaria
+	-BAYenv and similar
+	-gene dropping down pedigrees, if known
+\section{THE FUTURE}
+	past - continuity (maybe in 1st section?)
+	attempting to infer pedigree (palamara, rasmus, kelly)
+	sims (slim and ABC, slim and machine learning)
+	cheaper gps tags
+	infinite data
+	
+
+
+
+%\subsection{Gene flow, dispersal, and migration}
+%	inds who leave no ancestry may still matter for epidemiological/ecological/conservation
+%	Whitlock and McCauley
+%	Sokal and Oden 1978
+%\subsection{genealogy and geography}
+%	-how does pedigree overlap relate to relatedness?
+
+Brief history of work:
+\begin{itemize}
+	\item early theory (continuous and discrete)
+	\begin{itemize}
+		\item wright, malecot, maruyama, nagylaki, felsenstein, barton, etheridge
+         		\item something about isolation by distances and the First Law of Geography (Tobler 1970):
+		            ``everything is related to everything else, but near things are more related than distant things."
+	\end{itemize}
+	\item early empirical popgen out of spatial context (limited by sampling)
+	\begin{itemize}
+		\item e.g., Lewontin and Hubby (``find em and grind em")
+		\item Maybe some stuff on early phenotypable genotypes (pepper moths?)
+		\item But see also wright's work on Linanthes and maybe early stuff on human blood group (cavalli-sforza and others?)
+		\item disconnect between early theory that anticipated the data we'd have now and data then
+	\end{itemize}
+	\item Now lots of theory and methods and datasets, 
+	\begin{itemize}
+		\item but advent of historical/ancient DNA (gamechanger for popgen generally)
+			\item  discovery that lots of populations are not continuous through time
+		\item drives home a few points:
+		\begin{itemize}
+			\item we are probably rarely in a migration-drift equilibrium world
+			\item genetic variation may be disassociated with geographic context
+			\item important to recognize the possibility of heterogeneity of process associated with location through time
+		\end{itemize}
+	\end{itemize}
+		\item Given the availability of these datasets and these advances, I thought it timely to review the blah blah blah
+\end{itemize}
+
+FIGURES:
+	spatial pedigree
+		space, time, pedigree, coalescence, IBD tract, drift
+	modern vs. historical isolation (zipping up/zipping down)
+	dispersal surfaces AND continuity changing through time
+
+NOTES FROM GRAHAM:
+	theory v inference
+	one locus v two locus
+	one pop to two pops
+	marry msmc to harald's stuff
+
+	look at Novembre and DiRienzo paper (2009)
+	cavalli-sforza (expansion stuff from pca, or marriage records in Italy, cited in IBD2, harald, or cavalli-sforza remembrances)
+	fisher (blood group variants sign of viking invasion)
+	mathieson and mcvean pepper moth through time?
+
+	flow from new tech to a small number of pops to a large number of pops (latter of which requires more theory/inference)
+	collecting/scattering
+
+NOTES FROM DOUG:
+	theory so far ahead of empirical possibilities
+	no genotyping, just mendelian traits
+	TRYING TO ESTABLISH A SPATIAL NULL
+	linanthes perrii (wright's work derived in response to epling's data)
+		-wright was only interested in shifting balance
+			-expectation of differentiation in space given effective population sizes
+			-maybe patterns in linanthes are just explained by drift and differences in pop sizes
+			-electrophoresis lead to a rediscovery of Fst, now that they could calculate it
+				-annual review by marilyn loveless and jim hamrick - review data for Fst
+					-what plants have high fst?
+	collected paper on ecology and evolutionary biology of invasions (grosberg has a paper on it)
+		-no evidence for bottlenecking associated invasion
+EXTENT TO WHICH GEOGRAPHIC STRUCTURE IN SELECTION IS STRONG ENOUGH TO OVERCOME DRIFT
+continuous vs. discontinuous approach (are organisms every truly continuously distributed?)
+speciation: geography of speciation
+	-linking spatial distribution of adaptive variation to speciation processes
+		-how much of the baggage of history is maintained
+	-geographic range and range limits
+		-range margins (surfing) swamping (kirkpatrick and barton)? running out of variation?
+-on methods: what kinds of markers do we need to answer this question?
+-using population structure to identify regions under selection
+	-nordborg bergelson
+	-using clines in allele frequency abundance to identify mechanism of selection?
+	-send doug an outline
+
+NOTES FROM BVAIN:
+That body of theory has been remarkably useful;
+however nearly all of population genetics theory starts with panmictic populations.
+It has been tweaked, to accommodate inbreeding and demic structure 
+(for example, the island model or the stepping-stone model)
+This theory has been close and gotten us far
+but a major challenge is alligning theory with reality
+no populations 
+no k
+just orgs living and dieing and moving in space
+and then you can work through ealy ibd
+and discrete dems
+up to where we are 
+- build on history to say why we need this
+and its exciting
+and is to do w data
+
+NOTES FROM PETER:
+where are they (make me a map of popn density and mean fecundity)
+	-draw a circle on a map and how many inds are int
+		if that just's about today, just go count
+	-how many have been there over some time, 
+		-can't just count, but it's recorded in the pedigree
+	-
+how do they move
+what do they do once they're there
+are there groups of them?
+	-clustering is a crutch that humans use to think
+	-could describe all of these (just historical, just ongoing, actual barriers, gnarly source/sink dynamics)
+	
+	
+how has this changed over time
+	Barton and Slatkin (hybrid zones, etc.) - nice theory that we can start to get a look at w/ good data
+	few notable exceptions (e.g., dobzhansky 1947)
+	
+	start w/ a barrier, what's happening on a barrier??
+	biases in direction of crossing barrier -> expansion/asymmetrical migration and source/sink dynamics, invasion
+	
+	don't start w/ pop structure, bc what the hell is pop structure
+	start w/ something observable like dispersal/migration
+	
+	mean time to coalescence between two points in space
+	
+	no one actually cares about the pedigree
+		-people want to know how often individuals from A go to B
+			-this is answered by the pedigree, but no one actually starts out by asking about the pedigree
+	
+	start from biology and nonconfusing biological questions
+		migration when it's not confusing (islands)
+		if we knew where everyone was and what they did
+		in practice we can only 
+		
+	barriers and biases in direction
+	
+	migration, kid-having, population/density
+	
+	lots of allele A at location 1, could be bc there were originally, or lots of inds go there and don't die, or have lots of kids there
+		fitness genetic/geographic correlation
+			-context-dependent kid-having
+		
+short thing on selection
+		
+		
+		
+% BITS OF TEXT
+Frequently, admixture is described using an \emph{admixture proportion}: 
+the proportion of genome in a sample that comes from a discrete group, 
+which is also the probability that an allele taken at random from a sample 
+come from that group.
+
+I briefly discuss the methods used for answering these questions, 
+define them in terms of processes shaping the spatial pedigree, 
+and describe how different types of genetic and genomic data can offer 
+(sometimes qualitatively) different insights into those processes.
+
+Two revolutions in genotyping technology are leading to 
+empirical datasets that are more representative of this reality, 
+which in turn are driving the development of methods to study them.
+
+The first revolution is one of scale.  
+Setting aside humans and model systems, 
+for which the wealth of available data and 
+the rate of generation are simply staggering,
+falling sequencing costs are bringing large and geographically dense sampling 
+into genotype-able range in most non-model systems.
+Indeed, there are now a handful of populations in which 
+\emph{every individual} has been sequenced over the past XX generations, 
+and the number of populations or species that can make a similar claim 
+is sure to rise in the near future.
+The second revolution is of scope.
+The growing ability to genotype historical or ancient individuals 
+is transforming the study of population genetics, 
+much of which is predicated on the idea that we can glimpse processes 
+acting in the past from genetic data obtained from samples in the present.  
