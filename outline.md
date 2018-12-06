@@ -124,3 +124,10 @@
 
         - How much surfing was there on the wave front?
 
+
+5. What about clusters?
+
+    - Useful for visualization 
+    - but also a crutch, and at times problematic.
+    - Reality relates to reduced dispersal either today or in the past.
+
