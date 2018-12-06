@@ -5,3 +5,6 @@ writeup/*.log
 writeup/*.synctex.gz
 writeup/*.toc
 writeup/spatialpopgen.pdf
+writeup/*.blg
+writeup/*.bbl
+.*.swp
