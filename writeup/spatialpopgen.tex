@@ -7,7 +7,8 @@
 % Steps to compile: latex latex latex
 %
 % For tracking purposes => this is v1.0 - Apr. 2013
-
+\newcommand{\g}[1]{{\color{blue}{#1}}}
+\newcommand{\p}[1]{{\color{green}{#1}}}
 \documentclass{ar-1col}
 
 \setcounter{secnumdepth}{4}
@@ -56,6 +57,8 @@ population genetics, isolation by distance, population structure, local adaptati
 \section{INTRODUCTION}
 
 \begin{itemize}
+%Alt intro -> new scope of datasets is allowing popgen to inform us about processes 
+%acting on ecological timescales?
 \item The field of population genetics is shaped by a continuing conversation 
 between theory, methods, and data.
 \item With some notable exceptions (wright, malecot), 
@@ -78,37 +81,182 @@ that underlie many of the things we want to know about our study species.
 \end{itemize}
 
 \section{The spatial pedigree}
+Before diving in, 
+it will be helpful to define the concept of the spatial pedigree: 
+a graph denoting the pedigree relatedness of all individuals in a sample, 
+indexed by the geographic position of each individual \g{at each relevant life stage}.
+All organisms are connected by a vast pedigree, 
+and if we had complete knowledge of this pedigree, 
+including the parentage and location of individuals 
+who contribute no ancestry to the present-day population, 
+we would know everything we wished to know about 
+the history of dispersal, gene flow, 
+selection, and fitness in a system.
+%For example, if we wanted to know whether mountains act as a barrier to dispersal, 
+%we could simply calculate the mean number of individuals on one side of the mountain 
+%with parents on the other side, 
+%and contrast that with the same quantity calculated for other parts of the range (of equal size) 
+%with no mountains in them.
+For example, if we wanted to characterize the dispersal kernel of a species, 
+we could simply count up the distances between offspring and their parents.
+Or, if we wanted to to know whether a particular allele 
+was selected for in a given environment, 
+we could compare the mean fitness of all individuals in that environment with that allele 
+to that of those without the allele.
+
+In practice, we can never know the full spatial pedigree,
+but, like shadows cast on the wall of a cave,
+
+
 \begin{itemize}
 \item What is the spatial pedigree and why is it useful?
 \item Spatial pedigree figure
 \end{itemize}
 
-\section{Where are they?}
-\begin{itemize}
-\item When considering a species, 
+\section{Things we want to measure}
+\subsection{Where are they?}
+When considering a species, 
 perhaps the first thing we want to know is where they are: 
 where they can be found, and how many of them there are there.
-If we are only interested in the modern distribution of a species, 
-we can answer this question by going outside and counting individuals.
-However, we may be interested in the distribution of individuals over time, 
-especially as the distribution of abundance of many species is changing rapidly 
+If we were only interested in the modern distribution of a species, 
+we could answer this question by going outside and counting individuals.
+However, we are often also interested in abundance over time, 
+especially as the distribution of individuals of many species is changing rapidly 
 in response to anthropogenic disturbance.
-\item The history of abundance is recorded in the spatial pedigree.
-\subitem What is this on the spatial pedigree
-\item We can use data that were generated under this spatial pedigree 
-to get a peek at the process
-\subitem Types of data, methods (SMC-ish methods, Ne methods)
-\end{itemize}
+The history of abundance and fecundity is recorded in the spatial pedigree, 
+and we can use data that were generated under this spatial pedigree 
+to get a peek at the process.
 
-\section{How do they move?}
+\subsubsection{Population density}
+        - How many individuals live in a given area? in total?
 
-\section{How have things changed over time?}
+        - How has that number of individuals fluctuated over time? (fast changes as opposed to slow changes)
+
+\subsubsection{Fecundity and reproduction}
+        - How many new offspring are produced per year in a given area? in total?
+
+        - How do areas contribute in the *long term*?
+
+        - picture: 
+            in an example with higher fecundity in some areas 
+            (gradient of mean fecundity superimposed on a bumpy landscape?)
+            and small bias in dispersal towards lower fecundity area
+
+            * map of population density juxtaposed with
+            * a map of per capita number of offspring produced
+            * and a map of long-term fitness 
+            
+\subsubsection{Related statistics}
+        - on-the-ground census
+        
+        - $N_e$
+
+\subsection{How do they move?}
+Dispersal is a fundamental process in ecology and evolution, 
+and is central to many research questions, 
+including predicting responses to climate change,
+evaluating epidemiological networks, 
+and understanding population demography and dynamics.
+
+\subsubsection{Dispersal (individual, diffusive movement; $\sigma$)}
+
+        - What is the mean distance between parent and child birth location (in a homogeneous area)?
+        - Is there a mean bias in parent-child displacement?
+
+\subsubsection{Population flux}
+
+        - How many individuals are born each year whose parents were born on the other side of a given boundary?
+            (separately for each direction)
+
+            * picture: adjacent valleys with lower pop density along the intervening ridge,
+                with arrows denoting all parent-child relationships that cross the ridge 
+
+            * picture: added to the above, a line drawn down the middle of a valley, with arrows crossing as before
+
+            * relationship to dispersal: birth rate times population density times length of boundary times $\sigma/\sqrt{2\pi}$ in each direction 
+                if dispersal is Gaussian and boundary is straight
+
+\subsubsection{Related statistics}
+
+        - $m$ between "discrete pops"
+        - resistance distance
 
 
-\section{Are there groups of them?}
+\subsection{How different are they in different places?}
+
+\subsubsection{(Relative) genetic differentiation}
+
+        - How much is genetic diversity partitioned across geography?
+            How does the expected genetic divergence (or, TMRCA) for nearby individuals compare to distant ones?
+            
+            * $F_{ST}(x,y) = 1 - (\pi(x,x) + \pi(y,y))/(2 (\pi(x,x) + 2 \pi(x,y) + \pi(y,y)))$, 
+                i.e., defining mean $F_{ST}$ at distance $x$ to be one minus ratio of mean TMRCA at each location
+                to mean TMRCA between individuals from the pops pooled
+
+            * relate to the classic IBD curve
+
+        - How much local inbreeding is there?
+
+            * $\pi(x,x)$? is not heterozygosity, $\pi(x,x)$ should be $\lim_{y \to x} \pi(x,y)$,
+                so we can measure this as heterozygosity minus $\pi(x,x)$
+
+            * picture: map of heterozygosity across space in a habitat with one big valley surrounded by some small valleys
 
 
-\section{Exciting directions for the field}
+\subsubsection{Geographic distribution of ancestry (and the opportunity for local adaptation)}
+
+        - How much of the average individual's ancestry is still within a given region, $T$ years in the past?
+
+        - How far back in time do you have to go before the average proportion of ancestry that an individual inherits
+            from a given region drops below (say) 90%?
+            
+            * picture: individuals shaded according to the proportion of ancestry of a given small cluster of samples
+                they contribute, at several points back in time
+
+\subsubsection{Related statistics}
+
+        - $F_{ST}$, but already covered this
+
+        - relative positions on a PC plot?
+
+\subsection{How have things changed over time?}
+\subsubsection{Scenario: constant range but more-or-less gradually changing population density due to changing balance of competition/resource availability}
+
+        - Relate to $N_e$-over-time things.
+
+\subsubsection{Scenario: postglacial expansion and secondary contact}
+
+        - How much does each individual inherit from each glacial refugium?
+
+            * picture: pie charts of this quantity.
+
+        - Relate to admixture.
+
+\subsubsection{Scenario: orogeny induces phylogeny}
+
+        - What proportion of ancestry of one side of the mountain comes from the other side of the mountain,
+            as a function of time ago?
+
+            * picture: across a barrier with gradually increasing strength,
+                plot of this quantity, compared to if the mountain had not grown.
+
+\subsubsection{Scenario: range expansion and exponential growth}
+
+        - Where did the range expansion originate?
+
+        - How fast did it spread?
+
+        - How much surfing was there on the wave front?
+
+
+\subsection{Are there groups of them?}
+
+    - Useful for visualization and sometimes management
+    - but also a crutch, and at times problematic.
+    - Reality relates to reduced dispersal either today or in the past.
+
+
+\subsection{Exciting directions for the field}
 
 %Disclosure
 \section*{DISCLOSURE STATEMENT}
@@ -726,6 +874,8 @@ NOTES FROM GRAHAM:
 
 	flow from new tech to a small number of pops to a large number of pops (latter of which requires more theory/inference)
 	collecting/scattering
+	
+	dobzhansky's inversion stuff (interested in variation over time vs. space)
 
 NOTES FROM DOUG:
 	theory so far ahead of empirical possibilities
@@ -812,10 +962,11 @@ how has this changed over time
 	lots of allele A at location 1, could be bc there were originally, or lots of inds go there and don't die, or have lots of kids there
 		fitness genetic/geographic correlation
 			-context-dependent kid-having
-		
+
 short thing on selection
-		
-		
+BISSE problem: if there's lots of allele A at a location, it could be because:
+1) lots of inds w/ A go there
+2) inds w/ A have more kiddos or die there	 less
 		
 % BITS OF TEXT
 Frequently, admixture is described using an \emph{admixture proportion}: 
