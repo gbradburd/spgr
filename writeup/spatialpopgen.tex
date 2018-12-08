@@ -31,7 +31,7 @@
 
 
 %Authors, affiliations address.
-\author{Gideon S. Bradburd,$^1$ Peter L. Ralph, $^2$
+\author{Gideon S. Bradburd,$^1$ Peter L. Ralph$^2$
 \affil{$^1$Ecology, Evolutionary Biology, and Behavior Group, Department of Integrative Biology, Michigan State University, East Lansing, MI, USA, 48824;
 email: bradburd@msu.edu}
 \affil{$^2$Institute of Ecology and Evolution, Departments of Mathematics and Biology, University of Oregon, Eugene, OR 97403}
@@ -78,6 +78,20 @@ and it's a very exciting time to be a spatial population geneticist.
 \subitem This review is organized around a small number of 
 fundamental questions about the biology and history of organisms 
 that underlie many of the things we want to know about our study species.
+This review is organized around a definition of the field of spatial population genetics 
+and its principal applications.
+Our goal is to provide an introduction for empirical researchers 
+to the types of questions that can be answered 
+with spatial population genetics, 
+and the signals in data that can be used to answer them.
+This is a rapidly changing field, 
+and to a reader of this review five years from now, 
+many methods currently in use may no longer be relevant 
+(although hopefully our own contributions will be immortal).
+So, rather than discuss the existing methods for inference in detail, 
+we have instead organized this review around the principal questions in the field 
+and will focus on the different types of information in genetic and genomic data 
+that can be brought to bear on those questions.
 \end{itemize}
 
 \section{The spatial pedigree}
@@ -120,9 +134,16 @@ perhaps the first thing we want to know is where they are:
 where they can be found, and how many of them there are there.
 If we were only interested in the modern distribution of a species, 
 we could answer this question by going outside and counting individuals.
-However, we are often also interested in abundance over time, 
+However, we are often also interested in variation in abundance.
+Variation may exist across space,
+like when habitats vary in quality
+leading to high fecundity in ``good" habitat, 
+but low fecundity in poor habitat.
+Understanding this variation can be crucial for 
+distinguishing demographic sources from sinks (Pulliam 1988, Schreiber 2010).
+Variation in abundance may also exist across time,
 especially as the distribution of individuals of many species is changing rapidly 
-in response to anthropogenic disturbance.
+in response to anthropogenic disturbance (Bi 2013).
 The history of abundance and fecundity is recorded in the spatial pedigree, 
 and we can use data that were generated under this spatial pedigree 
 to get a peek at the process.
@@ -248,15 +269,30 @@ and understanding population demography and dynamics.
 
         - How much surfing was there on the wave front?
 
+\subsubsection{Now is the winter of our discontinuity}
 
 \subsection{Are there groups of them?}
+One of the first steps in the analysis pipeline of population genetic data 
+is to quantify and visualize population structure:
+systematic differences in genetic similarity between groups of individuals.
+Although this can be helpful for generating hypotheses 
+and, sometimes, for conservation by, e.g., delineating discrete management units, 
+the concept of discrete population structure 
+can be problematic or misleading.
+
+
+Perched on the shoulder of discrete population structure is the concept of admixture, 
+the idea that populations can be composed of ancestry from multiple discrete groups.
+Like discrete population structure, 
+admixture can offer a useful approximation of reality in some scenarios, 
+but its utility comes at the cost of ambiguity about what it actually means.
 
     - Useful for visualization and sometimes management
     - but also a crutch, and at times problematic.
     - Reality relates to reduced dispersal either today or in the past.
 
 
-\subsection{Exciting directions for the field}
+\section{Exciting directions for the field}
 
 %Disclosure
 \section*{DISCLOSURE STATEMENT}
