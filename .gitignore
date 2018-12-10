@@ -8,3 +8,4 @@ writeup/spatialpopgen.pdf
 writeup/*.blg
 writeup/*.bbl
 .*.swp
+writeup/figs/spatial_pedigree/gen_output/
