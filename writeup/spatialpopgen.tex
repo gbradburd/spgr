@@ -99,9 +99,16 @@ Before diving in,
 it will be helpful to define the concept of the spatial pedigree: 
 a graph denoting the pedigree relatedness of all individuals in a sample, 
 indexed by the geographic position of each individual \g{at each relevant life stage}.
-All organisms are connected by a vast pedigree, 
-and if we had complete knowledge of this pedigree, 
-including the parentage and location of individuals 
+All organisms are connected by a vast pedigree. 
+If we had complete knowledge of this pedigree, 
+we would know many evolutionary quantities 
+that we would otherwise would have to estimate from data, 
+such as the true relatedness between any pair of individuals, 
+or each individual's fitness.
+If we knew the spatial pedigree:
+both the pedigree relationships 
+and the geographic positions of each individual, 
+including those of individuals 
 who contribute no ancestry to the present-day population, 
 we would know everything we wished to know about 
 the history of dispersal, gene flow, 
@@ -118,14 +125,28 @@ was selected for in a given environment,
 we could compare the mean fitness of all individuals in that environment with that allele 
 to that of those without the allele.
 
-In practice, we can never know the full spatial pedigree,
-but, like shadows cast on the wall of a cave,
+In practice, we can never know the full spatial pedigree;
+Even if we could census every individual in a population 
+and establish the pedigree relationships between them all, 
+the 
 
 
-\begin{itemize}
-\item What is the spatial pedigree and why is it useful?
-\item Spatial pedigree figure
-\end{itemize}
+but it is still useful as a conceptual framework 
+for organizing for spatial population genetic questions and principles.
+
+\begin{figure}
+	\centering
+		{\includegraphics[width=0.8\textwidth]{figs/spatial_pedigree.pdf}}
+		\caption{Example spatial pedigree.
+		Each plane represents a a sampled region in a discrete (non-overlapping generation), 
+		and each dot represents an individual.
+		The present is at the bottom of the plot, and the past at the top.
+		The spatial pedigree of the ancestors of a focal individual is highlighted in red
+		back through time and across space.
+		Dashed lines denote matings, and solid lines denote parentage.
+			    }\label{spatial_pedigree}
+\end{figure}
+
 
 \section{Things we want to measure}
 \subsection{Where are they?}
