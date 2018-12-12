@@ -45,7 +45,7 @@ plotGen <- function(coords,z,add=FALSE,xlim=NULL,ylim=NULL,zlim=NULL,maxGen){
 #	between the maximum number of generations run 
 #	(aka the present) and the focal generation
 plotPed <- function(gens,xlim=NULL,ylim=NULL,zlim=NULL,maxGen){
-#	recover()
+	par(mar=c(0,0,0,0))
 	if(is.null(xlim)){
 		xlim <- c(0,1)
 	}
@@ -53,7 +53,7 @@ plotPed <- function(gens,xlim=NULL,ylim=NULL,zlim=NULL,maxGen){
 		ylim <- c(0,1)
 	}
 	if(is.null(zlim)){
-		zlim <- range(maxGen-gens) + c(-0.5,0.5)
+		zlim <- range(maxGen-gens) + c(-0.3,0.3)
 	}
 	x <- getSlimGenOutput(sprintf("gen_output/gen_%s",gens[1]))
 	coords <- getCoords(x)
@@ -64,7 +64,7 @@ plotPed <- function(gens,xlim=NULL,ylim=NULL,zlim=NULL,maxGen){
 			coords <- getCoords(x)
 			plotGen(coords,z=g,add=TRUE,xlim=xlim,ylim=ylim,zlim=NULL,maxGen=maxGen)
 		})
-	text3D(x=mean(xlim)-diff(range(xlim))/5,y=min(ylim)+diff(range(ylim))/5,z=min(zlim),labels=c("longitude"),add=TRUE,cex=1.5)
+	text3D(x=mean(xlim)-diff(range(xlim))/6,y=min(ylim)+diff(range(ylim))/9,z=min(zlim),labels=c("longitude"),add=TRUE,cex=1.5)
 	text3D(x=min(xlim)-diff(range(xlim))/3,y=mean(ylim),z=min(zlim)+diff(range(zlim))/7,labels=c("latitude"),add=TRUE,cex=1.5)
 	text3D(x=max(xlim)+diff(range(xlim))/10,y=min(ylim),z=mean(zlim),labels=c("time"),add=TRUE,cex=1.5)
 	text3D(x=max(xlim)+diff(range(xlim))/20,y=min(ylim),z=min(zlim)+diff(range(zlim))/5,labels=c("present"),add=TRUE,cex=1.5)

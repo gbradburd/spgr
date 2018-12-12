@@ -18,19 +18,28 @@ library(plot3D)
 #		with pedigree tracking
 ################################
 
-call <- "slim 2d_ped.slim"
-system(call)
+if(!file.exists("gen_output/gen_100")){
+	call <- "slim 2d_ped.slim"
+	system(call)
+}
 
 
 ################################
 #	make figure
 ################################
 
-# pick a focal individual
-i <- 1 
-#FIND THE RIGHT INDIVIDUAL
 # pick a range of generations to plot
 gens <- c(100,97)
+
+# pick a focal individual
+goodOnes <- sapply(1:100,
+				function(i){
+					ancs <- getAncestors(focalInd=i,gen1=gens[1],stopGen=gens[2])
+					length(unique(ancs[which(ancs[,2]==gens[2]),1])) == 2^(gens[1]-gens[2])
+				})
+#which(goodOnes)
+i <- 98 #sample(which(goodOnes),1)
+
 # specify the most recent generation simulated
 maxGen <- 100
 
