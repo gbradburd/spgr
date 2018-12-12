@@ -27,7 +27,8 @@ system(call)
 ################################
 
 # pick a focal individual
-i <- 4
+i <- 1 
+#FIND THE RIGHT INDIVIDUAL
 # pick a range of generations to plot
 gens <- c(100,97)
 # specify the most recent generation simulated
@@ -38,8 +39,8 @@ maxGen <- 100
 #	replot cleanly with plotdev()
 pdf(file="tmp.pdf")
 	ancs <- getAncestors(focalInd=i,gen1=gens[1],stopGen=gens[2])
-	xlim <- range(ancs[,3]) + c(-0.02,0.02)
-	ylim <- range(ancs[,4]) + c(-0.02,0.02)
+	xlim <- range(ancs[,3])
+	ylim <- range(ancs[,4])
 	plotPed(gens=gens[1]:gens[2],xlim=xlim,ylim=ylim,zlim=NULL,maxGen=maxGen)
 	points3D(x=ancs[,3],
 			 y=ancs[,4],
@@ -54,5 +55,17 @@ dev.off()
 pdf(file="../spatial_pedigree.pdf",width=8,height=8)
 	plotdev()
 dev.off()
+
+# pdf(file="../1spatial_pedigree.pdf",width=16,height=8)
+	# par(mfrow=c(1,2))
+	# plotNonSpPed(ancs)
+	# plotdev()
+# dev.off()
+
+
+pdf(file="../pedigree.pdf",width=8,height=8)
+	plotNonSpPed(ancs)
+dev.off()
+
 
 file.remove("tmp.pdf")

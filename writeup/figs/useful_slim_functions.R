@@ -64,6 +64,18 @@ plotPed <- function(gens,xlim=NULL,ylim=NULL,zlim=NULL,maxGen){
 			coords <- getCoords(x)
 			plotGen(coords,z=g,add=TRUE,xlim=xlim,ylim=ylim,zlim=NULL,maxGen=maxGen)
 		})
+	text3D(x=mean(xlim)-diff(range(xlim))/5,y=min(ylim)+diff(range(ylim))/5,z=min(zlim),labels=c("longitude"),add=TRUE,cex=1.5)
+	text3D(x=min(xlim)-diff(range(xlim))/3,y=mean(ylim),z=min(zlim)+diff(range(zlim))/7,labels=c("latitude"),add=TRUE,cex=1.5)
+	text3D(x=max(xlim)+diff(range(xlim))/10,y=min(ylim),z=mean(zlim),labels=c("time"),add=TRUE,cex=1.5)
+	text3D(x=max(xlim)+diff(range(xlim))/20,y=min(ylim),z=min(zlim)+diff(range(zlim))/5,labels=c("present"),add=TRUE,cex=1.5)
+	text3D(x=max(xlim)+diff(range(xlim))/20,y=min(ylim),z=max(zlim)-diff(range(zlim))/5,labels=c("past"),add=TRUE,cex=1.5)
+	arrows3D(x0=max(xlim)+diff(range(xlim))/12,
+			 y0=min(ylim),
+			 z0=min(zlim)+diff(range(zlim))/4,
+			 x1=max(xlim)+diff(range(xlim))/12,
+			 y1=min(ylim),
+			 z1=max(zlim)-diff(range(zlim))/4.25,
+			 add=TRUE)
 }
 
 
@@ -126,4 +138,37 @@ plotPedLines <- function(ancs,maxGen,lwd){
 			}
 		})
 	)
+}
+
+plotNonSpPed <- function(ancs){
+	nGen <- length(unique(ancs[,2]))
+	par(mar=c(0,0,0,0))
+	plot(0,type='n',xlim=c(0,1.1),ylim=c(1,nGen),xlab="",ylab="",main="",xaxt='n',yaxt='n',bty='n')
+	for(n in nGen:1){
+		if(n == nGen){
+			x <- cumsum(rep((1/(2^(nGen-1)+1)),2^(nGen-1)))
+			y <- rep(nGen,2^(nGen-1))
+		} else {
+			x <- (x[seq(1,2^n,by=2)] + x[seq(2,2^n,by=2)])/2
+			y <- rep(n,2^(n-1))
+		}
+		points(x=x,y=y,pch=19,col=adjustcolor("red",0.5),cex=2)
+		if(n > 1){
+			nPairs <- 2^(n-1)/2
+			lapply(1:nPairs,
+				function(i){
+					segments(x0=x[i*2-1],x1=x[i*2],y0=n,y1=n,lty=2)
+					segments(x0=mean(c(x[i*2-1],x[i*2])),
+							 x1=mean(c(x[i*2-1],x[i*2])),
+							 y0=n,
+							 y1=n-1,lty=1)
+				})
+		}
+	}
+	text(x=1,y=(nGen+1)/2,labels="time",cex=2)
+	text(x=1,y=1,labels="present",cex=2)
+	text(x=1,y=nGen,labels="past",cex=2)
+	segments(x0=1,x1=1,y0=1+0.2,y1=(nGen+1)/2-0.1)
+	arrows(x0=1,x1=1,y0=(nGen+1)/2+0.1,y1=nGen-0.2)
+	return(invisible("plotted"))
 }
