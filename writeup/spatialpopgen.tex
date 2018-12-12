@@ -11,6 +11,8 @@
 \newcommand{\p}[1]{{\color{green}{#1}}}
 \documentclass{ar-1col}
 
+\usepackage{subcaption}
+
 \setcounter{secnumdepth}{4}
 
 % Metadata Information
@@ -95,6 +97,7 @@ that can be brought to bear on those questions.
 \end{itemize}
 
 \section{The spatial pedigree}
+\g{I can't tell if this belongs in the introduction somehow.}
 Before diving in, 
 it will be helpful to define the concept of the spatial pedigree: 
 a graph denoting the pedigree relatedness of all individuals in a sample, 
@@ -125,26 +128,55 @@ was selected for in a given environment,
 we could compare the mean fitness of all individuals in that environment with that allele 
 to that of those without the allele.
 
-In practice, we can never know the full spatial pedigree;
-Even if we could census every individual in a population 
+In practice, we can never be certain of the full spatial pedigree;
+Even if we could census every individual in a species 
 and establish the pedigree relationships between them all, 
-the 
+we still would not know about relationships between 
+and locations of individuals in previous, unobservable generations (Wilkins 2004).
+Nevertheless, the idea of the spatial pedigree is useful
+as a conceptual framework for organizing 
+spatial population genetic questions and principles.
+Unlike other population genetic models, 
+e.g., the stepping-stone model or the island model,
+the spatial pedigree imposes no simplifying 
+and potentially misleading assumptions on biological reality.
+In addition, although it may be difficult or impossible 
+to do inference on the spatial pedigree directly, 
+we can still catch glimpses of the spatial pedigree of a sample of individuals 
+by collecting and analyzing their genetic data.
+\g{peter, you were leery of using reverse-time, which I get, 
+but I think it's helpful to consider the spatial history of a sample 
+as another layer of stuff the coalescent is embedded in.
+I.e., the coalescent is embedded in the pedigree, 
+and the pedigree is embedded in the spatial history, 
+so the set of gene genealogies in a sample can be informative 
+about both the pedigree history and also the spatial history.}
 
 
-but it is still useful as a conceptual framework 
-for organizing for spatial population genetic questions and principles.
-
-\begin{figure}
+\begin{figure}[h!]
 	\centering
-		{\includegraphics[width=0.8\textwidth]{figs/spatial_pedigree.pdf}}
-		\caption{Example spatial pedigree.
-		Each plane represents a a sampled region in a discrete (non-overlapping generation), 
-		and each dot represents an individual.
-		The present is at the bottom of the plot, and the past at the top.
-		The spatial pedigree of the ancestors of a focal individual is highlighted in red
-		back through time and across space.
-		Dashed lines denote matings, and solid lines denote parentage.
-			    }\label{spatial_pedigree}
+	\begin{subfigure}{0.45\textwidth}
+		\centering	
+		\includegraphics[width=\linewidth]{figs/pedigree.pdf}
+		\caption{the pedigree}
+		\label{pedigree}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\centering	
+		\includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+		\caption{the spatial pedigree}
+		\label{sp_pedigree}
+	\end{subfigure}
+		\caption{
+			Example spatial pedigree.
+	        		Each plane represents a a sampled region in a discrete (non-overlapping generation), 
+        			and each dot represents an individual.
+        			The present is at the bottom of the plot, and the past at the top.
+	        		The spatial pedigree of the ancestors of a focal individual is highlighted in red
+        			back through time and across space.
+        			Dashed lines denote matings, and solid lines denote parentage.
+		}
+		\label{spatial_pedigree}
 \end{figure}
 
 
@@ -160,8 +192,9 @@ Variation may exist across space,
 like when habitats vary in quality
 leading to high fecundity in ``good" habitat, 
 but low fecundity in poor habitat.
-Understanding this variation can be crucial for 
-distinguishing demographic sources from sinks (Pulliam 1988, Schreiber 2010).
+Understanding this variation can be crucial for understanding 
+ecologically important details of a species natural history, 
+e.g., distinguishing demographic source habitat from sink habitat (Pulliam 1988, Schreiber 2010).
 Variation in abundance may also exist across time,
 especially as the distribution of individuals of many species is changing rapidly 
 in response to anthropogenic disturbance (Bi 2013).
@@ -199,6 +232,7 @@ and is central to many research questions,
 including predicting responses to climate change,
 evaluating epidemiological networks, 
 and understanding population demography and dynamics.
+
 
 \subsubsection{Dispersal (individual, diffusive movement; $\sigma$)}
 
