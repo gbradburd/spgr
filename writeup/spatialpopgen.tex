@@ -155,13 +155,13 @@ about both the pedigree history and also the spatial history.}
 
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{0.45\textwidth}
+	\begin{subfigure}{0.35\textwidth}
 		\centering	
 		\includegraphics[width=\linewidth]{figs/pedigree.pdf}
 		\caption{the pedigree}
 		\label{pedigree}
 	\end{subfigure}
-	\begin{subfigure}{0.45\textwidth}
+	\begin{subfigure}{0.55\textwidth}
 		\centering	
 		\includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
 		\caption{the spatial pedigree}
@@ -204,6 +204,15 @@ to get a peek at the process.
 
 \subsubsection{Population density}
         - How many individuals live in a given area? in total?
+what exactly do we mean - reproductive adults, or just anyone
+If we're trying to infer from the pedigree, we have to be careful bc not everyone leaves genetic descendants
+difference between census size and Ne
+deeper coalescences in denser areas, more diversity and lower p(IBD)
+
+	-nonreproductive individuals
+		-reproductive individuals farther back in the past
+	-need to translate between census and effective size
+
 
         - How has that number of individuals fluctuated over time? (fast changes as opposed to slow changes)
 
@@ -222,9 +231,79 @@ to get a peek at the process.
             * and a map of long-term fitness 
             
 \subsubsection{Related statistics}
-        - on-the-ground census
+An on-the-ground census or a mark-recapture study (ref)
+can provide an estimate of the number of individuals in a given region.
+This census estimate has the advantage of offering a fairly complete 
+snapshot of numbers in the modern day, 
+which may be important for, e.g., 
+parameterizing ecological models 
+or performing environmental impact surveys.
+However, these direct census methods have a number of disadvantages as well.
+They can be both time- and labor-intensive, 
+often requiring repeat trips to an area.
+In addition, they might not provide information 
+about the number of reproductive individuals, 
+and they yield few insights into the numbers of individuals 
+in an area in the past.
+
+The alternative -- 
+using genetic data to get an estimate of the number of individuals in an area -- 
+can be done using a much smaller number of sampled individuals, 
+and can offer insights into number of reproductive individuals and historical densities as well.
+To build an intuition for how it is possible to estimate 
+abundances from genetic data collected from a sample of individuals,
+we can consider the spatial pedigree in scenarios of different abundance.
+
+In an area with a small number of individuals in the each generation d
+and in a species with short dispersal 
+(so that there is little influx of migrants from other areas), 
+the average time to coalescence for a pair of alleles sampled 
+at random in a generation will be very short.
+To see why, consider the relationship between density 
+and the pool of possible parents.
+Each individual in the current generation has two parents that came from nearby,
+so in a sparsely populated area, 
+the pool of individuals who \emph{could} be parents gets exhausted quickly, 
+and some individuals in the current generation 
+likely share at least one parent in the previous generation.
+If those individuals are not siblings or half-siblings,
+they are likely to be recent cousins, 
+their pedigrees overlapping in this sparsely populated area 
+in the recent past.
+This can be contrasted with a densely populated area, 
+in which the pool of possible parents in each previous generation is quite large, 
+so that 
+
+
+There are several ways to look for this signature 
+of consistently low local abundance 
+in patterns of population genetic variation.
+Diversity statistics, such as Watterson's $\theta$, 
+will be low
+
+
+
+there is a very small pool of local individuals who could 
+have been the parents of the current generation.
+As a result, alleles sampled from individuals in this sparsely populated area 
+will have short average coalescence times.
+
+
+It is plausible, and perhaps likely,
+that even in a small sample of individuals in the current generation, 
+a researcher may find siblings or cousins.
+
+
+
         
+
         - $N_e$
+        	-Ne now (drift)
+	-Ne avg
+	-Ne through time
+		- census size isn't realized in the genetics, but is relatively
+	
+	-diversity - chance of nabbing siblings (tract length distns)
 
 \subsection{How do they move?}
 Dispersal is a fundamental process in ecology and evolution, 
@@ -288,6 +367,9 @@ and understanding population demography and dynamics.
             
             * picture: individuals shaded according to the proportion of ancestry of a given small cluster of samples
                 they contribute, at several points back in time
+                
+\subsection{Geographic distribution of common ancestors}
+	rachel bay yellow warbler paper
 
 \subsubsection{Related statistics}
 
