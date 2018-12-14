@@ -73,7 +73,7 @@ dev.off()
 
 
 pdf(file="../pedigree.pdf",width=8,height=8)
-	plotNonSpPed(ancs)
+	plotNonSpPed(ancs,mar=c(2,0,3,0))
 dev.off()
 
 

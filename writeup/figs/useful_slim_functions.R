@@ -140,9 +140,9 @@ plotPedLines <- function(ancs,maxGen,lwd){
 	)
 }
 
-plotNonSpPed <- function(ancs){
+plotNonSpPed <- function(ancs,mar=c(3,0,3,0)){
 	nGen <- length(unique(ancs[,2]))
-	par(mar=c(0,0,0,0))
+	par(mar=mar)
 	plot(0,type='n',xlim=c(0,1.1),ylim=c(1,nGen),xlab="",ylab="",main="",xaxt='n',yaxt='n',bty='n')
 	for(n in nGen:1){
 		if(n == nGen){
