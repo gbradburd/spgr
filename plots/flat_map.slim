@@ -5,8 +5,8 @@ initialize() {
 
     seed = 23;
     setSeed(seed);
-    defineConstant("OUTPATH", "flat_map." + seed + ".trees");
-    defineConstant("MAXGENS", 40);
+    defineConstant("MAXGENS", 30);
+    defineConstant("OUTPATH", "flat_map." + MAXGENS + "." + seed + ".trees");
 
     sigma = 0.2;
     defineConstant("K", 5);  // carrying-capacity per unit square (roughly)
@@ -14,8 +14,8 @@ initialize() {
     defineConstant("SI", sigma);  // sigma_I, the spatial interaction distance
     defineConstant("SM", SI);  // sigma_M, the mate choice distance
     defineConstant("L", 4);    // mean lifetime at stationarity
-    defineConstant("W", 16.0);  // width and height of the simulated area
-    defineConstant("G", 1e8);  // genome length
+    defineConstant("W", 10.0);  // width and height of the simulated area
+    defineConstant("G", 2e9);  // genome length
     defineConstant("FECUN", 1/L); // mean fecundity
     defineConstant("RHO", FECUN/((1+FECUN) * K)); // constant in spatial competition function
 
