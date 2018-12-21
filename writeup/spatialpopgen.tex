@@ -495,60 +495,58 @@ Male/female differences in dispersal distance?
 
 The most common summary statistic of dispersal in population genetics 
 is the average migration rate between a pair of isolated demes.
-One analogue of this quantity in continuous space 
+In continuous space, the analogue of this quantity 
 is the number of dispersal events that cross 
 a given boundary each year;
-i.e., how many individuals are born each year whose parents were born on the other side of a given boundary?
+i.e., how many individuals are born each year whose parents 
+were born on the other side of a given boundary?
 \plr{what do we call this? population flux?}
 We call this quantity the \emph{population flux} across the boundary, 
-and it is a useful concept for investigating connectivity 
-between different areas, 
-and also the role of the landscape in shaping patterns of dispersal through time.
+and it is a useful concept for investigating connectivity between different areas
+and the role of the landscape in shaping patterns of dispersal.
 For instance, 
 we might be interested in the flux across a ridgeline between two valleys
 relative to that across a similar boundary down the middle of one of the valleys,
-which can tell us whether that ridge line is a substantial barrier to population movement or not.
-Of course, this may not be equal in both directions 
-(e.g., it may be easier to disperse downhill than uphill,
+which can tell us whether that ridgeline is a substantial barrier to population movement or not.
+Note that population flux is not constrained to be equal in both directions across a boundary;
+e.g., it may be easier to disperse downhill than uphill,
 downwind than upwind,
-down-current than up-current, etc.), 
-so it may be useful to calculate flux in both directions across the line.
+down-current than up-current, etc..
 
 As before, if we had complete knowledge of the spatial pedigree,
 we could calculate the flux across any line simply by counting the number of 
 parent-offspring pairs that span it.
 In practice, we must rely on observations from genetic data, 
 which introduces two complications.
-First, 
-it is rare to find in a dataset one individual that is a direct ancestor of another in the dataset (apart from perhaps some parent-child relationships).
+First, in a given dataset, it is rare to find in one individual 
+that is a direct ancestor of another in the dataset 
+(apart from perhaps some parent-child relationships).
 Even with historical data (e.g., ancient DNA),
 ancient individuals are unlikely to be direct genetic ancestors of modern samples,
-but rather sharing common genetic ancestors living some generations before with modern samples.
+and instead are likely to share common genetic ancestors with modern samples.
 As a result, we almost never infer dispersal events, 
 only coalescences between pairs of individuals.
 Therefore, the problem of inferring population flux from genetic or genealogical data 
 cannot be completely disentangled from inferring population density (discussed above).
-We can use these observations of coalescences to learn about the flux across a given line:
-across a barrier to dispersal,
-the average time to coalescence for pairs of individuals on opposite sides of the line
-is longer than that between individuals on the same side. 
-Lower population flux means that individuals on opposite sides of a line share ancestors
-less frequently.
-Also, a barrier means longer across but shorter within coal times \citep{ringbauer2018estimating}.
 
 The second complication is analogous to the problem of effective population size:
 the lineages along which genetic material is passed are not an unbiased sample of all dispersal events;
-they are waited by their contribution to the population.
+they are weighted by their contribution to the population.
 For instance, if there is strong local intra-specific competition,
 individuals that dispersed farther from their parents (and their siblings) 
 may be more likely to reproduce and therefore be represented in the pedigree.
 On the other hand, if there is substantial local adaptation,
 then many individuals may be dispersing to habitats dissimilar to that of their parents
-but are unlikely to transmit genetic material to the next generation
+and are unlikely to transmit genetic material to the next generation
 because they are maladapted to the local environment.
-(For a review, see \citep{bradburdwang}.)
-
-As above, the difference between effective flux and actual flux 
+(for a review, see \citep{bradburdwang}.)
+With sufficient sampling, 
+it may be possible to get an estimate of flux in the modern sample 
+that is only minimally affected by these biases.
+For example, it may be possible to sample maladapted individuals 
+before they are picked off,
+or to sample individuals in a generation before reproduction.
+However, in general, the difference between effective flux and actual flux 
 will be accentuated the farther back in time one looks.
 
 Effects of sampling design: suppose a big pop is next to a small pop,
@@ -563,6 +561,14 @@ from the point of view of our samples.
 \plr{figure idea:} adjacent valleys with lower pop density along the intervening ridge,
 with arrows denoting all parent-child relationships that cross the ridge
 \plr{figure idea:} added to the above, a line drawn down the middle of a valley, with arrows crossing as before (OR, OUT OF A CIRCLE?)
+
+We can use these observations of coalescences to learn about the flux across a given line:
+across a barrier to dispersal,
+the average time to coalescence for pairs of individuals on opposite sides of the line
+is longer than that between individuals on the same side. 
+Lower population flux means that individuals on opposite sides of a line share ancestors
+less frequently.
+Also, a barrier means longer across but shorter within coal times \citep{ringbauer2018estimating}.
 
 relationship to dispersal: birth rate times population density times length of boundary times $\sigma/\sqrt{2\pi}$ in each direction
 if dispersal is Gaussian and boundary is straight
@@ -585,8 +591,12 @@ since $\sigma^2 = \E[X^2]$, if $X$ is Gaussian then...
 %%%%%%%%%%%%%%
 \subsubsection{Not-resistance surfaces}
 
-Fluxes across lines through the landscape describe something about population movement, but are not nearly as satisfying or relevant as a map that depicts regions with greater or lesser degrees of population movement.
-In heterogeneous environments, it is clearly desirable to be able to depict across geography local population movement on some kind of a map.
+Fluxes across lines through the landscape 
+describe something about population movement, 
+but are not nearly as satisfying or relevant to researchers 
+as a map that depicts regions with greater or lesser degrees of population movement.
+In heterogeneous environments, 
+it is clearly desirable to be able to depict local population movement across geography on some kind of a map.
 The general description of this kind would be to specify for each location on the map 
 the probability distribution of where the children of a parent living at that location would end up.
 To build an intuition for this, 
@@ -596,7 +606,6 @@ how would we describe this collection of dispersal events:
 how far they go,
 what direction they go, 
 covariance in noise about that mean.
-
 
 A way to summarize this by one or a few maps of scalar quantities would be to estimate, at each location, the mean and the covariance of the parent-offspring displacement.
 The mean displacement would form a vector field over the map, 
