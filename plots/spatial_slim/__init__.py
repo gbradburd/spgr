@@ -2,7 +2,6 @@ import pyslim, msprime
 import numpy as np
 import tqdm
 
-
 class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
 
     def __init__(self, ts, dim=3):
@@ -46,10 +45,25 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
         if time is None:
             out = np.repeat(True, self.num_individuals)
         else:
-            births = self.individual_times
-            ages = self.individual_ages
+            births = self.individual_times()
+            ages = self.individual_ages()
             out = np.logical_and(births >= time, births - ages <= time)
         return out
+
+    def individuals_age(self, time):
+        """
+        Returns the *ages* of each individual at the corresponding time ago,
+        which will be `nan` if the individual is either not born yet or dead.
+        This is computed as the time ago the indivdiual was born (found by the
+        `time` associated with the the indivdiual's nodes) minus the `time`
+        argument; while "death" is inferred from the individual's `age`,
+        recorded in metadata.
+
+        :param float time: The reference time ago.
+        """
+        ages = self.individual_times() - time
+        ages[np.logical_not(self.individuals_alive(time))] = np.nan
+        return ages
 
     def individuals_by_time(self, time):
         """
@@ -60,6 +74,31 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
         :param float time: The amount of time ago.
         """
         return np.where(self.individuals_alive(time))[0]
+
+    def get_node_children(self, parent_nodes, left=0.0, right=None):
+        """
+        Returns a list of all (parent, child) pairs of node IDs for the given 
+        parents, such that child inherited from parent somewhere in the region
+        [left, right).
+
+        :param int parent_nodes: The node IDs of the parents.
+        :param float left: The left end of the portion of genome considered.
+        :param float right: The right end of the portion of genome considered.
+            Defaults to the sequence length.
+        """
+        if len(parent_nodes) == 0:
+            return []
+        if max(parent_nodes) >= self.num_nodes or min(parent_nodes) < 0:
+            raise ValueError("Parent node ID out of bounds.")
+        if right is None:
+            right = self.sequence_length
+        if left < 0 or right > self.sequence_length or left > right:
+            raise ValueError("Illegal left, right bounds.")
+        edges = self.tables.edges
+        yesthese = np.logical_and(np.isin(edges.parent, parent_nodes),
+                                          edges.left < right,
+                                          edges.right >= left)
+        return zip(edges.parent[yesthese], edges.child[yesthese])
 
     def get_node_parents(self, children, left=0.0, right=None):
         """
@@ -111,46 +150,59 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
         return [(a, b) for (a, b) in out 
                 if a is not msprime.NULL_INDIVIDUAL and b is not msprime.NULL_INDIVIDUAL
                    and alive[a]]
-    @property
-    def individual_times(self):
-        return np.fromiter(map(lambda x: x.time, self.individuals()), 'float')
 
-    @property
-    def individual_ages(self):
-        return np.fromiter(map(lambda x: pyslim.decode_individual(x.metadata).age, self.individuals()), 'int')
+    def get_individual_nodes(self, individuals, flatten=True):
+        """
+        Return the list of nodes associated with these individuals,
+        either as a list of lists, or as a single flat list.
 
-    @property
-    def individual_populations(self):
-        return np.fromiter(map(lambda x: pyslim.decode_individual(x.metadata).population, self.individuals()), 'int')
+        :param iterable individuals: The list of individual IDs.
+        """
+        nodes = [self.individual(i).nodes for i in individuals]
+        if flatten:
+            nodes = [x for y in nodes for x in y]
+        return nodes
 
-    @property
-    def individual_locations(self):
+    # NOTE: this and several other methods below *could* be @properties, but are not
+    # because that encourages people to, say, re-use them a lot instead of storing the results,
+    # which can be quite slow
+    def individual_times(self, inds=None):
+        if inds is None:
+            inds = self.individuals()
+        return np.fromiter(map(lambda x: x.time, inds), 'float')
+
+    def individual_ages(self, inds=None):
+        if inds is None:
+            inds = self.individuals()
+        return np.fromiter(map(lambda x: pyslim.decode_individual(x.metadata).age, inds), 'int')
+
+    def individual_populations(self, inds=None):
+        if inds is None:
+            inds = self.individuals()
+        return np.fromiter(map(lambda x: pyslim.decode_individual(x.metadata).population, inds), 'int')
+
+    def individual_locations(self, inds=None):
+        if inds is None:
+            inds = list(range(self.num_individuals))
         locations = self.tables.individuals.location
         locations.shape = (int(len(locations)/3), 3)
-        return locations[:,:self.dim]
+        return locations[inds,:self.dim]
 
     def proportion_ancestry_nodes(self, sample_sets, show_progress=False):
         """
         Computes for each node the proportion of the genomes in each of sample sets
         inheriting from that node.
         """
-        # Check the inputs (could be done more efficiently here)
-        all_samples = set()
         for sample_set in sample_sets:
             U = set(sample_set)
             if len(U) != len(sample_set):
                 raise ValueError("Cannot have duplicate values within set")
-            if len(all_samples & U) != 0:
-                # TODO: is this necessary? (shouldn't be)
-                raise ValueError("Sample sets must be disjoint")
-            all_samples |= U
 
         K = len(sample_sets)
         A = np.zeros((K, self.num_nodes))
         parent = np.zeros(self.num_nodes, dtype=int) - 1
         sample_count = np.zeros((K, self.num_nodes), dtype=int)
         last_update = np.zeros(self.num_nodes)
-        total_length = np.zeros(self.num_nodes)
 
         def update_counts(edge, sign):
             # Update the counts and statistics for a given node. Before we change the
@@ -160,11 +212,9 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
             v = edge.parent
             while v != -1:
                 if last_update[v] != left:
-                    total = np.sum(sample_count[:, v])
-                    if total != 0:
-                        length = left - last_update[v]
-                        for j in range(K):
-                            A[j, v] += length * sample_count[j, v]
+                    length = left - last_update[v]
+                    for j in range(K):
+                        A[j, v] += length * sample_count[j, v]
                     last_update[v] = left
                 for j in range(K):
                     sample_count[j, v] += sign * sample_count[j, edge.child]
@@ -185,14 +235,11 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
                 parent[edge.child] = edge.parent
                 update_counts(edge, +1)
 
-        # Finally, add the stats for the last tree and normalise by the total
-        # length that each node was an ancestor to > 0 samples.
+        # Finally, add the stats for the last tree
         for v in range(self.num_nodes):
-            total = np.sum(sample_count[:, v])
-            if total != 0:
-                length = self.sequence_length - last_update[v]
-                for j in range(K):
-                    A[j, v] += length * sample_count[j, v]
+            length = self.sequence_length - last_update[v]
+            for j in range(K):
+                A[j, v] += length * sample_count[j, v]
         # renormalize
         for j in range(K):
             A[j,:] /= len(sample_sets[j]) * self.sequence_length

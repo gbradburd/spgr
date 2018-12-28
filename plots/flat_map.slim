@@ -3,18 +3,24 @@ initialize() {
     initializeSLiMOptions(dimensionality="xy");
     initializeTreeSeq();
 
-    seed = 23;
-    setSeed(seed);
-    defineConstant("MAXGENS", 30);
-    defineConstant("OUTPATH", "flat_map." + MAXGENS + "." + seed + ".trees");
+    if (!exists("MAXGENS")) {
+      defineConstant("MAXGENS", 30); 
+    }
+    if (!exists("W")) {
+      defineConstant("W", 10.0);  // width and height of the simulated area 
+    }
+    if (!exists("OUTPATH")) { 
+      defineConstant("OUTPATH", "flat_map." + MAXGENS + "." + seed + ".trees"); 
+    }
+    if (!exists("SIGMA")) {
+      defineConstant("SIGMA", 0.2);
+    }
 
-    sigma = 0.2;
     defineConstant("K", 5);  // carrying-capacity per unit square (roughly)
-    defineConstant("SD", sigma);  // sigma_D, the dispersal distance
-    defineConstant("SI", sigma);  // sigma_I, the spatial interaction distance
+    defineConstant("SD", SIGMA);  // sigma_D, the dispersal distance
+    defineConstant("SI", SIGMA);  // sigma_I, the spatial interaction distance
     defineConstant("SM", SI);  // sigma_M, the mate choice distance
     defineConstant("L", 4);    // mean lifetime at stationarity
-    defineConstant("W", 10.0);  // width and height of the simulated area
     defineConstant("G", 2e9);  // genome length
     defineConstant("FECUN", 1/L); // mean fecundity
     defineConstant("RHO", FECUN/((1+FECUN) * K)); // constant in spatial competition function
@@ -128,6 +134,6 @@ late() {
 }
 
 s99 200000 late() {
-   sim.treeSeqOutput(OUTPATH);
+   sim.treeSeqOutput(OUTPATH, simplify=F);
    sim.simulationFinished();
 }
