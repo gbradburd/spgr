@@ -9,10 +9,12 @@
 % For tracking purposes => this is v1.0 - Apr. 2013
 \newcommand{\g}[1]{{\color{blue}{#1}}}
 \newcommand{\plr}[1]{{\color{green}{#1}}}
+\newcommand{\E}{\mathbb{E}}
 \documentclass{ar-1col}
 \addtolength{\voffset}{-0.5in}
 
 \usepackage{subcaption}
+\usepackage{amsfonts}
 
 \setcounter{secnumdepth}{4}
 
@@ -27,7 +29,7 @@
 \begin{document}
 
 % Page header
-\markboth{Bradburd}{Spatial Population Genetics}
+\markboth{Bradburd and Ralph}{Spatial Population Genetics}
 
 % Title
 \title{Spatial Population Genetics: It's About Time}
@@ -59,48 +61,96 @@ population genetics, isolation by distance, population structure, local adaptati
 % Heading 1
 \section{INTRODUCTION}
 
-\begin{itemize}
-%Alt intro -> new scope of datasets is allowing popgen to inform us about processes
-%acting on ecological timescales?
-\item The field of population genetics is shaped by a continuing conversation
+The field of population genetics is shaped by a continuing conversation
 between theory, methods, and data.
-\item With some notable exceptions (wright, malecot),
-much of early theory was population-centric,
-both informing and informed by early empirical datasets.
-    \subitem Again, with some notable exceptions, e.g. Dobzhansky 47.
-\item In reality, well-delineated demes or clearly defined discrete populations are rare.
-Rather, organisms are living, moving, reproducing, and dying somewhere in space,
-all connected to each other by a pedigree that spans the history of all species.
-\item \emph{Something happened},
-and now there's a growing body of theory and datasets
-that approaches this reality.
-\item Methods are playing catch-up,
-and it's a very exciting time to be a spatial population geneticist.
-\item What is spatial popgen?
-\item What is this review?
-\subitem This review is organized around a small number of
-fundamental questions about the biology and history of organisms
-that underlie many of the things we want to know about our study species.
-This review is organized around a definition of the field of spatial population genetics
-and its principal applications.
-Our goal is to provide an introduction for empirical researchers
-to the types of questions that can be answered
-with spatial population genetics,
-and the signals in data that can be used to answer them.
+We design experiments and collect empirical data 
+with the methods we will use to analyze them in mind; 
+in turn, those methods are based on theory 
+that was developed to explain observations from empirical data.
+With some notable exceptions,
+especially the work of Sewall Wright (e.g., refs) 
+and Gustave Mal\'ecot (e.g., refs)
+\g{, and later Monty Slatkin (e.g., refs),}
+much of the early body of theory was focused on 
+developing expectations for discrete populations.
+The focus theory maintained on results in discrete populations 
+both informed and was informed by early empirical datasets, 
+most of which 
+(although again, 
+with some notable exceptions (e.g., fly clines, dobzhansky 1947)),
+were well-described as discrete populations --
+e.g., samples of flies in a vial \cite{Lewontin1974}.
+Even the first, revolutionary empirical measurements 
+of molecular genetic variation
+-- the inaugural ``find 'em and grind 'em" studies of Lewontin and Hubby \cite{LewontinHubby66,HubbyLewontin66} --
+focused on data from 43 fly strains sampled from 5 locations,
+which were largely treated as experimental replicates
+(rather than studied in their geographic context).
+And, on the statistical side of the business,
+the methods used to analyze these datasets -- 
+e.g., empirical measurements of $F_{ST}$ \cite{wright}
+or tests of Hardy-Weinberg equilibrium \cite{hardy,weinberg,stern1943,crow1988} -- 
+were derived using theory based on discrete populations.
+
+In reality, well-delineated demes or clearly defined discrete populations are rare.
+Rather, organisms are living, 
+moving (or moving their gametes) around, 
+reproducing, and dying somewhere in space.
+It is much more difficult to collect data and develop theory and methods 
+to capture such complexity.
+Sampling efforts are always limited by time and money 
+in both the size of the area that can be covered 
+and the number of individuals that can be genotyped within that area.
+And, developing theory to describe evolutionary dynamics 
+without simplifying assumptions is also, 
+by definition, 
+a more complicated endeavor. 
+\g{go into details of lineages in 2D space and pain in the torus and diffusion approximations?
+pretty nicely laid out by BartonDepaulisEtheridge, but maybe not the place?}.
+However, despite these difficulties, 
+there is now a growing body of theory, methods, and data
+that approach this biological, population-less reality.
+Advances in theory in continuous space (barton, ringbauer), 
+datasets of unprecedented geographical scope (humans, torts), 
+and new statistical paradigms for modeling those data (conStruct, eems, ringbauer, maybe hickerson)
+are together spurring a revolution in the field of spatial population genetics.
+
+\g{The field of spatial population genetics is the study of population genetics, in space.
+That is, the principal goals of population genetics --
+to study patterns of genetic variation within and between populations and
+learn about the processes generating those patterns --
+are the same as those of spatial population genetics.
+However, spatial population genetics as a field is particularly concerned
+with the spatial context of these patterns,
+leveraging information in the position of samples
+to learn about processes governing the distribution of genetic diversity across landscapes.
+Spatial population genetics allows researchers
+to unite the quantitative descriptions of population genetics
+with fundamental questions about the ecology and evolution of organisms.}
+
+The goal of this review 
+is to provide an introduction for empirical researchers 
+to spatial population genetics.
 This is a rapidly changing field,
 and to a reader of this review five years from now,
 many methods currently in use may no longer be relevant
 (although hopefully our own contributions will be immortal).
-So, rather than discuss the existing methods for inference in detail,
-we have instead organized this review around the principal questions in the field
-and will focus on the different types of information in genetic and genomic data
-that can be brought to bear on those questions.
-\end{itemize}
+So, rather than delving into the mechanics of specific methods, 
+we instead focus on a small number of fundamental questions
+that underlie many of the things we want to know about 
+the biology and history of organisms we study.
+We frame each question 
+as a spatial population genetic problem, 
+and discuss how these problems can be illuminated 
+by signals in data.
+In doing so, 
+we introduce the concept of the spatial pedigree 
+as both an intuition-building heuristic 
+and an \g{organizing principle} for the field.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The spatial pedigree}
 
-\g{I can't tell if this belongs in the introduction somehow.}
 Before diving in,
 it will be helpful to define the concept of the spatial pedigree:
 a graph denoting the pedigree relatedness of all individuals in a sample,
@@ -136,6 +186,12 @@ Even if we could census every individual in a species
 and establish the pedigree relationships between them all,
 we still would not know about relationships between
 and locations of individuals in previous, unobservable generations (Wilkins 2004).
+In addition, the location of an individual can be a complicated quantity to describe.
+Individuals may move throughout a day, 
+or through the seasons, 
+and may reproduce several times at different locations, 
+so that it is difficult to summarize the location of the individual 
+with a single coordinate in space.
 Nevertheless, the idea of the spatial pedigree is useful
 as a conceptual framework for organizing
 spatial population genetic questions and principles.
@@ -206,7 +262,7 @@ variation in individuals (e.g., how many are reproductive vs. non-reproductive),
 variation in space (more here than there),
 or variation in time (fewer here than there used to be).
 Understanding this variation can be crucial for understanding
-ecologically important details of a species natural history,
+ecologically important details of a species' natural history,
 like whether a particular habitat is a demographic source or sink (Pulliam 1988, Schreiber 2010),
 or how species are responding to anthropogenic climate change (Bi 2013).
 The history of abundance and fecundity is recorded in the spatial pedigree,
@@ -280,7 +336,7 @@ is just their genetic contribution to the present population.
 If we are looking one generation back, this is proportional to their
 number of offspring, i.e., their fitness.
 If we are looking a long time in the past
-(in practice, more than 10 or 20 generations \citep{bartonfitness}),
+(in practice, more than 10 or 20 generations \cite{bartonfitness}),
 this is their \emph{long-term fitness}.
 The effective population sizes we estimate using coalescence rates
 are ``effective'' because of this difference;
@@ -398,7 +454,7 @@ all of which may depend on the sex of the parent and the offspring.
 
 For some species,
 it may be feasible to directly measure many of these components
-using, e.g., telemetry or banding \citep{dispersal_estimation}.
+using, e.g., telemetry or banding \cite{dispersal_estimation}.
 However, for most species this will be impractical,
 and, as with variation in population density,
 measured dispersal of modern individuals in a handful of years
@@ -410,7 +466,7 @@ which in turn leaves an imprint on patterns of genetic variation.
 If we knew the spatial locations of ancestors in the pedigree,
 then realized dispersal would be recorded directly;
 we usually do not, but spatial locations of modern individuals
-can give strong clues about this \citep{Cayuela2018}.
+can give strong clues about this \cite{Cayuela2018}.
 
 %%%%%%%%%%%%%%
 \subsubsection{Dispersal (individual, diffusive movement; $\sigma$)}
@@ -555,7 +611,7 @@ On the other hand, if there is substantial local adaptation,
 then many individuals may be dispersing to habitats dissimilar to that of their parents
 and are unlikely to transmit genetic material to the next generation
 because they are maladapted to the local environment.
-(for a review, see \citep{bradburdwang}.)
+(for a review, see \cite{bradburdwang}.)
 With sufficient sampling,
 it may be possible to get an estimate of flux in the modern sample
 that is only minimally affected by these biases.
@@ -584,7 +640,7 @@ the average time to coalescence for pairs of individuals on opposite sides of th
 is longer than that between individuals on the same side.
 Lower population flux means that individuals on opposite sides of a line share ancestors
 less frequently.
-Also, a barrier means longer across but shorter within coal times \citep{ringbauer2018estimating}.
+Also, a barrier means longer across but shorter within coal times \cite{ringbauer2018estimating}.
 
 relationship to dispersal: birth rate times population density times length of boundary times $\sigma/\sqrt{2\pi}$ in each direction
 if dispersal is Gaussian and boundary is straight
@@ -599,8 +655,8 @@ The mean absolute distance dispersed in a particular direction
 (e.g., mean E-W displacement if barrier runs N-S)
 is $\mu = \int_0^\infty x F'(x) dx = \int_0^\infty F(x) dx$.
 If dispersal is equally likely in any direction,
-then $\mu = \E[|X|]$ where $X$ is the dispersal displacement,
-since $\sigma^2 = \E[X^2]$, if $X$ is Gaussian then...
+then $\mu = \E{|X|}$ where $X$ is the dispersal displacement,
+since $\sigma^2 = \E{X^2}$, if $X$ is Gaussian then...
 \plr{to fix this; this is Buffon's needle}
 
 
@@ -715,7 +771,7 @@ then distribution of MRCAS could be everywhere.
 The question of how genetic variation is partitioned across
 geography is a common and intuitively appealing one,
 albeit somewhat slippery in practice.
-The most common measure of this quantity is $F_{ST}$ \citep{wright},
+The most common measure of this quantity is $F_{ST}$ \cite{wright},
 which measures how much more likely nearby individuals are to share genetic variation than individuals in the population as a whole.
 Concretely,
 the ratio of mean coalescence time within subpopulations
@@ -836,16 +892,25 @@ might be perceived as affecting the objectivity of this review.
 
 % Acknowledgements
 \section*{ACKNOWLEDGMENTS}
-Brandvain, Marge, JoNo, Graham, Schemske, friendly reviewers
+Brandvain, Marge, JoNo, Graham, Schemske
+
+
+friendly reviewers: 
+Ben Peter? Barton? JoNo? Andy K? Kelleher? Josh Schraiber? Is Petkova still in the game? 
+Etheridge?
 
 \end{document}
 
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-% TEXT GRAVEYARD
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
 
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%
+% TEXT GRAVEYARD
+%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 
 Population genetics stands out as a discipline
 in which the development of theory was far ahead of empirical possibilities.
@@ -1085,60 +1150,6 @@ or, more likely, the descendants of those sources of admixture are lost in the m
 \item The geography of genetic variation
     \item What do researchers want to do?
 \end{itemize}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
