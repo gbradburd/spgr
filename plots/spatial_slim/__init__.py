@@ -75,6 +75,94 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
         """
         return np.where(self.individuals_alive(time))[0]
 
+    def node_children_dict(self, left=0.0, right=None):
+        """
+        Return a dict whose keys are nodes and whose values are lists of node IDs
+        of their children.
+
+        :param float left: The left end of the portion of genome considered.
+        :param float right: The right end of the portion of genome considered.
+            Defaults to the sequence length.
+        """
+        if right is None:
+            right = self.sequence_length
+        if left < 0 or right > self.sequence_length or left > right:
+            raise ValueError("Illegal left, right bounds.")
+        edges = self.tables.edges
+        out = {n:[] for n in range(self.num_nodes)}
+        for edge in ts.edges():
+            if edges.left < right and edges.right >= left:
+                out[e.parent].append(e.child)
+        return out
+
+    def node_parents_dict(self, left=0.0, right=None):
+        """
+        Return a dict whose keys are nodes and whose values are lists of node IDs
+        of their parents.
+
+        :param float left: The left end of the portion of genome considered.
+        :param float right: The right end of the portion of genome considered.
+            Defaults to the sequence length.
+        """
+        if right is None:
+            right = self.sequence_length
+        if left < 0 or right > self.sequence_length or left > right:
+            raise ValueError("Illegal left, right bounds.")
+        edges = self.tables.edges
+        out = {n:[] for n in range(self.num_nodes)}
+        for edge in ts.edges():
+            if edges.left < right and edges.right >= left:
+                out[e.child].append(e.parent)
+        return out
+
+    def individual_children_dict(self, left=0.0, right=None):
+        """
+        Return a dict whose keys are individuals and whose values are lists of
+        individual IDs of their children.
+
+        :param float left: The left end of the portion of genome considered.
+        :param float right: The right end of the portion of genome considered.
+            Defaults to the sequence length.
+        """
+        if right is None:
+            right = self.sequence_length
+        if left < 0 or right > self.sequence_length or left > right:
+            raise ValueError("Illegal left, right bounds.")
+        edges = self.tables.edges
+        out = {n:[] for n in range(self.num_individuals)}
+        for edge in ts.edges():
+            if edges.left < right and edges.right >= left:
+                parent = ts.node(e.parent).individual
+                child = ts.node(e.child).individual
+                if (parent is not msprime.NULL_INDIVIDUAL
+                     and child is not msprime.NULL_INDIVIDUAL):
+                    out[parent].append(child)
+        return out
+
+    def individual_parents_dict(self, left=0.0, right=None):
+        """
+        Return a dict whose keys are individuals and whose values are lists of
+        individual IDs of their parents.
+
+        :param float left: The left end of the portion of genome considered.
+        :param float right: The right end of the portion of genome considered.
+            Defaults to the sequence length.
+        """
+        if right is None:
+            right = self.sequence_length
+        if left < 0 or right > self.sequence_length or left > right:
+            raise ValueError("Illegal left, right bounds.")
+        edges = self.tables.edges
+        out = {n:[] for n in range(self.num_individuals)}
+        for edge in ts.edges():
+            if edges.left < right and edges.right >= left:
+                parent = ts.node(e.parent).individual
+                child = ts.node(e.child).individual
+                if (parent is not msprime.NULL_INDIVIDUAL
+                     and child is not msprime.NULL_INDIVIDUAL):
+                    out[child].append(parent)
+        return out
+
     def get_node_children(self, parent_nodes, left=0.0, right=None):
         """
         Returns a list of all (parent, child) pairs of node IDs for the given 
@@ -102,9 +190,9 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
 
     def get_node_parents(self, children, left=0.0, right=None):
         """
-        Returns a list of all (parent, child) pairs of node IDs for the given 
-        children, such that child inherited from parent somewhere in the region
-        [left, right).
+        Returns an arrow whose rows are all (parent, child) pairs of node IDs
+        for the given children, such that child inherited from parent somewhere
+        in the region [left, right).
 
         :param int children: The node IDs of the children.
         :param float left: The left end of the portion of genome considered.
@@ -123,13 +211,14 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
         yesthese = np.logical_and(np.isin(edges.child, children),
                                           edges.left < right,
                                           edges.right >= left)
-        return zip(edges.parent[yesthese], edges.child[yesthese])
+        return np.column_stack((edges.parent[yesthese], edges.child[yesthese]))
 
     def get_individual_parents(self, children, time=None, left=0.0, right=None):
         """
-        Returns a list of all (parent, child) pairs of individual IDs for the given 
-        children, such that child inherited from parent somewhere in the region
-        [left, right), and the parent is alive at the given time.
+        Returns an array whose rows are all (parent, child) pairs of individual
+        IDs for the given children, such that child inherited from parent
+        somewhere in the region [left, right), and the parent is alive at the
+        given time.
 
         :param int children: The individual IDs of the children.
         :param float time: The time ago the parent should be alive. Defaults to
@@ -143,13 +232,15 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
             return []
         if max(children) >= self.num_individuals or min(children) < 0:
             raise ValueError("Individual child index out of bounds.")
-        child_nodes = [x for y in children for x in self.individual(y).nodes]
+        child_nodes = self.get_individual_nodes(children, flatten=True)
         node_parents = self.get_node_parents(child_nodes, left=left, right=right)
+        indiv_parents = np.column_stack((self.tables.nodes.individual[node_parents[:, 0]],
+                                         self.tables.nodes.individual[node_parents[:, 1]]))
         alive = self.individuals_alive(time)
-        out = [(self.node(a).individual, self.node(b).individual) for a, b in node_parents]
-        return [(a, b) for (a, b) in out 
-                if a is not msprime.NULL_INDIVIDUAL and b is not msprime.NULL_INDIVIDUAL
-                   and alive[a]]
+        yesthese = np.logical_and(indiv_parents[:,0] != msprime.NULL_INDIVIDUAL,
+                                  indiv_parents[:,1] != msprime.NULL_INDIVIDUAL,
+                                  np.isin(indiv_parents[:,1], alive))
+        return indiv_parents[yesthese, :]
 
     def get_individual_nodes(self, individuals, flatten=True):
         """

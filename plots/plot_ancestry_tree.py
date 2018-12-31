@@ -1,4 +1,4 @@
-import pyslim, msprime, tsinfer
+import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
 
@@ -17,7 +17,9 @@ outbase = ".".join(treefile.split(".")[:-1])
 ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
 def animate_tree(ts, children, outfile):
-    # an animation of the tree ancestral to an individual
+    """
+    An animation of the tree ancestral to an individual.
+    """
     fig = plt.figure(figsize=(9,9))
     ax = fig.add_subplot(111)
     xmax = max([ind.location[0] for ind in ts.individuals()])
@@ -46,7 +48,7 @@ def animate_tree(ts, children, outfile):
         newborns = children[ts.individuals_age(frame)[children] == 0]
         pcs = ts.get_individual_parents(newborns)
         if len(pcs) > 0:
-            children = np.concatenate((children, [a for a, b in pcs]))
+            children = np.concatenate((children, pcs[:,0]))
             paths = paths + [locs[pc,:] for pc in pcs]
             lc.set_paths(paths)
         return circles, lc
