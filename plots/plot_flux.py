@@ -12,7 +12,11 @@ import matplotlib.patches as ptch
 import importlib
 importlib.reload(sps)
 
-treefile = "flat_map.300.23.trees"
+treefile = sps.run_slim(script = "flat_map.slim",
+                        seed = 23, 
+                        sigma = 0.4,
+                        pop_width = 8.0, 
+                        maxgens = 300)
 outbase = ".".join(treefile.split(".")[:-1])
 
 ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)

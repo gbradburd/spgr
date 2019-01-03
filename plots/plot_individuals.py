@@ -8,10 +8,15 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as ani
 import matplotlib.collections as cs
 
-treefile = "flat_map.300.23.trees"
+treefile = sps.run_slim(script = "flat_map.slim",
+                        seed = 23, 
+                        sigma = 0.4,
+                        pop_width = 8.0, 
+                        maxgens = 300)
 outbase = ".".join(treefile.split(".")[:-1])
 
 ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+
 
 circle = ts.individuals_in_circle(center=[4,5], radius=2)
 colors = ['red' if x else 'black' for x in np.isin(range(ts.num_individuals), circle)]
