@@ -63,55 +63,55 @@ population genetics, isolation by distance, population structure, local adaptati
 
 The field of population genetics is shaped by a continuing conversation
 between theory, methods, and data.
-We design experiments and collect empirical data 
-with the methods we will use to analyze them in mind; 
-in turn, those methods are based on theory 
+We design experiments and collect empirical data
+with the methods we will use to analyze them in mind;
+in turn, those methods are based on theory
 that was developed to explain observations from empirical data.
 With some notable exceptions,
-especially the work of Sewall Wright (e.g., refs) 
+especially the work of Sewall Wright (e.g., refs)
 and Gustave Mal\'ecot (e.g., refs)
 \g{, and later Monty Slatkin (e.g., refs),}
-much of the early body of theory was focused on 
+much of the early body of theory was focused on
 developing expectations for discrete populations.
-The focus theory maintained on results in discrete populations 
-both informed and was informed by early empirical datasets, 
-most of which 
-(although again, 
+The focus theory maintained on results in discrete populations
+both informed and was informed by early empirical datasets,
+most of which
+(although again,
 with some notable exceptions (e.g., fly clines, dobzhansky 1947)),
 were well-described as discrete populations --
 e.g., samples of flies in a vial \cite{Lewontin1974}.
-Even the first, revolutionary empirical measurements 
+Even the first, revolutionary empirical measurements
 of molecular genetic variation
 -- the inaugural ``find 'em and grind 'em" studies of Lewontin and Hubby \cite{LewontinHubby66,HubbyLewontin66} --
 focused on data from 43 fly strains sampled from 5 locations,
 which were largely treated as experimental replicates
 (rather than studied in their geographic context).
 And, on the statistical side of the business,
-the methods used to analyze these datasets -- 
+the methods used to analyze these datasets --
 e.g., empirical measurements of $F_{ST}$ \cite{wright}
-or tests of Hardy-Weinberg equilibrium \cite{hardy,weinberg,stern1943,crow1988} -- 
+or tests of Hardy-Weinberg equilibrium \cite{hardy,weinberg,stern1943,crow1988} --
 were derived using theory based on discrete populations.
 
 In reality, well-delineated demes or clearly defined discrete populations are rare.
-Rather, organisms are living, 
-moving (or moving their gametes) around, 
+Rather, organisms are living,
+moving (or moving their gametes) around,
 reproducing, and dying somewhere in space.
-It is much more difficult to collect data and develop theory and methods 
+It is much more difficult to collect data and develop theory and methods
 to capture such complexity.
-Sampling efforts are always limited by time and money 
-in both the size of the area that can be covered 
+Sampling efforts are always limited by time and money
+in both the size of the area that can be covered
 and the number of individuals that can be genotyped within that area.
-And, developing theory to describe evolutionary dynamics 
-without simplifying assumptions is also, 
-by definition, 
-a more complicated endeavor. 
+And, developing theory to describe evolutionary dynamics
+without simplifying assumptions is also,
+by definition,
+a more complicated endeavor.
 \g{go into details of lineages in 2D space and pain in the torus and diffusion approximations?
 pretty nicely laid out by BartonDepaulisEtheridge, but maybe not the place?}.
-However, despite these difficulties, 
+However, despite these difficulties,
 there is now a growing body of theory, methods, and data
 that approach this biological, population-less reality.
-Advances in theory in continuous space (barton, ringbauer), 
-datasets of unprecedented geographical scope (humans, torts), 
+Advances in theory in continuous space (barton, ringbauer),
+datasets of unprecedented geographical scope (humans, torts),
 and new statistical paradigms for modeling those data (conStruct, eems, ringbauer, maybe hickerson)
 are together spurring a revolution in the field of spatial population genetics.
 
@@ -128,24 +128,24 @@ Spatial population genetics allows researchers
 to unite the quantitative descriptions of population genetics
 with fundamental questions about the ecology and evolution of organisms.}
 
-The goal of this review 
-is to provide an introduction for empirical researchers 
+The goal of this review
+is to provide an introduction for empirical researchers
 to spatial population genetics.
 This is a rapidly changing field,
 and to a reader of this review five years from now,
 many methods currently in use may no longer be relevant
 (although hopefully our own contributions will be immortal).
-So, rather than delving into the mechanics of specific methods, 
+So, rather than delving into the mechanics of specific methods,
 we instead focus on a small number of fundamental questions
-that underlie many of the things we want to know about 
+that underlie many of the things we want to know about
 the biology and history of organisms we study.
-We frame each question 
-as a spatial population genetic problem, 
-and discuss how these problems can be illuminated 
+We frame each question
+as a spatial population genetic problem,
+and discuss how these problems can be illuminated
 by signals in data.
-In doing so, 
-we introduce the concept of the spatial pedigree 
-as both an intuition-building heuristic 
+In doing so,
+we introduce the concept of the spatial pedigree
+as both an intuition-building heuristic
 and an \g{organizing principle} for the field.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -181,29 +181,29 @@ was selected for in a given environment,
 we could compare the mean fitness of all individuals in that environment with that allele
 to that of those without the allele.
 
-The location of an individual can be a complicated quantity to describe, 
+The location of an individual can be a complicated quantity to describe,
 and depends strongly on the biology of the species in question.
 When we encounter an individual organism in nature,
-we do so at a specific location 
+we do so at a specific location
 that is a waypoint on its total journey.
-The location of a sessile organism 
-may not change appreciably throughout its life, 
-although note that some clonal organisms, 
-such as aspens, 
+The location of a sessile organism
+may not change appreciably throughout its life,
+although note that some clonal organisms,
+such as aspens,
 might expand out over a large region over their lifetime,
-and organisms that grow on a living host, 
-like algae on a sloth, 
+and organisms that grow on a living host,
+like algae on a sloth,
 barnacles on whale,
-or fungi on a helmeted iguana, 
+or fungi on a helmeted iguana,
 may hitchhike rides across large distances.
-For motile organisms, 
+For motile organisms,
 the matter becomes more complicated still.
-The location in which we encounter an individual 
-from a motile species may depend 
-on the time, the day, the season, 
+The location in which we encounter an individual
+from a motile species may depend
+on the time, the day, the season,
 or the age or developmental stage of the individual.
-To reduce ambiguity, 
-and to focus on a quantity 
+To reduce ambiguity,
+and to focus on a quantity
 on which analysis of genetic data can offer an opinion,
 we define the location of an individual to be its birth location.
 
@@ -212,10 +212,10 @@ Even if we could census every living individual in a species
 and establish the pedigree relationships between them all,
 we still would not know about relationships between
 and locations of individuals in previous, unobservable generations (Wilkins 2004).
-And, in a highly dispersive species, 
-or a species with a highly dispersive gamete, 
+And, in a highly dispersive species,
+or a species with a highly dispersive gamete,
 there may be little to no relationship between observed location and birth location.
-Despite these complexities, 
+Despite these complexities,
 the idea of the spatial pedigree is useful
 as a conceptual framework for organizing
 spatial population genetic questions and principles.
@@ -249,13 +249,13 @@ they can also shed light on the spatial history of that pedigree.
 \begin{figure}[h!]
     \centering
     \begin{subfigure}{0.35\textwidth}
-        \centering 
+        \centering
         \includegraphics[width=\linewidth]{figs/pedigree.pdf}
         \caption{the pedigree}
         \label{pedigree}
     \end{subfigure}
     \begin{subfigure}{0.55\textwidth}
-        \centering 
+        \centering
         \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
         \caption{the spatial pedigree}
         \label{sp_pedigree}
@@ -282,7 +282,7 @@ is where they are:
 where they can be found, and how many of them there are there.
 At finer resolution,
 we may also be interested in variation in these counts --
-e.g., 
+e.g.,
 variation in individuals (e.g., how many are reproductive vs. non-reproductive),
 or variation in space (more here than there).
 %or variation in time (fewer here than there used to be).
@@ -380,29 +380,24 @@ deeper coalescences in denser areas, more diversity and lower p(IBD)
 
         - How has that number of individuals fluctuated over time? (fast changes as opposed to slow changes)
 
-\plr{figure idea:}
-  time slices with circle sizes proportional to eventual genetic contribution, showing increasing imbalance as density of lineages goes from census size to Ne?
+\g{figure idea:} conceptual figure showing cartoonish differences in
+tmrca times between pairs of individuals in a "high density" valley vs.
+a low density valley
 
 \plr{figure idea:} map of heterozygosity across space in a habitat with one big valley surrounded by some small valleys
 
 
     -contrast heterogeneity in pedigree relatedness with that of genetic contributions (more in the latter than the former)
-   
-\subsubsection{Fecundity and reproduction}
+  
+Mention Fecundity and reproduction (source-sink)
 
 How many new offspring are produced per year in a given area? in total?
 
 How do areas contribute in the *long term*?
 
-\plr{figure idea:}
-            in an example with higher fecundity in some areas
-            (gradient of mean fecundity superimposed on a bumpy landscape?)
-            and small bias in dispersal towards lower fecundity area
+Note that this idea ties into the discussion of flux below.
+(e.g., sinks are regions that are characterized by a net positive inward flux)
 
-            * map of population density juxtaposed with
-            * a map of per capita number of offspring produced
-            * and a map of long-term fitness
-         
 
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
@@ -445,7 +440,7 @@ like when habitats vary in quality
 leading to high fecundity in ``good" habitat,
 but low fecundity in poor habitat.
 
-     
+    
 
         - $N_e$
             -Ne now (drift)
@@ -467,7 +462,7 @@ Motile organisms move in many ways:
 possibly through a day or seasonally through a year,
 but quantities we could hope to estimate using population genetic data
 have to do with the between-generation \emph{dispersal distance}.
-As described above, 
+As described above,
 we define the dispersal distance to be the displacement
 between parent and offspring birth locations.
 The observed distance between parent and offspring
@@ -563,6 +558,10 @@ $\frac{1}{K}\sum_{i=1}^K \|x_i\|^2 / t_i$.
 In practice... \cite{Malecot, Barton, Harald}.
 \plr{should we talk about collecting/scattering here?}
 
+\plr{figure idea:} overlay malecot's formula on IBD plot
+
+\plr{figure idea:} map for focal individual with points colored/sized according to closest degree of relatedness
+(e.g., cousins, second cousins, etc).
 
 It may be helpful to think of the dispersal distance
 as determining how quickly the population mixes through diffusive movement:
@@ -572,17 +571,6 @@ If one imagines a spatially restricted allele
 as a drop of dye in some water,
 the dispersal distance determines how quickly the
 color spreads through the water. \plr{move above?}
-
-\plr{figure idea:} ancestry spreading over space
-
-\plr{figure idea:} IBD plot, with points colored/sized according to closest degree of relatedness
-(e.g., cousins, second cousins, etc).
-
-\g{figure idea:} two maps, one for a close pair and one for a distant pair, with circles on their MRCAs
-with size proportional to amount of genome inherited (and colored according to time?);
-this would show the asymptote/collecting phase.
-
-\plr{figure idea:} effective $\sigma$ versus strength of Allee effect
 
 Is there a mean bias (net directionality) in parent-child displacement? Anisotropy?
 
@@ -685,7 +673,6 @@ then $\mu = \E{|X|}$ where $X$ is the dispersal displacement,
 since $\sigma^2 = \E{X^2}$, if $X$ is Gaussian then...
 \plr{to fix this; this is Buffon's needle}
 
-
 %%%%%%%%%%%%%%
 \subsubsection{Not-resistance surfaces}
 
@@ -712,6 +699,9 @@ The covariance could be summarized by an overall mean distance and a degree of a
 
 infinitesimal picture: local mean drift (vector field) and diffusion ellipse leads to amoeboids
 
+low priority:
+\plr{figure idea:} vector field of ellipses and arrows
+(conceptual? from slimulation?)
 
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
@@ -747,6 +737,8 @@ quantifying the strength of inbreeding locally,
 or assessing the capacity of a population to become locally adapted.
 Spatial locations of ancestry compared across sections of the genome
 could also be informative about the origins and mechanisms of selective sweeps.
+
+
 
 %%%%%%%%%%
 \subsubsection{Geographic distribution of ancestry}
@@ -789,7 +781,9 @@ White/dark sands lizard example:
 if two dunes are separately colonized from dark area but little coalescence happens there
 then distribution of MRCAS could be everywhere.
 
-\plr{figure idea:} plot of geographic distribution of mrcas
+\g{figure idea:} two maps, one for a close pair and one for a distant pair, with circles on their MRCAs
+with size proportional to amount of genome inherited (and colored according to time?);
+this would show the asymptote/collecting phase.
 
 %%%%%%%%%%%%%%
 \subsubsection{(Relative) genetic differentiation}
@@ -811,13 +805,15 @@ and local coalescence (due to small population size).
 Looking at how ancestry spreads across time and space,
 we can see this by looking at how quick it spreads versus coalesces.
 
-
+\g{figure idea:} conceptual figure from 3.1 of tMRCA between
+pairs of inds within each of 2 regions of different densities,
+and between pairs of inds across the 2 regions.
 
 
 
         - How much is genetic diversity partitioned across geography?
             How does the expected genetic divergence (or, TMRCA) for nearby individuals compared to distant ones?
-         
+        
             * $F_{ST}(x,y) = 1 - (\pi(x,x) + \pi(y,y))/(2 (\pi(x,x) + 2 \pi(x,y) + \pi(y,y)))$,
                 i.e., defining mean $F_{ST}$ at distance $x$ to be one minus ratio of mean TMRCA at each location
                 to mean TMRCA between individuals from the pops pooled
@@ -843,54 +839,54 @@ refer to figure above of map of heterozygosity
 %%%%%%%%%%
 \subsection{How have things changed over time?}
 
-Each of the questions discussed above -- 
-where organisms are; 
+Each of the questions discussed above --
+where organisms are;
 how they move;
 and where their ancestors were
--- has been introduced under the assumption of a static world 
+-- has been introduced under the assumption of a static world
 where species' distributions,
-the density of individuals within those species, 
-the dispersal patterns of those individuals, 
+the density of individuals within those species,
+the dispersal patterns of those individuals,
 and the landscape itself all remain constant.
-In empirical systems, 
-these assumptions are all likely to be broken, 
+In empirical systems,
+these assumptions are all likely to be broken,
 often drastically so.
-Species are expanding into previously unoccupied territory 
+Species are expanding into previously unoccupied territory
 all the time;
-for example, 
-high-latitude tree populations may only have been established 
-following the retreat of the glaciers, 
-a few tens of generations ago \cite{WhitlockMcCauley1999}, 
-and invasive species may have entered their current 
+for example,
+high-latitude tree populations may only have been established
+following the retreat of the glaciers,
+a few tens of generations ago \cite{WhitlockMcCauley1999},
+and invasive species may have entered their current
 environment even more recently than that (e.g. ref?).
-In addition to organisms moving themselves across landscapes, 
+In addition to organisms moving themselves across landscapes,
 landscapes are often changing out from under organisms' feet.
-Anthropogenic land use change 
-and global climate change 
-are both radically altering both where organisms can live 
-and where they choose to 
+Anthropogenic land use change
+and global climate change
+are both radically altering both where organisms can live
+and where they choose to
 (or even where they \emph{can}) disperse.
-Even within a species, 
-populations may show spatial discontinuity, 
-where most or all the ancestors of the individuals at one location 
+Even within a species,
+populations may show spatial discontinuity,
+where most or all the ancestors of the individuals at one location
 lived in another location (eg human refs, Bi 2013).
-The result of these changes is that many empirical systems 
-are not in equilibrium, 
-so that the dynamics we estimate from 
-measurements of extant individuals may 
+The result of these changes is that many empirical systems
+are not in equilibrium,
+so that the dynamics we estimate from
+measurements of extant individuals may
 not be representative of those in the past.
-Exacerbating this problem, 
-the time to reach equilibrium 
+Exacerbating this problem,
+the time to reach equilibrium
 in areas of high population density
-or across regions of low flux 
-may be quite long 
+or across regions of low flux
+may be quite long
 \cite{WhitlockMcCauley1999, CrowAoki1984, Whitlock1992,Slatkin1993}.
-%Theory and methods that 
-%reflect the empirical reality that things were not always as they are 
-%still are lacking, 
-Below we discuss different scenarios of nonequilibrium dynamics 
+%Theory and methods that
+%reflect the empirical reality that things were not always as they are
+%still are lacking,
+Below we discuss different scenarios of nonequilibrium dynamics
 in the spatial pedigree,
-and explore how they complicate \g{inference}. 
+and explore how they complicate \g{inference}.
 
 
 %%%%%%%%%%
@@ -909,7 +905,7 @@ example: fast pop fluctuations just give you lower Ne
 
         - How much does each individual inherit from each glacial refugium?
 
-            \plr{figure idea:} pie charts of this quantity.
+            \plr{figure idea:} pie charts of this quantity, at several times after secondary contact
 
         - Relate to admixture.
 
@@ -920,7 +916,7 @@ example: fast pop fluctuations just give you lower Ne
             as a function of time ago?
 
            \plr{figure idea:} across a barrier with gradually increasing strength,
-                plot of this quantity, compared to if the mountain had not grown.
+                plot of this quantity as pie plots, mirroring previous glacial plot.
             -knowlton 1994 snapping shrimp
 
 %%%%%%%%%%
@@ -931,8 +927,10 @@ example: fast pop fluctuations just give you lower Ne
         - How fast did it spread?
 
         - How much surfing was there on the wave front?
-       
+      
         - can you tell the difference between source-sink dynamics and a range expansion?
+       
+        \plr{low priority figure idea:} fluxes across surfaces on a range expansion
 
 %%%%%%%%%%
 \subsubsection{Now is the winter of our discontinuity}
@@ -958,9 +956,9 @@ admixture can offer a useful approximation of reality in some scenarios,
 but its utility comes at the cost of ambiguity about what it actually means.
 
     - Useful for visualization and sometimes management
-    
+   
     - but also a crutch, and at times problematic.
-    
+   
     - Reality relates to reduced dispersal either today or in the past.
 
 
@@ -978,9 +976,9 @@ might be perceived as affecting the objectivity of this review.
 Brandvain, Marge, JoNo, Graham, Schemske
 
 
-friendly reviewers: 
-Ben Peter? Barton? JoNo? Andy K? Kelleher? Josh Schraiber? Is Petkova still in the mix? 
-Etheridge? M Stephens? Harris?
+friendly reviewers:
+Ben Peter? Barton? JoNo? Andy K? Kelleher? Josh Schraiber? Is Petkova still in the mix?
+Etheridge? M Stephens? Harris? Hickerson?
 
 \end{document}
 
@@ -1619,7 +1617,7 @@ how has this changed over time
         migration when it's not confusing (islands)
         if we knew where everyone was and what they did
         in practice we can only
-     
+    
     barriers and biases in direction
  
     migration, kid-having, population/density
@@ -1632,7 +1630,7 @@ short thing on selection
 BISSE problem: if there's lots of allele A at a location, it could be because:
 1) lots of inds w/ A go there
 2) inds w/ A have more kiddos or die there     less
-     
+    
 % BITS OF TEXT
 Frequently, admixture is described using an \emph{admixture proportion}:
 the proportion of genome in a sample that comes from a discrete group,
@@ -1663,6 +1661,8 @@ The growing ability to genotype historical or ancient individuals
 is transforming the study of population genetics,
 much of which is predicated on the idea that we can glimpse processes
 acting in the past from genetic data obtained from samples in the present.
+
+
 
 
 
