@@ -8,13 +8,15 @@
 %
 % For tracking purposes => this is v1.0 - Apr. 2013
 \newcommand{\g}[1]{{\color{blue}{#1}}}
-\newcommand{\plr}[1]{{\color{magenta}{#1}}}
+\newcommand{\plr}[1]{{\color{green}{#1}}}
+\newcommand{\triage}[1]{{\sout{\color{red}{#1}}}}
 \newcommand{\E}{\mathbb{E}}
 \documentclass{ar-1col}
 \addtolength{\voffset}{-0.5in}
 
 \usepackage{subcaption}
 \usepackage{amsfonts}
+\usepackage{ulem}
 
 \setcounter{secnumdepth}{4}
 
@@ -244,9 +246,9 @@ broadcast spawners or highly mobile animals can mate over much larger distances 
 Just as gene genealogies can provide insight into the pedigree that contains them,
 they can also shed light on the spatial history of that pedigree.
 
-\plr{note on differences between genetic and genealogical ancestry}
+%\plr{note on differences between genetic and genealogical ancestry}
 
-\begin{figure}[h!]
+\begin{figure}[ht]
     \centering
     \begin{subfigure}{0.35\textwidth}
         \centering
@@ -285,11 +287,9 @@ we may also be interested in variation in these counts --
 e.g.,
 variation in individuals (e.g., how many are reproductive vs. non-reproductive),
 or variation in space (more here than there).
-%or variation in time (fewer here than there used to be).
 Understanding this variation can be crucial for understanding
 ecologically important details of a species' natural history,
 like whether a particular habitat is a demographic source or sink (Pulliam 1988, Schreiber 2010).
-%or how species are responding to anthropogenic climate change (Bi 2013).
 The history of abundance and fecundity is recorded in the spatial pedigree,
 and we can use data that were generated under this spatial pedigree
 to get a peek at the process.
@@ -329,27 +329,10 @@ We can build an intuition for how it is possible to estimate
 abundances from genetic data collected from a sample of individuals
 using the spatial pedigree generated in scenarios of different abundance.
 
-In an area with a small number of individuals in the each generation
-and in a species with short dispersal
-(so that there is little influx of migrants from other areas),
-the average time to coalescence for a pair of alleles sampled
-at random in a generation will be very short.
-To see why, consider the relationship between density
-and the pool of possible parents.
-Each individual in the current generation has two parents that came from nearby,
-so in a sparsely populated area,
-the pool of individuals who \emph{could} be parents gets exhausted quickly,
-and some individuals in the current generation
-likely share at least one parent in the previous generation.
-If those individuals are not siblings or half-siblings,
-they are likely to be recent cousins,
-their pedigrees overlapping in this sparsely populated area
-in the recent past.
-
 In principle, this is a very simple estimation question:
 how many ancestors were there in a given region at a certain time in the past?
 However, in addressing this question we quickly run into the familiar
-issue of ``effective'' population size.
+issue of ``effective'' population size \cite{CharlesworthCharlesworthBarton2003}.
 Information about population sizes in patterns of relatedness
 comes from numbers of shared ancestors, i.e., \emph{coalescences}.
 The reason for this is simple:
@@ -366,89 +349,117 @@ this is their \emph{long-term fitness}.
 The effective population sizes we estimate using coalescence rates
 are ``effective'' because of this difference;
 to estimate \emph{absolute} population sizes we must take this into account.
+%
+%In an area with a small number of individuals in the each generation
+%and in a species with short dispersal
+%(so that there is little influx of migrants from other areas),
+%the average time to coalescence for a pair of alleles sampled
+%at random in a generation will be very short.
+%To see why, consider the relationship between density
+%and the pool of possible parents.
+%Each individual in the current generation has two parents that came from nearby,
+%so in a sparsely populated area,
+%the pool of individuals who \emph{could} be parents gets exhausted quickly,
+%and some individuals in the current generation
+%likely share at least one parent in the previous generation.
+%If those individuals are not siblings or half-siblings,
+%they are likely to be recent cousins,
+%their pedigrees overlapping in this sparsely populated area
+%in the recent past.
 
-        - How many individuals live in a given area? in total?
-what exactly do we mean - reproductive adults, or just anyone
-If we're trying to infer from the pedigree, we have to be careful bc not everyone leaves genetic descendants
-difference between census size and Ne
-deeper coalescences in denser areas, more diversity and lower p(IBD)
+%- How many individuals live in a given area? in total?
+%what exactly do we mean - reproductive adults, or just anyone
+%If we're trying to infer from the pedigree, we have to be careful bc not everyone leaves genetic descendants
+%difference between census size and Ne
+%deeper coalescences in denser areas, more diversity and lower p(IBD)
+%
+%    -nonreproductive individuals
+%        -reproductive individuals farther back in the past
+%    -need to translate between census and effective size
+%
+%
+%        - How has that number of individuals fluctuated over time? (fast changes as opposed to slow changes)
 
-    -nonreproductive individuals
-        -reproductive individuals farther back in the past
-    -need to translate between census and effective size
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+        \caption{tmrcas in high- v. low-density areas}
+        \label{tmrcas}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \caption{heterozygosity}
+        \label{het}
+    \end{subfigure}
+        \caption{
+		the effect of population density on tmrcas 
+		and heterozygosity.
+        }
+        \label{pop_density}
+\end{figure}
 
-
-        - How has that number of individuals fluctuated over time? (fast changes as opposed to slow changes)
-
-\g{figure idea:} conceptual figure showing cartoonish differences in
-tmrca times between pairs of individuals in a "high density" valley vs.
-a low density valley
-
-\plr{figure idea:} map of heterozygosity across space in a habitat with one big valley surrounded by some small valleys
-
-
-    -contrast heterogeneity in pedigree relatedness with that of genetic contributions (more in the latter than the former)
-  
-Mention Fecundity and reproduction (source-sink)
-
-How many new offspring are produced per year in a given area? in total?
-
-How do areas contribute in the *long term*?
-
-Note that this idea ties into the discussion of flux below.
-(e.g., sinks are regions that are characterized by a net positive inward flux)
+%    -contrast heterogeneity in pedigree relatedness with that of genetic contributions (more in the latter than the former)
+%  
+%Mention Fecundity and reproduction (source-sink)
+%
+%How many new offspring are produced per year in a given area? in total?
+%
+%How do areas contribute in the *long term*?
+%
+%Note that this idea ties into the discussion of flux below.
+%(e.g., sinks are regions that are characterized by a net positive inward flux)
 
 
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
 
-This can be contrasted with a densely populated area,
-in which the pool of possible parents in each previous generation is quite large,
-so that a random subsample of individuals in the region
-will only rarely contain cousins,
-
-
-
-
-There are several ways to look for this signature
-of consistently low local abundance
-in patterns of population genetic variation.
-Diversity statistics, such as Watterson's $\theta$,
-will be low
-
-
-
-there is a very small pool of local individuals who could
-have been the parents of the current generation.
-As a result, alleles sampled from individuals in this sparsely populated area
-will have short average coalescence times.
-
-
-It is plausible, and perhaps likely,
-that even in a small sample of individuals in the current generation,
-a researcher may find siblings or cousins.
-
-If we were only interested in
-the modern distribution of all individuals in a species,
-we could answer this question by going outside and counting them.
-However, we are often also interested in other things as well,
-such as just the number of reproductive individuals,
-the average fecundity in a particular region,
-or in variation in these quantities.
-Variation may exist across space,
-like when habitats vary in quality
-leading to high fecundity in ``good" habitat,
-but low fecundity in poor habitat.
-
-    
-
-        - $N_e$
-            -Ne now (drift)
-    -Ne avg
-    -Ne through time
-        - census size isn't realized in the genetics, but is relatively
- 
-    -diversity - chance of nabbing siblings (tract length distns)
+%This can be contrasted with a densely populated area,
+%in which the pool of possible parents in each previous generation is quite large,
+%so that a random subsample of individuals in the region
+%will only rarely contain cousins,
+%
+%There are several ways to look for this signature
+%of consistently low local abundance
+%in patterns of population genetic variation.
+%Diversity statistics, such as Watterson's $\theta$,
+%will be low
+%
+%
+%
+%there is a very small pool of local individuals who could
+%have been the parents of the current generation.
+%As a result, alleles sampled from individuals in this sparsely populated area
+%will have short average coalescence times.
+%
+%
+%It is plausible, and perhaps likely,
+%that even in a small sample of individuals in the current generation,
+%a researcher may find siblings or cousins.
+%
+%If we were only interested in
+%the modern distribution of all individuals in a species,
+%we could answer this question by going outside and counting them.
+%However, we are often also interested in other things as well,
+%such as just the number of reproductive individuals,
+%the average fecundity in a particular region,
+%or in variation in these quantities.
+%Variation may exist across space,
+%like when habitats vary in quality
+%leading to high fecundity in ``good" habitat,
+%but low fecundity in poor habitat.
+%
+%  
+%
+%        - $N_e$
+%            -Ne now (drift)
+%    -Ne avg
+%    -Ne through time
+%        - census size isn't realized in the genetics, but is relatively
+% 
+%    -diversity - chance of nabbing siblings (tract length distns)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{How do they move?}
@@ -508,9 +519,9 @@ and measuring distance to their offspring (regardless of survival)
 could differ from that estimated by measuring the distance between that same adult
 and \emph{her} parents.
 Suppose the population has been stable forever.
-\g{note in Intro about how the field has struggled w/ nonequilibrium dynamics;
-we present everything as static first, then revisit these questions in light
-of the \emph{very real} possibility that things change through time.}
+%\g{note in Intro about how the field has struggled w/ nonequilibrium dynamics;
+%we present everything as static first, then revisit these questions in light
+%of the \emph{very real} possibility that things change through time.}
 
 %Genetic data that come only from adults,
 %can never shed light on dispersal distances of offspring that do not survive.
@@ -531,9 +542,11 @@ This can be abstracted to any level of relatedness,
 however, estimates derived from comparisons of more distantly related individuals
 are noisier and more prone to bias.
 This is a sort of \emph{sampling bias} --
-individuals that live far back in time that do not have descendents today
+individuals that live far back in time that do not have descendants today
 will not be included in this estimate.
-This was nicely summarized by Randall Munroe: ``On the one hand, all my ancestors successfully reproduced; on the other hand, that's the mother of all sampling biases.''
+This was nicely summarized by Randall Munroe: 
+``On the one hand, all my ancestors successfully reproduced; 
+on the other hand, that's the mother of all sampling biases.''
 
 To generalize this type of estimate,
 we can correlate the mean time to coalescence between any pair of individuals
@@ -555,26 +568,45 @@ and corresponding degrees of relatedness (i.e., lengths of paths through the ped
 $t_1$ through $t_k$,
 then an estimate of squared dispersal distance $\sigma^2$ would be
 $\frac{1}{K}\sum_{i=1}^K \|x_i\|^2 / t_i$.
-In practice... \cite{Malecot, Barton, Harald}.
-\plr{should we talk about collecting/scattering here?}
+%In practice... \cite{Malecot, Barton, Harald}.
+%\plr{should we talk about collecting/scattering here?}
 
-\plr{figure idea:} overlay malecot's formula on IBD plot
 
-\plr{figure idea:} map for focal individual with points colored/sized according to closest degree of relatedness
-(e.g., cousins, second cousins, etc).
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+        \caption{IBD}
+        \label{ibd}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \caption{map of relatedness}
+        \label{cousin_map}
+    \end{subfigure}
+        \caption{
+		a) isolation by distance in continuous space
+		b) map for focal individual with points colored/sized according to closest degree of relatedness
+			(e.g., cousins, second cousins, etc)
+        }
+        \label{dispersal}
+\end{figure}
 
-It may be helpful to think of the dispersal distance
-as determining how quickly the population mixes through diffusive movement:
-local differentiation between individuals in different parts of the species range
-is determined by the balance between drift and gene flow.
-If one imagines a spatially restricted allele
-as a drop of dye in some water,
-the dispersal distance determines how quickly the
-color spreads through the water. \plr{move above?}
 
-Is there a mean bias (net directionality) in parent-child displacement? Anisotropy?
+%It may be helpful to think of the dispersal distance
+%as determining how quickly the population mixes through diffusive movement:
+%local differentiation between individuals in different parts of the species range
+%is determined by the balance between drift and gene flow.
+%If one imagines a spatially restricted allele
+%as a drop of dye in some water,
+%the dispersal distance determines how quickly the
+%color spreads through the water. \plr{move above?}
 
-Male/female differences in dispersal distance?
+%Is there a mean bias (net directionality) in parent-child displacement? Anisotropy?
+
+%Male/female differences in dispersal distance?
 
 %%%%%%%%%%%%%%
 \subsubsection{Population flux}
@@ -586,7 +618,6 @@ is the number of dispersal events that cross
 a given boundary each year;
 i.e., how many individuals are born each year whose parents
 were born on the other side of a given boundary?
-\plr{what do we call this? population flux?}
 We call this quantity the \emph{population flux} across the boundary,
 and it is a useful concept for investigating connectivity between different areas
 and the role of the landscape in shaping patterns of dispersal.
@@ -635,18 +666,37 @@ or to sample individuals in a generation before reproduction.
 However, in general, the difference between effective flux and actual flux
 will be accentuated the farther back in time one looks.
 
-Effects of sampling design: suppose a big pop is next to a small pop,
-since lineages go to the big pop quickly, might need a lot of samples in the small pop
-to infer flux well.
-Also, if samples are clustered about two points,
-we won't really be able to tell if there's a barrier or not,
-since all lines we draw between the two are equivalent
-from the point of view of our samples.
+%Effects of sampling design: suppose a big pop is next to a small pop,
+%since lineages go to the big pop quickly, might need a lot of samples in the small pop
+%to infer flux well.
+%Also, if samples are clustered about two points,
+%we won't really be able to tell if there's a barrier or not,
+%since all lines we draw between the two are equivalent
+%from the point of view of our samples.
 
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+        \caption{flux across a ridge}
+        \label{ridgeflux}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \caption{flux across a valley}
+        \label{valleyflux}
+    \end{subfigure}
+        \caption{
+		a) adjacent valleys with lower pop density along the intervening ridge,
+			with arrows denoting all parent-child relationships that cross the ridge
+		b) added to the above, a line drawn down the middle of a valley, 
+			with arrows crossing as before (OR, OUT OF A CIRCLE?)
+        }
+        \label{flux}
+\end{figure}
 
-\plr{figure idea:} adjacent valleys with lower pop density along the intervening ridge,
-with arrows denoting all parent-child relationships that cross the ridge
-\plr{figure idea:} added to the above, a line drawn down the middle of a valley, with arrows crossing as before (OR, OUT OF A CIRCLE?)
 
 We can use these observations of coalescences to learn about the flux across a given line:
 across a barrier to dispersal,
@@ -654,24 +704,24 @@ the average time to coalescence for pairs of individuals on opposite sides of th
 is longer than that between individuals on the same side.
 Lower population flux means that individuals on opposite sides of a line share ancestors
 less frequently.
-Also, a barrier means longer across but shorter within coal times \cite{ringbauer2018estimating}.
+%Also, a barrier means longer across but shorter within coal times \cite{ringbauer2018estimating}.
 
-relationship to dispersal: birth rate times population density times length of boundary times $\sigma/\sqrt{2\pi}$ in each direction
-if dispersal is Gaussian and boundary is straight
-If the probability of dispersing distance at least $x$ transverse to the boundary is $F(x)$,
-in a homogeneous environment with symmetric dispersal,
-and population density $\rho$,
-the number of individuals crossing the boundary
-in a particular direction
-per unit of boundary length
-is $\int_0^\infty F(x) dx$, where in the integral, $x$ denotes the distance from the boundary.
-The mean absolute distance dispersed in a particular direction
-(e.g., mean E-W displacement if barrier runs N-S)
-is $\mu = \int_0^\infty x F'(x) dx = \int_0^\infty F(x) dx$.
-If dispersal is equally likely in any direction,
-then $\mu = \E{|X|}$ where $X$ is the dispersal displacement,
-since $\sigma^2 = \E{X^2}$, if $X$ is Gaussian then...
-\plr{to fix this; this is Buffon's needle}
+%relationship to dispersal: birth rate times population density times length of boundary times $\sigma/\sqrt{2\pi}$ in each direction
+%if dispersal is Gaussian and boundary is straight
+%If the probability of dispersing distance at least $x$ transverse to the boundary is $F(x)$,
+%in a homogeneous environment with symmetric dispersal,
+%and population density $\rho$,
+%the number of individuals crossing the boundary
+%in a particular direction
+%per unit of boundary length
+%is $\int_0^\infty F(x) dx$, where in the integral, $x$ denotes the distance from the boundary.
+%The mean absolute distance dispersed in a particular direction
+%(e.g., mean E-W displacement if barrier runs N-S)
+%is $\mu = \int_0^\infty x F'(x) dx = \int_0^\infty F(x) dx$.
+%If dispersal is equally likely in any direction,
+%then $\mu = \E{|X|}$ where $X$ is the dispersal displacement,
+%since $\sigma^2 = \E{X^2}$, if $X$ is Gaussian then...
+%\plr{to fix this; this is Buffon's needle}
 
 %%%%%%%%%%%%%%
 \subsubsection{Not-resistance surfaces}
@@ -697,17 +747,17 @@ The mean displacement would form a vector field over the map,
 where presence of a small arrow would denote some amount of mean bias in offspring dispersal.
 The covariance could be summarized by an overall mean distance and a degree of anisotropy.
 
-infinitesimal picture: local mean drift (vector field) and diffusion ellipse leads to amoeboids
+%infinitesimal picture: local mean drift (vector field) and diffusion ellipse leads to amoeboids
 
-low priority:
-\plr{figure idea:} vector field of ellipses and arrows
-(conceptual? from slimulation?)
+%low priority:
+%\plr{figure idea:} vector field of ellipses and arrows
+%(conceptual? from slimulation?)
 
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
 
-        - $m$ between "discrete pops"
-        - resistance distance
+%        - $m$ between "discrete pops"
+%        - resistance distance
 
 
 %%%%%%%%%%%%%%
@@ -760,8 +810,16 @@ in another geographic region (say, the next valley over).
 How far back in time do you have to go before the average proportion of ancestry that an individual inherits
 from the local region they live in drops below (say) 90\%?
 
-\plr{figure idea:} individuals shaded according to the proportion of ancestry of a given small cluster of samples
-they contribute, at several points back in time
+\begin{figure}[ht]
+    \centering
+%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \caption{
+		individuals shaded according to the proportion of ancestry 
+		of a given small cluster of samples they contribute, 
+		at several points back in time
+        }
+        \label{geog_ancestry}
+\end{figure}
 
 %%%%%%%%%%%%
 \subsubsection{Geographic distribution of common ancestors}
@@ -776,14 +834,32 @@ consider a pair of siblings - the chance that those 2 lineages coalesce in a par
 and a function of the number of offspring of the parent.
 
 
-This is neat but unclear what it means outside of human-centric whatnot.
-White/dark sands lizard example:
-if two dunes are separately colonized from dark area but little coalescence happens there
-then distribution of MRCAS could be everywhere.
+%This is neat but unclear what it means outside of human-centric whatnot.
+%White/dark sands lizard example:
+%if two dunes are separately colonized from dark area but little coalescence happens there
+%then distribution of MRCAS could be everywhere.
 
-\g{figure idea:} two maps, one for a close pair and one for a distant pair, with circles on their MRCAs
-with size proportional to amount of genome inherited (and colored according to time?);
-this would show the asymptote/collecting phase.
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+        \caption{nearby inds}
+        \label{nearby}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \caption{distant inds}
+        \label{distant}
+    \end{subfigure}
+        \caption{
+		two maps, one for a close pair and one for a distant pair, with circles on their MRCAs
+		with size proportional to amount of genome inherited (and colored according to time?);
+		this would show the asymptote/collecting phase.
+        }
+        \label{geog_ancestors}
+\end{figure}
 
 %%%%%%%%%%%%%%
 \subsubsection{(Relative) genetic differentiation}
@@ -805,36 +881,42 @@ and local coalescence (due to small population size).
 Looking at how ancestry spreads across time and space,
 we can see this by looking at how quick it spreads versus coalesces.
 
-\g{figure idea:} conceptual figure from 3.1 of tMRCA between
-pairs of inds within each of 2 regions of different densities,
-and between pairs of inds across the 2 regions.
+\begin{figure}[ht]
+    \centering
+%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \caption{
+		conceptual figure from 3.1 of tMRCA between
+		pairs of inds within each of 2 regions of different densities,
+		and between pairs of inds across the 2 regions.
+        }
+        \label{rel_gen_diff}
+\end{figure}
 
-
-
-        - How much is genetic diversity partitioned across geography?
-            How does the expected genetic divergence (or, TMRCA) for nearby individuals compared to distant ones?
-        
-            * $F_{ST}(x,y) = 1 - (\pi(x,x) + \pi(y,y))/(2 (\pi(x,x) + 2 \pi(x,y) + \pi(y,y)))$,
-                i.e., defining mean $F_{ST}$ at distance $x$ to be one minus ratio of mean TMRCA at each location
-                to mean TMRCA between individuals from the pops pooled
-
-            * relate to the classic IBD curve
-
-        - How much local inbreeding is there?
-
-            * $\pi(x,x)$? is not heterozygosity, $\pi(x,x)$ should be $\lim_{y \to x} \pi(x,y)$,
-                so we can measure this as heterozygosity minus $\pi(x,x)$
-
-refer to figure above of map of heterozygosity
+%
+%        - How much is genetic diversity partitioned across geography?
+%            How does the expected genetic divergence (or, TMRCA) for nearby individuals compared to distant ones?
+%        
+%            * $F_{ST}(x,y) = 1 - (\pi(x,x) + \pi(y,y))/(2 (\pi(x,x) + 2 \pi(x,y) + \pi(y,y)))$,
+%                i.e., defining mean $F_{ST}$ at distance $x$ to be one minus ratio of mean TMRCA at each location
+%                to mean TMRCA between individuals from the pops pooled
+%
+%            * relate to the classic IBD curve
+%
+%        - How much local inbreeding is there?
+%
+%            * $\pi(x,x)$? is not heterozygosity, $\pi(x,x)$ should be $\lim_{y \to x} \pi(x,y)$,
+%                so we can measure this as heterozygosity minus $\pi(x,x)$
+%
+%refer to figure above of map of heterozygosity
 
 
 
 %%%%%%%%%%
 \subsubsection{Related statistics}
 
-        - $F_{ST}$, but already covered this
-
-        - relative positions on a PC plot?
+%        - $F_{ST}$, but already covered this
+%
+%        - relative positions on a PC plot?
 
 %%%%%%%%%%
 \subsection{How have things changed over time?}
@@ -892,51 +974,67 @@ and explore how they complicate \g{inference}.
 %%%%%%%%%%
 \subsubsection{Identifiability and ill-posedness}
 
-what's the spatiotemporal resolution that you can actually infer things at?
-example: fast pop fluctuations just give you lower Ne
+%what's the spatiotemporal resolution that you can actually infer things at?
+%example: fast pop fluctuations just give you lower Ne
 
 %%%%%%%%%%
 \subsubsection{Scenario: constant range but more-or-less gradually changing population density due to changing balance of competition/resource availability}
 
-        - Relate to $N_e$-over-time things.
+%        - Relate to $N_e$-over-time things.
 
 %%%%%%%%%%
 \subsubsection{Scenario: postglacial expansion and secondary contact}
 
-        - How much does each individual inherit from each glacial refugium?
+%        - How much does each individual inherit from each glacial refugium?
 
-            \plr{figure idea:} pie charts of this quantity, at several times after secondary contact
+\begin{figure}[ht]
+    \centering
+%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \caption{
+		pie charts of how much each individual inherits from each glacial refugium, 
+		at several times after secondary contact
+        }
+        \label{postglacial_expansion}
+\end{figure}
 
-        - Relate to admixture.
+%        - Relate to admixture.
 
 %%%%%%%%%%
 \subsubsection{Scenario: orogeny induces phylogeny}
 
-        - What proportion of ancestry of one side of the mountain comes from the other side of the mountain,
-            as a function of time ago?
+%        - What proportion of ancestry of one side of the mountain comes from the other side of the mountain,
+%            as a function of time ago?
 
-           \plr{figure idea:} across a barrier with gradually increasing strength,
+\begin{figure}[ht]
+    \centering
+%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \caption{
+		across a barrier with gradually increasing strength,
                 plot of this quantity as pie plots, mirroring previous glacial plot.
-            -knowlton 1994 snapping shrimp
+        }
+        \label{orogeny_phylogeny}
+\end{figure}
+
+%            -knowlton 1994 snapping shrimp
 
 %%%%%%%%%%
 \subsubsection{Scenario: range expansion and exponential growth}
 
-        - Where did the range expansion originate?
-
-        - How fast did it spread?
-
-        - How much surfing was there on the wave front?
-      
-        - can you tell the difference between source-sink dynamics and a range expansion?
-       
-        \plr{low priority figure idea:} fluxes across surfaces on a range expansion
+%        - Where did the range expansion originate?
+%
+%        - How fast did it spread?
+%
+%        - How much surfing was there on the wave front?
+%      
+%        - can you tell the difference between source-sink dynamics and a range expansion?
+%       
+%        \plr{low priority figure idea:} fluxes across surfaces on a range expansion
 
 %%%%%%%%%%
 \subsubsection{Now is the winter of our discontinuity}
 
-with large-scale range shifts or population movements,
-how do you even deal?
+%with large-scale range shifts or population movements,
+%how do you even deal?
 
 %%%%%%%%%%%
 \subsection{Are there groups of them?}
@@ -955,17 +1053,17 @@ Like discrete population structure,
 admixture can offer a useful approximation of reality in some scenarios,
 but its utility comes at the cost of ambiguity about what it actually means.
 
-    - Useful for visualization and sometimes management
-   
-    - but also a crutch, and at times problematic.
-   
-    - Reality relates to reduced dispersal either today or in the past.
+%    - Useful for visualization and sometimes management
+%   
+%    - but also a crutch, and at times problematic.
+%   
+%    - Reality relates to reduced dispersal either today or in the past.
 
 
 \section{Exciting directions for the field}
 
-what about selection?
-recap - complicate the world
+%what about selection?
+%recap - complicate the world
 
 %Disclosure
 \section*{DISCLOSURE STATEMENT}
