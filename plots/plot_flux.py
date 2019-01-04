@@ -64,9 +64,9 @@ def plot_flux(ts, inout_fn):
 for script in ("flat_map.slim", "valleys.slim"):
     treefile = sps.run_slim(script = script,
                             seed = 23, 
-                            sigma = 0.4,
-                            pop_width = 8.0, 
-                            numgens = 300)
+                            sigma = 0.25,
+                            pop_width = 50.0, 
+                            numgens = 10)
     outbase = ".".join(treefile.split(".")[:-1])
 
     ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
