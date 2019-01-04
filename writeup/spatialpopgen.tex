@@ -276,6 +276,11 @@ they can also shed light on the spatial history of that pedigree.
 
 
 \section{Things we want to know}
+
+We're not going to tell you how to estimate these things, 
+because we don't know how to do it yet, 
+but isn't it fun to think about?
+
 \subsection{Where are they?}
 
 Perhaps the first thing we want to know
@@ -290,9 +295,9 @@ or variation in space (more here than there).
 Understanding this variation can be crucial for understanding
 ecologically important details of a species' natural history,
 like whether a particular habitat is a demographic source or sink (Pulliam 1988, Schreiber 2010).
-The history of abundance and fecundity is recorded in the spatial pedigree,
-and we can use data that were generated under this spatial pedigree
-to get a peek at the process.
+The history of abundance and fecundity is recorded in the spatial pedigree.
+%, and we can use data that were generated under this spatial pedigree
+%to get a peek at the process.
 
 \subsubsection{Population density}
 
@@ -339,33 +344,52 @@ The reason for this is simple:
 with fewer possible ancestors, the ancestors of two individuals
 must be shared more often.
 How likely a given individual who lived at some time in the past
-is to be a genetic ancestor to a modern-day individual
+is to be a genetic ancestor of a modern-day individual
 is just their genetic contribution to the present population.
-If we are looking one generation back, this is proportional to their
-number of offspring, i.e., their fitness.
+If we are looking one generation back, 
+this is proportional to their number of offspring, i.e., their fitness.
 If we are looking a long time in the past
 (in practice, more than 10 or 20 generations \cite{bartonfitness}),
 this is their \emph{long-term fitness}.
 The effective population sizes we estimate using coalescence rates
 are ``effective'' because of this difference;
 to estimate \emph{absolute} population sizes we must take this into account.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+        \caption{tmrcas in high- v. low-density areas}
+        \label{tmrcas}
+    \end{subfigure}
+        \caption{
+		the effect of population density on tmrcas \triage{heterozygosity}
+		}
+        \label{pop_density}
+\end{figure}
+
+%the first thing we might want to know is where everyone is
+%how many in total
+%how many per sq km here vs. there
+%what proportion in this valley vs that valley
 %
-%In an area with a small number of individuals in the each generation
-%and in a species with short dispersal
-%(so that there is little influx of migrants from other areas),
-%the average time to coalescence for a pair of alleles sampled
-%at random in a generation will be very short.
-%To see why, consider the relationship between density
-%and the pool of possible parents.
-%Each individual in the current generation has two parents that came from nearby,
-%so in a sparsely populated area,
-%the pool of individuals who \emph{could} be parents gets exhausted quickly,
-%and some individuals in the current generation
-%likely share at least one parent in the previous generation.
-%If those individuals are not siblings or half-siblings,
-%they are likely to be recent cousins,
-%their pedigrees overlapping in this sparsely populated area
-%in the recent past.
+%analogous to Ne, but more complicated bc it's not a single number
+%
+%what about pedigree tells us about pop size and or local pop density
+%just like w/ randomly mating pop, in smaller pops, you don't have to look back in time so far before you find common ancestors
+%rate of coalescence is determined by local pop density.
+%
+%what affects this relationship?
+%for instance,
+%regions of lower density should, all else being equal, have lower heterozygosity, bc heterozygosity tells you about mean(tmrca)
+%but there's a lot of things that have to be equal in that statement, 
+%e.g., consider 2 valleys, one large w/ low density, one large w/ high density
+%should they have same density? it depends!
+%
+%If there's lots of isolation by distance within a valley, 
+%bc sigma is smaller than the valley, 
+%then coalescence will happen faster than migration.
 
 %- How many individuals live in a given area? in total?
 %what exactly do we mean - reproductive adults, or just anyone
@@ -378,88 +402,20 @@ to estimate \emph{absolute} population sizes we must take this into account.
 %    -need to translate between census and effective size
 %
 %
-%        - How has that number of individuals fluctuated over time? (fast changes as opposed to slow changes)
-
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
-        \caption{tmrcas in high- v. low-density areas}
-        \label{tmrcas}
-    \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
-        \caption{heterozygosity}
-        \label{het}
-    \end{subfigure}
-        \caption{
-		the effect of population density on tmrcas 
-		and heterozygosity.
-        }
-        \label{pop_density}
-\end{figure}
-
 %    -contrast heterogeneity in pedigree relatedness with that of genetic contributions (more in the latter than the former)
 %  
-%Mention Fecundity and reproduction (source-sink)
+%Mention Fecundity and reproduction (source-sink) - note: this is flux
+%(e.g., sinks are regions that are characterized by a net positive inward flux)
 %
 %How many new offspring are produced per year in a given area? in total?
 %
 %How do areas contribute in the *long term*?
-%
-%Note that this idea ties into the discussion of flux below.
-%(e.g., sinks are regions that are characterized by a net positive inward flux)
 
 
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
 
-%This can be contrasted with a densely populated area,
-%in which the pool of possible parents in each previous generation is quite large,
-%so that a random subsample of individuals in the region
-%will only rarely contain cousins,
-%
-%There are several ways to look for this signature
-%of consistently low local abundance
-%in patterns of population genetic variation.
-%Diversity statistics, such as Watterson's $\theta$,
-%will be low
-%
-%
-%
-%there is a very small pool of local individuals who could
-%have been the parents of the current generation.
-%As a result, alleles sampled from individuals in this sparsely populated area
-%will have short average coalescence times.
-%
-%
-%It is plausible, and perhaps likely,
-%that even in a small sample of individuals in the current generation,
-%a researcher may find siblings or cousins.
-%
-%If we were only interested in
-%the modern distribution of all individuals in a species,
-%we could answer this question by going outside and counting them.
-%However, we are often also interested in other things as well,
-%such as just the number of reproductive individuals,
-%the average fecundity in a particular region,
-%or in variation in these quantities.
-%Variation may exist across space,
-%like when habitats vary in quality
-%leading to high fecundity in ``good" habitat,
-%but low fecundity in poor habitat.
-%
-%  
-%
-%        - $N_e$
-%            -Ne now (drift)
-%    -Ne avg
-%    -Ne through time
-%        - census size isn't realized in the genetics, but is relatively
-% 
-%    -diversity - chance of nabbing siblings (tract length distns)
+%theta, heterozygosity, genome-sharing, drift btwn generations (old trees, saplings)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{How do they move?}
@@ -518,22 +474,19 @@ then the ``dispersal distance'' estimated by picking an adult from the populatio
 and measuring distance to their offspring (regardless of survival)
 could differ from that estimated by measuring the distance between that same adult
 and \emph{her} parents.
-Suppose the population has been stable forever.
-%\g{note in Intro about how the field has struggled w/ nonequilibrium dynamics;
-%we present everything as static first, then revisit these questions in light
-%of the \emph{very real} possibility that things change through time.}
+In practice, 
+because non-survivors are unlikely to be sampled, 
+we focus on the dispersal distance of surviving offspring, 
+and recognize that this may differ from true individual dispersal.
 
-%Genetic data that come only from adults,
-%can never shed light on dispersal distances of offspring that do not survive.
-
-This could be trivially estimated by taking
+Dispersal distance could be trivially estimated by taking
 the average of these displacements across history
 if we knew the spatial pedigree through time without error.
 In practice, we often are only able to directly observe
 the location of individuals in the present day.
 However, we can still leverage this information to learn about dispersal distance,
-despite not knowing parental locations by
-comparing spatial distances between individuals of different levels of relatedness.
+despite not knowing parental locations, 
+by comparing spatial distances between individuals of different levels of relatedness.
 For example, if we sample two individuals that are siblings,
 then the distance between them is the result of two dispersals,
 so an average of this distance over many pairs of siblings gives an estimate of twice the dispersal distance.
@@ -564,36 +517,13 @@ is $\sigma^2 n$,
 assuming that $n$ is short enough that boundary effects can be ignored.
 If, for $K$ pairs of individuals sampled in the modern day,
 we had both known geographic separation $x_1$ through $x_K$
-and corresponding degrees of relatedness (i.e., lengths of paths through the pedigree \plr{fixme})
+and corresponding degrees of relatedness 
+(i.e., lengths of paths through the pedigree \plr{fixme})
 $t_1$ through $t_k$,
 then an estimate of squared dispersal distance $\sigma^2$ would be
 $\frac{1}{K}\sum_{i=1}^K \|x_i\|^2 / t_i$.
 %In practice... \cite{Malecot, Barton, Harald}.
-%\plr{should we talk about collecting/scattering here?}
-
-
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
-        \caption{IBD}
-        \label{ibd}
-    \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
-        \caption{map of relatedness}
-        \label{cousin_map}
-    \end{subfigure}
-        \caption{
-		a) isolation by distance in continuous space
-		b) map for focal individual with points colored/sized according to closest degree of relatedness
-			(e.g., cousins, second cousins, etc)
-        }
-        \label{dispersal}
-\end{figure}
-
+%\plr{should we talk about collecting/scattering here?
 
 %It may be helpful to think of the dispersal distance
 %as determining how quickly the population mixes through diffusive movement:
@@ -676,26 +606,34 @@ will be accentuated the farther back in time one looks.
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}{0.5\textwidth}
+    \begin{subfigure}{0.33\textwidth}
         \centering
 %        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
-        \caption{flux across a ridge}
-        \label{ridgeflux}
+        \caption{cousin map for focal individual}
+        \label{cousin_map}
     \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
+    \begin{subfigure}{0.33\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \caption{ibd map for 2 individuals, one close to barrier, one far away}
+        \label{ibd}
+    \end{subfigure}
+    \begin{subfigure}{0.33\textwidth}
         \centering
 %        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
         \caption{flux across a valley}
         \label{valleyflux}
     \end{subfigure}
         \caption{
-		a) adjacent valleys with lower pop density along the intervening ridge,
-			with arrows denoting all parent-child relationships that cross the ridge
-		b) added to the above, a line drawn down the middle of a valley, 
-			with arrows crossing as before (OR, OUT OF A CIRCLE?)
+		a) map for focal individual with points colored/sized according to closest degree of relatedness
+			(e.g., cousins, second cousins, etc)
+		b) isolation by distance curves in continuous space for pair of individuals, 
+			one near the ridge, one in the valley center
+		c) fluxogram: w/ flux across ridge and flux across line through valley center
         }
-        \label{flux}
+        \label{dispersal}
 \end{figure}
+
 
 
 We can use these observations of coalescences to learn about the flux across a given line:
@@ -736,13 +674,15 @@ The general description of this kind would be to specify for each location on th
 the probability distribution of where the children of a parent living at that location would end up.
 To build an intuition for this,
 suppose that in each small section of the map,
-we recorded all the dispersals,
-how would we describe this collection of dispersal events:
-how far they go,
-what direction they go,
-covariance in noise about that mean.
+we recorded all the dispersal events.
+We could describe this collection of dispersal events 
+with the following statistics:
+how far individuals go,
+the mean direction they travel,
+and covariance in noise about that mean.
 
-A way to summarize this by one or a few maps of scalar quantities would be to estimate, at each location, the mean and the covariance of the parent-offspring displacement.
+A way to summarize this by one or a few maps of scalar quantities would be to estimate, 
+at each location, the mean and the covariance of the parent-offspring displacement.
 The mean displacement would form a vector field over the map,
 where presence of a small arrow would denote some amount of mean bias in offspring dispersal.
 The covariance could be summarized by an overall mean distance and a degree of anisotropy.
@@ -774,12 +714,14 @@ and where in space they have inherited their genomes from.
 This shifts perspective from moving forwards in the spatial pedigree
 (past to present),
 to moving backwards in time through it.
-As discussed above,
-because the signal in genetic data come from shared ancestry and coalescence in the pedigree,
-thinking about this perspective is essential to interpreting genetic data.
-However, summaries of how ancestry spreads across space through the pedigree can be important in their own right.
-For example, humans often have a substantial interest in estimating the locations of their own ancestors
-back in time.
+Because the signal in genetic data comes from 
+shared ancestry and coalescence in the pedigree,
+thinking from this reverse-time perspective 
+is essential to interpreting genetic data.
+However, summaries of how ancestry spreads across space 
+through the pedigree can be important in their own right.
+For example, humans often have a substantial interest 
+in estimating the locations of their own ancestors back in time.
 More generally,
 we are often also interested in the partitioning of genetic diversity across space,
 e.g.,
@@ -816,9 +758,9 @@ from the local region they live in drops below (say) 90\%?
         \caption{
 		individuals shaded according to the proportion of ancestry 
 		of a given small cluster of samples they contribute, 
-		at several points back in time
+		at several points back in time - shows spread of ancestry across space through time
         }
-        \label{geog_ancestry}
+        \label{ancestry_spread}
 \end{figure}
 
 %%%%%%%%%%%%
@@ -839,27 +781,28 @@ and a function of the number of offspring of the parent.
 %if two dunes are separately colonized from dark area but little coalescence happens there
 %then distribution of MRCAS could be everywhere.
 
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
-        \caption{nearby inds}
-        \label{nearby}
-    \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
-        \caption{distant inds}
-        \label{distant}
-    \end{subfigure}
-        \caption{
-		two maps, one for a close pair and one for a distant pair, with circles on their MRCAs
-		with size proportional to amount of genome inherited (and colored according to time?);
-		this would show the asymptote/collecting phase.
-        }
-        \label{geog_ancestors}
-\end{figure}
+
+%\begin{figure}[ht]
+%    \centering
+%    \begin{subfigure}{0.5\textwidth}
+%        \centering
+%%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+%        \caption{nearby inds}
+%        \label{nearby}
+%    \end{subfigure}
+%    \begin{subfigure}{0.5\textwidth}
+%        \centering
+%%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+%        \caption{distant inds}
+%        \label{distant}
+%    \end{subfigure}
+%        \caption{
+%		two maps, one for a close pair and one for a distant pair, with circles on their MRCAs
+%		with size proportional to amount of genome inherited (and colored according to time?);
+%		this would show the asymptote/collecting phase.
+%        }
+%        \label{geog_ancestors}
+%\end{figure}
 
 %%%%%%%%%%%%%%
 \subsubsection{(Relative) genetic differentiation}
@@ -881,16 +824,20 @@ and local coalescence (due to small population size).
 Looking at how ancestry spreads across time and space,
 we can see this by looking at how quick it spreads versus coalesces.
 
-\begin{figure}[ht]
-    \centering
-%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
-        \caption{
-		conceptual figure from 3.1 of tMRCA between
-		pairs of inds within each of 2 regions of different densities,
-		and between pairs of inds across the 2 regions.
-        }
-        \label{rel_gen_diff}
-\end{figure}
+\g{refer to ancestry spread figure to build intuition 
+for how ancestors can``forget" where their descendants are, 
+leading to an asymptote in ibd}
+
+%\begin{figure}[ht]
+%    \centering
+%%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+%        \caption{
+%		conceptual figure from 3.1 of tMRCA between
+%		pairs of inds within each of 2 regions of different densities,
+%		and between pairs of inds across the 2 regions.
+%        }
+%        \label{rel_gen_diff}
+%\end{figure}
 
 %
 %        - How much is genetic diversity partitioned across geography?
@@ -933,9 +880,8 @@ and the landscape itself all remain constant.
 In empirical systems,
 these assumptions are all likely to be broken,
 often drastically so.
-Species are expanding into previously unoccupied territory
-all the time;
-for example,
+Species are expanding into previously unoccupied territory all the time.
+For example, 
 high-latitude tree populations may only have been established
 following the retreat of the glaciers,
 a few tens of generations ago \cite{WhitlockMcCauley1999},
@@ -963,10 +909,11 @@ in areas of high population density
 or across regions of low flux
 may be quite long
 \cite{WhitlockMcCauley1999, CrowAoki1984, Whitlock1992,Slatkin1993}.
-%Theory and methods that
-%reflect the empirical reality that things were not always as they are
-%still are lacking,
-Below we discuss different scenarios of nonequilibrium dynamics
+Theory and methods that
+reflect the empirical reality that things were not always as they are
+still are lacking, 
+as is a general awareness of this issue in many empirical systems.
+Below we explore a few scenarios of nonequilibrium dynamics
 in the spatial pedigree,
 and explore how they complicate \g{inference}.
 
@@ -1064,6 +1011,7 @@ but its utility comes at the cost of ambiguity about what it actually means.
 
 %what about selection?
 %recap - complicate the world
+%the past
 
 %Disclosure
 \section*{DISCLOSURE STATEMENT}
@@ -1091,6 +1039,26 @@ Etheridge? M Stephens? Harris? Hickerson?
 %
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
+
+
+
+In an area with a small number of individuals in the each generation
+and in a species with short dispersal
+(so that there is little influx of migrants from other areas),
+the average time to coalescence for a pair of alleles sampled
+at random in a generation will be very short.
+To see why, consider the relationship between density
+and the pool of possible parents.
+Each individual in the current generation has two parents that came from nearby,
+so in a sparsely populated area,
+the pool of individuals who \emph{could} be parents gets exhausted quickly,
+and some individuals in the current generation
+likely share at least one parent in the previous generation.
+If those individuals are not siblings or half-siblings,
+they are likely to be recent cousins,
+their pedigrees overlapping in this sparsely populated area
+in the recent past.
+
 
 Population genetics stands out as a discipline
 in which the development of theory was far ahead of empirical possibilities.
