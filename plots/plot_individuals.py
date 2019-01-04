@@ -1,4 +1,4 @@
-import pyslim, msprime, tsinfer
+import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
 
@@ -8,25 +8,18 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as ani
 import matplotlib.collections as cs
 
-treefile = "flat_map.300.23.trees"
-outbase = ".".join(treefile.split(".")[:-1])
-
-ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
-
-circle = ts.individuals_in_circle(center=[4,5], radius=2)
-colors = ['red' if x else 'black' for x in np.isin(range(ts.num_individuals), circle)]
-
-def plot_individuals(ts, outfile):
+def plot_individuals(ts, num_gens, outfile):
     # a snapshot of the individual locations
     fig = plt.figure(figsize=(6,6))
     ax = fig.add_subplot(111)
+    plot_these = (ts.individual_times() <= num_gens)
     locs = ts.individual_locations()
-    ax.scatter(locs[:,0], locs[:,1],
+    ax.scatter(locs[plot_these,0], locs[plot_these,1],
                s=10, 
-               c=colors)
+               c='black')
     fig.savefig(outfile)
 
-def animate_individuals(ts, outfile):
+def animate_individuals(ts, num_gens, outfile):
     # an animation of the individuals
     fig = plt.figure(figsize=(9,9))
     ax = fig.add_subplot(111)
@@ -37,13 +30,13 @@ def animate_individuals(ts, outfile):
     # colors
     colormap = lambda x: plt.get_cmap("cool")(x/max(ts.individual_ages()))
     locs = ts.individual_locations()
-    inds = ts.individuals_by_time(ts.slim_generation)
-    next_inds = ts.individuals_by_time(ts.slim_generation - 1)
+    inds = ts.individuals_by_time(num_gens)
+    next_inds = ts.individuals_by_time(num_gens - 1)
     circles = ax.scatter(locs[inds, 0], locs[inds, 1], s=10, 
                          edgecolors=colormap([0 for _ in inds]),
                          facecolors='none')
     filled = ax.scatter(locs[next_inds, 0], locs[next_inds, 1], s=10, 
-                        facecolors=colormap([0 for _ in inds]),
+                        facecolors=colormap([0 for _ in next_inds]),
                         edgecolors='none')
     lc = cs.LineCollection([], colors='black', linewidths=0.5)
     ax.add_collection(lc)
@@ -63,13 +56,19 @@ def animate_individuals(ts, outfile):
         return circles, filled, lc
 
     animation = ani.FuncAnimation(fig, update, 
-                                  frames=np.linspace(ts.slim_generation, 1, ts.slim_generation))
+                                  frames=np.linspace(num_gens, 1, num_gens))
     animation.save(outfile, writer='ffmpeg')
 
+for script in ("flat_map.slim", "valleys.slim"):
+    num_gens = 30
+    treefile = sps.run_slim(script = script,
+                            seed = 23, 
+                            sigma = 0.25,
+                            pop_width = 20.0, 
+                            numgens = num_gens)
+    outbase = ".".join(treefile.split(".")[:-1])
 
+    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-
-today = np.where(ts.individual_times() == 0)[0]
-
-plot_individuals(ts, outbase + ".locations.pdf")
-animate_individuals(ts, outbase + ".pop.mp4")
+    plot_individuals(ts, num_gens, outbase + ".locations.pdf")
+    animate_individuals(ts, num_gens, outbase + ".pop.mp4")

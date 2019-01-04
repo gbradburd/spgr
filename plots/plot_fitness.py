@@ -14,21 +14,11 @@ if False:
     import importlib
     importlib.reload(sps)
 
-seed = 23
-pop_width = 8.0
-maxgens = 100
-sigma = 1.0
-treefile = "fitness_sim.{}.{}.trees".format(maxgens, seed)
-slim_command = ["slim", 
-                "-s {}".format(seed), 
-                "-d W={}".format(pop_width),
-                "-d MAXGENS={}".format(maxgens),
-                "-d SIGMA={}".format(sigma),
-                "-d \"OUTPATH='{}'\"".format(treefile),
-                "flat_map.slim"]
-print(" ".join(slim_command))
-subprocess.call(" ".join(slim_command), shell=True)
-
+treefile = sps.run_slim(script = "flat_map.slim",
+                        seed = 23, 
+                        sigma = 0.4,
+                        pop_width = 8.0, 
+                        numgens = 300)
 outbase = ".".join(treefile.split(".")[:-1])
 
 ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)

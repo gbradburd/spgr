@@ -13,7 +13,7 @@ initialize() {
       defineConstant("W", 10.0);  // width and height of the simulated area 
     }
     if (!exists("OUTPATH")) { 
-      defineConstant("OUTPATH", "test_flat_map." + NUMGENS + "." + seed + ".trees"); 
+      defineConstant("OUTPATH", "test_valleys." + NUMGENS + "." + seed + ".trees"); 
     }
     if (!exists("SIGMA")) {
       defineConstant("SIGMA", 0.3);
@@ -85,6 +85,21 @@ reproduction() {
 
     sim.rescheduleScriptBlock(s2, start=BURNIN+1, end=BURNIN + NUMGENS);
     sim.rescheduleScriptBlock(s99, generations=BURNIN + NUMGENS);
+    
+    	
+	// make the spatial map:
+   a = 0.5; // marginal habitat
+   b = 1.5; // good habitat
+   r = 0.4; // ridge
+   x = 0.1; // bad habitat
+	defineConstant("mapValues",
+	   c(x, a, a, x, x, x,
+	     a, b, b, r, a, a,
+	     a, b, b, r, b, a,
+	     a, b, b, r, b, x,
+	     x, a, a, x, x, x));
+	p1.defineSpatialMap("Kmap", "xy", c(6, 5), mapValues, interpolate=T,
+		valueRange=c(x, b), colors=c("red", "yellow"));
 
     // header info
     cat("gen" + " " + "stage" + " ");
@@ -99,9 +114,15 @@ early() {
     competition = i1.totalOfNeighborStrengths(inds);
     // record strength of competition in the tagF
     inds.tagF = competition;
-    inds.fitnessScaling = pmin(0.95, 1/(1 + RHO * competition));    
+    // inds.fitnessScaling = pmin(0.95, 1/(1 + RHO * competition));    
+    // adjust for local habitat quality
+    for (ind in inds) {
+        Klocal = p1.spatialMapValue("Kmap", ind.spatialPosition);
+        ind.fitnessScaling = pmin(0.95, 1/(1 + RHO * ind.tagF / Klocal));
+    }
     // avoid edge effects
     inds.fitnessScaling = inds.fitnessScaling * pmin(sqrt(inds.x/SI), 1.0) * pmin(sqrt(inds.y/SI), 1.0) * pmin(sqrt((W - inds.x)/SI), 1.0) * pmin(sqrt((W - inds.y)/SI), 1.0);
+
 }
 
 s2 1: early() {
