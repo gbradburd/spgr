@@ -12,18 +12,6 @@ import matplotlib.patches as ptch
 import importlib
 importlib.reload(sps)
 
-treefile = sps.run_slim(script = "flat_map.slim",
-                        seed = 23, 
-                        sigma = 0.4,
-                        pop_width = 8.0, 
-                        maxgens = 300)
-outbase = ".".join(treefile.split(".")[:-1])
-
-ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
-
-# number of time steps to plot the flux for
-ngens = 80
-
 def plot_flux(ts, inout_fn):
     """
     Plot arrows between all parent-offspring pairs for which inout_fn() applied
@@ -71,32 +59,43 @@ def plot_flux(ts, inout_fn):
                       alpha = 0.25,
                       width = 0.03,
                       units='xy', scale=1)
-
     return fig
 
+for script in ("flat_map.slim", "valleys.slim"):
+    treefile = sps.run_slim(script = script,
+                            seed = 23, 
+                            sigma = 0.4,
+                            pop_width = 8.0, 
+                            numgens = 300)
+    outbase = ".".join(treefile.split(".")[:-1])
 
-xmax = max([ind.location[0] for ind in ts.individuals()])
-ymax = max([ind.location[1] for ind in ts.individuals()])
-line_x = xmax / 2
+    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-def line_inout(locs):
-    return locs[:, 0] > line_x
+    # number of time steps to plot the flux for
+    ngens = 80
 
-fig = plot_flux(ts, line_inout) 
-ax = fig.axes[0]
-ax.axvline(line_x, color='black', alpha=0.5, dashes=[3, 1], linewidth=2.0)
-fig.savefig(outbase + ".line_flux.pdf")
+    xmax = max([ind.location[0] for ind in ts.individuals()])
+    ymax = max([ind.location[1] for ind in ts.individuals()])
+    line_x = xmax / 2
 
-circle_xy = (xmax / 2, ymax / 2)
-circle_rad = xmax / 3
+    def line_inout(locs):
+        return locs[:, 0] > line_x
 
-def circle_inout(locs):
-    return (np.square(locs[:, 0] - circle_xy[0])
-             + np.square(locs[:, 1] - circle_xy[1]) < circle_rad**2)
+    fig = plot_flux(ts, line_inout) 
+    ax = fig.axes[0]
+    ax.axvline(line_x, color='black', alpha=0.5, dashes=[3, 1], linewidth=2.0)
+    fig.savefig(outbase + ".line_flux.pdf")
 
-fig = plot_flux(ts, circle_inout)
-ax = fig.axes[0]
-circle = ptch.Circle(circle_xy, circle_rad,
-                     edgecolor='black', alpha=0.5, linestyle=(0., (3., 1)), linewidth=2.0)
-ax.add_patch(circle)
-fig.savefig(outbase + ".circle_flux.pdf")
+    circle_xy = (xmax / 2, ymax / 2)
+    circle_rad = xmax / 3
+
+    def circle_inout(locs):
+        return (np.square(locs[:, 0] - circle_xy[0])
+                 + np.square(locs[:, 1] - circle_xy[1]) < circle_rad**2)
+
+    fig = plot_flux(ts, circle_inout)
+    ax = fig.axes[0]
+    circle = ptch.Circle(circle_xy, circle_rad,
+                         edgecolor='black', alpha=0.5, linestyle=(0., (3., 1)), linewidth=2.0)
+    ax.add_patch(circle)
+    fig.savefig(outbase + ".circle_flux.pdf")

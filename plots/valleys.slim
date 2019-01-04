@@ -7,26 +7,36 @@ initialize() {
       seed = getSeed(); 
     }
     if (!exists("NUMGENS")) {
-      defineConstant("NUMGENS", 1000); 
+      defineConstant("NUMGENS", 30); 
     }
     if (!exists("W")) {
-      defineConstant("W", 50.0);  // width and height of the simulated area 
+      defineConstant("W", 10.0);  // width and height of the simulated area 
     }
     if (!exists("OUTPATH")) { 
-      defineConstant("OUTPATH", "flat_map." + NUMGENS + "." + seed + ".trees"); 
+      defineConstant("OUTPATH", "test_valleys." + NUMGENS + "." + seed + ".trees"); 
     }
     if (!exists("SIGMA")) {
       defineConstant("SIGMA", 0.3);
     }
     defineConstant("BURNIN", 200);
 
+    catn(c("NUMGENS =", NUMGENS));
+    catn(c("W =", W));
+    catn(c("SIGMA =", SIGMA));
     defineConstant("K", 5);  // carrying-capacity per unit square (roughly)
+    catn(c("K =", K));
     defineConstant("SD", SIGMA);  // sigma_D, the dispersal distance
+    catn(c("SD =", SD));
     defineConstant("SI", SIGMA);  // sigma_I, the spatial interaction distance
+    catn(c("SI =", SI));
     defineConstant("SM", SI);  // sigma_M, the mate choice distance
+    catn(c("SM =", SM));
     defineConstant("L", 4);    // mean lifetime at stationarity
+    catn(c("L =", L));
     defineConstant("G", 2e9);  // genome length
+    catn(c("G =", G));
     defineConstant("FECUN", 1/L); // mean fecundity
+    catn(c("FECUN =", FECUN));
     defineConstant("RHO", FECUN/((1+FECUN) * K)); // constant in spatial competition function
 
     initializeMutationType("m1", 0.5, "g", 0.0, 2);
@@ -73,7 +83,7 @@ reproduction() {
     }
     i1.evaluate();
 
-    sim.rescheduleScriptBlock(s2, start=BURNIN+1, end=NUMGENS);
+    sim.rescheduleScriptBlock(s2, start=BURNIN+1, end=BURNIN + NUMGENS);
     sim.rescheduleScriptBlock(s99, generations=BURNIN + NUMGENS);
     
     	
@@ -117,7 +127,7 @@ early() {
 
 s2 1: early() {
     // remember everyone
-    // sim.treeSeqRememberIndividuals(p1.individuals);
+    sim.treeSeqRememberIndividuals(p1.individuals);
 }
 
 1: late() {
@@ -160,6 +170,6 @@ late() {
 }
 
 s99 200000 late() {
-   // sim.treeSeqOutput(OUTPATH, simplify=F);
+   sim.treeSeqOutput(OUTPATH, simplify=F);
    sim.simulationFinished();
 }
