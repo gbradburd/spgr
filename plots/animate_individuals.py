@@ -8,14 +8,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as ani
 import matplotlib.collections as cs
 
-import importlib
-importlib.reload(sps)
-
-
-def animate_tree(ts, children, num_gens):
-    """
-    An animation of the tree ancestral to an individual.
-    """
+def animate_individuals(ts, num_gens)
+    # an animation of the individuals
     fig = plt.figure(figsize=(9,9))
     ax = fig.add_subplot(111)
     xmax = max([ind.location[0] for ind in ts.individuals()])
@@ -24,48 +18,47 @@ def animate_tree(ts, children, num_gens):
     ax.set_ylim(0, ymax)
     # colors
     colormap = lambda x: plt.get_cmap("cool")(x/max(ts.individual_ages()))
-    # treecolors = [plt.get_cmap("viridis")(x) for x in np.linspace(0, 1, len(children))]
     locs = ts.individual_locations()
-    inds = ts.individuals_by_time(0)
+    inds = ts.individuals_by_time(num_gens)
+    next_inds = ts.individuals_by_time(num_gens - 1)
     circles = ax.scatter(locs[inds, 0], locs[inds, 1], s=10, 
                          edgecolors=colormap([0 for _ in inds]),
                          facecolors='none')
-    paths = []
-    lc = cs.LineCollection(paths, linewidths=0.5)
+    filled = ax.scatter(locs[next_inds, 0], locs[next_inds, 1], s=10, 
+                        facecolors=colormap([0 for _ in next_inds]),
+                        edgecolors='none')
+    lc = cs.LineCollection([], colors='black', linewidths=0.5)
     ax.add_collection(lc)
 
     def update(frame):
-        nonlocal children
-        nonlocal paths
         inds = ts.individuals_by_time(frame)
+        next_inds = ts.individuals_by_time(frame - 1)
         circles.set_offsets(locs[inds,:])
+        filled.set_offsets(locs[next_inds,:])
         # color based on age so far
         circles.set_color(colormap(ts.individuals_age(frame)[inds]))
-        newborns = children[ts.individuals_age(frame)[children] == 0]
-        pcs = ts.get_individual_parents(newborns)
-        if len(pcs) > 0:
-            children = np.concatenate((children, pcs[:,0]))
-            paths = paths + [locs[pc,:] for pc in pcs]
-            lc.set_paths(paths)
-        return circles, lc
+        filled.set_color(colormap(ts.individuals_age(frame)[next_inds]))
+        if frame > 0:
+            new_inds = inds[ts.individuals_age(frame)[inds] == 0]
+            pcs = ts.get_individual_parents(new_inds, time=frame)
+            lc.set_paths([locs[pc,:] for pc in pcs])
+        return circles, filled, lc
 
     animation = ani.FuncAnimation(fig, update, 
-                                  frames=np.linspace(0, num_gens, num_gens + 1))
+                                  frames=np.linspace(num_gens, 1, num_gens))
     return animation
 
-
 for script in ("flat_map.slim", "valleys.slim"):
-    num_gens = 300
+    num_gens = 30
     treefile = sps.run_slim(script = script,
                             seed = 23, 
-                            SIGMA = 0.4,
-                            W = 8.0, 
+                            SIGMA = 0.25,
+                            W = 50.0, 
                             NUMGENS = num_gens)
     outbase = ".".join(treefile.split(".")[:-1])
 
     ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-    today = np.where(ts.individual_times() == 0)[0]
-    animation = animate_tree(ts, np.random.choice(today, 10), num_gens)
-    animation.save(outbase + ".trees.mp4", writer='ffmpeg')
+    animation = animate_individuals(ts, num_gens)
+    animation.save(outbase + ".pop.mp4", writer='ffmpeg')
 

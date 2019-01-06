@@ -11,17 +11,8 @@ import matplotlib.collections as cs
 import importlib
 importlib.reload(sps)
 
-treefile = sps.run_slim(script = "flat_map.slim",
-                        seed = 23, 
-                        sigma = 0.4,
-                        pop_width = 8.0, 
-                        numgens = 300)
-outbase = ".".join(treefile.split(".")[:-1])
 
-ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
-
-
-def animate_ancestry(ts, children, outfile):
+def animate_ancestry(ts, children, num_gens):
     # an animation of how the ancestry of an individual spreads out over space
     # note that this doesn't look quite right because parents have the child's mass
     # even *after* the child is born
@@ -56,10 +47,22 @@ def animate_ancestry(ts, children, outfile):
         return circles
 
     animation = ani.FuncAnimation(fig, update, 
-                                  frames=np.linspace(0, ts.slim_generation - 1, ts.slim_generation))
-    animation.save(outfile, writer='ffmpeg')
+                                  frames=np.linspace(0, num_gens - 1, num_gens))
+    return animation
 
 
-today = np.where(ts.individual_times() == 0)[0]
 
-animate_ancestry(ts, np.random.choice(today, 1), outbase + ".ancestry.mp4")
+for script in ("flat_map.slim", "valleys.slim"):
+    num_gens = 300
+    treefile = sps.run_slim(script = script,
+                            seed = 23, 
+                            SIGMA = 0.4,
+                            W = 8.0, 
+                            NUMGENS = num_gens)
+    outbase = ".".join(treefile.split(".")[:-1])
+
+    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+    today = np.where(ts.individual_times() == 0)[0]
+
+    animation = animate_ancestry(ts, np.random.choice(today, 1), num_gens)
+    animation.save(outbase + ".ancestry.mp4", writer='ffmpeg')
