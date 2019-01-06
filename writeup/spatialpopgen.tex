@@ -26,7 +26,8 @@
 % macros
 \newcommand{\g}[1]{{\color{blue}{#1}}}
 \newcommand{\plr}[1]{{\color{green}{#1}}}
-\newcommand{\triage}[1]{{\sout{\color{red}{#1}}}}
+\newcommand{\triage}[1]{{\sout{\color{magenta}{#1}}}}
+\newcommand{\todo}[1]{{\textbf{\color{red}{#1}}}}
 \newcommand{\E}{\mathbb{E}}
 \renewcommand{\P}{\mathbb{P}}
 
@@ -50,8 +51,7 @@ email: bradburd@msu.edu}
 
 %Abstract
 \begin{abstract}
-\g{to do}
-Abstract text, approximately 150 words.
+\todo{Abstract text, approximately 150 words.}
 \end{abstract}
 
 %Keywords, etc.
@@ -67,6 +67,7 @@ population genetics, isolation by distance, population structure, local adaptati
 
 % Heading 1
 \section{Introduction}
+\todo{read through and edit}
 
 The field of population genetics is shaped by a continuing conversation
 between theory, methods, and data.
@@ -157,6 +158,9 @@ and an \g{organizing principle} for the field.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The spatial pedigree}
+
+
+\todo{read through and edit}
 
 Before diving in,
 it will be helpful to define the concept of the spatial pedigree:
@@ -282,10 +286,10 @@ they can also shed light on the spatial history of that pedigree.
 
 \section{Things we want to know}
 
-We're not going to tell you how to estimate these things, 
+\todo{We're not going to tell you how to estimate these things, 
 because we don't know how to do it yet, 
-but isn't it fun to think about?
-\g{to do}
+but isn't it fun to think about?  aka what's the point}
+
 
 \subsection{Where are they?}
 
@@ -306,6 +310,8 @@ The history of abundance and fecundity is recorded in the spatial pedigree.
 %to get a peek at the process.
 
 \subsubsection{Population density}
+
+\todo{tidy up and tie together}
 
 What exactly do we mean by population density?
 One definition is simply the number of individuals in a given area,
@@ -370,60 +376,45 @@ to estimate \textit{absolute} population sizes we must take this into account.
         \label{tmrcas}
     \end{subfigure}
         \caption{
-		the effect of population density on tmrcas \triage{heterozygosity}
+		\todo{the effect of population density on tmrcas} \triage{heterozygosity}
 		}
         \label{pop_density}
 \end{figure}
 
-\g{to do}
-%the first thing we might want to know is where everyone is
-%how many in total
-%how many per sq km here vs. there
-%what proportion in this valley vs that valley
-%
-%analogous to Ne, but more complicated bc it's not a single number
-%
-%what about pedigree tells us about pop size and or local pop density
-%just like w/ randomly mating pop, in smaller pops, you don't have to look back in time so far before you find common ancestors
-%rate of coalescence is determined by local pop density.
-%
-%what affects this relationship?
-%for instance,
-%regions of lower density should, all else being equal, have lower heterozygosity, bc heterozygosity tells you about mean(tmrca)
-%but there's a lot of things that have to be equal in that statement, 
-%e.g., consider 2 valleys, one large w/ low density, one large w/ high density
-%should they have same density? it depends!
-%
-%If there's lots of isolation by distance within a valley, 
-%bc sigma is smaller than the valley, 
-%then coalescence will happen faster than migration.
-
-%- How many individuals live in a given area? in total?
-%what exactly do we mean - reproductive adults, or just anyone
-%If we're trying to infer from the pedigree, we have to be careful bc not everyone leaves genetic descendants
-%difference between census size and Ne
-%deeper coalescences in denser areas, more diversity and lower p(IBD)
-%
-%    -nonreproductive individuals
-%        -reproductive individuals farther back in the past
-%    -need to translate between census and effective size
-%
-%
-%    -contrast heterogeneity in pedigree relatedness with that of genetic contributions (more in the latter than the former)
-%  
-%Mention Fecundity and reproduction (source-sink) - note: this is flux
-%(e.g., sinks are regions that are characterized by a net positive inward flux)
-%
-%How many new offspring are produced per year in a given area? in total?
-%
-%How do areas contribute in the *long term*?
-
+\todo{
+\begin{itemize}
+\item the first thing we might want to know is where everyone is
+\subitem - how many in total
+\subitem - how many per sq km here vs. there
+\subitem - what proportion in this valley vs that valley
+\item analogous to Ne, but more complicated bc it's not a single number
+\subitem - $\rho$
+\item what about pedigree tells us about pop size and or local pop density
+\subitem - just like w/ randomly mating pop, in smaller pops, you don't have to look back in time so far before you find common ancestors
+\subitem - rate of coalescence is determined by local pop density.
+\item what affects this relationship?
+\subitem  - regions of lower density should, all else being equal, have lower heterozygosity, bc heterozygosity tells you about mean(tmrca)
+but there's a lot of things that have to be equal in that statement, 
+e.g., consider 2 valleys, one large w/ low density, one large w/ high density
+should they have same density? it depends!
+\subitem - If there's lots of isolation by distance within a valley, 
+bc sigma is smaller than the valley, 
+then coalescence will happen faster than migration.
+\item  nonreproductive individuals
+\subitem - reproductive individuals farther back in the past.  need to translate between census and effective size
+\item contrast heterogeneity in pedigree relatedness with that of genetic contributions (more in the latter than the former)
+\item Mention Fecundity and reproduction (source-sink) - note: this is flux
+\subitem - e.g., sinks are regions that are characterized by a net positive inward flux
+\item How many new offspring are produced per year in a given area? in total?
+\item How do areas contribute in the *long term*?
+\end{itemize}
+}
 
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
 
-\g{to do}
-%theta, heterozygosity, genome-sharing, drift btwn generations (old trees, saplings)
+\todo{deeper coalescences in denser areas, more diversity and lower p(IBD), theta, heterozygosity, genome-sharing, drift btwn generations, or, e.g., old trees vs. saplings}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{How do they move?}
@@ -533,7 +524,7 @@ $\frac{1}{K}\sum_{i=1}^K \|x_i\|^2 / t_i$.
 %In practice... \cite{Malecot, Barton, Harald}.
 %\plr{should we talk about collecting/scattering here?
 
-\g{to do}
+\todo{tidy and conclude}
 %It may be helpful to think of the dispersal distance
 %as determining how quickly the population mixes through diffusive movement:
 %local differentiation between individuals in different parts of the species range
@@ -624,7 +615,7 @@ will be accentuated the farther back in time one looks.
     \begin{subfigure}{\textwidth}
         \centering
 %        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
-        \caption{ibd map for 2 individuals, one close to barrier, one far away}
+        \caption{\todo{ibd map for 2 individuals, one close to barrier, one far away}}
         \label{ibd}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
@@ -670,7 +661,7 @@ less frequently.
 %since $\sigma^2 = \E{X^2}$, if $X$ is Gaussian then...
 %\plr{to fix this; this is Buffon's needle}
 
-\g{to do}
+\todo{tidy and conclude}
 
 %%%%%%%%%%%%%%
 \subsubsection{Not-resistance surfaces}
@@ -704,12 +695,12 @@ The covariance could be summarized by an overall mean distance and a degree of a
 %\plr{figure idea:} vector field of ellipses and arrows
 %(conceptual? from slimulation?)
 
+\todo{tidy and conclude}
+
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
 
-%        - $m$ between "discrete pops"
-%        - resistance distance
-\g{to do}
+\todo{$m$ between "discrete pops", resistance distance}
 
 %%%%%%%%%%%%%%
 \subsection{Where were their ancestors?}
@@ -763,15 +754,15 @@ in another geographic region (say, the next valley over).
 How far back in time do you have to go before the average proportion of ancestry that an individual inherits
 from the local region they live in drops below (say) 90\%?
 
-\g{to do}
+\todo{tidy and conclude}
 
 \begin{figure}[ht]
     \centering
 %        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
         \caption{
-		individuals shaded according to the proportion of ancestry 
+		\todo{individuals shaded according to the proportion of ancestry 
 		of a given small cluster of samples they contribute, 
-		at several points back in time - shows spread of ancestry across space through time
+		at several points back in time - shows spread of ancestry across space through time}
         }
         \label{ancestry_spread}
 \end{figure}
@@ -788,7 +779,7 @@ but an approximation:
 consider a pair of siblings - the chance that those 2 lineages coalesce in a parent of those 2 siblings could be approximated by the product of the long-term fitnesses of those siblings
 and a function of the number of offspring of the parent.
 
-\g{to do}
+\todo{tidy and conclude}
 %This is neat but unclear what it means outside of human-centric whatnot.
 %White/dark sands lizard example:
 %if two dunes are separately colonized from dark area but little coalescence happens there
@@ -837,7 +828,7 @@ and local coalescence (due to small population size).
 Looking at how ancestry spreads across time and space,
 we can see this by looking at how quick it spreads versus coalesces.
 
-\g{to do}
+\todo{tidy and conclude}
 
 \g{refer to ancestry spread figure to build intuition 
 for how ancestors can``forget" where their descendants are, 
@@ -876,7 +867,7 @@ leading to an asymptote in ibd}
 %%%%%%%%%%
 \subsubsection{Related statistics}
 
-\g{to do}
+\todo{Fst, various IBD-metrics?}
 %        - $F_{ST}$, but already covered this
 %
 %        - relative positions on a PC plot?
@@ -933,68 +924,74 @@ Below we explore a few scenarios of nonequilibrium dynamics
 in the spatial pedigree,
 and explore how they complicate \g{inference}.
 
+\todo{read through and edit}
 
 %%%%%%%%%%
 \subsubsection{Identifiability and ill-posedness}
 
-\g{to do}
-%what's the spatiotemporal resolution that you can actually infer things at?
-%example: fast pop fluctuations just give you lower Ne
+\todo{what's the spatiotemporal resolution that you can actually infer things at?  
+example: fast pop fluctuations just give you lower Ne}
 
 %%%%%%%%%%
 \subsubsection{Scenario: constant range but more-or-less gradually changing population density due to changing balance of competition/resource availability}
 
-\g{to do}
-%        - Relate to $N_e$-over-time things.
+\todo{Relate to $N_e$-over-time things.}
 
 %%%%%%%%%%
 \subsubsection{Scenario: postglacial expansion and secondary contact}
 
-%        - How much does each individual inherit from each glacial refugium?
+\todo{How much does each individual inherit from each glacial refugium? Relate to admixture}
 
 \g{to do}
 \begin{figure}[ht]
     \centering
 %        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
         \caption{
+        \todo{
 		pie charts of how much each individual inherits from each glacial refugium, 
 		at several times after secondary contact
+	}
         }
         \label{postglacial_expansion}
 \end{figure}
 
-%        - Relate to admixture.
 
 %%%%%%%%%%
 \subsubsection{Scenario: orogeny induces phylogeny}
 
-\g{to do}
-%        - What proportion of ancestry of one side of the mountain comes from the other side of the mountain,
-%            as a function of time ago?
+\todo{ What proportion of ancestry of one side of the mountain comes from the other side of the mountain,
+		as a function of time ago? \cite{knowlton1994}}
 
 \begin{figure}[ht]
     \centering
 %        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
         \caption{
+        \todo{
 		across a barrier with gradually increasing strength,
                 plot of this quantity as pie plots, mirroring previous glacial plot.
+         }
         }
         \label{orogeny_phylogeny}
 \end{figure}
 
-%            -knowlton 1994 snapping shrimp
+%            -
 
 %%%%%%%%%%
 \subsubsection{Scenario: range expansion and exponential growth}
 
-\g{to do}
-%        - Where did the range expansion originate?
+\todo{
+Consider triaging?  Feels like some of it is covered between the refugium scenario and the pop size change scenario, 
+although not the surfing part.
 %
-%        - How fast did it spread?
 %
-%        - How much surfing was there on the wave front?
-%      
-%        - can you tell the difference between source-sink dynamics and a range expansion?
+\begin{itemize}
+\item        - Where did the range expansion originate?
+\item        - How fast did it spread?
+\item        - How much surfing was there on the wave front?
+\item        - can you tell the difference between source-sink dynamics and a range expansion?
+\end{itemize}
+}
+
 %       
 %        \plr{low priority figure idea:} fluxes across surfaces on a range expansion
 
@@ -1050,7 +1047,7 @@ As we develop more datasets that include genotype data from historical individua
 we will better be able to evaluate the prevalence of spatial discontinuity 
 and its effects on our inferences across natural systems. 
 
-\g{to do}
+\todo{read through and edit}
 %with large-scale range shifts or population movements,
 %how do you even deal?
 
@@ -1099,12 +1096,17 @@ more work is needed to acknowledge the complexity of biological reality.
 
 \g{feel like i'm not making the point clearly}
 
+\todo{read through and edit}
+
 \section{Exciting directions for the field}
 
-\g{to do}
-%what about selection?
-%recap - complicate the world
-%the past
+\todo{
+\begin{itemize}
+\item what about selection?
+\item recap - complicate the world
+\item the past
+\end{itemize}
+}
 
 %Disclosure
 \section*{DISCLOSURE STATEMENT}
