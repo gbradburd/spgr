@@ -7,16 +7,13 @@
 % Steps to compile: latex latex latex
 %
 % For tracking purposes => this is v1.0 - Apr. 2013
-\newcommand{\g}[1]{{\color{blue}{#1}}}
-\newcommand{\plr}[1]{{\color{green}{#1}}}
-\newcommand{\triage}[1]{{\sout{\color{red}{#1}}}}
-\newcommand{\E}{\mathbb{E}}
 \documentclass{ar-1col}
 \addtolength{\voffset}{-0.5in}
 
 \usepackage{subcaption}
 \usepackage{amsfonts}
 \usepackage{ulem}
+\usepackage{natbib}
 
 \setcounter{secnumdepth}{4}
 
@@ -25,6 +22,13 @@
 \jvol{AA}
 \jyear{YYYY}
 \doi{10.1146/((please add article doi))}
+
+% macros
+\newcommand{\g}[1]{{\color{blue}{#1}}}
+\newcommand{\plr}[1]{{\color{green}{#1}}}
+\newcommand{\triage}[1]{{\sout{\color{red}{#1}}}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
 
 
 % Document starts
@@ -611,19 +615,19 @@ will be accentuated the farther back in time one looks.
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}{0.33\textwidth}
+    \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_cousins.pdf}
         \caption{cousin map for focal individual}
         \label{cousin_map}
     \end{subfigure}
-    \begin{subfigure}{0.33\textwidth}
+    \begin{subfigure}{\textwidth}
         \centering
 %        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
         \caption{ibd map for 2 individuals, one close to barrier, one far away}
         \label{ibd}
     \end{subfigure}
-    \begin{subfigure}{0.33\textwidth}
+    \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_line_flux.pdf}
         \caption{flux across a valley}
@@ -1115,6 +1119,9 @@ Brandvain, Marge, JoNo, Graham, Schemske
 friendly reviewers:
 Ben Peter? Barton? JoNo? Andy K? Kelleher? Josh Schraiber? Is Petkova still in the mix?
 Etheridge? M Stephens? Harris? Hickerson?
+
+\bibliographystyle{plainnat}
+\bibliography{references}
 
 \end{document}
 
