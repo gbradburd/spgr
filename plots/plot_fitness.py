@@ -10,21 +10,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as ani
 import matplotlib.collections as cs
 
-if False:
-    import importlib
-    importlib.reload(sps)
 
-treefile = sps.run_slim(script = "flat_map.slim",
-                        seed = 23, 
-                        sigma = 0.4,
-                        pop_width = 8.0, 
-                        numgens = 300)
-outbase = ".".join(treefile.split(".")[:-1])
-
-ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
-
-
-def animate_fitness(ts, outfile):
+def animate_fitness(ts, num_gens):
     # an animation of the eventual genetic contributions of each individual.
     fig = plt.figure(figsize=(9,9))
     ax = fig.add_subplot(111)
@@ -91,7 +78,7 @@ def animate_fitness(ts, outfile):
         return circles
 
     start_gen = 0
-    end_gen = ts.slim_generation - 1
+    end_gen = num_gens - 1
     ngens = abs(end_gen - start_gen)
     frames = np.linspace(start_gen, end_gen, ngens)
     total_duration = 10 # seconds
@@ -99,8 +86,19 @@ def animate_fitness(ts, outfile):
     animation = ani.FuncAnimation(fig, update, 
                                   frames=frames,
                                   interval=total_duration * 1e3 / ngens)
-    animation.save(outfile, writer='ffmpeg')
+    return animation
 
 
-animate_fitness(ts, outbase + ".fitness.mp4")
+for script in ("flat_map.slim", "valleys.slim"):
+    treefile = sps.run_slim(script = script,
+                            seed = 23, 
+                            SIGMA = 0.4,
+                            W = 8.0, 
+                            NUMGENS = 300)
+    outbase = ".".join(treefile.split(".")[:-1])
+
+    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+
+    animation = animate_fitness(ts, num_gens)
+    animation.save(outbase + ".fitness.mp4", writer='ffmpeg')
 

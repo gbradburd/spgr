@@ -18,12 +18,14 @@ initialize() {
     if (!exists("SIGMA")) {
       defineConstant("SIGMA", 0.3);
     }
+    if (!exists("K")) {
+      defineConstant("K", 5);  // carrying-capacity per unit square (roughly)
+    }
     defineConstant("BURNIN", 200);
 
     catn(c("NUMGENS =", NUMGENS));
     catn(c("W =", W));
     catn(c("SIGMA =", SIGMA));
-    defineConstant("K", 5);  // carrying-capacity per unit square (roughly)
     catn(c("K =", K));
     defineConstant("SD", SIGMA);  // sigma_D, the dispersal distance
     catn(c("SD =", SD));
