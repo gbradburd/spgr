@@ -288,65 +288,60 @@ they can also shed light on the spatial history of that pedigree.
         \label{spatial_pedigree}
 \end{figure}
 
-
+%%%%%%%%%%%%%%
 \section{Things we want to know}
 
+%%%%%%%%%%%%%%
 \subsection{Where are they?}
 
 Perhaps the first thing we want to know
 when considering a species as a research system
-is where they are:
-where they can be found, and how many of them there are there.
+is their abundance and distribution:
+how many of them there are in total, 
+and where they can be found.
 At finer resolution,
 we may also be interested in variation in these counts --
 e.g.,
-variation in individuals (e.g., how many are reproductive vs. non-reproductive),
-or variation in space (more here than there).
-Understanding this variation can be crucial for understanding
+what proportion can be found here versus there.
+Quantifying abundance and how it varies across a species' range 
+can be crucial for understanding
 ecologically important details of a species' natural history,
-like whether a particular habitat is a demographic source or sink (Pulliam 1988, Schreiber 2010).
+like what habitat to prioritize for conservation, 
+or whether a particular habitat is a demographic source or sink (Pulliam 1988, Schreiber 2010).
 The history of abundance and fecundity is recorded in the spatial pedigree.
 %, and we can use data that were generated under this spatial pedigree
 %to get a peek at the process.
 
+%%%%%%%%%%%%%%
 \subsubsection{Population density}
 
 \todo{tidy up and tie together}
 
+Consider a population in some geographic area. 
+One quantity we would like to be able to describe 
+is the population density in a given region within that area.
 What exactly do we mean by population density?
-One definition is simply the number of individuals in a given area,
-which is comprehensive,
-but may not capture the nuances of natural history we care about.
-Ecological modelers interested in population dynamics
-may only want to count reproductive adults,
-as the average juvenile may not survive to reproduce (e.g. TED paper),
-and a non-reproductive adult may not contribute to population growth
-(although see helpers at the nest: bee-eaters? acorn woodpeckers?).
+One definition is simply the total number of individuals in a given area.
+However, such a count may include individuals who are not reproductive 
+(e.g., juveniles), 
+or who transient and not reproductive locally 
+(e.g., born elsewhere, reproductive outside the region of interest, 
+and included in a local count while passing through).
+These individuals will be invisible in the pedigree 
+of modern, extant individuals within the region.
+Instead, we focus on the effective population density, 
+the \textit{effective} number of individuals per unit area in a given region.
+This quantity is analogous to effective population size ($N_e$), 
+but may vary across different different parts of a species' range, 
+and can therefore not be summarize with a single number.
+If we knew the complete spatial pedigree of a species, 
+we could measure population density of an area 
+by simply counting the average number of individuals born within its margins.
+Without such complete knowledge, 
+we must seek to estimate population density from patterns of genetic variation 
+in the sample in hand.
 
-An on-the-ground census or a mark-recapture study (ref)
-can provide an estimate of the number of individuals in a given region.
-This census estimate has the advantage of offering a fairly complete
-snapshot of numbers in the modern day,
-which may be important for, e.g.,
-parameterizing ecological models
-or performing environmental impact surveys.
-However, these direct census methods have a number of disadvantages as well.
-They can be both time- and labor-intensive,
-often requiring repeat trips to an area.
-In addition, they might not provide information
-about the number of reproductive individuals,
-and they yield few insights into the numbers of individuals
-in an area in the past.
-
-The alternative --
-using genetic data to get an estimate of the number of individuals in an area --
-can be done using a much smaller number of sampled individuals,
-and can offer insights into number of reproductive individuals and historical densities as well.
-We can build an intuition for how it is possible to estimate
-abundances from genetic data collected from a sample of individuals
-using the spatial pedigree generated in scenarios of different abundance.
-
-In principle, this is a very simple estimation question:
+In principle, determining population density is a very simple estimation question:
 how many ancestors were there in a given region at a certain time in the past?
 However, in addressing this question we quickly run into the familiar
 issue of ``effective'' population size \cite{CharlesworthCharlesworthBarton2003}.
@@ -363,23 +358,10 @@ this is proportional to their number of offspring, i.e., their fitness.
 If we are looking a long time in the past
 (in practice, more than 10 or 20 generations \cite{bartonfitness}),
 this is their \textit{long-term fitness}.
-The effective population sizes we estimate using coalescence rates
-are ``effective'' because of this difference;
-to estimate \textit{absolute} population sizes we must take this into account.
+The effective population density we estimate using coalescence rates
+is ``effective'' partly because of this difference.
 
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
-        \caption{tmrcas in high- v. low-density areas}
-        \label{tmrcas}
-    \end{subfigure}
-        \caption{
-		\todo{the effect of population density on tmrcas} \triage{heterozygosity}
-		}
-        \label{pop_density}
-\end{figure}
+So, what can the spatial pedigree tell us about local population density?
 
 \todo{
 \begin{itemize}
@@ -409,6 +391,21 @@ then coalescence will happen faster than migration.
 \item How do areas contribute in the *long term*?
 \end{itemize}
 }
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+        \caption{tmrcas in high- v. low-density areas}
+        \label{tmrcas}
+    \end{subfigure}
+        \caption{
+		\todo{the effect of population density on tmrcas} \triage{heterozygosity}
+		}
+        \label{pop_density}
+\end{figure}
+
 
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
@@ -1104,7 +1101,7 @@ more work is needed to acknowledge the complexity of biological reality.
 
 \g{feel like i'm not making the point clearly}
 
-\todo{read through and edit}
+\todo{read through, edit, rewrite?}
 
 \section{Exciting directions for the field}
 
@@ -1146,24 +1143,35 @@ Etheridge? M Stephens? Harris? Hickerson?
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 
+pop density section:
+Ecological modelers interested in population dynamics
+may only want to count reproductive adults,
+as the average juvenile may not survive to reproduce (e.g. TED paper),
+and a non-reproductive adult may not contribute to population growth
+(although see helpers at the nest: bee-eaters? acorn woodpeckers?).
 
+An on-the-ground census or a mark-recapture study (ref)
+can provide an estimate of the number of individuals in a given region.
+This census estimate has the advantage of offering a fairly complete
+snapshot of numbers in the modern day,
+which may be important for, e.g.,
+parameterizing ecological models
+or performing environmental impact surveys.
+However, these direct census methods have a number of disadvantages as well.
+They can be both time- and labor-intensive,
+often requiring repeat trips to an area.
+In addition, they might not provide information
+about the number of reproductive individuals,
+and they yield few insights into the numbers of individuals
+in an area in the past.
 
-In an area with a small number of individuals in the each generation
-and in a species with short dispersal
-(so that there is little influx of migrants from other areas),
-the average time to coalescence for a pair of alleles sampled
-at random in a generation will be very short.
-To see why, consider the relationship between density
-and the pool of possible parents.
-Each individual in the current generation has two parents that came from nearby,
-so in a sparsely populated area,
-the pool of individuals who \textit{could} be parents gets exhausted quickly,
-and some individuals in the current generation
-likely share at least one parent in the previous generation.
-If those individuals are not siblings or half-siblings,
-they are likely to be recent cousins,
-their pedigrees overlapping in this sparsely populated area
-in the recent past.
+The alternative --
+using genetic data to get an estimate of the number of individuals in an area --
+can be done using a much smaller number of sampled individuals,
+and can offer insights into number of reproductive individuals and historical densities as well.
+We can build an intuition for how it is possible to estimate
+abundances from genetic data collected from a sample of individuals
+using the spatial pedigree generated in scenarios of different abundance.
 
 
 Population genetics stands out as a discipline
