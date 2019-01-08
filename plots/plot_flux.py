@@ -28,7 +28,7 @@ def plot_flux(ts, inout_fns, plot_ngens):
     births = ts.individual_times()
     deaths = births - ts.individual_ages()
     alive = (deaths <= plot_ngens)  # alive during the last ngens 
-    ips = ts.get_individual_parents(list(range(ts.num_individuals)))
+    ips = ts.individual_parents(list(range(ts.num_individuals)))
     born = (births[ips[:, 1]] <= plot_ngens) # pairs born during the last ngens
     # set up plot with individual locations
     circles = ax.scatter(locs[alive, 0], locs[alive, 1], s=10, 

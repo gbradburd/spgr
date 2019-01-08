@@ -164,7 +164,7 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
                     out[child].append(parent)
         return out
 
-    def get_node_children(self, parent_nodes, left=0.0, right=None):
+    def node_children(self, parent_nodes, left=0.0, right=None):
         """
         Returns a list of all (parent, child) pairs of node IDs for the given 
         parents, such that child inherited from parent somewhere in the region
@@ -189,7 +189,7 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
                                           edges.right >= left)
         return zip(edges.parent[yesthese], edges.child[yesthese])
 
-    def get_node_parents(self, children, left=0.0, right=None):
+    def node_parents(self, children, left=0.0, right=None):
         """
         Returns an arrow whose rows are all (parent, child) pairs of node IDs
         for the given children, such that child inherited from parent somewhere
@@ -214,7 +214,7 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
                                           edges.right >= left)
         return np.column_stack((edges.parent[yesthese], edges.child[yesthese]))
 
-    def get_individual_parents(self, children, time=None, left=0.0, right=None):
+    def individual_parents(self, children, time=None, left=0.0, right=None):
         """
         Returns an array whose rows are all (parent, child) pairs of individual
         IDs for the given children, such that child inherited from parent
@@ -233,8 +233,8 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
             return []
         if max(children) >= self.num_individuals or min(children) < 0:
             raise ValueError("Individual child index out of bounds.")
-        child_nodes = self.get_individual_nodes(children, flatten=True)
-        node_parents = self.get_node_parents(child_nodes, left=left, right=right)
+        child_nodes = self.individual_nodes(children, flatten=True)
+        node_parents = self.node_parents(child_nodes, left=left, right=right)
         indiv_parents = np.column_stack((self.tables.nodes.individual[node_parents[:, 0]],
                                          self.tables.nodes.individual[node_parents[:, 1]]))
         alive = self.individuals_alive(time)
@@ -243,7 +243,7 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
                                   np.isin(indiv_parents[:,1], alive))
         return indiv_parents[yesthese, :]
 
-    def get_individual_nodes(self, individuals, flatten=True):
+    def individual_nodes(self, individuals, flatten=True):
         """
         Return the list of nodes associated with these individuals,
         either as a list of lists, or as a single flat list.

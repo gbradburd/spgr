@@ -42,7 +42,7 @@ def animate_tree(ts, children, num_gens):
         # color based on age so far
         circles.set_color(colormap(ts.individuals_age(frame)[inds]))
         newborns = children[ts.individuals_age(frame)[children] == 0]
-        pcs = ts.get_individual_parents(newborns)
+        pcs = ts.individual_parents(newborns)
         if len(pcs) > 0:
             children = np.concatenate((children, pcs[:,0]))
             paths = paths + [locs[pc,:] for pc in pcs]
