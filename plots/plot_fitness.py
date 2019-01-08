@@ -23,11 +23,11 @@ def animate_fitness(ts, num_gens):
     locs = ts.individual_locations()
     # find the mean number of the present-day's genomes that each node is ancestral to
     today = ts.individuals_by_time(0)
-    today_nodes = ts.get_individual_nodes(today, flatten=True)
+    today_nodes = ts.individual_nodes(today, flatten=True)
     node_ancestry = len(today_nodes) * ts.proportion_ancestry_nodes([today_nodes])[0]
     indiv_ancestry = np.fromiter(map(lambda x: sum(node_ancestry[x.nodes]), ts.individuals()), 'float')
 
-    def get_net_ancestry(time):
+    def net_ancestry(time):
         # we need to subtract from each individual the values of any of their living children nodes: 
         # this is the only known situation when diploidy actually simplifies things!
         net_ancestry = indiv_ancestry.copy()
@@ -35,7 +35,7 @@ def animate_fitness(ts, num_gens):
         nodes_alive = indivs_alive[ts.tables.nodes.individual]
         nodes_alive[ts.tables.nodes.individual < 0] = False
         nodes = np.where(nodes_alive)[0]
-        ins = [(ts.node(p).individual, c) for p,c in ts.get_node_children(nodes) if nodes_alive[c]]
+        ins = [(ts.node(p).individual, c) for p,c in ts.node_children(nodes) if nodes_alive[c]]
         # testing
         ages = ts.individual_ages()
         for i,n in ins:
@@ -43,10 +43,10 @@ def animate_fitness(ts, num_gens):
             assert(ts.node(ts.individual(i).nodes[0]).time - ages[i] <= time)
             assert(any(np.logical_and(np.isin(ts.tables.edges.parent, ts.individual(i).nodes),
                                       ts.tables.edges.child == n)))
-        ch_dict = {n : set([ts.node(p).individual for p,c in ts.get_node_parents([n])]) for n in nodes}
+        ch_dict = {n : set([ts.node(p).individual for p,c in ts.node_parents([n])]) for n in nodes}
         for c in ch_dict:
             assert(len(ch_dict[c]) == 1)
-        ins_dict = {i : [c for p,c in ts.get_node_children(ts.individual(i).nodes)] for i in np.where(indivs_alive)[0]}
+        ins_dict = {i : [c for p,c in ts.node_children(ts.individual(i).nodes)] for i in np.where(indivs_alive)[0]}
         for i in ins_dict:
             nn = ts.individual(i).nodes
             x = sum(np.isin(nn, today_nodes))

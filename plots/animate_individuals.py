@@ -40,7 +40,7 @@ def animate_individuals(ts, num_gens)
         filled.set_color(colormap(ts.individuals_age(frame)[next_inds]))
         if frame > 0:
             new_inds = inds[ts.individuals_age(frame)[inds] == 0]
-            pcs = ts.get_individual_parents(new_inds, time=frame)
+            pcs = ts.individual_parents(new_inds, time=frame)
             lc.set_paths([locs[pc,:] for pc in pcs])
         return circles, filled, lc
 

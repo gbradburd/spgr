@@ -8,7 +8,9 @@ import matplotlib.pyplot as plt
 
 def plot_individuals(ts, num_gens):
     # a snapshot of the individual locations
-    fig = plt.figure(figsize=(6,6))
+    xmax = max([ind.location[0] for ind in ts.individuals()])
+    ymax = max([ind.location[1] for ind in ts.individuals()])
+    fig = plt.figure(figsize=(9, 9 * ymax / xmax))
     ax = fig.add_subplot(111)
     plot_these = (ts.individual_times() <= num_gens)
     locs = ts.individual_locations()

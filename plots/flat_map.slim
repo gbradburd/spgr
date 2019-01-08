@@ -10,7 +10,7 @@ initialize() {
       defineConstant("NUMGENS", 30); 
     }
     if (!exists("W")) {
-      defineConstant("W", 10.0);  // width and height of the simulated area 
+      defineConstant("W", 10.0);  // width of the simulated area 
     }
     if (!exists("OUTPATH")) { 
       defineConstant("OUTPATH", "test_flat_map." + NUMGENS + "." + seed + ".trees"); 
@@ -21,12 +21,17 @@ initialize() {
     if (!exists("K")) {
       defineConstant("K", 5);  // carrying-capacity per unit square (roughly)
     }
-    defineConstant("BURNIN", 200);
+    if (!exists("BURNIN")) {
+      defineConstant("BURNIN", 200);  // number of generations before full recording begins
+    }
 
     catn(c("NUMGENS =", NUMGENS));
+    catn(c("BURNIN =", BURNIN));
     catn(c("W =", W));
     catn(c("SIGMA =", SIGMA));
     catn(c("K =", K));
+    defineConstant("A", 1.0);  // height/width of the simulated area
+    catn(c("A =", A));
     defineConstant("SD", SIGMA);  // sigma_D, the dispersal distance
     catn(c("SD =", SD));
     defineConstant("SI", SIGMA);  // sigma_I, the spatial interaction distance
@@ -76,8 +81,8 @@ reproduction() {
 }
 
 1 early() {
-    sim.addSubpop("p1", asInteger(K * W * W));
-    p1.setSpatialBounds(c(0, 0, W, W));
+    sim.addSubpop("p1", asInteger(K * A * W * W));
+    p1.setSpatialBounds(c(0, 0, W, A * W));
     // random initial positions
     for (ind in p1.individuals) {
         ind.setSpatialPosition(p1.pointUniform());
@@ -103,7 +108,8 @@ early() {
     inds.tagF = competition;
     inds.fitnessScaling = pmin(0.95, 1/(1 + RHO * competition));    
     // avoid edge effects
-    inds.fitnessScaling = inds.fitnessScaling * pmin(sqrt(inds.x/SI), 1.0) * pmin(sqrt(inds.y/SI), 1.0) * pmin(sqrt((W - inds.x)/SI), 1.0) * pmin(sqrt((W - inds.y)/SI), 1.0);
+    inds.fitnessScaling = inds.fitnessScaling * pmin(sqrt(inds.x/SI), 1.0) * pmin(sqrt(inds.y/SI), 1.0) * pmin(sqrt((W - inds.x)/SI), 1.0) * pmin(sqrt((A * W - inds.y)/SI), 1.0);
+
 }
 
 s2 1: early() {
@@ -121,7 +127,7 @@ early() {
     if (T) {
         cat(sim.generation + " " + "early" + " ");
         cat(p1.individualCount + " " + sum(p1.individuals.age == 0) + " ");
-        cat(mean(p1.individuals.age) + " " + p1.individualCount/W^2 + " ");
+        cat(mean(p1.individuals.age) + " " + p1.individualCount/(A * W * W) + " ");
         cat(mean(p1.individuals.tagF) + " " + 1/mean(1/p1.individuals.tagF) + " " + mean(p1.individuals.tag));
         catn(" " + clock());
     }
@@ -131,7 +137,7 @@ late() {
     if (T) {
         cat(sim.generation + " " + "late " + " ");
         cat(p1.individualCount + " " + sum(p1.individuals.age == 0) + " ");
-        cat(mean(p1.individuals.age) + " " + p1.individualCount/W^2 + " ");
+        cat(mean(p1.individuals.age) + " " + p1.individualCount/(A * W * W) + " ");
         cat(mean(p1.individuals.tagF) + " " + 1/mean(1/p1.individuals.tagF) + " " + mean(p1.individuals.tag));
         catn(" " + clock());
     }

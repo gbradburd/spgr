@@ -21,9 +21,12 @@ initialize() {
     if (!exists("K")) {
       defineConstant("K", 5);  // carrying-capacity per unit square (roughly)
     }
-    defineConstant("BURNIN", 200);
+    if (!exists("BURNIN")) {
+      defineConstant("BURNIN", 200);  // number of generations before full recording begins
+    }
 
     catn(c("NUMGENS =", NUMGENS));
+    catn(c("BURNIN =", BURNIN));
     catn(c("W =", W));
     catn(c("SIGMA =", SIGMA));
     catn(c("K =", K));
