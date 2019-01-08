@@ -307,6 +307,7 @@ Quantifying abundance and how it varies across a species' range
 can be crucial for understanding
 ecologically important details of a species' natural history,
 like what habitat to prioritize for conservation, 
+which regions have higher population carrying capacities than others, 
 or whether a particular habitat is a demographic source or sink (Pulliam 1988, Schreiber 2010).
 The history of abundance and fecundity is recorded in the spatial pedigree.
 %, and we can use data that were generated under this spatial pedigree
@@ -319,21 +320,26 @@ The history of abundance and fecundity is recorded in the spatial pedigree.
 
 Consider a population in some geographic area. 
 One quantity we would like to be able to describe 
-is the population density in a given region within that area.
+is the average population density in a given region within that area.
 What exactly do we mean by population density?
 One definition is simply the total number of individuals in a given area.
-However, such a count may include individuals who are not reproductive 
-(e.g., juveniles), 
-or who transient and not reproductive locally 
+However, such a count may include 
+individuals who are not reproductive (e.g., juveniles), 
+or those who are transient and not reproductive locally 
 (e.g., born elsewhere, reproductive outside the region of interest, 
 and included in a local count while passing through).
 These individuals will be invisible in the pedigree 
 of modern, extant individuals within the region.
 Instead, we focus on the effective population density, 
-the \textit{effective} number of individuals per unit area in a given region.
-This quantity is analogous to effective population size ($N_e$), 
+the number of individuals per unit area in a given region 
+who leave ancestors in the modern day.
+This quantity is analogous to effective population size 
 but may vary across different different parts of a species' range, 
-and can therefore not be summarize with a single number.
+and can therefore not be well summarized with a single number.
+It is also related to Wright's neighborhood size (1943, 1946) -- 
+the number of reproducing individuals within two standard deviations 
+of dispersal distance of a focal individual -- 
+but again, may vary across different spatial regions.
 If we knew the complete spatial pedigree of a species, 
 we could measure population density of an area 
 by simply counting the average number of individuals born within its margins.
@@ -358,39 +364,93 @@ this is proportional to their number of offspring, i.e., their fitness.
 If we are looking a long time in the past
 (in practice, more than 10 or 20 generations \cite{bartonfitness}),
 this is their \textit{long-term fitness}.
-The effective population density we estimate using coalescence rates
+The effective population density we might estimate using coalescence rates
 is ``effective'' partly because of this difference.
 
-So, what can the spatial pedigree tell us about local population density?
+What signature does effective population density leave 
+on the spatial pedigree and patterns of genetic variation
+within a region?
+Consider two adjacent valleys, 
+one densely populated, the other sparsely populated, 
+but both equal in geographic area 
+and separated by a strong barrier to dispersal.
+In general, we expect pairs of individuals in the low density valley 
+to have shared ancestors in the more recent past than 
+pairs of individuals in the densely populated valley.
+To see why, consider the relationship between population density
+and the pool of possible parents.
+Each individual in the current generation has two parents that came from nearby,
+so in the sparsely populated valley,
+the pool of individuals who \emph{could} be parents gets exhausted quickly,
+and individuals in the current generation
+are more likely to share at an ancestor in the recent past.
+Because individuals in the sparsely populated valley have more shared ancestors 
+in the more recent past, 
+we would expect samples from that valley to have higher probability of being identical by descent 
+at a given locus, 
+and for the sample as a whole to display lower heterozygosity.
 
-\todo{
-\begin{itemize}
-\item the first thing we might want to know is where everyone is
-\subitem - how many in total
-\subitem - how many per sq km here vs. there
-\subitem - what proportion in this valley vs that valley
-\item analogous to Ne, but more complicated bc it's not a single number
-\subitem - $\rho$
-\item what about pedigree tells us about pop size and or local pop density
-\subitem - just like w/ randomly mating pop, in smaller pops, you don't have to look back in time so far before you find common ancestors
-\subitem - rate of coalescence is determined by local pop density.
-\item what affects this relationship?
-\subitem  - regions of lower density should, all else being equal, have lower heterozygosity, bc heterozygosity tells you about mean(tmrca)
-but there's a lot of things that have to be equal in that statement, 
-e.g., consider 2 valleys, one large w/ low density, one large w/ high density
-should they have same density? it depends!
-\subitem - If there's lots of isolation by distance within a valley, 
-bc sigma is smaller than the valley, 
-then coalescence will happen faster than migration.
-\item  nonreproductive individuals
-\subitem - reproductive individuals farther back in the past.  need to translate between census and effective size
-\item contrast heterogeneity in pedigree relatedness with that of genetic contributions (more in the latter than the former)
-\item Mention Fecundity and reproduction (source-sink) - note: this is flux
-\subitem - e.g., sinks are regions that are characterized by a net positive inward flux
-\item How many new offspring are produced per year in a given area? in total?
-\item How do areas contribute in the *long term*?
-\end{itemize}
-}
+However, there are a number of reasons why the genetic signature 
+of effective population density may, in fact, be more complicated.
+First, if dispersal distances are, on average, shorter 
+in the sparsely populated valley -- 
+e.g., because resources are more plentiful, 
+and individuals do not have to disperse as far to avoid competition -- 
+there may be more inbreeding over short distances, 
+but higher heterozygosity within the valley as a whole.
+In such a scenario, coalescence happens locally 
+(e.g., within Wright's neighborhood size)
+faster than migration connects the pedigrees of 
+far-flung individuals within the valley.
+Another complication is that offspring born within a particular region 
+may leave and reproduce outside the region, 
+which could erase their local contribution to the spatial pedigree.
+Likewise, a parent of an individual within the region 
+may have been born elsewhere, 
+which could potentially inflate the inferred local density.
+If the rates at which pedigrees enter and leave a focal area are equal, 
+and density is constant, 
+the pedigree permeability of the region may not affect inference of density too strongly.
+However, local ecological or demographic dynamics 
+can alter these rates.
+For example, in a region that acts as a population ``sink,"
+the rate of pedigrees entering the area is greater than 
+that of pedigrees leaving the area.
+An estimate of density inferred from patterns of heterozygosity 
+within a sink region may be much higher than the truth, 
+and the converse may hold in a ``source" region.
+These dynamics are related to the concept of population ``flux" 
+across a border, discussed further below.
+
+
+%\todo{
+%\begin{itemize}
+%\item the first thing we might want to know is where everyone is
+%\subitem - how many in total
+%\subitem - how many per sq km here vs. there
+%\subitem - what proportion in this valley vs that valley
+%\item analogous to Ne, but more complicated bc it's not a single number
+%\subitem - $\rho$
+%\item what about pedigree tells us about pop size and or local pop density
+%\subitem - just like w/ randomly mating pop, in smaller pops, you don't have to look back in time so far before you find common ancestors
+%\subitem - rate of coalescence is determined by local pop density.
+%\item what affects this relationship?
+%\subitem  - regions of lower density should, all else being equal, have lower heterozygosity, bc heterozygosity tells you about mean(tmrca)
+%but there's a lot of things that have to be equal in that statement, 
+%e.g., consider 2 valleys, one large w/ low density, one large w/ high density
+%should they have same heterozygosity? it depends!
+%\subitem - If there's lots of isolation by distance within a valley, 
+%bc sigma is smaller than the valley, 
+%then coalescence will happen faster than migration.
+%\item  nonreproductive individuals
+%\subitem - reproductive individuals farther back in the past.  need to translate between census and effective size
+%\item contrast heterogeneity in pedigree relatedness with that of genetic contributions (more in the latter than the former)
+%\item Mention Fecundity and reproduction (source-sink) - note: this is flux
+%\subitem - e.g., sinks are regions that are characterized by a net positive inward flux
+%\item How many new offspring are produced per year in a given area? in total?
+%\item How do areas contribute in the *long term*?
+%\end{itemize}
+%}
 
 \begin{figure}[ht]
     \centering
