@@ -470,7 +470,12 @@ across a border, discussed further below.
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
 
-\todo{deeper coalescences in denser areas, more diversity and lower p(IBD), theta, heterozygosity, genome-sharing, drift btwn generations, or, e.g., old trees vs. saplings}
+\todo{deeper coalescences in denser areas, more diversity and lower p(IBD), theta, heterozygosity, genome-sharing, drift btwn generations, or, e.g., old trees vs. saplings, patterns of LD?).
+methods to mention\g{?}: Ben Peter's Ne thing, 
+\cite{England2006}
+estimating wright's neighborhood size (shirk, mcniel, stuff by waples)
+SMC-type things
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -699,8 +704,6 @@ will be accentuated the farther back in time one looks.
         \label{dispersal}
 \end{figure}
 
-
-
 We can use these observations of coalescences to learn about the flux across a given line:
 across a barrier to dispersal,
 the average time to coalescence for pairs of individuals on opposite sides of the line
@@ -729,16 +732,22 @@ less frequently.
 \todo{tidy and conclude}
 
 %%%%%%%%%%%%%%
-\subsubsection{Not-resistance surfaces}
+\subsubsection{Flux surfaces}
+
+\todo{read through and edit}
 
 Fluxes across lines through the landscape
 describe something about population movement,
-but are not nearly as satisfying or relevant to researchers
+but are not as satisfying or relevant to researchers
 as a map that depicts regions with greater or lesser degrees of population movement.
 In heterogeneous environments,
-it is clearly desirable to be able to depict local population movement across geography on some kind of a map.
-The general description of this kind would be to specify for each location on the map
-the probability distribution of where the children of a parent living at that location would end up.
+it is clearly desirable to be able to depict local population movement 
+across geography on some kind of a map.
+The general description of this kind would be 
+to specify for each location on the map
+the probability distribution of where 
+the children of a parent living at that location would end up.
+
 To build an intuition for this,
 suppose that in each small section of the map,
 we recorded all the dispersal events.
@@ -747,25 +756,42 @@ with the following statistics:
 how far individuals go,
 the mean direction they travel,
 and covariance in noise about that mean.
+For example, the children of a parent 
+living in a long valley that follows a southwest-to-northeast axis 
+and is flanked by impassable ridges might be found up-valley 
+or down-valley in equal proportion, 
+leading to no mean direction of dispersal, 
+but a high covariance along the axis of the valley.
+Alternatively, the children of a parent in an lotic environment 
+might disperse more frequently down-current than up-current, 
+leading to a net downstream direction of travel.
 
 A way to summarize this by one or a few maps of scalar quantities would be to estimate, 
 at each location, the mean and the covariance of the parent-offspring displacement.
 The mean displacement would form a vector field over the map,
 where presence of a small arrow would denote some amount of mean bias in offspring dispersal.
-The covariance could be summarized by an overall mean distance and a degree of anisotropy.
-
-%infinitesimal picture: local mean drift (vector field) and diffusion ellipse leads to amoeboids
+The covariance could be summarized by an overall mean distance and a degree of anisotropy, 
+or directional dependence.
+In principle, this map could be estimated using 
+spatial pedigree data from only two generations 
+(two generations are necessary because 
+multiple combinations of mean dispersal and covariance 
+could explain the spatial distribution of siblings or cousins, 
+so we would need to know the parental locations).
+However, in practice, it may be that 
+few species are sampled with sufficient spatial density, 
+or have sufficient numbers of offspring, 
+to distinguish the true signal of the landscape on offspring dispersal from noise.
 
 %low priority:
 %\plr{figure idea:} vector field of ellipses and arrows
 %(conceptual? from slimulation?)
 
-\todo{tidy and conclude}
-
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
 
-\todo{$m$ between "discrete pops", resistance distance}
+\todo{$m$ between "discrete pops", resistance distance.
+methods: scat, ringbauer2018, ralphcoop, cayuela refs, cockerhaweir1993, eems, newEems, bedassle}
 
 %%%%%%%%%%%%%%
 \subsection{Where were their ancestors?}
@@ -776,8 +802,8 @@ i.e., how individuals reproduce and move across space.
 A complementary view is to
 start with individuals sampled in the present day,
 then, looking backwards in time,
-to ask where their ancestors lived,
-and where in space they have inherited their genomes from.
+to ask where in space they have inherited their genomes from, 
+i.e., where their ancestors lived.
 This shifts perspective from moving forwards in the spatial pedigree
 (past to present),
 to moving backwards in time through it.
@@ -798,17 +824,17 @@ Spatial locations of ancestry compared across sections of the genome
 could also be informative about the origins and mechanisms of selective sweeps.
 
 
-
 %%%%%%%%%%
 \subsubsection{Geographic distribution of ancestry}
 
 Consider an individual living in a population in a geographic region.
-The density of the population back through time and dispersal distance of the ancestors in that individual's pedigree together
-determine the rate of spread of that individual's ancestry across space back through time.
-
-Consider a single individual today:
-at any point in the past,
-each portion of their genome can be associated with the ancestor from whom they inherited that bit of genome.
+The density of the population back through time and 
+dispersal distance of the ancestors in that individual's pedigree 
+together determine the rate of spread of that individual's ancestry 
+across space back through time.
+At any point in the past,
+each portion of that individual's genome can be associated 
+with the ancestor from whom they inherited it.
 Their genetic ancestry can therefore be apportioned across space according
 to the locations of the ancestors from whom they inherited their genome.
 There are a number of natural questions that arise from a description of this process.
@@ -932,10 +958,8 @@ leading to an asymptote in ibd}
 %%%%%%%%%%
 \subsubsection{Related statistics}
 
-\todo{Fst, various IBD-metrics?}
-%        - $F_{ST}$, but already covered this
-%
-%        - relative positions on a PC plot?
+\todo{Fst, various IBD-metrics???}
+
 
 %%%%%%%%%%
 \subsection{How have things changed over time?}
