@@ -40,6 +40,8 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
         Returns a logical array of length equal to the number of individuals that
         indicates whether the given individual was alive at the given time.
 
+        TODO: Use the pyslim.INDIVIDUAL_ALIVE flag?
+
         :param float time: The time ago. If `time` is None, then everyone will be
             counted as being alive.
         """
