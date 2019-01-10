@@ -330,7 +330,7 @@ or those who are transient and not reproductive locally
 and included in a local count while passing through).
 These individuals will be invisible in the pedigree 
 of modern, extant individuals within the region.
-Instead, we focus on the effective population density, 
+Instead, we focus on the effective population density \ref{bartondepaulisetheridge2002}, 
 the number of individuals per unit area in a given region 
 who leave ancestors in the modern day.
 This quantity is analogous to effective population size 
@@ -677,7 +677,7 @@ will be accentuated the farther back in time one looks.
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_ibd.pdf}
-        \caption{\todo{ibd map for 4 individuals}
+        \caption{\todo{ibd map for 4 individuals}}
         \label{ibd}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
@@ -1190,15 +1190,82 @@ more work is needed to acknowledge the complexity of biological reality.
 
 \todo{read through, edit, rewrite?}
 
+%%%%%%%%%%%
 \section{Exciting directions for the field}
 
-\todo{
-\begin{itemize}
-\item what about selection?
-\item recap - complicate the world
-\item the past
-\end{itemize}
-}
+Describing the geographic distribution of genetic variation -- 
+its patterns, 
+the processes that have generated and maintained it, 
+and its consequences -- 
+is a fundamental goal of evolutionary biology.
+Below, we describe a few areas 
+in which we hope or expect further progress in the field to be made.
+
+%%%%%%%%%%%
+\subsubsection{Selection}
+One important avenue of extension is to incorporate selection into 
+models of spatially continuous populations. 
+The questions introduced above are all presented in the context 
+of a neutrally evolving population,
+but clearly local adaptation and natural selection will impact 
+the structure, and the spatial structure, of the pedigree.
+Incorporating selection into spatially continuous models 
+will facilitate a greater union of population genetic processes 
+and ecological models of population dynamics, 
+and help shed light on important evolutionary questions, 
+like where adaptive sweeps originate. 
+\g{more about why this is hard?}
+
+%%%%%%%%%%%
+\subsubsection{Simulation} 
+One recent advance in the field, 
+which may help improve inference models with and without selection, 
+has been the advent of powerful and flexible simulation methods, 
+such as SLiM \cite{SLiM}.
+With these methods, 
+researchers can specify models of arbitrary complexity, 
+and use them to simulate genome-scale datasets.
+This capability offers an excellent pedagogical tool 
+and opportunity to build intuition for patterns of genetic variation 
+in complex scenarios for which theory may be lacking.
+Indeed, we generated all figures for this paper using SLiM, 
+and we have included the simulations 
+and the code used to generate all figures 
+as an online supplement (available for download here) 
+to our paper.
+In addition, these simulation methods can be used in statistical inference.
+For example, simulated datasets can be used in the training 
+of machine learning methods (see Schrider et al), 
+or to compare between different generative models using 
+approximate Bayesian computation (ABC, ref).
+
+%%%%%%%%%%%
+\subsubsection{The Past} 
+The growing availability of genotype data from historical or ancient samples, 
+collected from archaeological sites (eg refs) or museums (eg refs) 
+is one of the most exciting developments in population genetics, 
+and has the potential to revolutionize the field of spatial population genetics.
+This historical data can provide a kind of fossil calibration on 
+the alleles associated with a location in the past, 
+and can also help anchor spatial pedigrees in a particular geographic context.
+Although it may be unlikely that any particular genotyped historical individual 
+is the genetic ancestor of any sampled extant individual, 
+the geographic position of the historical sample and its 
+relatedness to modern individuals is nonetheless informative 
+about the geography of any focal modern individuals ancestors.
+These historical data can also illuminate temporal heterogeneity 
+in some of the processes described in section 3.4, 
+which might otherwise be invisible in datasets comprised of only modern individuals.
+
+\subsubsection{Conclusion}
+The growing availability of genetic and genomic datasets 
+with a large number of individuals and high spatial resolution, 
+coupled with advances in theory and methods 
+for modeling evolution in continuous space, 
+is drawing us ever closer to that goal in many empirical systems.
+Taken together, these developments make it 
+an exciting time for spatial population genetics.
+
 
 %Disclosure
 \section*{DISCLOSURE STATEMENT}
