@@ -704,7 +704,7 @@ will be accentuated the farther back in time one looks.
             and every parent-child relationship that crosses each of the dotted lines
             is illustrated by an arrow, colored either red (if it crosses left-to-right) or blue (right-to-left).
         }
-        \label{dispersal}
+        \label{fig:dispersal}
 \end{figure}
 
 We can use these observations of coalescences to learn about the flux across a given line:
@@ -852,11 +852,22 @@ from the local region they live in drops below (say) 90\%?
 
 \begin{figure}[ht]
     \centering
-%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \includegraphics[width=\linewidth]{figs/valley_ancestry_01.pdf}
+        \includegraphics[width=\linewidth]{figs/valley_ancestry_20.pdf}
+        \includegraphics[width=\linewidth]{figs/valley_ancestry_80.pdf}
+        \includegraphics[width=\linewidth]{figs/valley_ancestry_300.pdf}
         \caption{
-		\todo{individuals shaded according to the proportion of ancestry 
-		of a given small cluster of samples they contribute, 
-		at several points back in time - shows spread of ancestry across space through time}
+            Spatial locations of the ancestors of four individuals:
+            at 
+            \textbf{(top)} one, 
+            \textbf{(middle top)}, five
+            \textbf{(middle bottom)} twenty, and
+            \textbf{(bottom)} seventy-five generations in the past,
+            all individuals from whom the four individuals have inherited genome are denoted by a circle,
+            with one color for each individual,
+            and with circle area proportional to the amount of genome inherited.
+            The landscape is the same as in Figure~\ref{fig:dispersal}.
+            \plr{this is too many: which ones to keep?}
         }
         \label{ancestry_spread}
 \end{figure}
@@ -1116,7 +1127,7 @@ the observed geographic distribution of genetic variation
 was generated in the sampled geographic context.
 For example, 
 we assume that the flux across the ridgeline 
-depicted in Figure \ref{dispersal}\subref{valleyflux}
+depicted in Figure \ref{fig:dispersal}\subref{valleyflux}
 and inferred from observed divergence 
 between populations in the two adjacent valleys 
 is indicative of true dispersal across the ridge.
