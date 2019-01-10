@@ -8,45 +8,50 @@ import matplotlib.pyplot as plt
 import matplotlib.collections as cs
 
 
-def plot_ancestry(ts, children, time):
+def plot_ancestry(ts, children, times):
     """
     Plot how the ancestry of an individual spreads out over space.
     Note that this doesn't look quite right because parents have the child's mass
     even *after* the child is born.
     """
 
-    inds = ts.individuals_by_time(time)
     locs = ts.individual_locations()
     # find the mean proportion of the children's genome that each node is parental to
-    child_nodes = [n for ind in children for n in ts.individual(ind).nodes]
-    node_ancestry = ts.proportion_ancestry_nodes([child_nodes])[0]
+    children_nodes = [ts.individual(ind).nodes for ind in children]
+    node_ancestry = ts.proportion_ancestry_nodes(children_nodes)
 
-    def size_fun(inds, scale=2000):
-        return np.fromiter(map(lambda x: 1 + scale * sum(node_ancestry[ts.individual(x).nodes]), inds),
+    def size_fun(inds, k, scale=2000):
+        return np.fromiter(map(lambda x: scale * sum(node_ancestry[k][ts.individual(x).nodes]), inds),
                            'float')
 
     xmax = max(locs[:,0])
     ymax = max(locs[:,1])
-    fig = plt.figure(figsize=(6, 6 * ymax / xmax))
-    ax = fig.add_subplot(111)
-    ax.set_xlim(0, xmax)
-    ax.set_ylim(0, ymax)
-    circles = ax.scatter(locs[inds, 0], locs[inds, 1], 
-                         sizes=size_fun(inds),
-                         color='c',
-                         alpha=0.75)
-    circles.set_offsets(locs[inds,:])
-    circles.set_sizes(size_fun(inds))
-
-    return fig
+    figs = []
+    for time in times:
+        fig = plt.figure(figsize=(6, 6 * ymax / xmax))
+        ax = fig.add_subplot(111)
+        ax.set_xlim(0, xmax)
+        ax.set_ylim(0, ymax)
+        colors = ['b', 'r', 'm', 'y']
+        inds = ts.individuals_by_time(time)
+        for k, child in enumerate(children):
+            ax.scatter(locs[inds, 0],
+                       locs[inds, 1], 
+                       sizes=size_fun(inds, k),
+                       facecolor=colors[k],
+                       edgecolor=None,
+                       alpha=0.75)
+        figs.append(fig)
+    return figs
 
 
 for script in ("flat_map.slim", "valleys.slim"):
-    num_gens = 300
+    num_gens = 100
     treefile = sps.run_slim(script = script,
                             seed = 23, 
-                            SIGMA = 0.4,
+                            SIGMA = 1.0,
                             W = 50.0, 
+                            K = 5.0,
                             NUMGENS = num_gens)
     outbase = ".".join(treefile.split(".")[:-1])
 
@@ -62,7 +67,8 @@ for script in ("flat_map.slim", "valleys.slim"):
     targets = list(np.random.choice(np.where(left_third)[0], 2)) + \
                 list(np.random.choice(np.where(right_third)[0], 2))
 
-    for time in range(0, 100, 5):
-        fig = plot_ancestry(ts, targets, time)
+    times = list(range(0, 100, 20)) + [ts.slim_generation - 1]
+    figs = plot_ancestry(ts, targets, times)
+    for time, fig in zip(times, figs):
         fig.savefig(outbase + ".{:02d}.ancestry.pdf".format(time))
         plt.close(fig)
