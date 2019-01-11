@@ -51,12 +51,38 @@ email: bradburd@msu.edu}
 
 %Abstract
 \begin{abstract}
-\todo{Abstract text, approximately 150 words.}
+Genetic variation within species is often structured by geography.
+Much of the theory, methods, and data applied to the study 
+of the spatial distribution of genetic variation 
+has relied on the approximating assumption that 
+organisms are well described as discrete demes  
+embedded within some geographic context 
+\g{, like blueberries in a blueberry muffin}.
+Many species violate this assumption, 
+but the complexities of the alternative -- 
+organisms are living, dispersing, reproducing, and dying 
+somewhere in space -- 
+have been difficult to capture in a theoretical or statistical model.
+However, recent advances in theory, 
+alongside the advent of genomic datasets 
+of ever-increasing size and geographic scope 
+and methods for analyzing them,
+are facilitating a revolution in the study of organisms in continuous space.
+Here, we discuss some of the questions in spatial population genetics 
+that researchers want answered in their study systems.
+In doing so, we introduce the concept of the spatial pedigree -- 
+the pedigree of all individuals in a species, 
+indexed by the birth location of each individual
+--
+as both a heuristic for building intuitions, 
+and also the fundamental quantity in the field.
+We close by highlighting some exciting directions 
+for the field of spatial population genetics.
 \end{abstract}
 
 %Keywords, etc.
 \begin{keywords}
-population genetics, isolation by distance, population structure, local adaptation
+population genetics, isolation by distance, population structure
 %keywords, separated by comma, no full stop, lowercase
 \end{keywords}
 \maketitle
@@ -119,7 +145,7 @@ However, despite these difficulties,
 there is now a growing body of theory, methods, and data
 that approach this biological, population-less reality.
 Advances in theory in continuous space (barton, ringbauer),
-datasets of unprecedented geographical scope (humans, torts),
+datasets of unprecedented geographical scope (e.g., humans, torts),
 and new statistical paradigms for modeling those data (conStruct, eems, ringbauer, maybe hickerson)
 are together spurring a revolution in the field of spatial population genetics.
 
@@ -381,7 +407,7 @@ To see why, consider the relationship between population density
 and the pool of possible parents.
 Each individual in the current generation has two parents that came from nearby,
 so in the sparsely populated valley,
-the pool of individuals who \emph{could} be parents gets exhausted quickly,
+the pool of individuals who \textit{could} be parents gets exhausted quickly,
 and individuals in the current generation
 are more likely to share at an ancestor in the recent past.
 Because individuals in the sparsely populated valley have more shared ancestors 
@@ -1280,17 +1306,25 @@ an exciting time for spatial population genetics.
 
 %Disclosure
 \section*{DISCLOSURE STATEMENT}
-If the authors have nothing to disclose, the following statement will be used: The authors are not aware of any affiliations, memberships, funding, or financial holdings that
-might be perceived as affecting the objectivity of this review.
+If the authors have nothing to disclose, the following statement will be used: 
+The authors are not aware of any affiliations, memberships, funding, or financial holdings 
+that might be perceived as affecting the objectivity of this review.
 
 % Acknowledgements
 \section*{ACKNOWLEDGMENTS}
-Brandvain, Marge, JoNo, Graham, Schemske
+The authors gratefully acknowledge 
+Graham Coop, John Novembre, 
+Yaniv Brandvain, Doug Schemske, and Marjorie Weber 
+for helpful feedback and discussions, 
+as well as XXX, YYY, and ZZZ for invaluable comments on the manuscript.
 
 
-friendly reviewers:
-Ben Peter? Barton? JoNo? Andy K? Kelleher? Josh Schraiber? Is Petkova still in the mix?
-Etheridge? M Stephens? Harris? Hickerson?
+
+possible friendly reviewers: 
+{Ben Peter, Nick Barton, John Novembre, 
+Andy Kern, Jerome Kelleher, Josh Schraiber,
+Alison Etheridge, Matthew Stephens, Kelley Harris, 
+Mike Hickerson}
 
 \bibliographystyle{plainnat}
 \bibliography{references}
