@@ -51,6 +51,8 @@ email: bradburd@msu.edu}
 
 %Abstract
 \begin{abstract}
+\todo{read through and edit}
+
 Genetic variation within species is often structured by geography.
 Much of the theory, methods, and data applied to the study 
 of the spatial distribution of genetic variation 
@@ -90,6 +92,21 @@ population genetics, isolation by distance, population structure
 %Table of Contents
 \tableofcontents
 
+\todo{
+\begin{itemize}
+\item G: go through all references
+\item P: make valley scenario map and valley heterozygosity figure
+\item P: finishing dispersal section
+\item P: finishing flux section
+\item P: finishing geographic distribution of ancestry \& co-ancestry \& relative differentiation
+\item P: figure of valley scenario (contours of topography (and density) paired with heterozygosity figure
+\item P: writeup of postglacial expansion scenario
+\item G: tying expansion scenario into ``groups" section
+\item both: make annotated spatial popgen bibliography
+\item G: identifiability and ill-posedness section
+\item both: reiterate motivation throughout - no one's written down the quantities we're trying to estimate (e.g., what's migration rate w/out populations, what's analogous to admixture proportions if we don't have discrete groups)
+\end{itemize}
+}
 
 % Heading 1
 \section{Introduction}
@@ -483,11 +500,19 @@ across a border, discussed further below.
     \begin{subfigure}{0.5\textwidth}
         \centering
 %        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
-        \caption{tmrcas in high- v. low-density areas}
-        \label{tmrcas}
+        \caption{map of simulation scenario}
+        \label{valley_map}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+        \caption{individual heterozygosity}
+        \label{valley_het}
     \end{subfigure}
         \caption{
-		\todo{the effect of population density on tmrcas} \triage{heterozygosity}
+		\todo{map of simulation scenario (two valleys with different densities, separated by a ridge) 
+		with an accompanying map of heterozygosity of individuals sampled across the two valleys, 
+		illustrating the effect of population density on heterozygosity.}
 		}
         \label{pop_density}
 \end{figure}
@@ -1058,13 +1083,14 @@ and explore how they complicate \g{inference}.
 %%%%%%%%%%
 \subsubsection{Identifiability and ill-posedness}
 
+spatial identifiability problem 
+need historical individuals to anchor the spatial pedigree
+likewise, if density has changed lots and quickly
 \todo{what's the spatiotemporal resolution that you can actually infer things at?  
 example: fast pop fluctuations just give you lower Ne}
-
-%%%%%%%%%%
-\subsubsection{Scenario: constant range but more-or-less gradually changing population density due to changing balance of competition/resource availability}
-
-\todo{Relate to $N_e$-over-time things.}
+changing $\rho_e$ through time is maybe comparable to changing Ne.
+	most likely to see it when there are few changes, 
+	or when changes don't reverse themselves quickly.
 
 %%%%%%%%%%
 \subsubsection{Scenario: postglacial expansion and secondary contact}
@@ -1084,45 +1110,10 @@ example: fast pop fluctuations just give you lower Ne}
         \label{postglacial_expansion}
 \end{figure}
 
-
-%%%%%%%%%%
-\subsubsection{Scenario: orogeny induces phylogeny}
-
-\todo{ What proportion of ancestry of one side of the mountain comes from the other side of the mountain,
-		as a function of time ago? \cite{knowlton1994}}
-
-\begin{figure}[ht]
-    \centering
-%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
-        \caption{
-        \todo{
-		across a barrier with gradually increasing strength,
-                plot of this quantity as pie plots, mirroring previous glacial plot.
-         }
-        }
-        \label{orogeny_phylogeny}
-\end{figure}
-
-%            -
-
-%%%%%%%%%%
-\subsubsection{Scenario: range expansion and exponential growth}
-
-\todo{
-Consider triaging?  Feels like some of it is covered between the refugium scenario and the pop size change scenario, 
-although not the surfing part.
-%
-%
-\begin{itemize}
-\item        - Where did the range expansion originate?
-\item        - How fast did it spread?
-\item        - How much surfing was there on the wave front?
-\item        - can you tell the difference between source-sink dynamics and a range expansion?
-\end{itemize}
-}
-
-%       
-%        \plr{low priority figure idea:} fluxes across surfaces on a range expansion
+Note also,
+things change over time, e.g., if a mtn range has arisen recently, 
+(e.g., orogeny induces phylogeny)
+you want to look at recent flux (previous figure in reverse)
 
 %%%%%%%%%%
 \subsubsection{Now is the winter of our discontinuity}
