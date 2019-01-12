@@ -411,4 +411,3 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
                 ancestry[n] += tree.num_tracked_samples(n) * tree_span
         ancestry /= len(sample_set) * ts.sequence_length
         return ancestry
-
