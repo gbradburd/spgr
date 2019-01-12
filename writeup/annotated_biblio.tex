@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+
+\newcommand{\g}[1]{{\color{blue}{#1}}}
+\newcommand{\plr}[1]{{\color{green}{#1}}}
+
+\geometry{a4paper} 
+
+\title{Annotated spatial popgen bibliography}
+
+%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\newpage
+
+\begin{enumerate}
+%%%
+\item Bradburd, Ralph, Coop (2013) - BEDASSLE
+\subitem detecting barriers against spatial backdrop
+
+%%%
+\item Bradburd, Ralph, Coop (2016) - SpaceMix
+\subitem detecting admixture against spatial backdrop
+\subitem defines admixture as something transgressive against geographic expectations,
+ rather than transgressive against discrete ``population history".
+
+%%%
+\item Bradburd, Coop, Ralph (2018) - conStruct
+\subitem defining ``clusters" against continuous spatial backdrop
+\subitem implicit null that IBD explains everything
+ 
+%%%
+\item Wilkins (2004) - A Separation-of-Timescales Approach to the Coalescent in a Continuous Population
+\subitem spatial exploration of separation of timescales (with range margins)
+
+%%%
+\item Barton \& Wilson (1995) - Genealogies and geography
+\subitem introduces diffusion approximation to model the distribution of coalescent times 
+in a homogeneous 2D environment
+
+%%%
+\item Barton, Depaulis, \& Etheridge (2002) - Neutral Evolution in Spatially Continuous Populations
+\subitem introduces a general recursion for the probability of identity in state of two individuals 
+sampled from a population subject to mutation, migration, and random drift in a two-dimensional continuum
+
+%%%
+\item Barton, Kelleher, \& Etheridge (2013) - A New Model for Extinction and Recolonization in Two Dimensions: Quantifying Phylogeography
+\subitem introduces conceptual model of population dynamics that side-steps 
+the spatial discrepancy in the distribution of individuals between coalescent models 
+and forward-time models (highlighted in Felsenstein 1975)
+
+%%%
+\item Barton, Etheridge, Kelleher, V\'{e}ber (2013) - Inference in two dimensions: Allele frequencies versus lengths of shared sequence blocks
+\subitem introduces 2 approaches (one based on allele frequency covariance, 
+the other on length of shared sequence blocks) 
+to inference of neighbourhood size and dispersal rate.
+
+%%%
+\item Felsenstein (1975) - A Pain in the Torus: Some Difficulties with Models of Isolation by Distance
+\subitem demonstrates that Mal\'{e}cot's model of IBD leads to clumping of individuals, 
+and that, unmodified, it can therefore not be used to describe/simulate datasets with biological realism.
+
+%%%
+\item Petkova, Novembre, Stephens (2015) - Visualizing spatial population structure with estimated effective migration surfaces
+\subitem identification of local barriers to average gene flow
+\subitem tesselates the landscape, places genotyped individuals on the landscape, 
+estimates what is essentially ``resistance" across edges to match observed divergence
+
+%%%
+\item Al-Asadi, Petkova, Stephens, Novembre (2018) - Estimating recent migration and population size surfaces
+\subitem EEMS, but estimated using matrices of genetic similarity 
+derived from sharing of segments of different lengths, 
+which are informative about different slices of time in the past 
+(like localPCA, but plugged into EEMS).
+
+%%%
+\item Peter \& Slatkin (2013) - Detecting range expansions from genetic data
+\subitem 
+
+%%%
+\item Peter \& Slatkin (2015) - The effective founder effect in a spatially expanding population
+\subitem 
+
+\end{enumerate}
+
+\end{document}
