@@ -209,7 +209,6 @@ and spur the development of new, creative methods in the field.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The spatial pedigree}
 
-
 \todo{read through and edit}
 
 The spatial pedigree is
@@ -306,6 +305,17 @@ they can also shed light on the spatial history of that pedigree.
 
 %\plr{note on differences between genetic and genealogical ancestry}
 
+\subsection{The bias of long-term fitness}
+
+\begin{quote}
+    On one hand, every single one of my ancestors going back billions of years
+    has managed to figure out [how to produce offspring].
+    On the other hand, that's the mother of all sampling biases.
+    \hfill \emph{-- Randall Munroe, xkcd:674}
+\end{quote}
+
+\plr{Move discussion about bias due to long-term fitness here.}
+
 \begin{figure}[ht]
     \centering
     \begin{subfigure}{0.35\textwidth}
@@ -338,22 +348,18 @@ they can also shed light on the spatial history of that pedigree.
 %%%%%%%%%%%%%%
 \subsection{Where are they?}
 
-Perhaps the first thing we want to know
-when considering a species as a research system
+Perhaps the first thing we want to know about a species
 is their abundance and distribution:
-how many of them there are in total, 
-and where they can be found.
-At finer resolution,
-we may also be interested in variation in these counts --
-e.g.,
-what proportion can be found here versus there.
-Quantifying abundance and how it varies across a species' range 
+how many are there, and where do they live?
+The ideal result would be a map depicting numbers of individuals
+at some level of geographic resolution.
+Quantifying abundance and how it varies
 can be crucial for understanding
 ecologically important details of a species' natural history,
 like what habitat to prioritize for conservation, 
 which regions have higher population carrying capacities than others, 
 or whether a particular habitat is a demographic source or sink (Pulliam 1988, Schreiber 2010).
-The history of abundance and fecundity is recorded in the spatial pedigree.
+Clearly, at least some aspects of abundance and fecundity are recorded in the spatial pedigree.
 %, and we can use data that were generated under this spatial pedigree
 %to get a peek at the process.
 
@@ -506,14 +512,19 @@ across a border, discussed further below.
     \end{subfigure}
     \begin{subfigure}{0.5\textwidth}
         \centering
-%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+        \includegraphics[width=\linewidth]{figs/valley_heterozygosity}
         \caption{individual heterozygosity}
         \label{valley_het}
     \end{subfigure}
         \caption{
-		\todo{map of simulation scenario (two valleys with different densities, separated by a ridge) 
-		with an accompanying map of heterozygosity of individuals sampled across the two valleys, 
-		illustrating the effect of population density on heterozygosity.}
+            \todo{map of simulation scenario (two valleys with different densities, separated by a ridge)}
+            \textbf{(below)} Relative heterozygosity of a sample of 100 individuals across the range.
+            Observed heterozygosities of diploids were standardized 
+            by subtracting the mean and dividing by the SD;
+            circle sizes are proportional to the resulting absolute value,
+            and circle color indicates the sign (magenta: negative, cyan: positive).
+            Low heterozygosities occur on the edges of the range,
+            and average about 40\% lower in the smaller valley on the right.
 		}
         \label{pop_density}
 \end{figure}
@@ -533,64 +544,53 @@ SMC-type things
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{How do they move?}
 
-Dispersal is a fundamental process in ecology and evolution,
-and is central to many research questions,
-including predicting responses to climate change,
-evaluating epidemiological networks,
-and understanding population demography and dynamics.
-Motile organisms move in many ways:
-possibly through a day or seasonally through a year,
-but quantities we could hope to estimate using population genetic data
-have to do with the between-generation \textit{dispersal distance}.
-As described above,
-we define the dispersal distance to be the displacement
-between parent and offspring birth locations.
-The observed distance between parent and offspring
-depends on the movement of the parent through its life,
-the possible movement of the gamete before fertilization,
-the movement of the zygote between formation and maturation,
-and daily or seasonal movement of the mature individual,
-all of which may depend on the sex of the parent and the offspring.
+Dispersal is fundamental to many questions in ecology and evolution,
+such as
+predicting responses to climate change or the spread of epidemics,
+or understanding population demography and dynamics.
+Organisms may move in many ways throughout their lives,
+but quantities most clearly reflected in population genetic data
+have to do with the displacement between geographic locations of parent and offspring
+(for concreteness, taking their the location of their birth or germination,
+and averaging over sex of the parent).
+The best overall descriptor of ``how much they move''
+is often the absolute value of this displacement,
+known as the between-generation \textit{dispersal distance}.
 
+This important quantity describes how quickly spatial populations mix,
+but combines many important aspects of the organism's ecology, including
+any movement of gametes or zygotes before maturation,
+and subsequent daily or seasonal movement of the mature individual,
+all of which often depend on the sex of both parent and offspring.
 For some species,
 it may be feasible to directly measure many of these components
 using, e.g., telemetry or banding \cite{dispersal_estimation}.
-However, for most species this will be impractical,
-and, as with variation in population density,
+However, this is often difficult.
+
+Furthermore, as with variation in population density,
 measured dispersal of modern individuals in a handful of years
-may not be informative short or long-term historical averages
-\cite{WhitlockMcCauley1999}.
-These processes,
-both today and historically,
-can be read in the pedigree,
-which in turn leaves an imprint on patterns of genetic variation.
-If we knew the spatial locations of ancestors in the pedigree,
+may not reflect historical averages \cite{WhitlockMcCauley1999}.
+However, 
+if we knew the spatial locations of ancestors in the pedigree,
 then realized dispersal would be recorded directly;
 we usually do not, but spatial locations of modern individuals
 can give strong clues about this \cite{Cayuela2018}.
 
+
 %%%%%%%%%%%%%%
 \subsubsection{Dispersal (individual, diffusive movement; $\sigma$)}
 
-Consider a population living across some geographic area.
-One concrete quantity we might be interested in is
-the distance between the parent and offspring locations.
-To be more careful,
-while still trying to stay out of the weeds,
-we can define this as the mean distance between the
-birth (aka germination/hatching/zygote formation)
-location of a randomly chosen parent
-and that of one of its randomly chosen offspring.
+First consider inference of the ``dispersal distance'',
+which for the sake of discussion take as
+the mean distance between the birth (germination/hatching/etcetera)
+locations of a randomly chosen individual
+and that of a randomly chosen one of its parents.
 This notion is actually a cluster of closely related quantities:
-for instance, if survival strongly depends on where the offspring disperses to,
+for instance, if survival strongly depends on where an offspring disperses to,
 then the ``dispersal distance'' estimated by picking an adult from the population
 and measuring distance to their offspring (regardless of survival)
-could differ from that estimated by measuring the distance between that same adult
+could differ substantially from that estimated by measuring the distance between that same adult
 and \textit{her} parents.
-In practice, 
-because non-survivors are unlikely to be sampled, 
-we focus on the dispersal distance of surviving offspring, 
-and recognize that this may differ from true individual dispersal.
 
 Dispersal distance could be trivially estimated by taking
 the average of these displacements across history
@@ -602,26 +602,29 @@ despite not knowing parental locations,
 by comparing spatial distances between individuals of different levels of relatedness.
 For example, if we sample two individuals that are siblings,
 then the distance between them is the result of two dispersals,
-so an average of this distance over many pairs of siblings gives an estimate of twice the dispersal distance.
+so an average of this distance over many pairs of siblings 
+gives an estimate of twice the dispersal distance.
 First cousins would give four times the dispersal distance, and so forth.
-This can be abstracted to any level of relatedness,
-however, estimates derived from comparisons of more distantly related individuals
-are noisier and more prone to bias.
-This is a sort of \textit{sampling bias} --
-individuals that live far back in time that do not have descendants today
-will not be included in this estimate.
-This was nicely summarized by Randall Munroe: 
-``On the one hand, all my ancestors successfully reproduced; 
-on the other hand, that's the mother of all sampling biases.''
+The mean squared displacement between two individuals
+related by a path of total length $n$ through the pedigree is $\sigma^2 n$,
+assuming that $n$ is short enough that boundary effects can be ignored.
+Of course, any pair of individuals are related by many paths through the pedigree,
+but as in common usage we refer to this degree of relatedness
+as the length of the shortest path,
+and assume all other paths are much longer.
+Suppose we had $K$ pairs of individuals sampled in the modern day
+with known degrees of relatedness $n_1, \ldots, n_K$,
+(i.e., lengths of shortest paths through the pedigree),
+separated by geographic distance $x_1$ through $x_K$.
+These would yield an estimate of squared dispersal distance $\sigma^2$ of
+$(\sum_{i=1}^K x_i^2 / n_i^2) / (\sum_{i=1}^K 1 / n_i)$.
 
-To generalize this type of estimate,
-we can correlate the mean time to coalescence between any pair of individuals
-with their geographic displacement
-to get an estimate of dispersal distance.
-In practice,
-this is relatively straightforward between close relatives:
-long, shared tracts of genome can be used to identify recent cousins,
-while identification of more distant relatives is more uncertain.
+In practice, however, this is usually infeasible
+unless a large fraction of the population has been genotyped
+(e.g., \citep{chenscrubjays}).
+Although long, shared tracts of genome can be used to identify very recent cousins,
+these are rarely encountered in data,
+and identification of more distant relatives is necessarily uncertain.
 Nonetheless, how genetic relatedness decays with distance
 clearly contains information about dispersal distance.
 The mean squared displacement between two individuals
@@ -637,6 +640,15 @@ then an estimate of squared dispersal distance $\sigma^2$ would be
 $\frac{1}{K}\sum_{i=1}^K \|x_i\|^2 / t_i$.
 %In practice... \cite{Malecot, Barton, Harald}.
 %\plr{should we talk about collecting/scattering here?
+
+This can be abstracted to any level of relatedness,
+however, distinguishing more distant levels of relatedness becomes impossible,
+and using longer paths through the pedigree introduces a subtle bias,
+as discussed above:
+individuals far back in time without descendants today
+will not be included in this estimate.
+\plr{discuss above}
+
 
 \todo{tidy and conclude}
 %It may be helpful to think of the dispersal distance
@@ -1101,12 +1113,15 @@ changing $\rho_e$ through time is maybe comparable to changing Ne.
 \g{to do}
 \begin{figure}[ht]
     \centering
-%        \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+        \includegraphics[width=\linewidth]{figs/valley_admixture_new}
+        \includegraphics[width=\linewidth]{figs/valley_admixture_old}
         \caption{
-        \todo{
-		pie charts of how much each individual inherits from each glacial refugium, 
-		at several times after secondary contact
-	}
+            Admixture proportions after a recent secondary contact.
+            Each pie shows the proportion of a diploid individual's genomes
+            that inherit from the left (cyan) and right (magenta) valleys, respecitvely.
+            \textbf{(top)} Eight generations, and
+            \textbf{(bottom)} seventy-five generations 
+            after a barrier along the top of the ridge is removed.
         }
         \label{postglacial_expansion}
 \end{figure}

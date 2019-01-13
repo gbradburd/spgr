@@ -2,12 +2,13 @@ import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
 from msprime import BranchLengthStatCalculator as bs
+import os
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-def plot_heterozygosity(ts, time, num_targets, mutation_rate=1e-8):
+def compute_heterozygosity(ts, time, num_targets, mutation_rate=1e-8):
     # mts = sps.SpatialSlimTreeSequence(msprime.mutate(ts, mutation_rate), dim=2)
 
     alive = ts.individuals_alive(time)
@@ -28,15 +29,21 @@ def plot_heterozygosity(ts, time, num_targets, mutation_rate=1e-8):
             for u in new_targets])
 
     locs = ts.individual_locations()
+    return (het, targets)
+
+
+def plot_heterozygosity(ts, het, targets):
+    locs = ts.individual_locations()
+    scaled_het = (het - np.mean(het)) / np.std(het)
     xmax = max(locs[:,0])
     ymax = max(locs[:,1])
     fig = plt.figure(figsize=(6, 6 * ymax / xmax))
-    colors = ['b', 'c', 'm', 'y']
+    colors = ['c' if h > 0 else 'm' for h in scaled_het]
     ax = fig.add_subplot(111)
     ax.scatter(locs[targets, 0], locs[targets, 1],
-               s=het/4,
+               s=400 * np.abs(scaled_het),
                alpha=0.75,
-               c='black')
+               c=colors)
     return fig
 
 
@@ -48,12 +55,29 @@ for script in ("valleys.slim", "flat_map.slim"):
                             W = 50.0, 
                             K = 5.0,
                             NUMGENS = num_gens,
-                            BURNIN=100)
+                            BURNIN=10000)
     outbase = ".".join(treefile.split(".")[:-1])
 
     ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-    fig = plot_heterozygosity(ts, 0, 100)
+    num_targets = 100
+    het_time = 0
+    hetfile = outbase + ".heterozygosity.txt"
+    if os.path.isfile(hetfile):
+        print(hetfile, "already exists.")
+        data = np.loadtxt(hetfile)
+        het = data[:, 0]
+        targets = np.array([np.int(u) for u in data[:, 1]])
+        assert(max(np.abs(targets - data[:, 1])) == 0)
+        if len(targets) != num_targets:
+            print("Number of targets does not match saved file" + hetfile)
+    else:
+        print(hetfile, "does not exist, computing.")
+        het, targets = compute_heterozygosity(ts, het_time, num_targets)
+        data = np.column_stack([het, targets])
+        np.savetxt(hetfile, data)
+
+    fig = plot_heterozygosity(ts, het, targets)
     fig.savefig(outbase + ".heterozygosity.pdf")
     plt.close(fig)
 

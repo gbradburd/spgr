@@ -70,7 +70,6 @@ def plot_admixture(ts, time, admixture_time, num_targets):
     for k, indiv in enumerate(samples):
         admix = admixture[k, :]
         admix /= sum(admix)
-        print(locs[indiv, :], k, admix)
         draw_pie(ax, locs[indiv, 0], locs[indiv, 1], admix)
 
     return fig
