@@ -323,8 +323,10 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
 
     def proportion_ancestry_nodes(self, sample_sets, show_progress=False):
         """
-        Computes for each node the proportion of the genomes in each of sample sets
-        inheriting from that node.
+        Computes for each node the proportion of the genomes in each of sample
+        sets inheriting from that node. In other words, if the output is A,
+        then A[i,j] is the proportion of sample_sets[i]'s ancestry contributed
+        by node j.
         """
         for sample_set in sample_sets:
             U = set(sample_set)

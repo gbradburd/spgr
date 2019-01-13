@@ -36,7 +36,7 @@ def plot_admixture(ts, time, admixture_time, num_targets):
     ymax = max(locs[:,1])
     alive = ts.individuals_alive(time)
     samples = np.random.choice(np.where(alive)[0], num_targets, replace=False)
-    sample_nodes = ts.individual_nodes(np.where(samples)[0], flatten=False)
+    sample_nodes = ts.individual_nodes(samples, flatten=False)
     west_ancestors = np.logical_and(ts.individuals_alive(admixture_time),
                                     locs[:, 0] <= 2 * xmax / 3)
     east_ancestors = np.logical_and(ts.individuals_alive(admixture_time),
@@ -44,17 +44,17 @@ def plot_admixture(ts, time, admixture_time, num_targets):
     west_ancestor_nodes = ts.individual_nodes(np.where(west_ancestors)[0])
     east_ancestor_nodes = ts.individual_nodes(np.where(east_ancestors)[0])
 
-    def node_admixture(ts, nodes, sample_sets):
+    def node_admixture(ts, sample_sets, ancestor_groups):
         """
-        Find the amount of each of nodes' genome that inherits from each of sample_sets.
+        Find the proportion the genomes of each of sample_sets that inherits
+        from each of ancestor_groups: if the output is D, then
+        D[i,j] gives the proportion of sample_sets[i]'s ancestry that is contributed
+        by ancestor_groups[j].
         """
-        anc = ts.proportion_ancestry_nodes(nodes, show_progress=True)
-        N = len(nodes)
-        K = len(sample_sets)
-        D = np.zeros((N, K))
-        for k, sample_set in enumerate(sample_sets):
-            D[:, k] = np.sum(anc[:, sample_set], axis=1)
-
+        anc = ts.proportion_ancestry_nodes(sample_sets, show_progress=True)
+        D = np.zeros((len(sample_sets), len(ancestor_groups)))
+        for k, group in enumerate(ancestor_groups):
+            D[:, k] = np.sum(anc[:, group], axis=1)
         return D
 
     admixture = node_admixture(ts, sample_nodes, [west_ancestor_nodes, east_ancestor_nodes])
@@ -77,19 +77,21 @@ def plot_admixture(ts, time, admixture_time, num_targets):
 
 
 for script in ("valleys.slim", "flat_map.slim"):
-    num_gens = 100
+    num_gens = 301
     treefile = sps.run_slim(script = script,
                             seed = 23, 
-                            SIGMA = 1.0,
+                            SIGMA = 4.0,
                             W = 50.0, 
                             K = 5.0,
-                            NUMGENS = num_gens)
+                            NUMGENS = num_gens,
+                            BURNIN=1)
     outbase = ".".join(treefile.split(".")[:-1])
 
     ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-    for time in [0, 25, 50, 75, 95]:
-        fig = plot_admixture(ts, time, 99, 100)
+    for time in np.floor(np.linspace(0, num_gens - 1, 10)):
+        # fig = plot_admixture(ts, time, 99, 100)
+        fig = plot_admixture(ts, time, num_gens - 1, 100)
         fig.savefig(outbase + ".{}.admixture.pdf".format(time))
         plt.close(fig)
 
