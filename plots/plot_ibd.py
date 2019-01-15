@@ -56,13 +56,6 @@ def plot_isolation_by_distance(ts, targets, num_indivs):
     return fig
 
 
-def plot_heterozygosity(ts):
-    # DO NOT DO THIS: subset and simplify first
-    het = [ts.pairwise_diversity(ts.individual(k).nodes) 
-            for k in np.where(ts.individuals_alive(0))[0]]
-
-
-
 for script in ("flat_map.slim", "valleys.slim"):
     num_gens = 1
     treefile = sps.run_slim(script = script,
