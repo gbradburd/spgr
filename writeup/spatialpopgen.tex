@@ -139,7 +139,7 @@ which were largely treated as experimental replicates
 (rather than studied in their geographic context).
 And, on the statistical side of the business,
 the methods used to analyze these datasets --
-e.g., empirical measurements of $F_{ST}$
+e.g., empirical measurements of $F_{ST}$ \citep{Wright1951}
 or tests of Hardy-Weinberg equilibrium \citep{hardy1908,weinberg1908} --
 were derived using theory based on discrete populations.
 
@@ -162,7 +162,7 @@ However, despite these difficulties,
 there is now a growing body of theory, methods, and data
 that approach this biological, population-less reality.
 Advances in theory in continuous space 
-\citep{barton-depaulis-etheridge, barton2010newmodel, Barton2013},
+\citep{barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, Barton2013},
 datasets of unprecedented geographical scope 
 \citep[e.g.,][]{POBI, Aguillon2017deconstructing, Shaffer195743},
 and new statistical paradigms for modeling those data 
@@ -272,7 +272,7 @@ In practice, we can never be certain of the exact spatial pedigree.
 Even if we could census every living individual in a species
 and establish the pedigree relationships between them all,
 we still would not know about relationships between
-and locations of individuals in previous, unobservable generations (Wilkins 2004).
+and locations of individuals in previous, unobservable generations \citep{wilkins2004separationoftimescales}.
 And, in a highly dispersive species,
 or a species with a highly dispersive gamete,
 there may be little to no relationship between observed location and birth location.
@@ -360,7 +360,8 @@ can be crucial for understanding
 ecologically important details of a species' natural history,
 like what habitat to prioritize for conservation, 
 which regions have higher population carrying capacities than others, 
-or whether a particular habitat is a demographic source or sink (Pulliam 1988, Schreiber 2010).
+or whether a particular habitat is a demographic source or sink 
+\citep{pulliam1988sources,schreiber2010interactive}.
 Clearly, at least some aspects of abundance and fecundity are recorded in the spatial pedigree.
 %, and we can use data that were generated under this spatial pedigree
 %to get a peek at the process.
@@ -388,7 +389,7 @@ who leave ancestors in the modern day.
 This quantity is analogous to effective population size 
 but may vary across different different parts of a species' range, 
 and can therefore not be well summarized with a single number.
-It is also related to Wright's neighborhood size (1943, 1946) -- 
+It is also related to Wright's neighborhood size \citep{Wright1943,wright1946isolation} -- 
 the number of reproducing individuals within two standard deviations 
 of dispersal distance of a focal individual -- 
 but again, may vary across different spatial regions.
@@ -553,7 +554,7 @@ or understanding population demography and dynamics.
 Organisms may move in many ways throughout their lives,
 but quantities most clearly reflected in population genetic data
 have to do with the displacement between geographic locations of parent and offspring
-(for concreteness, taking their the location of their birth or germination,
+(for concreteness, taking the location of their birth or germination,
 and averaging over sex of the parent).
 The best overall descriptor of ``how much they move''
 is often the absolute value of this displacement,
@@ -571,12 +572,12 @@ However, this is often difficult.
 
 Furthermore, as with variation in population density,
 measured dispersal of modern individuals in a handful of years
-may not reflect historical averages \cite{WhitlockMcCauley1999}.
+may not reflect historical averages \citep{WhitlockMcCauley1999}.
 However, 
 if we knew the spatial locations of ancestors in the pedigree,
 then realized dispersal would be recorded directly;
 we usually do not, but spatial locations of modern individuals
-can give strong clues about this \cite{Cayuela2018}.
+can give strong clues about this \citep{Cayuela2018demographic}.
 
 
 %%%%%%%%%%%%%%
@@ -623,7 +624,7 @@ $(\sum_{i=1}^K x_i^2 / n_i^2) / (\sum_{i=1}^K 1 / n_i)$.
 
 In practice, however, this is usually infeasible
 unless a large fraction of the population has been genotyped
-(e.g., \citep{chenscrubjays}).
+(e.g., \citep{Aguillon2017deconstructing}).
 Although long, shared tracts of genome can be used to identify very recent cousins,
 these are rarely encountered in data,
 and identification of more distant relatives is necessarily uncertain.
@@ -686,7 +687,7 @@ which can tell us whether that ridgeline is a substantial barrier to population 
 Note that population flux is not constrained to be equal in both directions across a boundary;
 e.g., it may be easier to disperse downhill than uphill,
 downwind than upwind,
-down-current than up-current, etc..
+or down-current than up-current.
 
 As before, if we had complete knowledge of the spatial pedigree,
 we could calculate the flux across any line simply by counting the number of
@@ -713,8 +714,8 @@ may be more likely to reproduce and therefore be represented in the pedigree.
 On the other hand, if there is substantial local adaptation,
 then many individuals may be dispersing to habitats dissimilar to that of their parents
 and are unlikely to transmit genetic material to the next generation
-because they are maladapted to the local environment.
-(for a review, see \cite{bradburdwang}.)
+because they are maladapted to the local environment
+(\citep[for a review, see][]{wangbradburd2014}).
 With sufficient sampling,
 it may be possible to get an estimate of flux in the modern sample
 that is only minimally affected by these biases.
@@ -985,13 +986,14 @@ and a function of the number of offspring of the parent.
 The question of how genetic variation is partitioned across
 geography is a common and intuitively appealing one,
 albeit somewhat slippery in practice.
-The most common measure of this quantity is $F_{ST}$ \cite{wright},
+The most common measure of this quantity is $F_{ST}$ \cite{Wright1951},
 which measures how much more likely nearby individuals are to share genetic variation than individuals in the population as a whole.
 Concretely,
 the ratio of mean coalescence time within subpopulations
 to that within the entire population measures how closely related
 nearby individuals are relative to those in the entire population.
-Slatkin (ref) showed that 1 minus this ratio is one way to interpret $F_{ST}$.
+\cite{slatkin_1991inbreeding} 
+showed that 1 minus this ratio is one way to interpret $F_{ST}$.
 This relative genetic differentiation is determined by differing local population densities
 and migration fluxes as discussed above:
 relative differentiation is determined by the tension between global mixing (due to dispersal)
@@ -1060,9 +1062,9 @@ Species are expanding into previously unoccupied territory all the time.
 For example, 
 high-latitude tree populations may only have been established
 following the retreat of the glaciers,
-a few tens of generations ago \cite{WhitlockMcCauley1999},
+a few tens of generations ago \citep{WhitlockMcCauley1999},
 and invasive species may have entered their current
-environment even more recently than that (e.g. ref?).
+environment even more recently than that.
 In addition to organisms moving themselves across landscapes,
 landscapes are often changing out from under organisms' feet.
 Anthropogenic land use change
@@ -1073,7 +1075,8 @@ and where they choose to
 Even within a species,
 populations may show spatial discontinuity,
 where most or all the ancestors of the individuals at one location
-lived in another location (eg human refs, Bi 2013).
+lived in another location 
+\citep{bi2013unlocking,skoglund2014investigating,lazaridis_ancient_2014, joseph2018inference}.
 The result of these changes is that many empirical systems
 are not in equilibrium,
 so that the dynamics we estimate from
@@ -1084,7 +1087,7 @@ the time to reach equilibrium
 in areas of high population density
 or across regions of low flux
 may be quite long
-\cite{WhitlockMcCauley1999, CrowAoki1984, Whitlock1992,Slatkin1993}.
+\citep{CrowAoki1984group, whitlock1992temporal, slatkin1993isolation, WhitlockMcCauley1999}.
 Theory and methods that
 reflect the empirical reality that things were not always as they are
 still are lacking, 
@@ -1175,8 +1178,7 @@ it may be effectively invisible.
 
 There is abundant evidence of spatial discontinuity 
 from empirical datasets that include ancient or historical samples 
-(human refs: Haak, Allentoft, Joseph and Pe'er, 
-although see also the Australian one).
+\citep{bi2013unlocking, PickrellReich2014, lazaridis_ancient_2014, haak2015massive, allentoft2015population, joseph2018inference}.
 And, in many systems for which we have not yet genotyped historical samples, 
 we have strong reason to suspect discontinuity 
 because the local populations have been recently established 
@@ -1219,7 +1221,7 @@ But, the partitioning of this pedigree into discrete groups,
 or the labeling of other samples as admixed between those groups
 encourages the incorrect worldview that these populations are platonic ideals,
 real and unchanging.
-As has been noted elsewhere (falush, globetrotter, reich),
+As has been noted elsewhere \citep{reich_india_2009,patterson_ancient_2012,hellenthal2014genetic,lawson2018tutorial},
 the ability to identify a population as admixed
 is a function of the recency of admixture and
 the inclusion of populations descended 
@@ -1267,7 +1269,7 @@ like where adaptive sweeps originate.
 One recent advance in the field, 
 which may help improve inference models with and without selection, 
 has been the advent of powerful and flexible simulation methods, 
-such as SLiM \cite{SLiM}.
+such as SLiM \citep{haller2018forward,haller2018treesequence,kelleher2018efficient}.
 With these methods, 
 researchers can specify models of arbitrary complexity, 
 and use them to simulate genome-scale datasets.
@@ -1281,14 +1283,14 @@ as an online supplement (available for download here)
 to our paper.
 In addition, these simulation methods can be used in statistical inference.
 For example, simulated datasets can be used in the training 
-of machine learning methods (see Schrider et al), 
+of machine learning methods \citep[e.g.,][]{flagel2018unreasonable}, 
 or to compare between different generative models using 
-approximate Bayesian computation (ABC, ref).
+approximate Bayesian computation \citep{MarjoramTavare2006modern}.
 
 %%%%%%%%%%%
 \subsubsection{The Past} 
 The growing availability of genotype data from historical or ancient samples, 
-collected from archaeological sites (eg refs) or museums (eg refs) 
+collected from archaeological sites or museums 
 is one of the most exciting developments in population genetics, 
 and has the potential to revolutionize the field of spatial population genetics.
 This historical data can provide a kind of fossil calibration on 
