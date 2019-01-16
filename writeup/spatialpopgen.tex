@@ -156,9 +156,14 @@ And, developing theory to describe evolutionary dynamics
 without simplifying assumptions is also,
 by definition,
 a more complicated endeavor.
-\g{go into details of lineages in 2D space and pain in the torus and diffusion approximations?
-pretty nicely laid out by BartonDepaulisEtheridge, but maybe not the place?}.
-However, despite these difficulties,
+In a world without discrete populations, 
+many of the fundamental quantities in population genetics -- 
+e.g., migration rate ($m_{ij}$), 
+effective population size ($N_e$),
+admixture proportion
+--
+are poorly defined.
+Despite these difficulties,
 there is now a growing body of theory, methods, and data
 that approach this biological, population-less reality.
 Advances in theory in continuous space 
@@ -169,43 +174,31 @@ and new statistical paradigms for modeling those data
 \citep{petkova2016visualizing, ringbauer2017inferring, ringbauer2018estimating, conStruct}
 are together spurring a revolution in the field of spatial population genetics.
 
-\g{The field of spatial population genetics is the study of population genetics, in space.
-That is, the principal goals of population genetics --
-to study patterns of genetic variation within and between populations and
-learn about the processes generating those patterns --
-are the same as those of spatial population genetics.
-However, spatial population genetics as a field is particularly concerned
-with the spatial context of these patterns,
-leveraging information in the position of samples
-to learn about processes governing the distribution of genetic diversity across landscapes.
-Spatial population genetics allows researchers
-to unite the quantitative descriptions of population genetics
-with fundamental questions about the ecology and evolution of organisms.}
-
 The goal of this review
-is to provide an introduction for empirical researchers
-to spatial population genetics.
-This is a rapidly changing field,
-and to a reader of this review five years from now,
-many methods currently in use may no longer be relevant
+is to redefine the fundamental quantities in population genetics 
+in the light of spatial population genetics, 
+and, in so doing, provide an introduction for empirical researchers
+to the field.
+This is a rapidly changing area of research:
+in some cases, methods for inferring these quantities do not exist, 
+and in others, 
+methods currently in use may no longer be relevant
+to a reader of this review five years from now
 (although hopefully our own contributions will be immortal).
 So, rather than delving into the mechanics of specific methods,
-we instead focus on a small number of fundamental questions 
+we instead focus on a small number of foundational questions 
 about the biology and history of organisms we study:
 where they are; how they move; where their ancestors were;
 whether those quantities have changed over time, 
 and whether there are groups of them.
-Although we discuss each question
-as a spatial population genetic problem,
-we do not explain how to estimate these quantities from data, 
-in many cases because methods have not been worked out for doing so.
-Instead, we present these questions 
+We discuss each question
+as a spatial population genetic problem, 
 in light of the concept of the spatial pedigree,
 which we introduce as a powerful heuristic
 and an \g{organizing principle} for the field.
 It is our hope that by framing our discussion around the spatial pedigree, 
 we can build intuition for how to think about spatial population genetics 
-and spur the development of new, creative methods in the field.
+and spur new developments in the field.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -383,16 +376,18 @@ or those who are transient and not reproductive locally
 and included in a local count while passing through).
 These individuals will be invisible in the pedigree 
 of modern, extant individuals within the region.
-Instead, we focus on the effective population density \ref{bartondepaulisetheridge2002}, 
+Instead, we focus on the effective population density \citep{barton-depaulis-etheridge}, 
 the number of individuals per unit area in a given region 
 who leave ancestors in the modern day.
-This quantity is analogous to effective population size 
-but may vary across different different parts of a species' range, 
+This quantity is analogous to effective population size \citep{wright1931evolution}
+and neighborhood size \citep{Wright1943,wright1946isolation} -- 
+but differs in two important aspects.
+First, 
+it is not associated with a discrete deme, 
+but is instead defined within a specified region, 
+and second, 
+it may vary across different different parts of a species' range, 
 and can therefore not be well summarized with a single number.
-It is also related to Wright's neighborhood size \citep{Wright1943,wright1946isolation} -- 
-the number of reproducing individuals within two standard deviations 
-of dispersal distance of a focal individual -- 
-but again, may vary across different spatial regions.
 If we knew the complete spatial pedigree of a species, 
 we could measure population density of an area 
 by simply counting the average number of individuals born within its margins.
@@ -403,7 +398,7 @@ in the sample in hand.
 In principle, determining population density is a very simple estimation question:
 how many ancestors were there in a given region at a certain time in the past?
 However, in addressing this question we quickly run into the familiar
-issue of ``effective'' population size \cite{CharlesworthCharlesworthBarton2003}.
+issue of ``effective'' population size \citep{CharlesworthCharlesworthBarton2003}.
 Information about population sizes in patterns of relatedness
 comes from numbers of shared ancestors, i.e., \textit{coalescences}.
 The reason for this is simple:
@@ -415,7 +410,7 @@ is just their genetic contribution to the present population.
 If we are looking one generation back, 
 this is proportional to their number of offspring, i.e., their fitness.
 If we are looking a long time in the past
-(in practice, more than 10 or 20 generations \cite{bartonfitness}),
+(in practice, more than 10 or 20 generations \citep{bartonfitness}),
 this is their \textit{long-term fitness}.
 The effective population density we might estimate using coalescence rates
 is ``effective'' partly because of this difference.
@@ -567,7 +562,7 @@ and subsequent daily or seasonal movement of the mature individual,
 all of which often depend on the sex of both parent and offspring.
 For some species,
 it may be feasible to directly measure many of these components
-using, e.g., telemetry or banding \cite{dispersal_estimation}.
+using, e.g., telemetry or banding \citep{dispersal_estimation}.
 However, this is often difficult.
 
 Furthermore, as with variation in population density,
@@ -583,9 +578,9 @@ can give strong clues about this \citep{Cayuela2018demographic}.
 %%%%%%%%%%%%%%
 \subsubsection{Dispersal (individual, diffusive movement; $\sigma$)}
 
-First consider inference of the ``dispersal distance'',
+First, consider inference of the ``dispersal distance'',
 which for the sake of discussion take as
-the mean distance between the birth (germination/hatching/etcetera)
+the mean distance between the birth (germination/hatching/\textit{et cetera})
 locations of a randomly chosen individual
 and that of a randomly chosen one of its parents.
 This notion is actually a cluster of closely related quantities:
@@ -624,7 +619,7 @@ $(\sum_{i=1}^K x_i^2 / n_i^2) / (\sum_{i=1}^K 1 / n_i)$.
 
 In practice, however, this is usually infeasible
 unless a large fraction of the population has been genotyped
-(e.g., \citep{Aguillon2017deconstructing}).
+\citep[e.g.,][]{Aguillon2017deconstructing}.
 Although long, shared tracts of genome can be used to identify very recent cousins,
 these are rarely encountered in data,
 and identification of more distant relatives is necessarily uncertain.
@@ -671,7 +666,7 @@ will not be included in this estimate.
 \subsubsection{Population flux}
 
 The most common summary statistic of dispersal in population genetics
-is the average migration rate between a pair of isolated demes.
+is the average migration rate between a pair of discrete, isolated demes.
 In continuous space, the analogue of this quantity
 is the number of dispersal events that cross
 a given boundary each year;
@@ -986,7 +981,7 @@ and a function of the number of offspring of the parent.
 The question of how genetic variation is partitioned across
 geography is a common and intuitively appealing one,
 albeit somewhat slippery in practice.
-The most common measure of this quantity is $F_{ST}$ \cite{Wright1951},
+The most common measure of this quantity is $F_{ST}$ \citep{Wright1951},
 which measures how much more likely nearby individuals are to share genetic variation than individuals in the population as a whole.
 Concretely,
 the ratio of mean coalescence time within subpopulations
@@ -1097,18 +1092,6 @@ in the spatial pedigree,
 and explore how they complicate \g{inference}.
 
 \todo{read through and edit}
-
-%%%%%%%%%%
-\subsubsection{Identifiability and ill-posedness}
-
-spatial identifiability problem 
-need historical individuals to anchor the spatial pedigree
-likewise, if density has changed lots and quickly
-\todo{what's the spatiotemporal resolution that you can actually infer things at?  
-example: fast pop fluctuations just give you lower Ne}
-changing $\rho_e$ through time is maybe comparable to changing Ne.
-	most likely to see it when there are few changes, 
-	or when changes don't reverse themselves quickly.
 
 %%%%%%%%%%
 \subsubsection{Scenario: postglacial expansion and secondary contact}
@@ -1231,7 +1214,7 @@ as populations inferred as sources of admixture are themselves almost certainly 
 and have either been isolated for long enough that the admixture is no longer detectable,
 or, more likely, the descendants of those sources of admixture are lost in the modern sample.
 Although some work has been done to incorporate models of continuous spatial differentiation 
-into models of population differentiation \cite{conStruct}, 
+into models of population differentiation \citep{conStruct}, 
 more work is needed to acknowledge the complexity of biological reality.
 
 \g{feel like i'm not making the point clearly}
@@ -1266,7 +1249,7 @@ like where adaptive sweeps originate.
 
 %%%%%%%%%%%
 \subsubsection{Simulation} 
-One recent advance in the field, 
+A recent advance in the field, 
 which may help improve inference models with and without selection, 
 has been the advent of powerful and flexible simulation methods, 
 such as SLiM \citep{haller2018forward,haller2018treesequence,kelleher2018efficient}.
@@ -1287,6 +1270,35 @@ of machine learning methods \citep[e.g.,][]{flagel2018unreasonable},
 or to compare between different generative models using 
 approximate Bayesian computation \citep{MarjoramTavare2006modern}.
 
+%%%%%%%%%%
+\subsubsection{Identifiability and ill-posedness}
+
+Another important line of attack in developing methods for inference 
+under spatial population genetic models 
+is to define the limits of our ability to learn about 
+quantities of interest.
+For example, 
+as with effective population size \citep{Myers2008},
+we may never be able to infer rapid changes in 
+or reversals to effective population density
+\citep[although see also][]{BhaskarSong2014descartes}).
+Likewise, 
+the timing of heterogeneity in flux across a particular part of the landscape 
+may be difficult to disentangle from the magnitude of its change, 
+as is the case with migration/isolation models 
+of dynamics in discrete demes \citep{sousa2011nonidentifiability}.
+More generally,
+it may be difficult to learn about local biases in flux, 
+or large-scale anisotropy in the direction of dispersal,
+without genetic data from historical individuals, 
+which could be used to anchor the spatial pedigree 
+in time and space.
+Exploring the dependence of these quantities on each other 
+using simulations and theory 
+will be useful for determining what problems are well-posed, 
+and what data might be most useful in solving them.
+
+
 %%%%%%%%%%%
 \subsubsection{The Past} 
 The growing availability of genotype data from historical or ancient samples, 
@@ -1305,7 +1317,21 @@ These historical data can also illuminate temporal heterogeneity
 in some of the processes described in section 3.4, 
 which might otherwise be invisible in datasets comprised of only modern individuals.
 
+%%%%%%%%%%%
 \subsubsection{Conclusion}
+\g{The field of spatial population genetics is the study of population genetics, in space. 
+That is, the principal goals of population genetics -- 
+to study patterns of genetic variation and 
+learn about the processes generating those patterns 
+-- are the same as those of spatial population genetics. 
+However, spatial population genetics as a field 
+is particularly concerned with the spatial context of these patterns, 
+leveraging information in the position of samples 
+to learn about processes governing 
+the distribution of genetic diversity across landscapes. 
+Spatial population genetics allows researchers to 
+unite the quantitative descriptions of population genetics 
+with fundamental questions about the ecology and evolution of organisms.}
 The growing availability of genetic and genomic datasets 
 with a large number of individuals and high spatial resolution, 
 coupled with advances in theory and methods 
@@ -1313,6 +1339,7 @@ for modeling evolution in continuous space,
 is drawing us ever closer to that goal in many empirical systems.
 Taken together, these developments make it 
 an exciting time for spatial population genetics.
+
 
 
 %Disclosure
