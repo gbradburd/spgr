@@ -85,7 +85,7 @@ for the field of spatial population genetics.
 
 %Keywords, etc.
 \begin{keywords}
-population genetics, isolation by distance, population structure
+population genetics, geographic variation, isolation by distance
 %keywords, separated by comma, no full stop, lowercase
 \end{keywords}
 \maketitle
@@ -96,7 +96,7 @@ population genetics, isolation by distance, population structure
 \todo{
 \begin{itemize}
 \item \sout{G: go through all references}
-\item P: make valley scenario map and valley heterozygosity figure
+\item P: make valley scenario map \sout{and valley heterozygosity figure}
 \item P: finishing dispersal section
 \item P: finishing flux section
 \item P: finishing geographic distribution of ancestry \& co-ancestry \& relative differentiation
@@ -167,7 +167,7 @@ Despite these difficulties,
 there is now a growing body of theory, methods, and data
 that approach this biological, population-less reality.
 Advances in theory in continuous space 
-\citep{felsensten1975pain,BartonWilson1995,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, Barton2013},
+\citep{felsenstein1975pain,BartonWilson1995,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, Barton2013},
 datasets of unprecedented geographical scope 
 \citep[e.g.,][]{POBI, Aguillon2017deconstructing, Shaffer195743},
 and new statistical paradigms for modeling those data 
@@ -175,9 +175,9 @@ and new statistical paradigms for modeling those data
 are together spurring a revolution in the field of spatial population genetics.
 
 The goal of this review
-is to redefine the fundamental quantities in population genetics 
+is to redefine some of the fundamental quantities in population genetics 
 in the light of spatial population genetics, 
-and, in so doing, provide an introduction for empirical researchers
+and, in the proess, provide an introduction for empirical researchers
 to the field.
 This is a rapidly changing area of research:
 in some cases, methods for inferring these quantities do not exist, 
@@ -215,7 +215,7 @@ we would know many evolutionary quantities
 that we would otherwise would have to estimate from data,
 such as the true relatedness between any pair of individuals,
 or each individual's fitness.
-If we knew the spatial pedigree:
+If we knew the spatial pedigree (Figure \ref{spatial_pedigree}):
 both the pedigree relationships
 and the geographic positions of each individual,
 including those of individuals
@@ -237,18 +237,18 @@ to that of those without the allele.
 
 The location of an individual can be a complicated quantity to describe,
 and depends strongly on the biology of the species in question.
-When we encounter an individual organism in nature,
+When we encounter an organism in nature,
 we do so at a specific location
 that is a waypoint on its total journey.
 The location of a sessile organism
 may not change appreciably throughout its life,
-although note that some clonal organisms,
+although clonal organisms,
 such as aspens,
 might expand out over a large region over their lifetime,
 and organisms that grow on a living host,
 like algae on a sloth,
 barnacles on whale,
-or fungi on a helmeted iguana,
+or fungi on the casque of a helmeted iguana,
 may hitchhike rides across large distances.
 For motile organisms,
 the matter becomes more complicated still.
@@ -282,21 +282,22 @@ to do inference on the spatial pedigree directly,
 we can still catch glimpses of the spatial pedigree of a sample of individuals
 by collecting and analyzing their genetic data.
 
+\g{keep or not? \{}
 The relationship between the spatial pedigree and the pedigree
-is similar to that between the pedigree and a set of gene genealogies.
+is similar to that between the pedigree and a set of gene genealogies \citep{rasmussen2014argweaver}.
 Gene genealogies are embedded within the pedigree of a species,
 in the sense that a pair of sampled alleles cannot coalesce until
 the pedigrees of the individuals they are sampled from overlap in a shared ancestor.
 In turn, the pedigree is in embedded within some spatial context.
 Say we start with a sample of two alleles, one from each of two individuals.
-If we start from those focal individual in the present,
+If we start from those focal individuals in the present,
 and trace their ancestors across space and back through time,
 we find that their pedigrees cannot overlap until their ancestors coexist in space.
 (The geographic radius within which ancestors can interact
 and pedigrees can overlap is a function of the biology of the specific organism;
 broadcast spawners or highly mobile animals can mate over much larger distances than, say, terrestrial snails.)
 Just as gene genealogies can provide insight into the pedigree that contains them,
-they can also shed light on the spatial history of that pedigree.
+they can also shed light on the spatial history of that pedigree. \g{\}}
 
 %\plr{note on differences between genetic and genealogical ancestry}
 
@@ -313,13 +314,13 @@ they can also shed light on the spatial history of that pedigree.
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}{0.35\textwidth}
+    \begin{subfigure}{0.4\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/pedigree.pdf}
         \caption{the pedigree}
         \label{pedigree}
     \end{subfigure}
-    \begin{subfigure}{0.55\textwidth}
+    \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
         \caption{the spatial pedigree}
@@ -351,13 +352,11 @@ at some level of geographic resolution.
 Quantifying abundance and how it varies
 can be crucial for understanding
 ecologically important details of a species' natural history,
-like what habitat to prioritize for conservation, 
-which regions have higher population carrying capacities than others, 
+like what habitat to prioritize for conservation \citep{zipkin2018synthesizing}, 
+which regions have higher population carrying capacities than others \citep{roughgarden1974}, 
 or whether a particular habitat is a demographic source or sink 
-\citep{pulliam1988sources,schreiber2010interactive}.
+\citep{pulliam1988sources}.
 Clearly, at least some aspects of abundance and fecundity are recorded in the spatial pedigree.
-%, and we can use data that were generated under this spatial pedigree
-%to get a peek at the process.
 
 %%%%%%%%%%%%%%
 \subsubsection{Population density}
@@ -387,7 +386,7 @@ it is not associated with a discrete deme,
 but is instead defined within a specified region, 
 and second, 
 it may vary across different different parts of a species' range, 
-and can therefore not be well summarized with a single number.
+and can therefore not be summarized well with a single number.
 If we knew the complete spatial pedigree of a species, 
 we could measure population density of an area 
 by simply counting the average number of individuals born within its margins.
@@ -398,7 +397,7 @@ in the sample in hand.
 In principle, determining population density is a very simple estimation question:
 how many ancestors were there in a given region at a certain time in the past?
 However, in addressing this question we quickly run into the familiar
-issue of ``effective'' population size \citep{CharlesworthCharlesworthBarton2003}.
+issue of effective population size \citep{CharlesworthCharlesworthBarton2003}.
 Information about population sizes in patterns of relatedness
 comes from numbers of shared ancestors, i.e., \textit{coalescences}.
 The reason for this is simple:
@@ -421,7 +420,7 @@ within a region?
 Consider two adjacent valleys, 
 one densely populated, the other sparsely populated, 
 but both equal in geographic area 
-and separated by a strong barrier to dispersal.
+and separated by a strong barrier to dispersal (Figure \ref{pop_density}\subref{valley_map}).
 In general, we expect pairs of individuals in the low density valley 
 to have shared ancestors in the more recent past than 
 pairs of individuals in the densely populated valley.
@@ -436,7 +435,7 @@ Because individuals in the sparsely populated valley have more shared ancestors
 in the more recent past, 
 we would expect samples from that valley to have higher probability of being identical by descent 
 at a given locus, 
-and for the sample as a whole to display lower heterozygosity.
+and for the sample as a whole to display lower heterozygosity (Figure \ref{pop_density}\subref{valley_het}).
 
 However, there are a number of reasons why the genetic signature 
 of effective population density may, in fact, be more complicated.
@@ -458,7 +457,7 @@ may have been born elsewhere,
 which could potentially inflate the inferred local density.
 If the rates at which pedigrees enter and leave a focal area are equal, 
 and density is constant, 
-the pedigree permeability of the region may not affect inference of density too strongly.
+dispersal to and form the region may not affect inference of density too strongly.
 However, local ecological or demographic dynamics 
 can alter these rates.
 For example, in a region that acts as a population ``sink,"
@@ -469,7 +468,7 @@ within a sink region may be much higher than the truth,
 and the converse may hold in a ``source" region.
 These dynamics are related to the concept of population ``flux" 
 across a border, discussed further below.
-
+\g{mention boundary effects?}
 
 %\todo{
 %\begin{itemize}
@@ -544,8 +543,9 @@ SMC-type things
 
 Dispersal is fundamental to many questions in ecology and evolution,
 such as
-predicting responses to climate change or the spread of epidemics,
-or understanding population demography and dynamics.
+predicting responses to climate change \citep{parmesan2006}
+or the spread of pathogens \citep{BiekReal2010},
+or understanding population demography and dynamics \citep{schreiber2010interactive}.
 Organisms may move in many ways throughout their lives,
 but quantities most clearly reflected in population genetic data
 have to do with the displacement between geographic locations of parent and offspring
@@ -553,7 +553,7 @@ have to do with the displacement between geographic locations of parent and offs
 and averaging over sex of the parent).
 The best overall descriptor of ``how much they move''
 is often the absolute value of this displacement,
-known as the between-generation \textit{dispersal distance}.
+\g{which we call} \sout{known as} the between-generation \textit{dispersal distance}.
 
 This important quantity describes how quickly spatial populations mix,
 but combines many important aspects of the organism's ecology, including
@@ -710,7 +710,7 @@ On the other hand, if there is substantial local adaptation,
 then many individuals may be dispersing to habitats dissimilar to that of their parents
 and are unlikely to transmit genetic material to the next generation
 because they are maladapted to the local environment
-(\citep[for a review, see][]{wangbradburd2014}).
+\citep[for a review, see][]{wangbradburd2014}.
 With sufficient sampling,
 it may be possible to get an estimate of flux in the modern sample
 that is only minimally affected by these biases.
@@ -831,7 +831,8 @@ Alternatively, the children of a parent in an lotic environment
 might disperse more frequently down-current than up-current, 
 leading to a net downstream direction of travel.
 
-A way to summarize this by one or a few maps of scalar quantities would be to estimate, 
+A way to summarize offspring distribution 
+using one or a few maps of scalar quantities would be to estimate, 
 at each location, the mean and the covariance of the parent-offspring displacement.
 The mean displacement would form a vector field over the map,
 where presence of a small arrow would denote some amount of mean bias in offspring dispersal.
@@ -856,7 +857,7 @@ to distinguish the true signal of the landscape on offspring dispersal from nois
 \subsubsection{Related statistics}
 
 \todo{$m$ between "discrete pops", resistance distance.
-methods: scat, ringbauer2018, ralphcoop, cayuela refs, cockerhaweir1993, eems, newEems, bedassle}
+methods: scat, ringbauer2018, ralphcoop, cayuela refs, cockerhaweir1993, eems, newEems, bedassle, duforet-frebourg and blum}
 
 %%%%%%%%%%%%%%
 \subsection{Where were their ancestors?}
