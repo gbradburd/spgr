@@ -85,7 +85,7 @@ for the field of spatial population genetics.
 
 %Keywords, etc.
 \begin{keywords}
-population genetics, geographic variation, isolation by distance
+population genetics, geographic variation, isolation by distance, pedigree, tree sequence
 %keywords, separated by comma, no full stop, lowercase
 \end{keywords}
 \maketitle
@@ -96,16 +96,16 @@ population genetics, geographic variation, isolation by distance
 \todo{
 \begin{itemize}
 \item \sout{G: go through all references}
-\item P: make valley scenario map \sout{and valley heterozygosity figure}
+\item P: \sout{make valley scenario map} \sout{and valley heterozygosity figure}
 \item P: finishing dispersal section
 \item P: finishing flux section
 \item P: finishing geographic distribution of ancestry \& co-ancestry \& relative differentiation
-\item P: figure of valley scenario (contours of topography (and density) paired with heterozygosity figure
 \item P: writeup of postglacial expansion scenario
 \item G: tying expansion scenario into ``groups" section
 \item both: make annotated spatial popgen bibliography
 \item \sout{G: identifiability and ill-posedness section}
 \item both: reiterate motivation throughout - no one's written down the quantities we're trying to estimate (e.g., what's migration rate w/out populations, what's analogous to admixture proportions if we don't have discrete groups)
+\item emphasize open problems
 \end{itemize}
 }
 
@@ -338,6 +338,10 @@ they can also shed light on the spatial history of that pedigree. \g{\}}
     \hfill \emph{-- Randall Munroe, xkcd:674}
 \end{quote}
 
+There will be a recurring tension in this review
+between what we would like to know about (the spatial pedigree)
+and what we have information about 
+(the portion of it through which modern individuals have inherited genomes).
 Inferences about the past
 based on those artifacts that have survived to the present
 are fraught with difficulties and caveats in any field.
@@ -348,15 +352,28 @@ they are biased towards individuals with more descendants today.
 We cannot, of course, learn anything from modern-day genomes
 about populations that died out entirely.
 There are more subtle biases:
-if trace the path back up through the pedigree 
+if we trace the path back up through the pedigree 
 along which a random individual today has inherited a random bit of genome,
 the chance that a particular ancestor living $T$ units of time ago
 is proportional to the amount of genetic material that ancestor has contributed to the modern population.
 This measure of long-term fitness depends in principle on $T$,
 but in stable populations stabilizes over less than a dozen generations \citep{barton_etheridge_fitness} \plr{check that!}.
-\plr{tie up}
 
-%\plr{note on differences between genetic and genealogical ancestry?}
+\plr{moved from below}
+How likely a given individual who lived at some time in the past
+is to be a genetic ancestor of a modern-day individual
+is just their genetic contribution to the present population.
+If we are looking one generation back, 
+this is proportional to their number of offspring, i.e., their fitness.
+If we are looking a long time in the past
+(in practice, more than 10 or 20 generations \citep{bartonfitness}),
+this is their \textit{long-term fitness}.
+The effective population density we might estimate using coalescence rates
+is ``effective'' partly because of this difference.
+
+\plr{note on differences between genetic and genealogical ancestry?}
+
+\plr{tie up}
 
 %%%%%%%%%%%%%%
 \section{Things we want to know}
@@ -383,58 +400,80 @@ Clearly, at least some aspects of abundance and fecundity are recorded in the sp
 
 \todo{tidy up and tie together}
 
-Consider a population in some geographic area. 
-One quantity we would like to be able to describe 
-is the average population density in a given region within that area.
-What exactly do we mean by population density?
-One definition is simply the total number of individuals in a given area.
-However, such a count may include 
-individuals who are not reproductive (e.g., juveniles), 
-or those who are transient and not reproductive locally 
-(e.g., born elsewhere, reproductive outside the region of interest, 
-and included in a local count while passing through).
-These individuals will be invisible in the pedigree 
-of modern, extant individuals within the region.
-\plr{rather than ``instead we focus on'' shouldn't this transition be ``here's what we can actually learn about''?}
-Instead, we focus on the effective population density \citep{barton-depaulis-etheridge}, 
-the number of individuals per unit area in a given region 
-who leave ancestors in the modern day.
-This quantity is analogous to effective population size \citep{wright1931evolution}
-and neighborhood size \citep{Wright1943,wright1946isolation} -- 
-but differs in two important aspects.
-First, 
-it is not associated with a discrete deme, 
-but is instead defined within a specified region, 
-and second, 
-it may vary across different different parts of a species' range, 
-and can therefore not be summarized well with a single number.
-If we knew the complete spatial pedigree of a species, 
-we could measure population density of an area 
-by simply counting the average number of individuals born within its margins.
-Without such complete knowledge, 
-we must seek to estimate population density from patterns of genetic variation 
-in the sample in hand.
+Perhaps the first things we might want to produce
+to describe a geographically distributed population
+are an estimate of the total population size,
+and a map of population density across space.
+The best measure of this
+would be to count the number of individuals occurring in various geographic regions,
+perhaps excluding pre-reproductive juveniles.
 
-In principle, determining population density is a very simple estimation question:
-how many ancestors were there in a given region at a certain time in the past?
-However, in addressing this question we quickly run into the familiar
-issue of effective population size \citep{CharlesworthCharlesworthBarton2003}.
+How close can population genetics get us to producing this map by indirect means?
+This is an open problem,
+but here we discuss a few aspects of the problem.
+Some fundamental limitations are clear:
+for instance, 
+if we only sample adults,
+we cannot hope to estimate the proportion of juveniles that die before adulthood
+without incorporating other sources of information.
+This is because none of our sampled genetic material inherits from these unlucky individuals:
+they are invisible as we move back through the pedigree.
+Similarly, an on-the-ground census may observe transient individuals
+-- i.e., born elsewhere and reproductive outside the region of interest --
+and who are thus invisible to the local pedigree.
+These quantities are better suited to field observation;
+we discuss how population genetic data might complement more direct observation.
+
+% Instead, we focus on the effective population density \citep{barton-depaulis-etheridge}, 
+% the number of individuals per unit area in a given region 
+% who leave ancestors in the modern day.
+% This quantity is analogous to effective population size \citep{wright1931evolution}
+% and neighborhood size \citep{Wright1943,wright1946isolation} -- 
+% but differs in two important aspects.
+% First, 
+% it is not associated with a discrete deme, 
+% but is instead defined within a specified region, 
+% and second, 
+% it may vary across different different parts of a species' range, 
+% and can therefore not be summarized well with a single number.
+% If we knew the complete spatial pedigree of a species, 
+% we could measure population density of an area 
+% by simply counting the average number of individuals born within its margins.
+% Without such complete knowledge, 
+% we must seek to estimate population density from patterns of genetic variation 
+% in the sample in hand.
+
+% In principle, determining population density is a very simple estimation question:
+% how many ancestors were there in a given region at a certain time in the past?
+% However, in addressing this question we quickly run into the familiar issue
+
+These issues are analogous to the familiar
+issue of ``effective'' population size \citep{CharlesworthCharlesworthBarton2003}.
 Information about population sizes in patterns of relatedness
 comes from numbers of shared ancestors, i.e., \textit{coalescences}.
 The reason for this is simple:
-with fewer possible ancestors, the ancestors of two individuals
-must be shared more often.
-How likely a given individual who lived at some time in the past
-is to be a genetic ancestor of a modern-day individual
-is just their genetic contribution to the present population.
-If we are looking one generation back, 
-this is proportional to their number of offspring, i.e., their fitness.
-If we are looking a long time in the past
-(in practice, more than 10 or 20 generations \citep{bartonfitness}),
-this is their \textit{long-term fitness}.
-The effective population density we might estimate using coalescence rates
-is ``effective'' partly because of this difference.
+with fewer possible ancestors,
+indidivuals' common ancestors must be more recent.
+It is instructive to consider 
+the problem of inferring the total size of the previous generation
+in a randomly-mating population
+from the number of siblings found in a random sample of size $n$.
+If the total size is $N$, 
+then the expected number of sampled sibling pairs out of a family of size $x$
+is $(1/2) x (x-1) (1 - (1 - 2/N)^n) \approx x (x-1) n / N$.
+This implies that the sample size divided by the number of sibling pairs 
+provides an estimate of $N_e = N/\E[X(X-1)]$, where $X$ is the number of offspring
+of a randomly chosen individual.
+In other words, we should be able to do quite well at estimating population size
+up to the factor $\E[X(X-1)]$, that depends on demographic details.
+Other sources of data are necessary to estimate this demographic factor.
+Common ancestors -- i.e., coalescences --
+further back in time are simply more remote sibling pairs,
+so this restriction applies to estimates further in the past.
 
+The geographic analogue of effective population size
+is ``effective population density'',
+defined as XXX
 What signature does effective population density leave 
 on the spatial pedigree and patterns of genetic variation
 within a region?
