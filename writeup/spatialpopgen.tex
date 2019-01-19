@@ -299,18 +299,7 @@ broadcast spawners or highly mobile animals can mate over much larger distances 
 Just as gene genealogies can provide insight into the pedigree that contains them,
 they can also shed light on the spatial history of that pedigree. \g{\}}
 
-%\plr{note on differences between genetic and genealogical ancestry}
 
-\subsection{The bias of long-term fitness}
-
-\begin{quote}
-    On one hand, every single one of my ancestors going back billions of years
-    has managed to figure out [how to produce offspring].
-    On the other hand, that's the mother of all sampling biases.
-    \hfill \emph{-- Randall Munroe, xkcd:674}
-\end{quote}
-
-\plr{Move discussion about bias due to long-term fitness here.}
 
 \begin{figure}[ht]
     \centering
@@ -337,6 +326,37 @@ they can also shed light on the spatial history of that pedigree. \g{\}}
         }
         \label{spatial_pedigree}
 \end{figure}
+
+\subsection{The bias of long-term fitness}
+
+
+\begin{quote}
+    \textit{
+    On one hand, every single one of my ancestors going back billions of years
+    has managed to figure it out.
+    On the other hand, that's the mother of all sampling biases.}
+    \hfill \emph{-- Randall Munroe, xkcd:674}
+\end{quote}
+
+Inferences about the past
+based on those artifacts that have survived to the present
+are fraught with difficulties and caveats in any field.
+Population genetics is no exception.
+The ancestors of modern-day genomes are emphatically \emph{not} an unbiased sample
+from the past population -- 
+they are biased towards individuals with more descendants today.
+We cannot, of course, learn anything from modern-day genomes
+about populations that died out entirely.
+There are more subtle biases:
+if trace the path back up through the pedigree 
+along which a random individual today has inherited a random bit of genome,
+the chance that a particular ancestor living $T$ units of time ago
+is proportional to the amount of genetic material that ancestor has contributed to the modern population.
+This measure of long-term fitness depends in principle on $T$,
+but in stable populations stabilizes over less than a dozen generations \citep{barton_etheridge_fitness} \plr{check that!}.
+\plr{tie up}
+
+%\plr{note on differences between genetic and genealogical ancestry?}
 
 %%%%%%%%%%%%%%
 \section{Things we want to know}
@@ -375,6 +395,7 @@ or those who are transient and not reproductive locally
 and included in a local count while passing through).
 These individuals will be invisible in the pedigree 
 of modern, extant individuals within the region.
+\plr{rather than ``instead we focus on'' shouldn't this transition be ``here's what we can actually learn about''?}
 Instead, we focus on the effective population density \citep{barton-depaulis-etheridge}, 
 the number of individuals per unit area in a given region 
 who leave ancestors in the modern day.
@@ -457,7 +478,7 @@ may have been born elsewhere,
 which could potentially inflate the inferred local density.
 If the rates at which pedigrees enter and leave a focal area are equal, 
 and density is constant, 
-dispersal to and form the region may not affect inference of density too strongly.
+dispersal to and from the region may not affect inference of density too strongly.
 However, local ecological or demographic dynamics 
 can alter these rates.
 For example, in a region that acts as a population ``sink,"
@@ -469,6 +490,21 @@ and the converse may hold in a ``source" region.
 These dynamics are related to the concept of population ``flux" 
 across a border, discussed further below.
 \g{mention boundary effects?}
+
+Finally, local genetic diversity and differentiation
+can depend on demographic details.
+In coalescent theory a strong central limit theorem
+ensures that diversity in randomly mating populations 
+for the most part depends only on the second moment of the offspring number distribution.
+In spatial models of populations on grids,
+diversity depends on much more opaque summaries of the demographic process
+\citep{wright_ibd, sawyer1977, rousset1997},
+that would be much harder to estimate in practice.
+In continuous models, the corresponding summaries are not known.
+The upshot is that the ``conversion factor'' between effective and census population sizes
+can be difficult to estimate for random-mating populations,
+but nearly impossible in spatial populations.
+
 
 %\todo{
 %\begin{itemize}
@@ -503,7 +539,7 @@ across a border, discussed further below.
     \centering
     \begin{subfigure}{0.5\textwidth}
         \centering
-%        \includegraphics[width=\linewidth]{figs/pedigree.pdf}
+        \includegraphics[width=\linewidth]{figs/valley_density}
         \caption{map of simulation scenario}
         \label{valley_map}
     \end{subfigure}
@@ -514,7 +550,10 @@ across a border, discussed further below.
         \label{valley_het}
     \end{subfigure}
         \caption{
-            \todo{map of simulation scenario (two valleys with different densities, separated by a ridge)}
+            \textbf{(above)} Map of population density of the simulations.
+            Populations have local density-dependent regulation
+            within two valleys with high local carrying capacity (indicated by contours),
+            separated and surrounded by areas with lower carrying capacity.
             \textbf{(below)} Relative heterozygosity of a sample of 100 individuals across the range.
             Observed heterozygosities of diploids were standardized 
             by subtracting the mean and dividing by the SD;
@@ -530,11 +569,20 @@ across a border, discussed further below.
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
 
-\todo{deeper coalescences in denser areas, more diversity and lower p(IBD), theta, heterozygosity, genome-sharing, drift btwn generations, or, e.g., old trees vs. saplings, patterns of LD?).
-methods to mention\g{?}: Ben Peter's Ne thing, 
-\cite{England2006}
-estimating wright's neighborhood size (shirk, mcniel, stuff by waples)
-SMC-type things
+\todo{
+    deeper coalescences in denser areas, 
+    more diversity and lower p(IBD), 
+    theta, 
+    heterozygosity, 
+    genome-sharing, 
+    drift btwn generations, 
+    or, e.g., old trees vs. saplings, 
+    patterns of LD?.
+    methods to mention\g{?}: 
+    Ben Peter's Ne thing, 
+    \cite{England2006}
+    estimating wright's neighborhood size (shirk, mcniel, stuff by waples)
+    SMC-type things
 }
 
 
@@ -548,13 +596,7 @@ or the spread of pathogens \citep{BiekReal2010},
 or understanding population demography and dynamics \citep{schreiber2010interactive}.
 Organisms may move in many ways throughout their lives,
 but quantities most clearly reflected in population genetic data
-have to do with the displacement between geographic locations of parent and offspring
-(for concreteness, taking the location of their birth or germination,
-and averaging over sex of the parent).
-The best overall descriptor of ``how much they move''
-is often the absolute value of this displacement,
-\g{which we call} \sout{known as} the between-generation \textit{dispersal distance}.
-
+have to do with the displacement between geographic locations of parent and offspring.
 This important quantity describes how quickly spatial populations mix,
 but combines many important aspects of the organism's ecology, including
 any movement of gametes or zygotes before maturation,
@@ -578,11 +620,9 @@ can give strong clues about this \citep{Cayuela2018demographic}.
 %%%%%%%%%%%%%%
 \subsubsection{Dispersal (individual, diffusive movement; $\sigma$)}
 
-First, consider inference of the ``dispersal distance'',
-which for the sake of discussion take as
-the mean distance between the birth (germination/hatching/\textit{et cetera})
-locations of a randomly chosen individual
-and that of a randomly chosen one of its parents.
+The best overall descriptor of ``how much do they move''
+is often the absolute value of the spatial displacement between parent and offspring location,
+which we call here the \textit{dispersal distance}.
 This notion is actually a cluster of closely related quantities:
 for instance, if survival strongly depends on where an offspring disperses to,
 then the ``dispersal distance'' estimated by picking an adult from the population
@@ -603,52 +643,37 @@ then the distance between them is the result of two dispersals,
 so an average of this distance over many pairs of siblings 
 gives an estimate of twice the dispersal distance.
 First cousins would give four times the dispersal distance, and so forth.
-The mean squared displacement between two individuals
-related by a path of total length $n$ through the pedigree is $\sigma^2 n$,
+The mean squared displacement along
+a path of total length $n$ through the pedigree is $\sigma^2 n$,
 assuming that $n$ is short enough that boundary effects can be ignored.
-Of course, any pair of individuals are related by many paths through the pedigree,
-but as in common usage we refer to this degree of relatedness
-as the length of the shortest path,
-and assume all other paths are much longer.
-Suppose we had $K$ pairs of individuals sampled in the modern day
-with known degrees of relatedness $n_1, \ldots, n_K$,
-(i.e., lengths of shortest paths through the pedigree),
-separated by geographic distance $x_1$ through $x_K$.
-These would yield an estimate of squared dispersal distance $\sigma^2$ of
-$(\sum_{i=1}^K x_i^2 / n_i^2) / (\sum_{i=1}^K 1 / n_i)$.
-
-In practice, however, this is usually infeasible
+% Of course, any pair of individuals are related by many paths through the pedigree,
+% but as in common usage we refer to this degree of relatedness
+% as the length of the shortest path,
+% and assume all other paths are much longer.
+% Suppose we had $K$ pairs of individuals sampled in the modern day
+% with known degrees of relatedness $n_1, \ldots, n_K$,
+% (i.e., lengths of shortest paths through the pedigree),
+% separated by geographic distance $x_1$ through $x_K$.
+% These would yield an estimate of squared dispersal distance $\sigma^2$ of
+% $(\sum_{i=1}^K x_i^2 / n_i^2) / (\sum_{i=1}^K 1 / n_i)$.
+However, basing an estimator of $\sigma$ on this observation
+is is usually infeasible in practice,
 unless a large fraction of the population has been genotyped
 \citep[e.g.,][]{Aguillon2017deconstructing}.
 Although long, shared tracts of genome can be used to identify very recent cousins,
-these are rarely encountered in data,
-and identification of more distant relatives is necessarily uncertain.
+identification of more distant relatives is necessarily uncertain.
 Nonetheless, how genetic relatedness decays with distance
 clearly contains information about dispersal distance.
-The mean squared displacement between two individuals
-related by a path of total length $n$ through the pedigree
-is $\sigma^2 n$,
-assuming that $n$ is short enough that boundary effects can be ignored.
-If, for $K$ pairs of individuals sampled in the modern day,
-we had both known geographic separation $x_1$ through $x_K$
-and corresponding degrees of relatedness 
-(i.e., lengths of paths through the pedigree \plr{fixme})
-$t_1$ through $t_k$,
-then an estimate of squared dispersal distance $\sigma^2$ would be
-$\frac{1}{K}\sum_{i=1}^K \|x_i\|^2 / t_i$.
-%In practice... \cite{Malecot, Barton, Harald}.
-%\plr{should we talk about collecting/scattering here?
-
-This can be abstracted to any level of relatedness,
-however, distinguishing more distant levels of relatedness becomes impossible,
-and using longer paths through the pedigree introduces a subtle bias,
-as discussed above:
-individuals far back in time without descendants today
-will not be included in this estimate.
-\plr{discuss above}
 
 
-\todo{tidy and conclude}
+compare BDE vs Rousset expressions?
+
+talk about disentangling N and rho or not
+
+sigma effective
+
+
+
 %It may be helpful to think of the dispersal distance
 %as determining how quickly the population mixes through diffusive movement:
 %local differentiation between individuals in different parts of the species range
