@@ -44,16 +44,20 @@ def compute_heterozygosity(ts, time, num_targets, mutation_rate=1e-8):
 
 def plot_heterozygosity(ts, het, targets):
     locs = ts.individual_locations()
-    scaled_het = (het - np.mean(het)) / np.std(het)
+    # hets are like 1e4
+    norm = lambda x: np.sign(x) * np.power(np.abs(x), 0.5)
+    scaled_het = 0.5 + norm((het - np.mean(het)) / (4 * max(abs(het - np.mean(het)))))
+    print(scaled_het)
     xmax = max(locs[:,0])
     ymax = max(locs[:,1])
     fig = plt.figure(figsize=(6, 6 * ymax / xmax))
-    colors = ['c' if h > 0 else 'm' for h in scaled_het]
+    colors = ['#693C01' if h > 0 else '#473E7A' for h in scaled_het]
+    cmap = plt.get_cmap("PRGn")
     ax = fig.add_subplot(111)
     ax.scatter(locs[targets, 0], locs[targets, 1],
-               s=400 * np.abs(scaled_het),
-               alpha=0.75,
-               c=colors)
+               s=np.power(het / 1000, 2),
+               alpha=0.95,
+               color=cmap(scaled_het))
     return fig
 
 
