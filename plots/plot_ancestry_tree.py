@@ -1,6 +1,7 @@
 import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
+import sys
 
 import matplotlib
 matplotlib.use('Agg')
@@ -8,8 +9,15 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as ani
 import matplotlib.collections as cs
 
-import importlib
-importlib.reload(sps)
+usage = """
+Usage:
+    {} (script name)
+""".format(sys.argv[0])
+
+if len(sys.argv) != 2:
+    raise ValueError(usage)
+
+script = sys.argv[1]
 
 
 def animate_tree(ts, children, num_gens):
@@ -54,18 +62,17 @@ def animate_tree(ts, children, num_gens):
     return animation
 
 
-for script in ("flat_map.slim", "valleys.slim"):
-    num_gens = 300
-    treefile = sps.run_slim(script = script,
-                            seed = 23, 
-                            SIGMA = 0.4,
-                            W = 8.0, 
-                            NUMGENS = num_gens)
-    outbase = ".".join(treefile.split(".")[:-1])
+num_gens = 300
+treefile = sps.run_slim(script = script,
+                        seed = 23, 
+                        SIGMA = 0.4,
+                        W = 8.0, 
+                        NUMGENS = num_gens)
+outbase = ".".join(treefile.split(".")[:-1])
 
-    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-    today = np.where(ts.individual_times() == 0)[0]
-    animation = animate_tree(ts, np.random.choice(today, 10), num_gens)
-    animation.save(outbase + ".trees.mp4", writer='ffmpeg')
+today = np.where(ts.individual_times() == 0)[0]
+animation = animate_tree(ts, np.random.choice(today, 10), num_gens)
+animation.save(outbase + ".trees.mp4", writer='ffmpeg')
 

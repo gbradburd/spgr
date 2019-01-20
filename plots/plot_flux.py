@@ -1,6 +1,7 @@
 import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
+import os, sys
 
 import matplotlib
 matplotlib.use('Agg')
@@ -8,6 +9,16 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as ani
 import matplotlib.collections as cs
 import matplotlib.patches as ptch
+
+usage = """
+Usage:
+    {} (script name)
+""".format(sys.argv[0])
+
+if len(sys.argv) != 2:
+    raise ValueError(usage)
+
+script = sys.argv[1]
 
 def plot_flux(ts, inout_fns, plot_ngens):
     """
@@ -61,56 +72,50 @@ def plot_flux(ts, inout_fns, plot_ngens):
                           units='xy', scale=1)
     return fig
 
-treefiles = [
-    sps.run_slim(script = "valleys.slim",
-                 seed = 23, 
-                 SIGMA = 1.5,
-                 W = 50.0, 
-                 K = 5.0,
-                 NUMGENS = 30),
-    sps.run_slim(script = "flat_map.slim",
-                 seed = 23, 
-                 SIGMA = 0.4,
-                 W = 50.0, 
-                 K = 5.0,
-                 NUMGENS = 30)
-    ]
+# for script in ("valleys.slim", "flat_map.slim"):
+## pass in script on command-line
 
-for treefile in treefiles:
-    outbase = ".".join(treefile.split(".")[:-1])
+treefile = sps.run_slim(script = script,
+                        seed = 23, 
+                        SIGMA = 1.5,
+                        W = 50.0, 
+                        K = 5.0,
+                        NUMGENS = 30)
 
-    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+outbase = ".".join(treefile.split(".")[:-1])
 
-    # number of time steps to plot the flux for
-    plot_ngens = 10
+ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-    xmax = max([ind.location[0] for ind in ts.individuals()])
-    ymax = max([ind.location[1] for ind in ts.individuals()])
-    line_x = [xmax / 3., xmax * 2. / 3.]
+# number of time steps to plot the flux for
+plot_ngens = 10
 
-    def make_line_fn(x):
-        def f(locs):
-            return (locs[:, 0] > x)
-        return f
+xmax = max([ind.location[0] for ind in ts.individuals()])
+ymax = max([ind.location[1] for ind in ts.individuals()])
+line_x = [xmax / 3., xmax * 2. / 3.]
 
-    line_inout_fns = [make_line_fn(x) for x in line_x]
+def make_line_fn(x):
+    def f(locs):
+        return (locs[:, 0] > x)
+    return f
 
-    fig = plot_flux(ts, line_inout_fns, plot_ngens)
-    ax = fig.axes[0]
-    for x in line_x:
-        ax.axvline(x, color='black', alpha=0.5, dashes=[3, 1], linewidth=2.0)
-    fig.savefig(outbase + ".line_flux.pdf")
+line_inout_fns = [make_line_fn(x) for x in line_x]
 
-    circle_xy = (xmax / 2, ymax / 2)
-    circle_rad = xmax / 3
+fig = plot_flux(ts, line_inout_fns, plot_ngens)
+ax = fig.axes[0]
+for x in line_x:
+    ax.axvline(x, color='black', alpha=0.5, dashes=[3, 1], linewidth=2.0)
+fig.savefig(outbase + ".line_flux.pdf")
 
-    def circle_inout(locs):
-        return (np.square(locs[:, 0] - circle_xy[0])
-                 + np.square(locs[:, 1] - circle_xy[1]) < circle_rad**2)
+circle_xy = (xmax / 2, ymax / 2)
+circle_rad = xmax / 3
 
-    fig = plot_flux(ts, [circle_inout], plot_ngens)
-    ax = fig.axes[0]
-    circle = ptch.Circle(circle_xy, circle_rad,
-                         edgecolor='black', alpha=0.5, linestyle=(0., (3., 1)), linewidth=2.0)
-    ax.add_patch(circle)
-    fig.savefig(outbase + ".circle_flux.pdf")
+def circle_inout(locs):
+    return (np.square(locs[:, 0] - circle_xy[0])
+             + np.square(locs[:, 1] - circle_xy[1]) < circle_rad**2)
+
+fig = plot_flux(ts, [circle_inout], plot_ngens)
+ax = fig.axes[0]
+circle = ptch.Circle(circle_xy, circle_rad,
+                     edgecolor='black', alpha=0.5, linestyle=(0., (3., 1)), linewidth=2.0)
+ax.add_patch(circle)
+fig.savefig(outbase + ".circle_flux.pdf")

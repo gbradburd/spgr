@@ -2,10 +2,21 @@ import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
 from msprime import BranchLengthStatCalculator as bs
+import os, sys
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
+usage = """
+Usage:
+    {} (script name)
+""".format(sys.argv[0])
+
+if len(sys.argv) != 2:
+    raise ValueError(usage)
+
+script = sys.argv[1]
 
 def plot_isolation_by_distance(ts, targets, num_indivs):
     """
@@ -56,29 +67,31 @@ def plot_isolation_by_distance(ts, targets, num_indivs):
     return fig
 
 
-for script in ("flat_map.slim", "valleys.slim"):
-    num_gens = 1
-    treefile = sps.run_slim(script = script,
-                            seed = 23, 
-                            SIGMA = 0.4,
-                            W = 50.0, 
-                            NUMGENS = num_gens,
-                            BURNIN = 10000)
-    outbase = ".".join(treefile.split(".")[:-1])
+# for script in ("valleys.slim", "flat_map.slim"):
+## pass in script on command-line
 
-    ts = pyslim.load(treefile)
-    ts = sps.SpatialSlimTreeSequence(ts.recapitate(Ne = 1e3, recombination_rate = 1e-9), dim=2)
+num_gens = 1
+treefile = sps.run_slim(script = script,
+                        seed = 23, 
+                        SIGMA = 0.4,
+                        W = 50.0, 
+                        NUMGENS = num_gens,
+                        BURNIN = 10000)
+outbase = ".".join(treefile.split(".")[:-1])
 
-    locs = ts.individual_locations()
-    xmax = max(locs[:,0])
-    ymax = max(locs[:,1])
-    alive = ts.individuals_alive(0)
-    left_third = np.logical_and(alive, locs[:, 0] < xmax / 3)
-    right_third = np.logical_and(alive, locs[:, 0] > 2 * xmax / 3)
-    targets = list(np.random.choice(np.where(left_third)[0], 2)) + \
-                list(np.random.choice(np.where(right_third)[0], 2))
+ts = pyslim.load(treefile)
+ts = sps.SpatialSlimTreeSequence(ts.recapitate(Ne = 1e3, recombination_rate = 1e-9), dim=2)
 
-    fig = plot_isolation_by_distance(ts, targets, 100)
-    plt.tight_layout() # please don't cut off my axis labels
-    fig.savefig(outbase + ".ibd.pdf")
+locs = ts.individual_locations()
+xmax = max(locs[:,0])
+ymax = max(locs[:,1])
+alive = ts.individuals_alive(0)
+left_third = np.logical_and(alive, locs[:, 0] < xmax / 3)
+right_third = np.logical_and(alive, locs[:, 0] > 2 * xmax / 3)
+targets = list(np.random.choice(np.where(left_third)[0], 2)) + \
+            list(np.random.choice(np.where(right_third)[0], 2))
+
+fig = plot_isolation_by_distance(ts, targets, 100)
+plt.tight_layout() # please don't cut off my axis labels
+fig.savefig(outbase + ".ibd.pdf")
 

@@ -2,11 +2,21 @@ import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
 from msprime import BranchLengthStatCalculator as bs
-import os
+import os, sys
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
+usage = """
+Usage:
+    {} (script name)
+""".format(sys.argv[0])
+
+if len(sys.argv) != 2:
+    raise ValueError(usage)
+
+script = sys.argv[1]
 
 def compute_heterozygosity(ts, time, num_targets, mutation_rate=1e-8):
     # mts = sps.SpatialSlimTreeSequence(msprime.mutate(ts, mutation_rate), dim=2)
@@ -47,39 +57,41 @@ def plot_heterozygosity(ts, het, targets):
     return fig
 
 
-for script in ("valleys.slim", "flat_map.slim"):
-    num_gens = 10
-    treefile = sps.run_slim(script = script,
-                            seed = 23, 
-                            SIGMA = 1.0,
-                            W = 50.0, 
-                            K = 5.0,
-                            NUMGENS = num_gens,
-                            BURNIN=10000)
-    outbase = ".".join(treefile.split(".")[:-1])
+# for script in ("diff_valleys.slim", "valleys.slim", "flat_map.slim"):
+# # script should be on the command line
 
-    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+num_gens = 10
+treefile = sps.run_slim(script = script,
+                        seed = 23, 
+                        SIGMA = 1.0,
+                        W = 50.0, 
+                        K = 5.0,
+                        NUMGENS = num_gens,
+                        BURNIN=10000)
+outbase = ".".join(treefile.split(".")[:-1])
 
-    num_targets = 100
-    het_time = 0
-    hetfile = outbase + ".heterozygosity.txt"
-    if os.path.isfile(hetfile):
-        print(hetfile, "already exists.")
-        data = np.loadtxt(hetfile)
-        het = data[:, 0]
-        targets = np.array([np.int(u) for u in data[:, 1]])
-        assert(max(np.abs(targets - data[:, 1])) == 0)
-        if len(targets) != num_targets:
-            print("Number of targets does not match saved file" + hetfile)
-    else:
-        print(hetfile, "does not exist, computing.")
-        het, targets = compute_heterozygosity(ts, het_time, num_targets)
-        data = np.column_stack([het, targets])
-        np.savetxt(hetfile, data)
+ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-    fig = plot_heterozygosity(ts, het, targets)
-    fig.savefig(outbase + ".heterozygosity.pdf")
-    plt.close(fig)
+num_targets = 100
+het_time = 0
+hetfile = outbase + ".heterozygosity.txt"
+if os.path.isfile(hetfile):
+    print(hetfile, "already exists.")
+    data = np.loadtxt(hetfile)
+    het = data[:, 0]
+    targets = np.array([np.int(u) for u in data[:, 1]])
+    assert(max(np.abs(targets - data[:, 1])) == 0)
+    if len(targets) != num_targets:
+        print("Number of targets does not match saved file" + hetfile)
+else:
+    print(hetfile, "does not exist, computing.")
+    het, targets = compute_heterozygosity(ts, het_time, num_targets)
+    data = np.column_stack([het, targets])
+    np.savetxt(hetfile, data)
+
+fig = plot_heterozygosity(ts, het, targets)
+fig.savefig(outbase + ".heterozygosity.pdf")
+plt.close(fig)
 
 
 

@@ -1,0 +1,182 @@
+initialize() {
+    initializeSLiMModelType("nonWF");
+    initializeSLiMOptions(dimensionality="xy");
+    initializeTreeSeq();
+
+    if (!exists("seed")) {
+      seed = getSeed(); 
+    }
+    if (!exists("NUMGENS")) {
+      defineConstant("NUMGENS", 30); 
+    }
+    if (!exists("W")) {
+      defineConstant("W", 10.0);  // width of the simulated area 
+    }
+    if (!exists("OUTPATH")) { 
+      defineConstant("OUTPATH", "test_diff_valleys." + NUMGENS + "." + seed + ".trees"); 
+    }
+    if (!exists("SIGMA")) {
+      defineConstant("SIGMA", 0.3);
+    }
+    if (!exists("K")) {
+      defineConstant("K", 5);  // carrying-capacity per unit square (roughly)
+    }
+    if (!exists("BURNIN")) {
+      defineConstant("BURNIN", 200);  // number of generations before full recording begins
+    }
+
+    catn(c("NUMGENS =", NUMGENS));
+    catn(c("BURNIN =", BURNIN));
+    catn(c("W =", W));
+    catn(c("SIGMA =", SIGMA));
+    catn(c("K =", K));
+    defineConstant("A", 4.0/9);  // height/width of the simulated area
+    catn(c("A =", A));
+    defineConstant("SD", SIGMA);  // sigma_D, the dispersal distance
+    catn(c("SD =", SD));
+    defineConstant("SI", SIGMA);  // sigma_I, the spatial interaction distance
+    catn(c("SI =", SI));
+    defineConstant("SM", SI);  // sigma_M, the mate choice distance
+    catn(c("SM =", SM));
+    defineConstant("L", 4);    // mean lifetime at stationarity
+    catn(c("L =", L));
+    defineConstant("G", 2e9);  // genome length
+    catn(c("G =", G));
+    defineConstant("FECUN", 1/L); // mean fecundity
+    catn(c("FECUN =", FECUN));
+    defineConstant("RHO", FECUN/((1+FECUN) * K)); // constant in spatial competition function
+
+    initializeMutationType("m1", 0.5, "g", 0.0, 2);
+    initializeGenomicElementType("g1", m1, 1.0);
+    initializeGenomicElement(g1, 0, G-1);
+    initializeMutationRate(0.0);
+    initializeRecombinationRate(1e-9);
+    
+    // spatial competition
+    initializeInteractionType(1, "xy", reciprocal=T, maxDistance=SI * 3);
+    i1.setInteractionFunction("n", 1.0/(2*PI*SI^2), SI);
+    
+    // mate choice
+    initializeInteractionType(2, "xy", reciprocal=T, maxDistance=SM * 3);
+    i2.setInteractionFunction("n", 1.0/(2*PI*SM^2), SM);
+}
+
+reproduction() {
+    // choose our nearest neighbor as a mate, within the max distance
+    mate = i2.drawByStrength(individual, 1);
+    if (mate.size()) {
+        nOff = rpois(1, FECUN);
+        // record number of offspring in the tag
+        individual.tag = individual.tag + nOff;
+        for (i in seqLen(rpois(1, 1/L))) {
+            pos = individual.spatialPosition + rnorm(2, 0, SD);
+            if (p1.pointInBounds(pos)) {
+            offspring = subpop.addCrossed(individual, mate);
+             offspring.setSpatialPosition(p1.pointReflected(pos));
+             offspring.tag = 0;
+             }
+        }
+    }
+    return;
+}
+
+1 early() {
+    sim.addSubpop("p1", asInteger(K * A * W * W));
+    p1.setSpatialBounds(c(0, 0, W, A * W));
+    // random initial positions
+    for (ind in p1.individuals) {
+        ind.setSpatialPosition(p1.pointUniform());
+        ind.tag = 0;
+    }
+    i1.evaluate();
+
+    sim.rescheduleScriptBlock(s2, start=BURNIN+1, end=BURNIN + NUMGENS);
+    sim.rescheduleScriptBlock(s99, generations=BURNIN + NUMGENS);
+    
+       
+    // make the spatial map:
+    a = 0.5; // marginal habitat
+    g = 1.0; // good habitat
+    v = 2.0; // very good habitat
+    r = 0.4; // ridge
+    x = 0.1; // bad habitat
+    defineConstant("mapValues",
+      c(x, a, x, x, x, x, x, a, x,
+        a, v, v, r, r, r, g, g, r,
+        a, g, v, r, r, r, a, g, x,
+        x, g, a, x, x, x, x, x, x));
+    p1.defineSpatialMap("Kmap", "xy", c(9, 4), mapValues, interpolate=T,
+        valueRange=c(x, g), colors=c("red", "yellow"));
+
+    // header info
+    cat("gen" + " " + "stage" + " ");
+    cat("pop_size" + " " + "births" + " ");
+    cat("age" + " " + "density" + " ");
+    catn("neighbor" + " " + "harm_neigh" + " " + "num_off" + " " + "time");
+}
+
+early() {
+    i1.evaluate(p1);
+    inds = p1.individuals;
+    competition = i1.totalOfNeighborStrengths(inds);
+    // record strength of competition in the tagF
+    inds.tagF = competition;
+    // inds.fitnessScaling = pmin(0.95, 1/(1 + RHO * competition));    
+    // adjust for local habitat quality
+    for (ind in inds) {
+        Klocal = p1.spatialMapValue("Kmap", ind.spatialPosition);
+        ind.fitnessScaling = pmin(0.95, 1/(1 + RHO * ind.tagF / Klocal));
+    }
+    // avoid edge effects
+    inds.fitnessScaling = inds.fitnessScaling * pmin(sqrt(inds.x/SI), 1.0) * pmin(sqrt(inds.y/SI), 1.0) * pmin(sqrt((W - inds.x)/SI), 1.0) * pmin(sqrt((A * W - inds.y)/SI), 1.0);
+
+}
+
+s2 1: early() {
+    // remember everyone
+    sim.treeSeqRememberIndividuals(p1.individuals);
+}
+
+1: late() {
+   // to be ready for mate choice
+   i2.evaluate(p1);
+}
+
+// output
+early() {
+    if (T) {
+        cat(sim.generation + " " + "early" + " ");
+        cat(p1.individualCount + " " + sum(p1.individuals.age == 0) + " ");
+        cat(mean(p1.individuals.age) + " " + p1.individualCount/(A * W * W) + " ");
+        cat(mean(p1.individuals.tagF) + " " + 1/mean(1/p1.individuals.tagF) + " " + mean(p1.individuals.tag));
+        catn(" " + clock());
+    }
+}
+
+late() {
+    if (T) {
+        cat(sim.generation + " " + "late " + " ");
+        cat(p1.individualCount + " " + sum(p1.individuals.age == 0) + " ");
+        cat(mean(p1.individuals.age) + " " + p1.individualCount/(A * W * W) + " ");
+        cat(mean(p1.individuals.tagF) + " " + 1/mean(1/p1.individuals.tagF) + " " + mean(p1.individuals.tag));
+        catn(" " + clock());
+    }
+}
+    
+2: late() {
+    // GUI COLORS
+    //  green = many neighbors, few offspring so far
+    //  red = many offspring so far, few neighbors
+    //  yellow = many offspring so far, many neighbors
+    // max_n = max(1, max(p1.individuals.tag));
+    // max_f = max(0.01, max(p1.individuals.tagF));
+    // max_a = max(p1.individuals.age);
+    // for (ind in p1.individuals) {
+    //    ind.color = rgb2color(c(ind.tag/max_n, ind.tagF/max_f, ind.age/max_a));
+    // }
+}
+
+s99 200000 late() {
+   sim.treeSeqOutput(OUTPATH, simplify=F);
+   sim.simulationFinished();
+}

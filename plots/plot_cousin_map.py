@@ -1,6 +1,7 @@
 import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
+import sys
 
 import matplotlib
 matplotlib.use('Agg')
@@ -12,6 +13,16 @@ import matplotlib.patches as ptch
 import scipy.sparse as sparse
 
 np.random.seed(32)
+
+usage = """
+Usage:
+    {} (script name)
+""".format(sys.argv[0])
+
+if len(sys.argv) != 2:
+    raise ValueError(usage)
+
+script = sys.argv[1]
 
 def plot_cousins(ts, focal_individuals, max_hops = 9):
     """
@@ -51,35 +62,26 @@ def plot_cousins(ts, focal_individuals, max_hops = 9):
     return fig
 
 
-treefiles = [
-    sps.run_slim(script = "valleys.slim",
-                 seed = 23, 
-                 SIGMA = 1.0,
-                 W = 50.0, 
-                 K = 5.0,
-                 NUMGENS = 100),
-    sps.run_slim(script = "flat_map.slim",
-                 seed = 23, 
-                 SIGMA = 1.0,
-                 W = 50.0, 
-                 K = 5.0,
-                 NUMGENS = 100)
-    ]
+treefile = sps.run_slim(script = script,
+                        seed = 23, 
+                        SIGMA = 1.0,
+                        W = 50.0, 
+                        K = 5.0,
+                        NUMGENS = 100)
 
-for treefile in treefiles:
-    outbase = ".".join(treefile.split(".")[:-1])
+outbase = ".".join(treefile.split(".")[:-1])
 
-    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-    locs = ts.individual_locations()
-    xmax = max(locs[:,0])
-    ymax = max(locs[:,1])
-    alive = ts.individuals_alive(0)
-    left_third = np.logical_and(alive, locs[:, 0] < xmax / 3)
-    right_third = np.logical_and(alive, locs[:, 0] > 2 * xmax / 3)
-    focal_individuals = list(np.random.choice(np.where(left_third)[0], 2)) + \
-                         list(np.random.choice(np.where(right_third)[0], 2))
+locs = ts.individual_locations()
+xmax = max(locs[:,0])
+ymax = max(locs[:,1])
+alive = ts.individuals_alive(0)
+left_third = np.logical_and(alive, locs[:, 0] < xmax / 3)
+right_third = np.logical_and(alive, locs[:, 0] > 2 * xmax / 3)
+focal_individuals = list(np.random.choice(np.where(left_third)[0], 2)) + \
+                     list(np.random.choice(np.where(right_third)[0], 2))
 
-    fig = plot_cousins(ts, focal_individuals)
-    fig.savefig(outbase + ".cousins.pdf")
+fig = plot_cousins(ts, focal_individuals)
+fig.savefig(outbase + ".cousins.pdf")
 

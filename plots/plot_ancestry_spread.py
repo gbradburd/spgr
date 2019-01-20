@@ -1,12 +1,22 @@
 import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
+import os, sys
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.collections as cs
 
+usage = """
+Usage:
+    {} (script name)
+""".format(sys.argv[0])
+
+if len(sys.argv) != 2:
+    raise ValueError(usage)
+
+script = sys.argv[1]
 
 def plot_ancestry(ts, children, times):
     """
@@ -44,31 +54,32 @@ def plot_ancestry(ts, children, times):
         figs.append(fig)
     return figs
 
+# for script in ("valleys.slim", "flat_map.slim"):
+## pass in script on command-line
 
-for script in ("flat_map.slim", "valleys.slim"):
-    num_gens = 100
-    treefile = sps.run_slim(script = script,
-                            seed = 23, 
-                            SIGMA = 1.0,
-                            W = 50.0, 
-                            K = 5.0,
-                            NUMGENS = num_gens)
-    outbase = ".".join(treefile.split(".")[:-1])
+num_gens = 100
+treefile = sps.run_slim(script = script,
+                        seed = 23, 
+                        SIGMA = 1.0,
+                        W = 50.0, 
+                        K = 5.0,
+                        NUMGENS = num_gens)
+outbase = ".".join(treefile.split(".")[:-1])
 
-    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
-    today = np.where(ts.individual_times() == 0)[0]
+ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+today = np.where(ts.individual_times() == 0)[0]
 
-    locs = ts.individual_locations()
-    xmax = max(locs[:,0])
-    ymax = max(locs[:,1])
-    alive = ts.individuals_alive(0)
-    left_third = np.logical_and(alive, locs[:, 0] < xmax / 3)
-    right_third = np.logical_and(alive, locs[:, 0] > 2 * xmax / 3)
-    targets = list(np.random.choice(np.where(left_third)[0], 2)) + \
-                list(np.random.choice(np.where(right_third)[0], 2))
+locs = ts.individual_locations()
+xmax = max(locs[:,0])
+ymax = max(locs[:,1])
+alive = ts.individuals_alive(0)
+left_third = np.logical_and(alive, locs[:, 0] < xmax / 3)
+right_third = np.logical_and(alive, locs[:, 0] > 2 * xmax / 3)
+targets = list(np.random.choice(np.where(left_third)[0], 2)) + \
+            list(np.random.choice(np.where(right_third)[0], 2))
 
-    times = list(range(0, 100, 20)) + [ts.slim_generation - 1]
-    figs = plot_ancestry(ts, targets, times)
-    for time, fig in zip(times, figs):
-        fig.savefig(outbase + ".{:02d}.ancestry.pdf".format(time))
-        plt.close(fig)
+times = list(range(0, 100, 20)) + [ts.slim_generation - 1]
+figs = plot_ancestry(ts, targets, times)
+for time, fig in zip(times, figs):
+    fig.savefig(outbase + ".{:02d}.ancestry.pdf".format(time))
+    plt.close(fig)

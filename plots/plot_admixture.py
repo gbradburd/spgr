@@ -2,10 +2,21 @@ import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
 from msprime import BranchLengthStatCalculator as bs
+import os, sys
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
+usage = """
+Usage:
+    {} (script name)
+""".format(sys.argv[0])
+
+if len(sys.argv) != 2:
+    raise ValueError(usage)
+
+script = sys.argv[1]
 
 def draw_pie(ax, X, Y, ratios, size = 200, piecolors=['c', 'm']): 
     """
@@ -29,8 +40,7 @@ def draw_pie(ax, X, Y, ratios, size = 200, piecolors=['c', 'm']):
                   facecolors=piecolors[k], linewidth=0.5, alpha=.75)
 
 
-def plot_admixture(ts, time, admixture_time, num_targets):
-
+def compute_admixture(ts, time, admixture_time, num_targets):
     locs = ts.individual_locations()
     xmax = max(locs[:,0])
     ymax = max(locs[:,1])
@@ -38,9 +48,9 @@ def plot_admixture(ts, time, admixture_time, num_targets):
     samples = np.random.choice(np.where(alive)[0], num_targets, replace=False)
     sample_nodes = ts.individual_nodes(samples, flatten=False)
     west_ancestors = np.logical_and(ts.individuals_alive(admixture_time),
-                                    locs[:, 0] <= 2 * xmax / 3)
+                                    locs[:, 0] <= 1 * xmax / 2)
     east_ancestors = np.logical_and(ts.individuals_alive(admixture_time),
-                                    locs[:, 0] > 2 * xmax / 3)
+                                    locs[:, 0] > 1 * xmax / 2)
     west_ancestor_nodes = ts.individual_nodes(np.where(west_ancestors)[0])
     east_ancestor_nodes = ts.individual_nodes(np.where(east_ancestors)[0])
 
@@ -58,9 +68,17 @@ def plot_admixture(ts, time, admixture_time, num_targets):
         return D
 
     admixture = node_admixture(ts, sample_nodes, [west_ancestor_nodes, east_ancestor_nodes])
+    return samples, admixture
 
+
+def plot_admixture(ts, time, samples, admixture):
+    assert(len(samples) == admixture.shape[0])
+
+    locs = ts.individual_locations()
+    alive = ts.individuals_alive(time)
     xmax = max(locs[:,0])
     ymax = max(locs[:,1])
+
     fig = plt.figure(figsize=(6, 6 * ymax / xmax))
     colors = ['b', 'c', 'm', 'y']
     ax = fig.add_subplot(111)
@@ -75,23 +93,37 @@ def plot_admixture(ts, time, admixture_time, num_targets):
     return fig
 
 
-for script in ("valleys.slim", "flat_map.slim"):
-    num_gens = 301
-    treefile = sps.run_slim(script = script,
-                            seed = 23, 
-                            SIGMA = 4.0,
-                            W = 50.0, 
-                            K = 5.0,
-                            NUMGENS = num_gens,
-                            BURNIN=1)
-    outbase = ".".join(treefile.split(".")[:-1])
+# for script in ("valleys.slim", "flat_map.slim"):
+## pass in script on command-line
 
-    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+num_gens = 301
+treefile = sps.run_slim(script = script,
+                        seed = 23, 
+                        SIGMA = 4.0,
+                        W = 50.0, 
+                        K = 5.0,
+                        NUMGENS = num_gens,
+                        BURNIN=1)
+outbase = ".".join(treefile.split(".")[:-1])
+num_samples = 200
 
-    for time in np.floor(np.linspace(0, num_gens - 1, 10)):
-        # fig = plot_admixture(ts, time, 99, 100)
-        fig = plot_admixture(ts, time, num_gens - 1, 100)
-        fig.savefig(outbase + ".{}.admixture.pdf".format(time))
-        plt.close(fig)
+ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+
+for time in np.floor(np.linspace(0, num_gens - 1, 5)):
+    datafile = outbase + ".{}.admixture.txt".format(time)
+    if os.path.isfile(datafile):
+        print(datafile, "already exists.")
+        data = np.loadtxt(datafile)
+        samples = data[:, 0]
+        admixture = data[:, 1:]
+    else:
+        print(datafile, "does not exist, computing.")
+        samples, admixture = compute_admixture(ts, time, num_gens - 1, num_samples)
+        data = np.column_stack([samples, admixture])
+        np.savetxt(datafile, data)
+
+    fig = plot_admixture(ts, time, samples, admixture)
+    fig.savefig(outbase + ".{}.admixture.pdf".format(time))
+    plt.close(fig)
 
 

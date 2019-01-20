@@ -2,12 +2,23 @@ import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
 from msprime import BranchLengthStatCalculator as bs
+import os, sys
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 import scipy.stats
+
+usage = """
+Usage:
+    {} (script name)
+""".format(sys.argv[0])
+
+if len(sys.argv) != 2:
+    raise ValueError(usage)
+
+script = sys.argv[1]
 
 def plot_density(ts, time):
     """
@@ -41,21 +52,23 @@ def plot_density(ts, time):
     return fig
 
 
-for script in ("valleys.slim", "flat_map.slim"):
-    num_gens = 301
-    treefile = sps.run_slim(script = script,
-                            seed = 23, 
-                            SIGMA = 4.0,
-                            W = 50.0, 
-                            K = 5.0,
-                            NUMGENS = num_gens,
-                            BURNIN=1)
-    outbase = ".".join(treefile.split(".")[:-1])
+# for script in ("valleys.slim", "flat_map.slim"):
+## pass in script on command-line
 
-    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+num_gens = 301
+treefile = sps.run_slim(script = script,
+                        seed = 23, 
+                        SIGMA = 4.0,
+                        W = 50.0, 
+                        K = 5.0,
+                        NUMGENS = num_gens,
+                        BURNIN=1)
+outbase = ".".join(treefile.split(".")[:-1])
 
-    fig = plot_density(ts, 0)
-    fig.savefig(outbase + ".density.pdf")
-    plt.close(fig)
+ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+
+fig = plot_density(ts, 0)
+fig.savefig(outbase + ".density.pdf")
+plt.close(fig)
 
 

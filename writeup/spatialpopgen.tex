@@ -458,53 +458,92 @@ It is instructive to consider
 the problem of inferring the total size of the previous generation
 in a randomly-mating population
 from the number of siblings found in a random sample of size $n$.
-If the total size is $N$, 
-then the expected number of sampled sibling pairs out of a family of size $x$
-is $(1/2) x (x-1) (1 - (1 - 2/N)^n) \approx x (x-1) n / N$.
-This implies that the sample size divided by the number of sibling pairs 
-provides an estimate of $N_e = N/\E[X(X-1)]$, where $X$ is the number of offspring
-of a randomly chosen individual.
-In other words, we should be able to do quite well at estimating population size
+\plr{(adjust the below to talk about chromosomes rather than diploids?)}
+There are $x (x-1) / 2$ sibling pairs in a family of size $x$,
+% expected number of sibling pairs is
+% (num pairs sampled) * (prob of sampling a pair)
+% = (n (n-1) / 2) * (sum_i  x_i (x_i - 1) / 2 ) / (N (N-1) / 2)
+% = (n (n-1) / (2 * (N-1))) * E[X (X-1)]
+so the probability that a given pair of individuals are siblings
+in a population of size $N$
+is $\E[X (X-1)] / (N-1)$, where $X$ is the number of offspring in a randomly chosen family.
+This implies that $n(n-1)/2$ divided by the number of sibling pairs in a sample of size $n$
+provides an estimate of inbreeding effective population size, $N_e = N/\E[X(X-1)]$.
+In other words, we should be able to use relatedness to estimate population size
 up to the factor $\E[X(X-1)]$, that depends on demographic details.
 Other sources of data are necessary to estimate this demographic factor.
 Common ancestors -- i.e., coalescences --
 further back in time are simply more remote sibling pairs,
 so this restriction applies to estimates further in the past.
+Since genetic estimates of geographically local population densities
+must necessarily come from rates of coalescence (or lack thereof),
+it is natural to expect we will similarly estimate 
+geographic maps of ``effective population density'',
+perhaps equal to actual local population density scaled by $\E[X(X-1)]$ as above.
+This has been done for homogeneous space (see \citep{barton_depaulis_etheridge}),
+but precise notions for inhomogeneous geographies are elusive.
 
-The geographic analogue of effective population size
-is ``effective population density'',
-defined as XXX
-What signature does effective population density leave 
+Leaving aside these caveats about overall scaling,
+we expect to be able to at least estimate \emph{relative} population density across space.
+How can we do this?
+What signature does varying population density leave 
 on the spatial pedigree and patterns of genetic variation
 within a region?
 Consider two adjacent valleys, 
 one densely populated, the other sparsely populated, 
 but both equal in geographic area 
 and separated by a strong barrier to dispersal (Figure \ref{pop_density}\subref{valley_map}).
+\plr{This is NOT what I simulated, currently. Density within each is the same.  But I could change it.
+    If not, then change "low density" to "smaller" below.}
 In general, we expect pairs of individuals in the low density valley 
 to have shared ancestors in the more recent past than 
 pairs of individuals in the densely populated valley.
-To see why, consider the relationship between population density
-and the pool of possible parents.
-Each individual in the current generation has two parents that came from nearby,
-so in the sparsely populated valley,
-the pool of individuals who \textit{could} be parents gets exhausted quickly,
-and individuals in the current generation
-are more likely to share at an ancestor in the recent past.
+This happens simply because 
+each group of siblings makes up a larger proportion 
+of the more sparsely populated valley.
+Said in the backwards-in-time way common to population genetics,
+when looking for the parents of a given two individuals,
+a smaller pool of possible parents
+makes it more likely those to individuals share at least one parent in common.
 Because individuals in the sparsely populated valley have more shared ancestors 
 in the more recent past, 
-we would expect samples from that valley to have higher probability of being identical by descent 
-at a given locus, 
-and for the sample as a whole to display lower heterozygosity (Figure \ref{pop_density}\subref{valley_het}).
+we expect samples from that valley to be identical (by descent)
+on larger portions of their genomes,
+and for the sample as a whole to display lower heterozygosity 
+(Figure \ref{pop_density}\subref{valley_het}).
 
 However, there are a number of reasons why the genetic signature 
-of effective population density may, in fact, be more complicated.
-First, if dispersal distances are, on average, shorter 
-in the sparsely populated valley -- 
+of varying population density may be more complicated.
+For instance, we would also expect a similar difference in genetic diversity
+if the two valleys had the \emph{same} population density per unit area,
+but one valley was larger than the other.
+On the other hand, if dispersal distances are, on average, shorter 
+in the more densely populated valley -- 
 e.g., because resources are more plentiful, 
-and individuals do not have to disperse as far to avoid competition -- 
+so that individuals do not have to disperse as far to avoid competition -- 
 there may be more inbreeding over short distances, 
-but higher heterozygosity within the valley as a whole.
+but higher observed heterozygosity within the valley as a whole.
+
+% Observed heterozygosity 
+% (i.e., the proportion of sites in the genome at which an individual is heterozygous)
+% measures the degree of relatedness between typical mates,
+% so depends strongly on demographic details such as selfing rate,
+% assortative mating, and inbreeding avoidance.
+% A similar quantity that depends less strongly on these factors
+% is the mean genetic divergence between neighbors:
+% if $\pi(x, y)$ is the density of sites at which individuals at $x$ and $y$ differ,
+% then $\pi(x) = \lim_{y \to x} \pi(x,y)$ measures local genetic diversity at $x$
+% in an analogous way.
+% The degree to which local diversity is depressed
+% relative to the population as a whole
+% depends on the spatial association of close relatives.
+% The most important quantity that affects this is
+% \emph{Wright's neighborhood size}, % denoted $N_\text{loc}$,
+% defined to be the average \emph{effective} number of individuals
+% in a circle with radius equal to the mean dispersal distance.
+% The dispersal distance defines the spatial scale over which
+% one finds siblings (i.e., coalescences can occur),
+
 In such a scenario, coalescence happens locally 
 (e.g., within Wright's neighborhood size)
 faster than migration connects the pedigrees of 

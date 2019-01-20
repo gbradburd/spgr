@@ -1,10 +1,21 @@
 import pyslim, msprime
 import numpy as np
 import spatial_slim as sps
+import sys
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
+usage = """
+Usage:
+    {} (script name)
+""".format(sys.argv[0])
+
+if len(sys.argv) != 2:
+    raise ValueError(usage)
+
+script = sys.argv[1]
 
 def plot_individuals(ts, num_gens):
     # a snapshot of the individual locations
@@ -19,16 +30,15 @@ def plot_individuals(ts, num_gens):
                c='black')
     return fig
 
-for script in ("flat_map.slim", "valleys.slim"):
-    num_gens = 30
-    treefile = sps.run_slim(script = script,
-                            seed = 23, 
-                            SIGMA = 0.25,
-                            W = 50.0, 
-                            NUMGENS = num_gens)
-    outbase = ".".join(treefile.split(".")[:-1])
+num_gens = 30
+treefile = sps.run_slim(script = script,
+                        seed = 23, 
+                        SIGMA = 0.25,
+                        W = 50.0, 
+                        NUMGENS = num_gens)
+outbase = ".".join(treefile.split(".")[:-1])
 
-    ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
+ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-    fig = plot_individuals(ts, num_gens)
-    fig.savefig(outbase + ".locations.pdf")
+fig = plot_individuals(ts, num_gens)
+fig.savefig(outbase + ".locations.pdf")
