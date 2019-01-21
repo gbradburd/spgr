@@ -65,17 +65,18 @@ plotPed <- function(gens,xlim=NULL,ylim=NULL,zlim=NULL,maxGen){
 			plotGen(coords,z=g,add=TRUE,xlim=xlim,ylim=ylim,zlim=NULL,maxGen=maxGen)
 		})
 	text3D(x=mean(xlim)-diff(range(xlim))/6,y=min(ylim)+diff(range(ylim))/9,z=min(zlim),labels=c("longitude"),add=TRUE,cex=1.5)
-	text3D(x=min(xlim)-diff(range(xlim))/3,y=mean(ylim),z=min(zlim)+diff(range(zlim))/7,labels=c("latitude"),add=TRUE,cex=1.5)
-	text3D(x=max(xlim)+diff(range(xlim))/10,y=min(ylim),z=mean(zlim),labels=c("time"),add=TRUE,cex=1.5)
-	text3D(x=max(xlim)+diff(range(xlim))/20,y=min(ylim),z=min(zlim)+diff(range(zlim))/5,labels=c("present"),add=TRUE,cex=1.5)
-	text3D(x=max(xlim)+diff(range(xlim))/20,y=min(ylim),z=max(zlim)-diff(range(zlim))/5,labels=c("past"),add=TRUE,cex=1.5)
-	arrows3D(x0=max(xlim)+diff(range(xlim))/12,
-			 y0=min(ylim),
-			 z0=min(zlim)+diff(range(zlim))/4,
-			 x1=max(xlim)+diff(range(xlim))/12,
-			 y1=min(ylim),
-			 z1=max(zlim)-diff(range(zlim))/4.25,
-			 add=TRUE)
+#	text3D(x=min(xlim)-diff(range(xlim))/3,y=mean(ylim),z=min(zlim)+diff(range(zlim))/7,labels=c("latitude"),add=TRUE,cex=1.5)
+	text3D(x=max(xlim)+diff(range(xlim))/20,y=min(ylim),z=min(zlim)+diff(range(zlim))/5,labels=c("latitude"),add=TRUE,cex=1.5)
+#	text3D(x=max(xlim)+diff(range(xlim))/10,y=min(ylim),z=mean(zlim),labels=c("time"),add=TRUE,cex=1.5)
+#	text3D(x=max(xlim)+diff(range(xlim))/20,y=min(ylim),z=min(zlim)+diff(range(zlim))/5,labels=c("present"),add=TRUE,cex=1.5)
+#	text3D(x=max(xlim)+diff(range(xlim))/20,y=min(ylim),z=max(zlim)-diff(range(zlim))/5,labels=c("past"),add=TRUE,cex=1.5)
+	# arrows3D(x0=max(xlim)+diff(range(xlim))/12,
+			 # y0=min(ylim),
+			 # z0=min(zlim)+diff(range(zlim))/4,
+			 # x1=max(xlim)+diff(range(xlim))/12,
+			 # y1=min(ylim),
+			 # z1=max(zlim)-diff(range(zlim))/4.25,
+			 # add=TRUE)
 }
 
 
@@ -143,7 +144,7 @@ plotPedLines <- function(ancs,maxGen,lwd){
 plotNonSpPed <- function(ancs,mar=c(3,0,3,0)){
 	nGen <- length(unique(ancs[,2]))
 	par(mar=mar)
-	plot(0,type='n',xlim=c(0,1.1),ylim=c(1,nGen),xlab="",ylab="",main="",xaxt='n',yaxt='n',bty='n')
+	plot(0,type='n',xlim=c(0,1.3),ylim=c(1,nGen+0.2),xlab="",ylab="",main="",xaxt='n',yaxt='n',bty='n')
 	for(n in nGen:1){
 		if(n == nGen){
 			x <- cumsum(rep((1/(2^(nGen-1)+1)),2^(nGen-1)))
@@ -165,10 +166,10 @@ plotNonSpPed <- function(ancs,mar=c(3,0,3,0)){
 				})
 		}
 	}
-	text(x=1,y=(nGen+1)/2,labels="time",cex=2)
-	text(x=1,y=1,labels="present",cex=2)
-	text(x=1,y=nGen,labels="past",cex=2)
-	segments(x0=1,x1=1,y0=1+0.2,y1=(nGen+1)/2-0.1)
-	arrows(x0=1,x1=1,y0=(nGen+1)/2+0.1,y1=nGen-0.2)
+	text(x=1.2,y=(nGen+1.2)/2,labels="time",cex=2)
+	text(x=1.2,y=1,labels="present",cex=2)
+	text(x=1.2,y=nGen+0.1,labels="past",cex=2)
+	segments(x0=1.2,x1=1.2,y0=1+0.2,y1=(nGen+1)/2-0.1)
+	arrows(x0=1.2,x1=1.2,y0=(nGen+1)/2+0.2,y1=nGen-0.1)
 	return(invisible("plotted"))
 }

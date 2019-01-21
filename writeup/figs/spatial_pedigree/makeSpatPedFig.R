@@ -61,20 +61,22 @@ pdf(file="tmp.pdf")
 	plotPedLines(ancs,maxGen=maxGen,lwd=1)
 dev.off()
 
-pdf(file="../spatial_pedigree.pdf",width=8,height=8)
-	plotdev()
-dev.off()
-
-# pdf(file="../1spatial_pedigree.pdf",width=16,height=8)
-	# par(mfrow=c(1,2))
-	# plotNonSpPed(ancs)
+# pdf(file="../spatial_pedigree.pdf",width=8,height=8)
 	# plotdev()
 # dev.off()
 
+# pdf(file="../pedigree.pdf",width=8,height=8)
+	# plotNonSpPed(ancs,mar=c(2,0,3,0))
+# dev.off()
 
-pdf(file="../pedigree.pdf",width=8,height=8)
-	plotNonSpPed(ancs,mar=c(2,0,3,0))
+
+pdf(file="../spatial_pedigree.pdf",width=16,height=8)
+	par(mfrow=c(1,2))
+	plotNonSpPed(ancs,mar=c(4,0,4,0))
+	plotdev()
 dev.off()
+
+
 
 
 file.remove("tmp.pdf")
