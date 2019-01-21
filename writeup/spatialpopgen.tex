@@ -471,21 +471,20 @@ $n(n-1)/2$ divided by the number of observed sibling pairs
 provides an estimate of inbreeding effective population size, $N_e = N/\E[X(X-1)]$.
 In other words, we should be able to use relatedness to estimate population size
 up to the factor $\E[X(X-1)]$, that depends on demographic details.
-Other sources of data are necessary to estimate this demographic factor,
-but at least this is all we need to know -- 
-a strong central limit theorem of coalescent theory \citep{mohle}
-ensures that diversity in randomly mating populations 
-mostly does not depend on other details.
+% Other sources of data are necessary to estimate this demographic factor,
+% but at least this is all we need to know -- 
+% a strong central limit theorem of coalescent theory \citep{mohle}
+% ensures that diversity in randomly mating populations 
+% mostly does not depend on other details.
 Common ancestors -- i.e., coalescences --
 further back in time are simply more remote sibling pairs.
 so this calculation applies to estimates further in the past.
 Since genetic estimates of geographically local population densities
 must necessarily come from rates of coalescence (or lack thereof),
-it is natural to expect we will similarly estimate 
-geographic maps of ``effective population density'',
-perhaps equal to actual local population density scaled by $\E[X(X-1)]$ as above.
-This has been done for homogeneous space (see \citep{barton-depaulis-etheridge}),
-but precise notions for inhomogeneous geographies are elusive.
+it might be natural to define the ``effective population density''
+as the actual local population density scaled by a factor analogous to $\E[X(X-1)]$.
+This has been done for homogeneous space (e.g., \citep{barton-depaulis-etheridge}),
+but it is less clear what the correct definition is for inhomogeneous geography.
 % In spatial models of populations on grids,
 % diversity depends on much more opaque summaries of the demographic process
 % \citep{wright_ibd, sawyer1977, rousset1997},
@@ -495,8 +494,31 @@ but precise notions for inhomogeneous geographies are elusive.
 % can be difficult to estimate for random-mating populations,
 % but nearly impossible in spatial populations.
 
-Leaving aside these caveats about overall scaling,
-we expect to be able to at least estimate \textit{relative} population density across space.
+This discussion is mostly illustrative, because
+if a dataset does contain very many siblings,
+nonrandom sampling is probably the cause.
+it is more common to estimate (effective) population size
+using mean nucleotide diversity, $\pi$.
+the mean density of nucleotide differences between two randomly sampled chromosomes.
+Since each such difference is the result of a mutation
+sometime since the chromosomes' most recent common ancestor at that location,
+$\pi$ is equal to twice the mean time to most recent common ancestor
+within the sample, multiplied by the mutation rate.
+In other words, if the per-nucleotide mutation rate is $\mu$,
+and $2T$ is the mean length of a path through the pedigree
+along which two samples have inherited a random bit of genome
+from their most recent common ancestor,
+then $\pi \approx 2 T \mu$.
+The quantity $T$ can be an interesting summary of the pedigree;
+what does it have to do with population size?
+In a randomly mating, diploid population of constant effective size $N_e$,
+the discussion above implies that $T = 2N_e$.
+However, this only clearly provides a good estimate of $N_e$
+if the population has been relatively stable over this period of time.
+
+Given the practical difficulties in obtaining unbiased estimates of proportion of close relatives,
+and the dependence of $T$ on long-ago events,
+how can we hope to estimate \emph{local} population densities?
 To see what signature varying population density leaves 
 on the spatial pedigree and patterns of genetic variation
 within a region,
@@ -517,17 +539,15 @@ a smaller pool of possible parents
 makes it more likely those to individuals share at least one parent in common.
 Because individuals in the sparsely populated valley have more shared ancestors 
 in the more recent past, 
-we expect samples from that valley to be identical (by descent)
-on larger portions of their genomes,
-and for the sample as a whole to display lower heterozygosity 
+we expect the two chromosomes of samples from that valley to be more closely related,
+i.e., to have lower heterozygosity 
 (Figure \ref{pop_density}\subref{valley_het}).
 
 Following the above line of reasoning,
 the local density of close relatives 
 should reflect local population size.
 Consider two individuals that are geographically close enough to plausibly be siblings.
-Loosely following the argument above,
-the chance that they \textit{are} siblings is inversely proportional to
+The chance that they \textit{are} siblings is inversely proportional to
 the number of individuals who could plausibly be their parents.
 This number of ``possible parents'' is proportional to
 Wright's neighborhood size, $N_\text{loc} = 4 \pi \rho \sigma_e^2$ \citep{wright1946isolation},

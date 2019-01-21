@@ -98,17 +98,29 @@ def plot_admixture(ts, time, samples, admixture):
     return fig
 
 
-num_gens = 301
+# num_gens = 301
+# treefile = sps.run_slim(script = script,
+#                         seed = 23, 
+#                         SIGMA = 4.0,
+#                         W = 50.0, 
+#                         K = 5.0,
+#                         NUMGENS = num_gens,
+#                         BURNIN=1)
+# outbase = ".".join(treefile.split(".")[:-1])
+# num_samples = 200
+# num_times = 5
+
+num_gens = 901
 treefile = sps.run_slim(script = script,
                         seed = 23, 
-                        SIGMA = 4.0,
+                        SIGMA = 3.0,
                         W = 50.0, 
                         K = 5.0,
                         NUMGENS = num_gens,
                         BURNIN=1)
 outbase = ".".join(treefile.split(".")[:-1])
-num_samples = 200
-num_times = 5
+num_samples = 20
+num_times = 3
 
 ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
