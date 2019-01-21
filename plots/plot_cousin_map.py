@@ -32,32 +32,35 @@ def plot_cousins(ts, focal_individuals, max_hops = 9):
     """
     xmax = max([ind.location[0] for ind in ts.individuals()])
     ymax = max([ind.location[1] for ind in ts.individuals()])
-    fig = plt.figure(figsize=(9, 9 * ymax / xmax))
+    fig = plt.figure(figsize=(6, 6 * ymax / xmax))
     ax = fig.add_subplot(111)
     plt.axis('equal')
     ax.set_xlim(0, xmax)
     ax.set_ylim(0, ymax)
+    sps.plot_density(ts, 0, ax, scatter=False)
 
     relnesses = [ts.relatedness(ts.individual(u).nodes, max_hops) for u in focal_individuals]
     locs = ts.individual_locations()
     alive = ts.individuals_alive(0)
     # base locations
-    circles = ax.scatter(locs[alive, 0], locs[alive, 1], 
-                         s=2,
-                         edgecolors='none', 
-                         alpha=0.5,
-                         facecolors='c')
-    colors = ['g', 'r', 'm', 'y']
-    for x, col in zip(relnesses, colors):
+    # ax.scatter(locs[alive, 0], locs[alive, 1], 
+    #            s=2,
+    #            edgecolors='none', 
+    #            alpha=0.5,
+    #            facecolors='black')
+    colors = sps.four_colors
+    markers = sps.four_markers
+    for x, col, mark in zip(relnesses, colors, markers):
         ind_x = np.repeat(np.inf, ts.num_individuals)
         for u in np.where(x)[0]:
             ind_x[ts.node(u).individual] = min(ind_x[ts.node(u).individual], x[u])
         ind_x[ind_x == np.inf] = np.nan
-        circles = ax.scatter(locs[alive, 0], locs[alive, 1], 
-                             s=1000 * (2 ** (- ind_x[alive])), 
-                             edgecolors='none', 
-                             alpha=0.5,
-                             facecolors=col)
+        ax.scatter(locs[alive, 0], locs[alive, 1], 
+                   s=1000 * (2 ** (- ind_x[alive])), 
+                   marker = mark,
+                   edgecolors='none', 
+                   alpha=0.75,
+                   facecolors=col)
 
     return fig
 

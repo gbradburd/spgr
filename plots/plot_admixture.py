@@ -18,7 +18,7 @@ if len(sys.argv) != 2:
 
 script = sys.argv[1]
 
-def draw_pie(ax, X, Y, ratios, size = 200, piecolors=['c', 'm']): 
+def draw_pie(ax, X, Y, ratios, size = 100, piecolors=["#ca0020", "#0571b0"]): 
     """
     Function to draw pie charts on map
     from https://stackoverflow.com/questions/51409257/exploding-wedges-of-pie-chart-when-plotting-them-on-a-map-python-matplotlib
@@ -80,11 +80,16 @@ def plot_admixture(ts, time, samples, admixture):
     ymax = max(locs[:,1])
 
     fig = plt.figure(figsize=(6, 6 * ymax / xmax))
-    colors = ['b', 'c', 'm', 'y']
     ax = fig.add_subplot(111)
-    ax.scatter(locs[alive, 0], locs[alive, 1],
-               s=10, 
-               c='black')
+    plt.axis('equal')
+    ax.set_xlim(0, xmax)
+    ax.set_ylim(0, ymax)
+    sps.plot_density(ts, time, ax)
+    # ax.scatter(locs[alive, 0], locs[alive, 1],
+    #            s=2, 
+    #            alpha = 0.5,
+    #            edgecolors='none',
+    #            facecolors='black')
     for k, indiv in enumerate(samples):
         admix = admixture[k, :]
         admix /= sum(admix)
@@ -92,9 +97,6 @@ def plot_admixture(ts, time, samples, admixture):
 
     return fig
 
-
-# for script in ("valleys.slim", "flat_map.slim"):
-## pass in script on command-line
 
 num_gens = 301
 treefile = sps.run_slim(script = script,
@@ -106,15 +108,16 @@ treefile = sps.run_slim(script = script,
                         BURNIN=1)
 outbase = ".".join(treefile.split(".")[:-1])
 num_samples = 200
+num_times = 5
 
 ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-for time in np.floor(np.linspace(0, num_gens - 1, 5)):
+for time in np.floor(np.linspace(0, num_gens - 1, num_times)):
     datafile = outbase + ".{}.admixture.txt".format(time)
     if os.path.isfile(datafile):
         print(datafile, "already exists.")
         data = np.loadtxt(datafile)
-        samples = data[:, 0]
+        samples = np.array([np.int(u) for u in data[:, 0]])
         admixture = data[:, 1:]
     else:
         print(datafile, "does not exist, computing.")

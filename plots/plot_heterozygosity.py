@@ -51,7 +51,6 @@ def plot_heterozygosity(ts, het, targets):
     xmax = max(locs[:,0])
     ymax = max(locs[:,1])
     fig = plt.figure(figsize=(6, 6 * ymax / xmax))
-    colors = ['#693C01' if h > 0 else '#473E7A' for h in scaled_het]
     cmap = plt.get_cmap("PRGn")
     ax = fig.add_subplot(111)
     ax.scatter(locs[targets, 0], locs[targets, 1],
@@ -78,20 +77,20 @@ ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
 num_targets = 100
 het_time = 0
-hetfile = outbase + ".heterozygosity.txt"
-if os.path.isfile(hetfile):
-    print(hetfile, "already exists.")
-    data = np.loadtxt(hetfile)
+datafile = outbase + ".heterozygosity.txt"
+if os.path.isfile(datafile):
+    print(datafile, "already exists.")
+    data = np.loadtxt(datafile)
     het = data[:, 0]
     targets = np.array([np.int(u) for u in data[:, 1]])
     assert(max(np.abs(targets - data[:, 1])) == 0)
     if len(targets) != num_targets:
-        print("Number of targets does not match saved file" + hetfile)
+        print("Number of targets does not match saved file" + datafile)
 else:
-    print(hetfile, "does not exist, computing.")
+    print(datafile, "does not exist, computing.")
     het, targets = compute_heterozygosity(ts, het_time, num_targets)
     data = np.column_stack([het, targets])
-    np.savetxt(hetfile, data)
+    np.savetxt(datafile, data)
 
 fig = plot_heterozygosity(ts, het, targets)
 fig.savefig(outbase + ".heterozygosity.pdf")
