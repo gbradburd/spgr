@@ -696,13 +696,13 @@ than on that in the entire range.
             Populations have local density-dependent regulation
             within two valleys with high local carrying capacity (indicated by contours),
             separated and surrounded by areas with lower carrying capacity.
-            \textbf{(below)} Relative heterozygosity of a sample of 100 individuals across the range.
-            Observed heterozygosities of diploids were standardized 
-            by subtracting the mean and dividing by the SD;
-            circle sizes are proportional to the resulting absolute value,
-            and circle color indicates the sign (magenta: negative, cyan: positive).
+            The valley on the left has carrying capacity about twice as large as the one on the right.
+            \textbf{(below)} Heterozygosity of a sample of 100 individuals across the range.
+            Circle sizes are proportional to heterozygosity,
+            and circle color indicates relative values
+            (green: above the mean; white: mean; purple: below the mean).
             Low heterozygosities occur on the edges of the range,
-            and average about 40\% lower in the smaller valley on the right.
+            and average about 40\% lower in the lower-density valley on the right.
 		}
         \label{pop_density}
 \end{figure}
@@ -806,12 +806,58 @@ Furthermore, as with variation in population density,
 measured dispersal of modern individuals in a handful of years
 may not reflect historical averages \citep{WhitlockMcCauley1999}.
 
-compare BDE vs Rousset expressions?
+We use $\sigma$ to denote the quantity,
+that one might get, for instance, by collecting a large number of germinating seeds
+and averaging the distance from those seeds to their two parents.
+This differs subtly from the quantity most naturally estimated from genetic data,
+called ``effective dispersal distance'', and denoted $\sigma_e$.
+Roughly speaking, $\sigma_e$ is
+the mean distance between parent and offspring along a path back through the pedigree.
+The situation is analogous to population size:
+lineages along which genetic material is passed are not an unbiased sample of all dispersal events;
+they are weighted by their contribution to the population.
+For instance, if there is strong local intra-specific competition,
+individuals that dispersed farther from their parents (and their siblings)
+may be more likely to reproduce and therefore more likely to be ancestors of today's samples.
+On the other hand, if there is substantial local adaptation,
+then many individuals may be dispersing to habitats dissimilar to that of their parents
+and are unlikely to transmit genetic material to the next generation
+because they are maladapted to the local environment
+\citep[for a review, see][]{wangbradburd2014}.
 
-talk about disentangling N and rho or not
+% compare BDE vs Rousset expressions?
+% talk about disentangling N and rho or not
 
-sigma effective
+Most work on estimating $\sigma_e$ has used variations on Malec\'ot's formula \citep{malecot}
+for the probability of identity between two individuals separated by distance $x$
+in an infinite, homogeneous population.
+A similar formula was derived by \citet{ringbauer2017inferring}
+for the expected number of long shared haplotypes between two individuals as a function of distance
+(also see \citet{alasadi2018estimating}).
+The formula can be derived in various ways 
+\citep{sawyer1977, barton_depaulis_etheridge, rousset_1997},
+but is composed of two parts: 
+the time since most recent common ancestor of the two individuals at a random point on the genome
+depends on
+(a) how long has it been since the two last had ancestors that lived near to each other,
+and (b) how long before that did they actually share an ancestor.
+In deriving Malec\'ot's formula, the second stage is assumed to act as in a randomly mating population
+with some local effective size,
+and it is not known to what degree this assumption affects the results.
+However, $\sigma_e$ enters these equations in particularly unhelpful ways,
+at least in two dimensions.
+Using the asymptotic form of Malec\'ot's equation,
+\citet{rousset} proposed the slope of $F_{ST}$ against the logarithm of distance
+as an estimator for $4 \pi \rho \sigma_e^2$,
+where $\rho$ is the effective population density;
+if the latter is known than this provides an estimate of $\sigma_e$.
 
+Suppose we were given the genealogical tree relating many samples at one nonrecombining locus
+(say, the mitochondria) and the spatial locations of these samples.
+If spatial movement of each ancestor was independent of all others,
+then $\sigma$ could be inferred using standard methods in phylogenetics.
+\citet{avise} made this approximation and obtained reasonable estimates for dispersal distance
+in several taxa.
 
 
 %It may be helpful to think of the dispersal distance
@@ -830,15 +876,18 @@ sigma effective
 %%%%%%%%%%%%%%
 \subsubsection{Population flux}
 
-The most common summary statistic of dispersal in population genetics
-is the average migration rate between a pair of discrete, isolated demes.
-In continuous space, the analogue of this quantity
-is the number of dispersal events that cross
-a given boundary each year;
-i.e., how many individuals are born each year whose parents
+Dispersal ability is not, of course, constant across real landscapes, and
+we would often like to measure, somehow, the ``amount of gene flow'' across some barrier
+or between two geographic regions.
+This would be the geographical analogue of
+the ``migration rate'' between discrete, isolated populations.
+Given a boundary (i.e., a line on the map),
+it is natural ask for the number of dispersal events that cross
+a given boundary each year.
+How many individuals are born each year whose parents
 were born on the other side of a given boundary?
-We call this quantity the \textit{population flux} across the boundary,
-and it is a useful concept for investigating connectivity between different areas
+We call this quantity the \textit{population flux} across the boundary.
+The concept is useful for investigating connectivity between different areas
 and the role of the landscape in shaping patterns of dispersal.
 For instance,
 we might be interested in the flux across a ridgeline between two valleys
@@ -849,41 +898,37 @@ e.g., it may be easier to disperse downhill than uphill,
 downwind than upwind,
 or down-current than up-current.
 
+For instance, Figure~\ref{fig:dispersal}C
+shows the number of dispersal events crossing two lines on our simulated landscape
+over a few generations.
+The left-hand line goes through the denser valley, 
+and so has a large flux in each direction.
+The right-hand line goes along the edge of the sparser valley,
+and so has lower flux overall, and more right-to-left flux
+due to the higher population density to the right of the line.
+
 As before, if we had complete knowledge of the spatial pedigree,
 we could calculate the flux across any line simply by counting the number of
 parent-offspring pairs that span it.
 In practice, we must rely on observations from genetic data,
 which introduces two complications.
-First, in a given dataset, it is rare to find in one individual
+First, in a given dataset, it is rare to find any one individual
 that is a direct ancestor of another in the dataset
 (apart from perhaps some parent-child relationships).
 Even with historical data (e.g., ancient DNA),
 ancient individuals are unlikely to be direct genetic ancestors of modern samples,
 and instead are likely to share common genetic ancestors with modern samples.
-As a result, we almost never infer dispersal events,
-only coalescences between pairs of individuals.
+As a result, we almost never infer a direct chain of dispersal events,
+only dispersal since coalescence events.
 Therefore, the problem of inferring population flux from genetic or genealogical data
-cannot be completely disentangled from inferring population density (discussed above).
-
-The second complication is analogous to the problem of effective population size:
-the lineages along which genetic material is passed are not an unbiased sample of all dispersal events;
-they are weighted by their contribution to the population.
-For instance, if there is strong local intra-specific competition,
-individuals that dispersed farther from their parents (and their siblings)
-may be more likely to reproduce and therefore be represented in the pedigree.
-On the other hand, if there is substantial local adaptation,
-then many individuals may be dispersing to habitats dissimilar to that of their parents
-and are unlikely to transmit genetic material to the next generation
-because they are maladapted to the local environment
-\citep[for a review, see][]{wangbradburd2014}.
-With sufficient sampling,
-it may be possible to get an estimate of flux in the modern sample
-that is only minimally affected by these biases.
-For example, it may be possible to sample maladapted individuals
-before they are picked off,
-or to sample individuals in a generation before reproduction.
-However, in general, the difference between effective flux and actual flux
-will be accentuated the farther back in time one looks.
+cannot be completely disentangled from inferring population density.
+We can use these observations of coalescences to learn about the flux across a given line:
+across a barrier to dispersal,
+the average time to coalescence for pairs of individuals on opposite sides of the line
+is longer than that between individuals on the same side.
+Lower population flux means that individuals on opposite sides of a line share ancestors
+less frequently.
+%Also, a barrier means longer across but shorter within coal times \cite{ringbauer2018estimating}.
 
 %Effects of sampling design: suppose a big pop is next to a small pop,
 %since lineages go to the big pop quickly, might need a lot of samples in the small pop
@@ -898,19 +943,16 @@ will be accentuated the farther back in time one looks.
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_cousins.pdf}
-        \caption{cousin map for focal individuals}
         \label{cousin_map}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_ibd.pdf}
-        \caption{\todo{ibd map for 4 individuals}}
         \label{ibd}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_line_flux.pdf}
-        \caption{flux across a valley}
         \label{valleyflux}
     \end{subfigure}
         \caption{
@@ -934,30 +976,28 @@ will be accentuated the farther back in time one looks.
         \label{fig:dispersal}
 \end{figure}
 
-We can use these observations of coalescences to learn about the flux across a given line:
-across a barrier to dispersal,
-the average time to coalescence for pairs of individuals on opposite sides of the line
-is longer than that between individuals on the same side.
-Lower population flux means that individuals on opposite sides of a line share ancestors
-less frequently.
-%Also, a barrier means longer across but shorter within coal times \cite{ringbauer2018estimating}.
+Flux across a line is related to mean dispersal distance, $\sigma$, discussed above.
+The expected flux across a straight boundary in a homogeneous area,
+per unit time and per unit of boundary length,
+is equal to the birth rate per unit area multiplied by $2 \sigma / \pi$
+\citep{buffon1777},
+so estimates of flux can be converted to estimates of dispersal distance.
 
-%relationship to dispersal: birth rate times population density times length of boundary times $\sigma/\sqrt{2\pi}$ in each direction
-%if dispersal is Gaussian and boundary is straight
-%If the probability of dispersing distance at least $x$ transverse to the boundary is $F(x)$,
-%in a homogeneous environment with symmetric dispersal,
-%and population density $\rho$,
-%the number of individuals crossing the boundary
-%in a particular direction
-%per unit of boundary length
-%is $\int_0^\infty F(x) dx$, where in the integral, $x$ denotes the distance from the boundary.
-%The mean absolute distance dispersed in a particular direction
-%(e.g., mean E-W displacement if barrier runs N-S)
-%is $\mu = \int_0^\infty x F'(x) dx = \int_0^\infty F(x) dx$.
-%If dispersal is equally likely in any direction,
-%then $\mu = \E{|X|}$ where $X$ is the dispersal displacement,
-%since $\sigma^2 = \E{X^2}$, if $X$ is Gaussian then...
-%\plr{to fix this; this is Buffon's needle}
+
+% The expected horizontal distance between two ends of a stick at random angle
+% of length $L$ is 2 L / pi = (2/pi) \int_0^{\pi/2} L cos \theta d \theta,
+% so if births happen at rate u per unit area and time
+% and dispersal occurs at a random angle with distance L
+% then the rate at which dispersals cross the line is u * 2 E[L] / pi.
+
+
+How does flux relate to the ``migration rate'' estimated by discrete-population models?
+For instance, suppose we have sampled individuals from two locations within a species range.
+These sampling locations may be separated by sufficient habitat
+that no individual is ever found in one location
+that is the direct offspring of an individual living in the other,
+and so speaking of the number of migrants from one to the other does not make sense.
+However, we would still like to be able to quantify the gene flow between the two.
 
 \todo{tidy and conclude}
 
