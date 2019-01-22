@@ -929,19 +929,21 @@ so estimates of flux can be converted to estimates of dispersal distance.
     \end{subfigure}
         \caption{
             \textbf{(top)} Map of close genealogical relatives of four focal individuals.
-            Geographic locations of all individuals across about 25 generations are shown as small cyan dots;
-            close relatives are shown as larger dots, with one color for each focal individual,
+            Geographic locations of 
+            genealogical relatives are shown as larger dots, with one color for each focal individual,
             with circle area proportional to the expected proportion of genome shared
             (i.e., $2^{-k}$, where $k$ is the number of steps in the shortest path through the pedigree to the focal individual).
             \textbf{(middle)}
-            Genetic against geographic distance between each of four focal individuals (one color each)
+            Genetic against geographic distance between each of four focal individuals
+            (colors the same as in the top figure)
             and 100 other individuals, from the same map as above.
-            Genetic distance is calculated as expected sequence divergence.
-            Two of the individuals are from the left third of the range (blue and cyan),
-            and the others (magenta and yellow) are from the right third of the range.
+            Genetic distance (calculated as expected sequence divergence)
+            increases with geographic distance within and between each valley at similar rates,
+            but levels off within each valley at different values
+            due to different population sizes.
             \textbf{(bottom)}
             Flux across two boundaries on the same continuous map as above.
-            All individuals across about 8 generations are shown as small cyan dots,
+            All individuals across about 8 generations are shown as small dots,
             and every parent-child relationship that crosses each of the dotted lines
             is illustrated by an arrow, colored either red (if it crosses left-to-right) or blue (right-to-left).
         }
@@ -1026,17 +1028,14 @@ start with individuals sampled in the present day,
 then, looking backwards in time,
 to ask where in space they have inherited their genomes from, 
 i.e., where their ancestors lived.
-This shifts perspective from moving forwards in the spatial pedigree
-(past to present),
-to moving backwards in time through it.
 Because the signal in genetic data comes from 
 shared ancestry and coalescence in the pedigree,
 thinking from this reverse-time perspective 
-is essential to interpreting genetic data.
+is useful in interpreting genetic data.
 However, summaries of how ancestry spreads across space 
 through the pedigree can be important in their own right.
-For example, humans often have a substantial interest 
-in estimating the locations of their own ancestors back in time.
+For example, many humans are interested
+in the locations of their own ancestors back in time.
 More generally,
 we are often also interested in the partitioning of genetic diversity across space,
 e.g.,
@@ -1049,23 +1048,38 @@ could also be informative about the origins and mechanisms of selective sweeps.
 %%%%%%%%%%
 \subsubsection{Geographic distribution of ancestry}
 
-Consider an individual living in a population in a geographic region.
-The density of the population back through time and 
-dispersal distance of the ancestors in that individual's pedigree 
-together determine the rate of spread of that individual's ancestry 
-across space back through time.
+As one looks further back in time,
+the geographic distribution of an individual's ancestors
+is determined by the history of population size changes and movements.
 At any point in the past,
-each portion of that individual's genome can be associated 
+each portion of each individual's genome can be associated 
 with the ancestor from whom they inherited it.
 Their genetic ancestry can therefore be apportioned across space according
 to the locations of the ancestors from whom they inherited their genome.
 There are a number of natural questions that arise from a description of this process.
-
-For example, we can ask how much of an average individual's ancestry is still within a given region, at some point in the past?
+How much of an average individual's ancestry is still within a given region, 
+at some point in the past?
 How long in the past was it since a typical individual in one location had an ancestor
-in another geographic region (say, the next valley over).
-How far back in time do you have to go before the average proportion of ancestry that an individual inherits
+in another geographic region (say, the next valley over)?
+How far back in time do you have to go before 
+the average proportion of ancestry that an individual inherits
 from the local region they live in drops below (say) 90\%?
+
+This is depicted in a simulation in Figure~\ref{ancestry_spread},
+showing the spatial distribution of \emph{all} ancestors of four individuals
+at several points back in time.
+As we look further back in time,
+we can see the ``cloud of ancestry'' spread out across space
+and become more diffuse.
+The spread is diffusive --
+the displacement of a given $n^\text{th}$-generation ancestor 
+has standard deviation $\sigma_e \sqrt{n}$,
+as long as this is small relative to the width of the region.
+Not shown on the map are the many genealogical ancestors
+from which the focal individuals have not inherited genome --
+even by the second figure,
+each focal individual is genealogically descended from nearly everyone alive,
+even those living in the other valley \citep{chang1999}.
 
 \todo{tidy and conclude}
 
@@ -1079,11 +1093,13 @@ from the local region they live in drops below (say) 90\%?
             at 
             \textbf{(top)} one, 
             \textbf{(middle)} fifteen, and
-            \textbf{(bottom)} seventy-five generations in the past,
-            all individuals from whom the four individuals have inherited genome are denoted by a circle,
+            \textbf{(bottom)} seventy-five generations in the past.
+            All individuals from whom the four individuals have inherited genome are denoted by a circle,
             with one color for each individual,
             and with circle area proportional to the amount of genome inherited.
             The landscape is the same as in Figure~\ref{fig:dispersal}.
+            Since the simulation uses overlapping generations,
+            ancestors of different degrees are present at the same time.
             \g{I say keep 1, 20, and 75.  If you go back farther, 
             	does it get even clearer that the pedigrees have ``forgotten" which side of the ridge the modern inds are on? 
                 If so, that might make the point more clearly.}
@@ -1092,17 +1108,14 @@ from the local region they live in drops below (say) 90\%?
         \label{ancestry_spread}
 \end{figure}
 
-%%%%%%%%%%%%
-\subsubsection{Geographic distribution of common ancestors}
-
-Take a lineage, follow it back through time
-the chance that lineage is in somebody historical is proportional to their long-term fitness
-suppose you do that for 2 individuals,
-what are the chances that those two coalesce in a particular individual
-that's complicated,
-but an approximation:
-consider a pair of siblings - the chance that those 2 lineages coalesce in a parent of those 2 siblings could be approximated by the product of the long-term fitnesses of those siblings
-and a function of the number of offspring of the parent.
+Although Figure~\ref{ancestry_spread} does not distinguish ancestors \emph{shared} by two of the focal individuals,
+it is clear that these occur in the overlap between their two clouds of ancestry.
+For instance, any ancestors shared by this point between the pink and purple individuals
+must be in the right-hand valley,
+and it is these that tell us about relative population densities in the two valleys.
+In fact, we know from Figure~\ref{pop_density}B that these recent shared pink--purple ancestors
+must represent a larger fraction of the genome
+than do the orange--green shared ancestors.
 
 \todo{tidy and conclude}
 %This is neat but unclear what it means outside of human-centric whatnot.
@@ -1134,31 +1147,45 @@ and a function of the number of offspring of the parent.
 %\end{figure}
 
 %%%%%%%%%%%%%%
-\subsubsection{(Relative) genetic differentiation}
+\subsection{Relative genetic differentiation}
 
 The question of how genetic variation is partitioned across
 geography is a common and intuitively appealing one,
 albeit somewhat slippery in practice.
+The basic idea is to quantify 
+how much \emph{more} likely nearby individuals are 
+to share genetic variation than individuals in the population as a whole.
 The most common measure of this quantity is $F_{ST}$ \citep{Wright1951},
-which measures how much more likely nearby individuals are to share genetic variation than individuals in the population as a whole.
-Concretely,
-the ratio of mean coalescence time within subpopulations
-to that within the entire population measures how closely related
-nearby individuals are relative to those in the entire population.
-\cite{slatkin_1991inbreeding} 
-showed that 1 minus this ratio is one way to interpret $F_{ST}$.
-This relative genetic differentiation is determined by differing local population densities
-and migration fluxes as discussed above:
-relative differentiation is determined by the tension between global mixing (due to dispersal)
-and local coalescence (due to small population size).
-Looking at how ancestry spreads across time and space,
-we can see this by looking at how quick it spreads versus coalesces.
+which can be thought of as estimating
+one minus the ratio of mean coalescence time within subpopulations
+to that within the entire population \citep{slatkin_1991inbreeding}.
+This normalization by mean coalescence time in the entire population
+that makes this relative measure comparable across populations of different sizes.
+In practice, 
+relative genetic differentiation is determined by the tension between 
+geographic mixing (due to population flux between areas)
+and local coalescence (determined by population size).
+
+As discussed above,
+increased genetic similarity between nearby individuals
+is due to relatively recent shared ancestors.
+In the more remote past, each individual's anestors are distributed across
+all of geography,
+so that the long-ago portion of the pedigree looks like that of a randomly mating population.
+These two phases -- recent spatial autocorrelation and distant random mating --
+were termed the ``scattering'' and ``collecting'' phases by \citet{wilkins2004separationoftimescales},
+as moving back through time, first lineages scatter, and then gradually meet each other.
+\plr{(is that the right way round?)}
+Relative genetic differentiation
+is determined by the likelihood that coalescence between two nearby individuals
+occurs duing the scattering phase
+-- i.e., by the length of time that two spatial clouds of ancestry of Figure \ref{ancestry_spread}
+are correlated with each other,
+relative to the local effective population size.
+
+
 
 \todo{tidy and conclude}
-
-\g{refer to ancestry spread figure to build intuition 
-for how ancestors can``forget" where their descendants are, 
-leading to an asymptote in ibd}
 
 %\begin{figure}[ht]
 %    \centering
@@ -1199,19 +1226,11 @@ leading to an asymptote in ibd}
 %%%%%%%%%%
 \subsection{How have things changed over time?}
 
-Each of the questions discussed above --
-where organisms are;
-how they move;
-and where their ancestors were
--- has been introduced under the assumption of a static world
-where species' distributions,
-the density of individuals within those species,
-the dispersal patterns of those individuals,
-and the landscape itself all remain constant.
-In empirical systems,
-these assumptions are all likely to be broken,
-often drastically so.
-Species are expanding into previously unoccupied territory all the time.
+Thus far, we have mostly assumed a static world
+in which species' geographic distributions,
+individual's dispersal patterns,
+and the landscape itself all remain constant over the relevant time scale.
+The assumptions are often broken by real systems.
 For example, 
 high-latitude tree populations may only have been established
 following the retreat of the glaciers,
