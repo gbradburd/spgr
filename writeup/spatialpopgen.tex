@@ -1002,13 +1002,12 @@ However, we would still like to be able to quantify the gene flow between the tw
 \todo{tidy and conclude}
 
 %%%%%%%%%%%%%%
-\subsubsection{Flux surfaces}
+\subsubsection{Maps of local dispersal}
 
-\todo{read through and edit}
 
 Fluxes across lines through the landscape
 describe something about population movement,
-but are not as satisfying or relevant to researchers
+but are not as satisfying or relevant
 as a map that depicts regions with greater or lesser degrees of population movement.
 In heterogeneous environments,
 it is clearly desirable to be able to depict local population movement 
@@ -1030,29 +1029,25 @@ For example, the children of a parent
 living in a long valley that follows a southwest-to-northeast axis 
 and is flanked by impassable ridges might be found up-valley 
 or down-valley in equal proportion, 
-leading to no mean direction of dispersal, 
+leading to zero mean dispersal,
 but a high covariance along the axis of the valley.
+\plr{(gideon: lotic?!?)}
 Alternatively, the children of a parent in an lotic environment 
 might disperse more frequently down-current than up-current, 
 leading to a net downstream direction of travel.
 
-A way to summarize offspring distribution 
-using one or a few maps of scalar quantities would be to estimate, 
-at each location, the mean and the covariance of the parent-offspring displacement.
-The mean displacement would form a vector field over the map,
+To visualize this,
+we could then plot the mean displacement as a vector field over the map,
 where presence of a small arrow would denote some amount of mean bias in offspring dispersal.
-The covariance could be summarized by an overall mean distance and a degree of anisotropy, 
-or directional dependence.
-In principle, this map could be estimated using 
-spatial pedigree data from only two generations 
-(two generations are necessary because 
-multiple combinations of mean dispersal and covariance 
-could explain the spatial distribution of siblings or cousins, 
-so we would need to know the parental locations).
-However, in practice, it may be that 
-few species are sampled with sufficient spatial density, 
-or have sufficient numbers of offspring, 
-to distinguish the true signal of the landscape on offspring dispersal from noise.
+The covariance could be summarized as a field of small ellipses,
+whose radius in any particular direction would be equal to the variance in dispersal
+along that direction.
+Areas with longer-distance dispersal would have larger ellipses,
+while areas where dispersal is anisotropic would be visible as flattened ellipses.
+However, this visualization would not capture the frequency of ``long-distance'' dispersal events,
+which may be important in some species \citep{long_distance_dispersal}
+and can drive important differences in gene flow dynamics \citep{hallatschek}.
+
 
 %%%%%%%%%%%%%%
 \subsubsection{Related statistics}
