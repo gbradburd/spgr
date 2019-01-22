@@ -695,13 +695,13 @@ than on that in the entire range.
             Populations have local density-dependent regulation
             within two valleys with high local carrying capacity (indicated by contours),
             separated and surrounded by areas with lower carrying capacity.
-            The valley on the left has carrying capacity about twice as large as the one on the right.
+            The western valley has a carrying capacity about twice as large as that of the eastern valley.
             \textbf{(below)} Heterozygosity of a sample of 100 individuals across the range.
             Circle sizes are proportional to heterozygosity,
             and circle color indicates relative values
             (green: above the mean; white: mean; purple: below the mean).
             Low heterozygosities occur on the edges of the range,
-            and average about 40\% lower in the lower-density valley on the right.
+            and average about 40\% lower in the lower-density eastern valley.
 		}
         \label{pop_density}
 \end{figure}
@@ -865,11 +865,11 @@ or down-current than up-current.
 For instance, Figure~\ref{fig:dispersal}C
 shows the number of dispersal events crossing two lines on our simulated valley landscape
 over a few generations.
-The left-hand line goes through the denser valley, 
+The line on the west goes through the denser valley, 
 and so has a large flux in each direction.
-The right-hand line goes along the edge of the sparser valley,
-and so has lower flux overall, and more right-to-left flux
-due to the higher population density to the right of the line.
+The eastern line goes along the edge of the sparser valley,
+and so has lower flux overall, and more east-to-west flux
+due to the higher population density to the east of the line.
 
 As before, if we had complete knowledge of the spatial pedigree,
 we could calculate the flux across any line simply by counting the number of
@@ -945,7 +945,7 @@ so estimates of flux can be converted to estimates of dispersal distance.
             Flux across two boundaries on the same continuous map as above.
             All individuals across about 8 generations are shown as small dots,
             and every parent-child relationship that crosses each of the dotted lines
-            is illustrated by an arrow, colored either red (if it crosses left-to-right) or blue (right-to-left).
+            is illustrated by an arrow, colored either red (if it crosses west-to-east) or blue (east-to-west).
         }
         \label{fig:dispersal}
 \end{figure}
@@ -1066,7 +1066,7 @@ the average proportion of ancestry that an individual inherits
 from the local region they live in drops below (say) 90\%?
 
 This is depicted in a simulation in Figure~\ref{ancestry_spread},
-showing the spatial distribution of \emph{all} ancestors of four individuals
+showing the spatial distribution of \textit{all} ancestors of four individuals
 at several points back in time.
 As we look further back in time,
 we can see the ``cloud of ancestry'' spread out across space
@@ -1108,10 +1108,10 @@ even those living in the other valley \citep{chang1999}.
         \label{ancestry_spread}
 \end{figure}
 
-Although Figure~\ref{ancestry_spread} does not distinguish ancestors \emph{shared} by two of the focal individuals,
+Although Figure~\ref{ancestry_spread} does not distinguish ancestors \textit{shared} by two of the focal individuals,
 it is clear that these occur in the overlap between their two clouds of ancestry.
 For instance, any ancestors shared by this point between the pink and purple individuals
-must be in the right-hand valley,
+must be in the western valley,
 and it is these that tell us about relative population densities in the two valleys.
 In fact, we know from Figure~\ref{pop_density}B that these recent shared pink--purple ancestors
 must represent a larger fraction of the genome
@@ -1153,7 +1153,7 @@ The question of how genetic variation is partitioned across
 geography is a common and intuitively appealing one,
 albeit somewhat slippery in practice.
 The basic idea is to quantify 
-how much \emph{more} likely nearby individuals are 
+how much \textit{more} likely nearby individuals are 
 to share genetic variation than individuals in the population as a whole.
 The most common measure of this quantity is $F_{ST}$ \citep{Wright1951},
 which can be thought of as estimating
@@ -1164,7 +1164,7 @@ that makes this relative measure comparable across populations of different size
 In practice, 
 relative genetic differentiation is determined by the tension between 
 geographic mixing (due to population flux between areas)
-and local coalescence (determined by population size).
+and local coalescence (determined by population density).
 
 As discussed above,
 increased genetic similarity between nearby individuals
@@ -1173,9 +1173,8 @@ In the more remote past, each individual's anestors are distributed across
 all of geography,
 so that the long-ago portion of the pedigree looks like that of a randomly mating population.
 These two phases -- recent spatial autocorrelation and distant random mating --
-were termed the ``scattering'' and ``collecting'' phases by \citet{wilkins2004separationoftimescales},
+were termed the ``scattering'' and ``collecting'' phases  \citep{Wakeley1999,wilkins2004separationoftimescales},
 as moving back through time, first lineages scatter, and then gradually meet each other.
-\plr{(is that the right way round?)}
 Relative genetic differentiation
 is determined by the likelihood that coalescence between two nearby individuals
 occurs duing the scattering phase
@@ -1439,7 +1438,7 @@ or, more likely, the descendants of those sources of admixture are lost in the m
         \caption{
             Admixture proportions after a recent secondary contact.
             Each pie shows the proportion of a diploid individual's genomes
-            that inherit from the left (cyan) and right (magenta) valleys, respecitvely.
+            that inherit from the western (cyan) and eastern (magenta) valleys, respecitvely.
             \textbf{(top)} Eight generations, and
             \textbf{(bottom)} seventy-five generations 
             after a barrier along the top of the ridge is removed.
