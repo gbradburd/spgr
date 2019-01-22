@@ -1112,17 +1112,14 @@ even those living in the other valley \citep{chang1999}.
         \label{ancestry_spread}
 \end{figure}
 
-%%%%%%%%%%%%
-\subsubsection{Geographic distribution of common ancestors}
-
-Take a lineage, follow it back through time
-the chance that lineage is in somebody historical is proportional to their long-term fitness
-suppose you do that for 2 individuals,
-what are the chances that those two coalesce in a particular individual
-that's complicated,
-but an approximation:
-consider a pair of siblings - the chance that those 2 lineages coalesce in a parent of those 2 siblings could be approximated by the product of the long-term fitnesses of those siblings
-and a function of the number of offspring of the parent.
+Although Figure~\ref{ancestry_spread} does not distinguish ancestors \emph{shared} by two of the focal individuals,
+it is clear that these occur in the overlap between their two clouds of ancestry.
+For instance, any ancestors shared by this point between the pink and purple individuals
+must be in the right-hand valley,
+and it is these that tell us about relative population densities in the two valleys.
+In fact, we know from Figure~\ref{pop_density}B that these recent shared pink--purple ancestors
+must represent a larger fraction of the genome
+than do the orange--green shared ancestors.
 
 \todo{tidy and conclude}
 %This is neat but unclear what it means outside of human-centric whatnot.
@@ -1154,31 +1151,45 @@ and a function of the number of offspring of the parent.
 %\end{figure}
 
 %%%%%%%%%%%%%%
-\subsubsection{(Relative) genetic differentiation}
+\subsection{Relative genetic differentiation}
 
 The question of how genetic variation is partitioned across
 geography is a common and intuitively appealing one,
 albeit somewhat slippery in practice.
+The basic idea is to quantify 
+how much \emph{more} likely nearby individuals are 
+to share genetic variation than individuals in the population as a whole.
 The most common measure of this quantity is $F_{ST}$ \citep{Wright1951},
-which measures how much more likely nearby individuals are to share genetic variation than individuals in the population as a whole.
-Concretely,
-the ratio of mean coalescence time within subpopulations
-to that within the entire population measures how closely related
-nearby individuals are relative to those in the entire population.
-\cite{slatkin_1991inbreeding} 
-showed that 1 minus this ratio is one way to interpret $F_{ST}$.
-This relative genetic differentiation is determined by differing local population densities
-and migration fluxes as discussed above:
-relative differentiation is determined by the tension between global mixing (due to dispersal)
-and local coalescence (due to small population size).
-Looking at how ancestry spreads across time and space,
-we can see this by looking at how quick it spreads versus coalesces.
+which can be thought of as estimating
+one minus the ratio of mean coalescence time within subpopulations
+to that within the entire population \citep{slatkin_1991inbreeding}.
+This normalization by mean coalescence time in the entire population
+that makes this relative measure comparable across populations of different sizes.
+In practice, 
+relative genetic differentiation is determined by the tension between 
+geographic mixing (due to population flux between areas)
+and local coalescence (determined by population size).
+
+As discussed above,
+increased genetic similarity between nearby individuals
+is due to relatively recent shared ancestors.
+In the more remote past, each individual's anestors are distributed across
+all of geography,
+so that the long-ago portion of the pedigree looks like that of a randomly mating population.
+These two phases -- recent spatial autocorrelation and distant random mating --
+were termed the ``scattering'' and ``collecting'' phases by \citet{wilkins},
+as moving back through time, first lineages scatter, and then gradually meet each other.
+\plr{(is that the right way round?)}
+Relative genetic differentiation
+is determined by the likelihood that coalescence between two nearby individuals
+occurs duing the scattering phase
+-- i.e., by the length of time that two spatial clouds of ancestry of Figure \ref{ancestry_spread}
+are correlated with each other,
+relative to the local effective population size.
+
+
 
 \todo{tidy and conclude}
-
-\g{refer to ancestry spread figure to build intuition 
-for how ancestors can``forget" where their descendants are, 
-leading to an asymptote in ibd}
 
 %\begin{figure}[ht]
 %    \centering
@@ -1219,19 +1230,11 @@ leading to an asymptote in ibd}
 %%%%%%%%%%
 \subsection{How have things changed over time?}
 
-Each of the questions discussed above --
-where organisms are;
-how they move;
-and where their ancestors were
--- has been introduced under the assumption of a static world
-where species' distributions,
-the density of individuals within those species,
-the dispersal patterns of those individuals,
-and the landscape itself all remain constant.
-In empirical systems,
-these assumptions are all likely to be broken,
-often drastically so.
-Species are expanding into previously unoccupied territory all the time.
+Thus far, we have mostly assumed a static world
+in which species' geographic distributions,
+individual's dispersal patterns,
+and the landscape itself all remain constant over the relevant time scale.
+The assumptions are often broken by real systems.
 For example, 
 high-latitude tree populations may only have been established
 following the retreat of the glaciers,
