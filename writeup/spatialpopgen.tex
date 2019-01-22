@@ -933,19 +933,21 @@ so estimates of flux can be converted to estimates of dispersal distance.
     \end{subfigure}
         \caption{
             \textbf{(top)} Map of close genealogical relatives of four focal individuals.
-            Geographic locations of all individuals across about 25 generations are shown as small cyan dots;
-            close relatives are shown as larger dots, with one color for each focal individual,
+            Geographic locations of 
+            genealogical relatives are shown as larger dots, with one color for each focal individual,
             with circle area proportional to the expected proportion of genome shared
             (i.e., $2^{-k}$, where $k$ is the number of steps in the shortest path through the pedigree to the focal individual).
             \textbf{(middle)}
-            Genetic against geographic distance between each of four focal individuals (one color each)
+            Genetic against geographic distance between each of four focal individuals
+            (colors the same as in the top figure)
             and 100 other individuals, from the same map as above.
-            Genetic distance is calculated as expected sequence divergence.
-            Two of the individuals are from the left third of the range (blue and cyan),
-            and the others (magenta and yellow) are from the right third of the range.
+            Genetic distance (calculated as expected sequence divergence)
+            increases with geographic distance within and between each valley at similar rates,
+            but levels off within each valley at different values
+            due to different population sizes.
             \textbf{(bottom)}
             Flux across two boundaries on the same continuous map as above.
-            All individuals across about 8 generations are shown as small cyan dots,
+            All individuals across about 8 generations are shown as small dots,
             and every parent-child relationship that crosses each of the dotted lines
             is illustrated by an arrow, colored either red (if it crosses left-to-right) or blue (right-to-left).
         }
@@ -1030,17 +1032,14 @@ start with individuals sampled in the present day,
 then, looking backwards in time,
 to ask where in space they have inherited their genomes from, 
 i.e., where their ancestors lived.
-This shifts perspective from moving forwards in the spatial pedigree
-(past to present),
-to moving backwards in time through it.
 Because the signal in genetic data comes from 
 shared ancestry and coalescence in the pedigree,
 thinking from this reverse-time perspective 
-is essential to interpreting genetic data.
+is useful in interpreting genetic data.
 However, summaries of how ancestry spreads across space 
 through the pedigree can be important in their own right.
-For example, humans often have a substantial interest 
-in estimating the locations of their own ancestors back in time.
+For example, many humans are interested
+in the locations of their own ancestors back in time.
 More generally,
 we are often also interested in the partitioning of genetic diversity across space,
 e.g.,
@@ -1053,23 +1052,38 @@ could also be informative about the origins and mechanisms of selective sweeps.
 %%%%%%%%%%
 \subsubsection{Geographic distribution of ancestry}
 
-Consider an individual living in a population in a geographic region.
-The density of the population back through time and 
-dispersal distance of the ancestors in that individual's pedigree 
-together determine the rate of spread of that individual's ancestry 
-across space back through time.
+As one looks further back in time,
+the geographic distribution of an individual's ancestors
+is determined by the history of population size changes and movements.
 At any point in the past,
-each portion of that individual's genome can be associated 
+each portion of each individual's genome can be associated 
 with the ancestor from whom they inherited it.
 Their genetic ancestry can therefore be apportioned across space according
 to the locations of the ancestors from whom they inherited their genome.
 There are a number of natural questions that arise from a description of this process.
-
-For example, we can ask how much of an average individual's ancestry is still within a given region, at some point in the past?
+How much of an average individual's ancestry is still within a given region, 
+at some point in the past?
 How long in the past was it since a typical individual in one location had an ancestor
-in another geographic region (say, the next valley over).
-How far back in time do you have to go before the average proportion of ancestry that an individual inherits
+in another geographic region (say, the next valley over)?
+How far back in time do you have to go before 
+the average proportion of ancestry that an individual inherits
 from the local region they live in drops below (say) 90\%?
+
+This is depicted in a simulation in Figure~\ref{ancestry_spread},
+showing the spatial distribution of \emph{all} ancestors of four individuals
+at several points back in time.
+As we look further back in time,
+we can see the ``cloud of ancestry'' spread out across space
+and become more diffuse.
+The spread is diffusive --
+the displacement of a given $n^\text{th}$-generation ancestor 
+has standard deviation $\sigma_e \sqrt{n}$,
+as long as this is small relative to the width of the region.
+Not shown on the map are the many genealogical ancestors
+from which the focal individuals have not inherited genome --
+even by the second figure,
+each focal individual is genealogically descended from nearly everyone alive,
+even those living in the other valley \citep{chang1999}.
 
 \todo{tidy and conclude}
 
@@ -1083,11 +1097,13 @@ from the local region they live in drops below (say) 90\%?
             at 
             \textbf{(top)} one, 
             \textbf{(middle)} fifteen, and
-            \textbf{(bottom)} seventy-five generations in the past,
-            all individuals from whom the four individuals have inherited genome are denoted by a circle,
+            \textbf{(bottom)} seventy-five generations in the past.
+            All individuals from whom the four individuals have inherited genome are denoted by a circle,
             with one color for each individual,
             and with circle area proportional to the amount of genome inherited.
             The landscape is the same as in Figure~\ref{fig:dispersal}.
+            Since the simulation uses overlapping generations,
+            ancestors of different degrees are present at the same time.
             \g{I say keep 1, 20, and 75.  If you go back farther, 
             	does it get even clearer that the pedigrees have ``forgotten" which side of the ridge the modern inds are on? 
                 If so, that might make the point more clearly.}
@@ -1267,7 +1283,7 @@ in the spatial pedigree complicate \g{inference}.
         \caption{
             Admixture proportions after a recent secondary contact.
             Each pie shows the proportion of a diploid individual's genomes
-            that inherit from the left (cyan) and right (magenta) valleys, respecitvely.
+            that inherit from the left (red) and right (blue) valleys, respecitvely.
             \textbf{(top)} Eight generations, and
             \textbf{(bottom)} seventy-five generations 
             after a barrier along the top of the ridge is removed.
