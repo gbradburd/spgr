@@ -111,14 +111,14 @@ The focus theory maintained on results in discrete populations
 both informed and was informed by early empirical datasets,
 most of which
 (although again,
-with some notable exceptions \citep[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947},
+with some exceptions \citep[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947},
 were well-described as discrete populations --
 e.g., samples of flies in a vial \citep{lewontin1974}.
-Even the first, revolutionary empirical measurements
+The first, revolutionary empirical measurements
 of molecular genetic variation
 -- the inaugural ``find 'em and grind 'em" studies of Lewontin and Hubby \citep{HubbyLewontin66,LewontinHubby66} --
 focused on data from 43 fly strains sampled from 5 locations,
-which were largely treated as experimental replicates
+which were treated as experimental replicates
 (rather than studied in their geographic context).
 And, on the statistical side of the business,
 the methods used to analyze these datasets --
@@ -136,9 +136,9 @@ Sampling efforts are always limited by time and money
 in both the size of the area that can be covered
 and the number of individuals that can be genotyped within that area.
 And, developing theory to describe evolutionary dynamics
-without simplifying assumptions is also,
+without simplifying assumptions is,
 by definition,
-a more complicated endeavor.
+more difficult.
 In a world without discrete populations, 
 many of the fundamental quantities in population genetics -- 
 e.g., migration rate ($m_{ij}$), 
@@ -180,8 +180,9 @@ in light of the concept of the spatial pedigree,
 which we introduce as a powerful heuristic
 and an organizing principle for the field.
 It is our hope that by framing our discussion around the spatial pedigree, 
-we can build intuition for how to think about spatial population genetics 
-and spur new developments in the field.
+we can build intuition for --
+and spur new developments in --
+the study of spatial population genetics .
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -202,7 +203,7 @@ and the geographic positions of each individual,
 including those of individuals
 who contribute no ancestry to the present-day population 
 (Figure \ref{spatial_pedigree}) -- 
-we would know everything we wished to know about
+we would know everything about
 the history of dispersal, gene flow,
 selection, and fitness in a system.
 For example, if we wanted to characterize the dispersal kernel of a species,
@@ -239,9 +240,7 @@ although clonal organisms,
 such as aspens,
 might expand out over a large region over their lifetime,
 and organisms that grow on a living host,
-like algae on a sloth,
-barnacles on whale,
-or fungi on the casque of a helmeted iguana,
+like barnacles on whale,
 may hitchhike rides across large distances.
 For motile organisms,
 the matter becomes more complicated still.
@@ -261,22 +260,18 @@ we still would not know about relationships between
 and locations of individuals in previous, unobservable generations \citep{wilkins2004separationoftimescales}.
 And, in a highly dispersive species,
 or a species with a highly dispersive gamete,
-there may be little to no relationship between observed location and birth location.
+there may be only a weak relationship between observed location and birth location.
 Despite these complexities,
 the idea of the spatial pedigree is useful
 as a conceptual framework for organizing
 spatial population genetic questions and principles.
-Unlike other population genetic models,
-e.g., the stepping-stone model or the island model,
-the spatial pedigree imposes no simplifying
-assumptions of population memberships on biological reality.
-In addition, although it may be difficult or impossible
+Although it may be difficult or impossible
 to do inference on the spatial pedigree directly,
 we can still catch glimpses of the spatial pedigree of a sample of individuals
 by collecting and analyzing their genetic data.
 
 \subsection{The bias of long-term fitness}
-
+\todo{cut, or tie in elsewhere}
 \begin{quote}
     \textit{
     On one hand, every single one of my ancestors going back billions of years
@@ -331,10 +326,9 @@ Some aspects of abundance and fecundity are recorded in the spatial pedigree.
 
 %%%%%%%%%%%%%%
 \subsubsection{Population density}
-
+\todo{reads like stream-of-consciousness.  needs roadmaps and reorganization.}
 The best measure of population density
-would be a count of the number of individuals occurring in various geographic regions,
-perhaps excluding pre-reproductive juveniles.
+would be a count of the number of individuals occurring in various geographic regions.
 How close can population genetics get us to producing this map by indirect means?
 Some fundamental limitations are clear:
 for instance, if we only sample adults,
@@ -385,7 +379,7 @@ i.e., the rate at which coalescences are encountered moving back through the ped
 The reason for this is simple:
 with fewer possible ancestors,
 individuals' common ancestors must be more recent.
-It is instructive to consider 
+It is helpful to consider 
 the problem of inferring the total size of the previous generation
 in a randomly-mating population
 from the number of siblings found in a random sample of size $n$.
@@ -471,7 +465,7 @@ where $\sigma_e$ is the effective dispersal distance (discussed below)
 and $\rho$ is the population density.
 Each pair of siblings therefore gives a small amount of information
 about population density within distance $\sigma_e$ of the pair.
-The more distantly related a pair of individuals, 
+The more distant the coalescent event relating a pair of individuals, 
 the vaguer the information they provide about population density,
 both because there is greater uncertainty 
 in the inference of their precise degree of relatedness from genetic data,
@@ -531,16 +525,15 @@ such as
 predicting the spread of pathogens \citep{BiekReal2010},
 responses to climate change \citep{parmesan2006},
 or population demography and dynamics \citep{schreiber2010interactive}.
-Organisms may move in many ways throughout their lives,
-but quantities most clearly reflected in population genetic data
-have to do with the displacement between geographic locations of parent and offspring.
-This important quantity describes how quickly spatial populations mix,
-but combines many important aspects of the organism's ecology, including
-any movement of gametes or zygotes before maturation,
-and subsequent daily or seasonal movement of the mature individual,
-all of which often depend on the sex of both parent and offspring.
+We define dispersal to be the process that governs 
+the displacement between geographic locations of parent and offspring.
+This important quantity describes how quickly spatial populations mix.
+%but combines many important aspects of the organism's ecology, including
+%any movement of gametes or zygotes before maturation,
+%and subsequent daily or seasonal movement of the mature individual,
+%all of which often depend on the sex of both parent and offspring.
 For some species,
-it may be feasible to directly measure many of these components
+it may be feasible to directly measure dispersal 
 using, e.g., telemetry or banding \citep{Cayuela2018demographic},
 but this is often prohibitively expensive or difficult.
 If we knew the spatial locations of ancestors in the pedigree,
@@ -552,13 +545,12 @@ can give strong clues about this.
 %%%%%%%%%%%%%%
 \subsubsection{Dispersal (individual, diffusive movement; $\sigma$)}
 
-The best overall descriptor of ``how much do they move''
-is often the absolute value of the spatial displacement between parent and offspring locations,
-which we call here the \textit{dispersal distance}, 
-and refer to as $\sigma$.
-This dispersal distance describes the quantity one could calculate by,
+We call the absolute value of the spatial displacement between parent and offspring locations
+the \textit{dispersal distance}, and refer to it as $\sigma$.
+The dispersal distance describes the quantity one could calculate by,
 e.g., collecting a large number of germinating seeds
-and averaging the distance from those seeds to their two parents.
+and averaging the distance from those seeds to their two parents;
+it determines how quickly spatial populations mix.
 This differs subtly from the ``effective dispersal distance'' ($\sigma_e$) 
 most naturally estimated from genetic data.
 Roughly speaking, $\sigma_e$ is
@@ -611,6 +603,8 @@ and (b) how long before that did they actually share an ancestor.
 \citet{malecot} assumed that the second stage acts as in a randomly mating population
 with some local effective size,
 and it is not known to what degree this assumption affects the results.
+\g{this is the only place where we talk about estimation, 
+so either add elsewhere, or cut.}
 Other lines of attack in estimating $\sigma_e$ include 
 using the slope of $F_{ST}$ against the logarithm of distance
 as an estimator for $4 \pi \rho \sigma_e^2$,
@@ -712,7 +706,7 @@ cannot be completely disentangled from inferring population density.
 We can use these observations of coalescences to learn about the flux across a given line:
 across a barrier to dispersal,
 the average time to coalescence for pairs of individuals on opposite sides of the line
-is longer than that between individuals on the same side \citep{bedassle,ringbauer2018estimating}.
+is longer than that between individuals on the same side \citep{bedassle,Duforet-Frebourg_Blum_2014,ringbauer2018estimating}.
 Lower population flux means that individuals on opposite sides of a line share ancestors
 less frequently.
 Flux across a line is also related to mean dispersal distance, $\sigma$, discussed above.
@@ -768,7 +762,7 @@ and can drive important differences in gene flow dynamics \citep{HallatschekFish
 
 %%%%%%%%%%%%%%
 \subsection{Where were their ancestors?}
-
+\todo{expand or drop - figure (and present-to-past approach) could be looped into dispersal section}
 Above, we have discussed how the dynamics of populations affect
 patterns of relatedness,
 i.e., how individuals reproduce and move across space.
@@ -796,7 +790,7 @@ could also be informative about the origins and mechanisms of selective sweeps.
 
 %%%%%%%%%%
 \subsubsection{Geographic distribution of ancestry}
-
+\todo{expand or drop?}
 As one looks further back in time,
 the geographic distribution of an individual's ancestors
 is determined by the history of population size changes and movements.
@@ -862,7 +856,7 @@ than do the orange--green shared ancestors.
 
 %%%%%%%%%%%%%%
 \subsection{Relative genetic differentiation}
-
+\todo{expand or drop}
 The question of how genetic variation is partitioned across
 geography is a common and intuitively appealing one,
 albeit somewhat slippery in practice.
@@ -900,7 +894,7 @@ relative to the local effective population size.
 %%%%%%%%%%
 \subsection{How have things changed over time?}
 
-Thus far, we have mostly assumed a static world
+So far in this review, we have assumed a static world
 in which species' geographic distributions,
 individual's dispersal patterns,
 and the landscape itself all remain constant over the relevant time scale.
@@ -926,7 +920,7 @@ Exacerbating this problem,
 the time to reach equilibrium
 in areas of high population density
 or across regions of low flux
-may be quite long
+can be long
 \citep{CrowAoki1984group, whitlock1992temporal, slatkin1993isolation, WhitlockMcCauley1999}.
 Theory and methods that
 reflect the empirical reality that things were not always as they are
@@ -1156,7 +1150,7 @@ for problems that may be analytically intractable.
 
 %%%%%%%%%%
 \subsubsection{Identifiability and ill-posedness}
-
+\todo{keep?}
 Another important line of attack in developing methods for inference 
 under spatial population genetic models 
 is to define the limits of our ability to learn about 
