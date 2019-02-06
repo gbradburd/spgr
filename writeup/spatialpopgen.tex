@@ -42,7 +42,7 @@
 \markboth{Bradburd and Ralph}{Spatial Population Genetics}
 
 % Title
-\title{Spatial Population Genetics: It's About Time}
+\title{Spatial Population Genetics: It's About Time \todo{we don't really deliver on this title}}
 
 
 %Authors, affiliations address.
@@ -99,15 +99,15 @@ population genetics, geographic variation, isolation by distance, pedigree
 The field of population genetics is shaped by a continuing conversation
 between theory, methods, and data.
 We design experiments and collect empirical data
-with the methods we will use to analyze them in mind;
-in turn, those methods are based on theory
+with the methods we will use to analyze them in mind, 
+and those methods are based on theory
 that was developed to explain observations from empirical data.
 With some notable exceptions,
 especially the work of Sewall Wright \citep{Wright1940,Wright1943,wright1946isolation}
 and Gustave Mal\'ecot \citep{malecot}
 much of the early body of theory was focused on
 developing expectations for discrete populations.
-The focus theory maintained on results in discrete populations
+The focus of theory on results in discrete populations
 both informed and was informed by early empirical datasets,
 most of which
 (although again,
@@ -120,28 +120,32 @@ of molecular genetic variation
 focused on data from 43 fly strains sampled from 5 locations,
 which were treated as experimental replicates
 (rather than studied in their geographic context).
-And, on the statistical side of the business,
-the methods used to analyze these datasets --
-e.g., empirical measurements of $F_{ST}$ \citep{Wright1951}
+In turn, 
+the statistics used to analyze these datasets --
+e.g., empirical measurements of $F_{ST}$ \citep{Wright1951}, 
+$\pi$ \citep{NeiLi1979}, 
+$\theta$ \citep{Watterson1975},
 or tests of Hardy-Weinberg equilibrium \citep{hardy1908,weinberg1908} --
 were derived using theory based on discrete populations.
 
 In reality, well-delineated demes or clearly defined discrete populations are rare.
 Rather, organisms are living,
 moving (or moving their gametes) around,
-reproducing, and dying somewhere in space.
-It is much more difficult to collect data and develop theory and methods
-to capture such complexity.
-Sampling efforts are always limited by time and money
-in both the size of the area that can be covered
-and the number of individuals that can be genotyped within that area.
-And, developing theory to describe evolutionary dynamics
-without simplifying assumptions is,
-by definition,
-more difficult.
-In a world without discrete populations, 
+reproducing, and dying, 
+connected by a vast pedigree 
+anchored across time and space.
+It has been much more difficult to collect data 
+to capture this complexity.
+Budgets, time, and technology have limited
+the number of individuals that can be sampled 
+and the number of loci that can be genotyped per individual, 
+which in turn limits the capacity of researchers to 
+place individuals in this pedigree.
+Additionally, it is difficult to develop theory or methods 
+in a worldview without discrete populations.
+For example, without discrete populations,
 many of the fundamental quantities in population genetics -- 
-e.g., migration rate ($m_{ij}$), 
+migration rate ($m_{ij}$), 
 effective population size ($N_e$),
 admixture proportion
 --
@@ -151,25 +155,29 @@ there is now a growing body of theory, methods, and data
 that approach this biological, population-less reality.
 Advances in theory in continuous space 
 \citep{felsenstein1975pain,BartonWilson1995,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, Barton2013},
-datasets of unprecedented geographical scope 
+datasets of unprecedented geographical and genomic scale 
 \citep[e.g.,][]{POBI, Aguillon2017deconstructing, Shaffer195743},
 and new statistical paradigms for modeling those data 
 \citep{petkova2016visualizing, ringbauer2017inferring, ringbauer2018estimating, conStruct, alasadi2018estimating}
+\g{cite IBD-tract stuff and rare allele stuff (JoNo and Slatkin)}
 are together spurring a revolution in the field of spatial population genetics.
 
 The goal of this review
-is to redefine some of the fundamental quantities in population genetics 
+is to reframe some of the fundamental questions in population genetics 
 in the light of spatial population genetics, 
-and, in the process, provide an introduction for empirical researchers
+and highlight ways that new datasets and 
+statistical methods can provide novel insights into these questions.
+In the process, 
+we hope to provide an introduction for empirical researchers
 to the field.
-This is a rapidly changing area of research:
-in some cases, methods for inferring these quantities do not exist, 
-and in others, 
-methods currently in use may no longer be relevant
-to a reader of this review five years from now
-(although hopefully our own contributions will be immortal).
-So, rather than delving into the mechanics of specific methods,
-we instead focus on a small number of foundational questions 
+%This is a rapidly changing area of research:
+%in some cases, methods for inferring these quantities do not exist, 
+%and in others, 
+%methods currently in use may no longer be relevant
+%to a reader of this review five years from now
+%(although hopefully our own contributions will be immortal).
+%So, rather than delving into the mechanics of specific methods,
+We focus on a small number of foundational questions 
 about the biology and history of organisms we study:
 where they are; how they move; where their ancestors were;
 whether those quantities have changed over time, 
@@ -271,7 +279,13 @@ we can still catch glimpses of the spatial pedigree of a sample of individuals
 by collecting and analyzing their genetic data.
 
 \subsection{The bias of long-term fitness}
-\todo{cut, or tie in elsewhere}
+
+\g{I like this section, and it makes a good point, 
+but we don't really tie much into it elsewhere, 
+and, as is, it feels like one preamble too many.
+I think I mostly want to keep it because of how well the quote fits it.
+Could we work in the message elsewhere in shorter format?
+}
 \begin{quote}
     \textit{
     On one hand, every single one of my ancestors going back billions of years
