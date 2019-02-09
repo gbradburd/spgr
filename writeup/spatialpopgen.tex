@@ -42,7 +42,7 @@
 \markboth{Bradburd and Ralph}{Spatial Population Genetics}
 
 % Title
-\title{Spatial Population Genetics: It's About Time}
+\title{Spatial Population Genetics: It's About Time \todo{we don't really deliver on this title}}
 
 
 %Authors, affiliations address.
@@ -99,8 +99,8 @@ population genetics, geographic variation, isolation by distance, pedigree
 The field of population genetics is shaped by a continuing conversation
 between theory, methods, and data.
 We design experiments and collect empirical data
-with the methods we will use to analyze them in mind;
-in turn, those methods are based on theory
+with the methods we will use to analyze them in mind, 
+and those methods are based on theory
 that was developed to explain observations from empirical data.
 With some notable exceptions,
 especially the work of Sewall Wright \citep{Wright1940,Wright1943,wright1946isolation}
@@ -118,8 +118,8 @@ of molecular genetic variation \citep{HubbyLewontin66,LewontinHubby66}
 focused on data from 43 fly strains sampled from 5 locations,
 which were treated as experimental replicates
 (rather than studied in their geographic context).
-On the statistical side of the business,
-common methods used to analyze these datasets --
+In turn, 
+the statistics used to analyze these datasets --
 e.g., empirical measurements of $F_{ST}$ \citep{Wright1951}
 or tests of Hardy-Weinberg equilibrium \citep{hardy1908,weinberg1908} --
 were defined based on expectations in discrete, well-mixed populations.
@@ -129,17 +129,17 @@ future sampling designs.
 To what degree does reality match this picture
 of clearly delimited yet randomly mating populations?
 % In reality, well-delineated demes or clearly defined discrete populations are rare.
-Organisms live and move (at some life stage) in real, geographic space.
+Organisms live, move, reproduce, and die,
+connected by a vast pedigree that is anchored in time and space.
 It is difficult to collect data and develop theory and methods
-to capture this additional layer of complexity.
-Sampling efforts are limited by time, money, and access.
+that capture this additional layer of complexity.
+Sampling and genotyping efforts are limited by time, money, and access.
 Developing theory to describe evolutionary dynamics
-without simplifying assumptions is,
-by definition,
-more difficult.
-In a world without discrete populations, 
+without the simplifying assumption of random mating
+is more difficult.
+For example, without discrete populations,
 many of the fundamental quantities in population genetics -- 
-e.g., migration rate ($m_{ij}$), 
+migration rate ($m_{ij}$), 
 effective population size ($N_e$),
 admixture proportion
 --
@@ -149,26 +149,30 @@ there is now a growing body of theory, methods, and data
 that approach this biological, population-less reality.
 Advances in theory in continuous space 
 \citep{felsenstein1975pain,BartonWilson1995,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, Barton2013},
-datasets of unprecedented geographical scope 
+datasets of unprecedented geographical and genomic scale 
 \citep[e.g.,][]{POBI, Aguillon2017deconstructing, Shaffer195743},
 new computational tools for simulating spatial models \citep{haller2018forward,haller2018treesequence},
 and new statistical paradigms for modeling those data 
 \citep{petkova2016visualizing, ringbauer2017inferring, ringbauer2018estimating, conStruct, alasadi2018estimating}
+\g{cite IBD-tract stuff and rare allele stuff (JoNo and Slatkin)}
 are together spurring a revolution in the field of spatial population genetics.
 
 The goal of this review
-is to redefine some of the fundamental quantities in population genetics 
+is to reframe some of the fundamental questions in population genetics 
 in the light of spatial population genetics, 
-and, in the process, provide an introduction for empirical researchers
+and highlight ways that new datasets and 
+statistical methods can provide novel insights into these questions.
+In the process, 
+we hope to provide an introduction for empirical researchers
 to the field.
-This is a rapidly changing area of research:
-in some cases, methods for estimating the quantities we discuss do not exist, 
-and in others, 
-methods currently in use may no longer be relevant
-to a reader of this review five years from now.
-% (although hopefully our own contributions will be immortal).
-Rather than delving into the mechanics of specific methods,
-we focus on a small number of foundational questions 
+%This is a rapidly changing area of research:
+%in some cases, methods for inferring these quantities do not exist, 
+%and in others, 
+%methods currently in use may no longer be relevant
+%to a reader of this review five years from now
+%(although hopefully our own contributions will be immortal).
+%So, rather than delving into the mechanics of specific methods,
+We focus on a small number of foundational questions 
 about the biology and history of organisms we study:
 where they are; how they move; where their ancestors were;
 how those quantities have changed over time, 
@@ -250,7 +254,13 @@ to directly infer the spatial pedigree,
 we can still catch glimpses of it through the window of today's genomes.
 
 \subsection{The bias of long-term fitness}
-\todo{cut, or tie in elsewhere}
+
+\g{I like this section, and it makes a good point, 
+but we don't really tie much into it elsewhere, 
+and, as is, it feels like one preamble too many.
+I think I mostly want to keep it because of how well the quote fits it.
+Could we work in the message elsewhere in shorter format?
+}
 \begin{quote}
     \textit{
     On one hand, every single one of my ancestors going back billions of years
