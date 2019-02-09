@@ -253,7 +253,7 @@ Although it may be difficult or impossible
 to directly infer the spatial pedigree,
 we can still catch glimpses of it through the window of today's genomes.
 
-\subsection{The bias of long-term fitness}
+\subsection{``Effective'' parameters and the bias of long-term fitness}
 
 \g{I like this section, and it makes a good point, 
 but we don't really tie much into it elsewhere, 
@@ -261,6 +261,8 @@ and, as is, it feels like one preamble too many.
 I think I mostly want to keep it because of how well the quote fits it.
 Could we work in the message elsewhere in shorter format?
 }
+\plr{How's this?}
+
 \begin{quote}
     \textit{
     On one hand, every single one of my ancestors going back billions of years
@@ -277,7 +279,7 @@ Inferences about the past
 based on those artifacts that have survived to the present
 are fraught with difficulties and caveats in any field, 
 and population genetics is no exception.
-The ancestors of modern-day genomes are emphatically \textit{not} an unbiased sample
+The ancestors of modern-day genomes are \textit{not} an unbiased sample
 from the past population -- 
 they are biased towards individuals with more descendants today.
 We cannot, of course, learn anything from modern-day genomes
@@ -292,6 +294,30 @@ this is proportional to their number of offspring, i.e., their fitness.
 If we are looking a long time in the past
 (in practice, more than 10 or 20 generations \citep{BartonEtheridge2011fitness}),
 this is their \textit{long-term fitness}.
+Different methods query different time periods of the pedigree,
+and are thus subject to these effects to different degrees.
+
+A familiar example is the distinction between ``census'' and ``effective'' population size.
+More subtle is the difference between dispersal distance ($\sigma$) and
+``effective dispersal distance'' ($\sigma_e$),
+the quantity most naturally estimated from genetic data.
+Both are mean distances between parent and offspring:
+$\sigma$ is the average observed from, say, the modern population,
+but $\sigma_e$ is
+the mean distance between parent and offspring along a lineage back through the spatial pedigree.
+The difference arises because
+lineages along which genetic material is passed do not give an unbiased sample of all dispersal events;
+they are weighted by their contribution to the population.
+For instance, if there is strong local intra-specific competition,
+individuals that dispersed farther from their parents (and their siblings)
+may have been more likely to reproduce and therefore more likely to be ancestors of today's samples,
+which would make $\sigma_e > \sigma$.
+On the other hand, if there is substantial local adaptation,
+many individuals may be dispersing to habitats dissimilar to that of their parents
+and are unlikely to transmit genetic material to the next generation
+because they are maladapted to the local environment,
+and so $\sigma_e < \sigma$
+\citep[for a review, see][]{wangbradburd2014}.
 
 
 %%%%%%%%%%%%%%
@@ -300,34 +326,28 @@ this is their \textit{long-term fitness}.
 %%%%%%%%%%%%%%
 \subsection{Where are they?}
 
-Perhaps the first things we might want to produce
+Perhaps the first things we might use
 to describe a geographically distributed population
 are an estimate of the total population size,
 and a map of population density across space.
 Quantifying abundance and how it varies
-can be crucial for understanding
-ecologically important details of a species' natural history,
-like what habitat to prioritize for conservation \citep{zipkin2018synthesizing}, 
+can be crucial, e.g., for understanding
+what habitat to prioritize for conservation \citep{zipkin2018synthesizing}, 
 which regions have higher population carrying capacities than others \citep{roughgarden1974}, 
 or whether a particular habitat is a demographic source or sink 
 \citep{pulliam1988sources}.
-Some aspects of abundance and fecundity are recorded in the spatial pedigree.
+Aspects of abundance and fecundity are clearly recorded in the spatial pedigree,
+but inferring maps of population density
+remains an open problem.
 
-%%%%%%%%%%%%%%
-\subsubsection{Population density}
-\todo{reads like stream-of-consciousness.  needs roadmaps and reorganization.}
 The best measure of population density
 would be a count of the number of individuals occurring in various geographic regions.
 How close can population genetics get us to producing this map by indirect means?
 Some fundamental limitations are clear:
 for instance, if we only sample adults,
-we cannot hope to estimate the proportion of juveniles that die before adulthood
-without incorporating other sources of information.
-This is because none of our sampled genetic material inherits from these unlucky individuals:
+we cannot hope to estimate the proportion of juveniles that die before adulthood,
+because none of our sampled genetic material inherits from these unlucky individuals:
 they are invisible as we move back through the pedigree.
-Similarly, an on-the-ground census may observe transient individuals
--- i.e., born elsewhere and reproductive outside the region of interest --
-and who are thus invisible to the local pedigree.
 
 
 \begin{figure}[h]
@@ -360,14 +380,16 @@ and who are thus invisible to the local pedigree.
         \label{pop_density}
 \end{figure}
 
-Further issues are analogous to the familiar
-issue of ``effective'' population size \citep{CharlesworthCharlesworthBarton2003}.
-Genetic information about population sizes
+
+%%%%%%%%%%%%%%
+\subsubsection{Population density}
+
+Genetic information about population sizes or densities most clearly
 comes from numbers and recency of shared ancestors, 
 i.e., the rate at which coalescences are encountered moving back through the pedigree.
 The reason for this is simple:
 with fewer possible ancestors,
-individuals' common ancestors must be more recent.
+individuals' common ancestors tend to be more recent.
 It is helpful to consider 
 the problem of inferring the total size of the previous generation
 in a randomly-mating population
@@ -377,27 +399,58 @@ so the probability that,
 in a population of size $N$, 
 a given pair of individuals are siblings
 is $\E[X (X-1)] / (N-1)$, where $X$ is the number of offspring in a randomly chosen family.
-This implies that, 
-in a sample of size $n$,
+This implies that in a sample of size $n$,
 $n(n-1)/2$ divided by the number of observed sibling pairs 
 provides an estimate of inbreeding effective population size, $N_e = N/\E[X(X-1)]$.
 In other words, we should be able to use relatedness to estimate population size
 up to the factor $\E[X(X-1)]$, which depends on demographic details.
-Common ancestors -- i.e., coalescences --
-further back in time are simply more remote sibling pairs.
-so this calculation applies to estimates further in the past.
-Since genetic estimates of geographically local population densities
-must necessarily come from rates of coalescence (or lack thereof),
-it might be natural to define the ``effective population density''
-as the actual local population density scaled by a factor analogous to $\E[X(X-1)]$.
-This has been done for homogeneous space (e.g., \citep{barton-depaulis-etheridge}),
-but it is less clear what the correct definition is for inhomogeneous geography.
-
-This discussion is mostly illustrative, because
+% Common ancestors -- i.e., coalescences --
+% further back in time are simply more remote sibling pairs.
+% so this calculation applies to estimates further in the past.
+However, this discussion is mostly illustrative, because
 if a dataset does contain very many siblings,
-nonrandom sampling is probably the cause.
-It is more common to estimate (effective) population size
-using $\pi$,
+nonrandom sampling is probably the cause,
+and direct mark-recapture methods would often be more efficient.
+
+This same logic can be applied locally:
+the (inbreeding) effective population density
+near a location $x$, denoted $\rho_e(x)$,
+can be defined as the inverse of the rate of appearance of sibling pairs
+near $x$, per unit of geographic area and per generation.
+
+Extending this line of reasoning,
+the local density of close relatives 
+should reflect local population size.
+The chance that two geographic neighbors actually \textit{are} siblings 
+decreases with the number of ``possible nearby parents'':
+\citet{wright1946isolation} quantified this with the
+\emph{neighborhood size}, 
+$N_\text{loc} = 4 \pi \rho_e \sigma_e^2$,
+where $\sigma_e$ is the effective dispersal distance (discussed below)
+and $\rho_e$ is the effective population density.
+Each pair of siblings gives a small amount of information
+about population density within distance $\sigma_e$ of the pair.
+The more distant the coalescent event relating a pair of individuals, 
+the vaguer the information they provide about population density,
+because there is greater uncertainty 
+both in the inference of their precise degree of relatedness from genetic data,
+and in the location of their shared ancestors.
+Because genetic estimates of population size 
+derive from rates of coalescence,
+they generally can only estimate population sizes 
+in the locations and times where those coalescences occur.
+% The lineages in the pedigree 
+% of a geographic region that acts as a population ``sink'' 
+% may tend to recently derive from a nearby ``source'' area,
+% so that rates of coalescence depend more on the population size in the source area
+% than on that in the entire range.
+
+%%%%%%%%%%%%%%
+\subsubsection{Total population size}
+
+Rather than local differences in population density,
+It is more common to estimate the total (effective) population size
+using measures of genetic diversity such as $\pi$,
 the mean density of nucleotide differences between two randomly sampled chromosomes.
 Because each such difference is the result of a mutation
 sometime since the chromosomes' most recent common ancestor at that location,
@@ -408,12 +461,17 @@ and $2T$ is the mean length of a path through the pedigree
 along which two samples have inherited a random bit of genome
 from their most recent common ancestor,
 then $\pi \approx 2 T \mu$.
-The quantity $T$ can be an interesting summary of the pedigree;
+The quantity $T$ itself is an interesting summary of the pedigree;
 what does it have to do with population size?
 In a randomly mating, diploid population of constant effective size $N_e$,
 the discussion above implies that $T = 2N_e$.
 However, this only clearly provides a good estimate of $N_e$
-if the population has been relatively stable over this period of time.
+if the population has been relatively stable over this period of time,
+and $\pi$ depends on geography and sampling in complex ways.
+
+
+%%%%%%%%%%%%%%
+\subsubsection{What does local genetic diversity tell us?}
 
 Given the practical difficulties in obtaining unbiased estimates of proportion of close relatives,
 and the dependence of $T$ on long-ago events,
@@ -432,46 +490,22 @@ pairs of individuals in the densely populated valley.
 This happens simply because 
 each group of siblings makes up a larger proportion 
 of the more sparsely populated valley.
-From the backwards-in-time viewpoint common to population genetics:
-when looking for the parents of a given pair of individuals,
-a smaller pool of possible parents
-makes it more likely those to individuals share at least one parent in common.
 Because individuals in the sparsely populated valley have more shared ancestors 
 in the more recent past, 
-we expect the two chromosomes of samples from that valley to be more closely related,
-i.e., to have lower heterozygosity 
-(Figure \ref{pop_density}\subref{valley_het}).
+the two chromosomes of samples from that valley are more closely related,
+i.e., have lower heterozygosity, as shown in Figure \ref{pop_density}\subref{valley_het}.
 
-Following the above line of reasoning,
-the local density of close relatives 
-should reflect local population size.
-Consider two individuals that are geographically close enough to plausibly be siblings.
-The chance that they \textit{are} siblings is inversely proportional to
-the number of individuals who could be their parents.
-This number of ``possible parents'' is proportional to
-Wright's neighborhood size, $N_\text{loc} = 4 \pi \rho \sigma_e^2$ \citep{wright1946isolation},
-where $\sigma_e$ is the effective dispersal distance (discussed below)
-and $\rho$ is the population density.
-Each pair of siblings therefore gives a small amount of information
-about population density within distance $\sigma_e$ of the pair.
-The more distant the coalescent event relating a pair of individuals, 
-the vaguer the information they provide about population density,
-both because there is greater uncertainty 
-in the inference of their precise degree of relatedness from genetic data,
-and because their is greater uncertainty about the location 
-of their shared ancestors.
-
-There are a number of additional reasons why the genetic signature 
-of varying population density may be more complicated.
-For instance, we would also expect a similar difference in genetic diversity
+However, we might also expect a similar difference in heterozygosity
 if the two valleys had the \textit{same} population density per unit area,
-but one valley was larger than the other.
-On the other hand, if dispersal distances are, on average, shorter 
+but one valley was larger than the other,
+because heterozygosity reflects population size.
+On the other hand, if dispersal distances tend to be shorter
 in the more densely populated valley -- 
 e.g., because resources are more plentiful, 
 so that individuals do not have to disperse as far to find food -- 
 there may be more inbreeding over short distances,
 despite higher genetic diversity within the valley as a whole.
+
 
 Migration into and out of a region presents another complication.
 Roughly speaking,
@@ -479,12 +513,9 @@ geographic patterns of relatedness
 are determined by a tension between population size and migration.
 Genealogical relationships form on a time scale determined by population density,
 because in a geographic region containing $N$ individuals
-the chance that two individuals are siblings is of order $1/N$ --
-and so
-a given lineage has only a chance of order $1/N$ to coalesce 
-with another given lineage in that region.
+the chance that two individuals are siblings is of order $1/N$.
 Shared ancestry is spatially autocorrelated
-only to the extent that this process of coalescence
+to the extent that this process of coalescence
 occurs more quickly than migration.
 If the migration rate into a geographic region is much greater than $1/N$ --
 i.e., if more than a few individuals in each generation had parents living outside of the region --
@@ -492,19 +523,7 @@ then the pedigree in a region cannot be considered autonomously.
 In other words,
 regions cannot be analyzed independently
 unless a region of interest sees less than one migrant per generation
-which defines the parameter regime in which the structured coalescent applies \citep{nagylaki1998}.
-
-Because genetic estimates of population size 
-derive from rates of coalescence,
-they generally can only estimate population sizes 
-in the locations and times where those coalescences occur.
-For instance, genetic diversity after a range expansion 
-is mostly determined by the population size before the expansion.
-Similarly, if we trace the lineages in a pedigree 
-from a geographic region that acts as a population ``sink'' backward in time, 
-we find that they tend to leave and coalesce in a nearby ``source'' area,
-so that rates of coalescence depend more on the population size in the source area
-than on that in the entire range.
+(i.e., outisde the parameter regime of the structured coalescent \citep{nagylaki1998}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{How do they move?}
@@ -540,68 +559,58 @@ The dispersal distance describes the quantity one could calculate by,
 e.g., collecting a large number of germinating seeds
 and averaging the distance from those seeds to their two parents;
 it determines how quickly spatial populations mix.
-This differs subtly from the ``effective dispersal distance'' ($\sigma_e$) 
-most naturally estimated from genetic data.
-Roughly speaking, $\sigma_e$ is
-the mean distance between parent and offspring along a path back through the pedigree.
-The difference is analogous to that between population size and effective population size:
-lineages along which genetic material is passed are not an unbiased sample of all dispersal events;
-they are weighted by their contribution to the population.
-For instance, if there is strong local intra-specific competition,
-individuals that dispersed farther from their parents (and their siblings)
-may have been more likely to reproduce and therefore more likely to be ancestors of today's samples.
-On the other hand, if there is substantial local adaptation,
-many individuals may be dispersing to habitats dissimilar to that of their parents
-and are unlikely to transmit genetic material to the next generation
-because they are maladapted to the local environment
-\citep[for a review, see][]{wangbradburd2014}.
 
 Dispersal distance could be trivially estimated by taking
 the average of these displacements across history
 if we knew the spatial pedigree through time without error.
 In practice, we often are only able to directly observe
 the location of individuals in the present day.
-However, we can still leverage this information to learn about dispersal distance,
-despite not knowing parental locations, 
-by comparing spatial distances between individuals of different levels of relatedness.
+However, 
+spatial distances between individuals of different levels of relatedness
+give us information about dispersal distance, even without parental locations.
+This spatial clustering of close relatives
+is shown in Figure \ref{fig:dispersal}\subref{cousin_map}.
 For example,
 the distance between siblings is the result of two dispersals,
 so an average of this distance over many pairs of siblings 
-gives an estimate of twice the dispersal distance.
-First cousins would give four times the dispersal distance, and so forth.
-The mean squared displacement along
-a path of total length $n$ through the pedigree is $\sigma^2 n$,
-assuming that $n$ is short enough that boundary effects can be ignored.
+gives an estimate of $2 \sigma$.
+First cousins would give four times the dispersal distance, and so forth:
+the mean squared displacement along
+a path of total length $n$ through the pedigree is $\sigma^2 n$.
+% assuming that $n$ is short enough that boundary effects can be ignored.
 Unfortunately, basing an estimator of $\sigma$ on this observation
 is is usually infeasible in practice,
 unless a large fraction of the population has been genotyped
 \citep[e.g.,][]{Aguillon2017deconstructing}.
 Although long, shared tracts of genome can be used to identify very recent cousins,
 identification of more distant relatives is necessarily uncertain.
-Nonetheless, how genetic relatedness decays with distance
-clearly contains information about dispersal distance.
 
-The formula for
-the time since most recent common ancestor 
+This general idea was applied to much larger time scales by \citep{neigel1991estimation,neigel1993application},
+who used the genealogical tree relating many samples at one nonrecombining locus
+(e.g., the mitochondria) and the spatial locations of these samples
+to infer $\sigma$ using the tools of phylogenetics.
+
+Instead of identifying close relatives,
+we might use the decay of mean genetic relatedness with distance
+(shown in Figure \ref{fig:dispersal}\subref{ibd}).
+The mean time since most recent common ancestor 
 of two individuals at a random point on the genome
+is usually larger for more distant individuals \citep{ibd_review},
+a relationship that clearly has something to do with $\sigma$.
+An approximate formula for this relationship
+in homogeneous space (Malec\'ot's formula)
 can be derived in various ways 
-\citep{malecot, sawyer1976branching, rousset_1997, barton-depaulis-etheridge, ringbauer2017inferring, alasadi2018estimating},
+\citep{malecot, sawyer1976branching, rousset_1997, barton-depaulis-etheridge, robledoarnuncio, ringbauer2017inferring, alasadi2018estimating},
 but is composed of two parts: 
 (a) how long has it been since the two last had ancestors that lived near to each other,
 and (b) how long before that did they actually share an ancestor.
-\citet{malecot} assumed that the second stage acts as in a randomly mating population
-with some local effective size,
-and it is not known to what degree this assumption affects the results.
-\g{this is the only place where we talk about estimation, 
-so either add elsewhere, or cut.}
-Other lines of attack in estimating $\sigma_e$ include 
-using the slope of $F_{ST}$ against the logarithm of distance
-as an estimator for $4 \pi \rho \sigma_e^2$,
-where $\rho$ is the effective population density \citep{rousset_1997}
-and 
-using the genealogical tree relating many samples at one nonrecombining locus
-(e.g., the mitochondria) and the spatial locations of these samples
-to infer $\sigma$ using standard methods in phylogenetics \citep{neigel1991estimation,neigel1993application}.
+The second part is not well understood,
+but \citet{malecot} assumed that the second stage acts as in a randomly mating population
+with some local effective size, $N_\text{loc}$.
+\citet{rousset_1997} used this formula to show that
+the slope of $F_{ST}$ against the logarithm of distance
+is under these assumptions an estimator for $4 \pi \rho_e \sigma_e^2$,
+but it is not known to what degree the assumptions affect the results.
 
 \begin{figure}[H]
     \centering
@@ -646,28 +655,25 @@ to infer $\sigma$ using standard methods in phylogenetics \citep{neigel1991estim
 %%%%%%%%%%%%%%
 \subsubsection{Population flux}
 
+\plr{I'm tempted to call this ``dispersal flux'' instead of ``population flux''?}
+
 Dispersal ability is not, of course, constant across real landscapes, and
 we would often like to measure the ``amount of gene flow'' across some barrier
 or between two geographic regions.
-This would be the geographical analogue of
+This is a geographical analogue of
 the ``migration rate'' between discrete, isolated populations.
 For some boundary (i.e., a line on the map),
 we can ask for the number of dispersal events that cross it in a given year -- 
 that is, 
 how many individuals are born each year whose parents
 were born on the other side of the line?
-This quantity, which we call the \textit{population flux} across a boundary,
+This quantity, which we call the \textit{population flux} across the boundary,
 is useful for investigating connectivity between different areas
 and the role of the landscape in shaping patterns of dispersal.
-For instance,
-we might be interested in the flux across a ridge between two valleys
-relative to that across a similar boundary down the middle of one of the valleys,
-which can tell us whether that ridge is a substantial barrier to population movement or not.
-Note that population flux is not constrained to be equal in both directions across a boundary;
-e.g., it may be easier to disperse downhill than uphill,
+Note that population flux is not constrained to be equal in both directions across a boundary:
+it may be easier to disperse downhill than uphill,
 downwind than upwind,
 or down-current than up-current.
-
 For instance, Figure~\ref{fig:dispersal}C
 shows the number of dispersal events crossing two lines on our simulated valley landscape
 over a few generations.
@@ -680,24 +686,19 @@ due to the higher population density to the east of the line.
 As before, if we had complete knowledge of the spatial pedigree,
 we could calculate the flux across any line simply by counting the number of
 parent-offspring pairs that span it.
-In practice, we must rely on observations from genetic data,
-which introduces two complications.
-First, in a given dataset, it is rare to find any one individual
-that is a direct ancestor of another in the dataset
+However, it is rare to find any one individual
+that is a direct genetic ancestor of another in a dataset
 (apart from perhaps some parent-child relationships).
-Even with historical data (e.g., ancient DNA),
-ancient individuals are unlikely to be direct genetic ancestors of modern samples,
-and instead are likely to share common genetic ancestors with modern samples.
 As a result, we almost never infer a direct chain of dispersal events,
 only dispersal since coalescence events.
-Therefore, the problem of inferring population flux from genetic or genealogical data
-cannot be completely disentangled from inferring population density.
-We can use these observations of coalescences to learn about the flux across a given line:
-across a barrier to dispersal,
+The likely locations of these coalescent events
+depends on the maps of population density and fecundity,
+thus entangling
+the problems of inferring population flux and population density.
+
+For instance, across a barrier with low flux,
 the average time to coalescence for pairs of individuals on opposite sides of the line
 is longer than that between individuals on the same side \citep{bedassle,Duforet-Frebourg_Blum_2014,ringbauer2018estimating}.
-Lower population flux means that individuals on opposite sides of a line share ancestors
-less frequently.
 Flux across a line is also related to mean dispersal distance, $\sigma$, discussed above.
 The expected flux across a straight boundary in a homogeneous area,
 per unit time and per unit of boundary length,
@@ -710,6 +711,8 @@ so estimates of flux can be converted to estimates of dispersal distance.
 \subsubsection{Maps of local dispersal}
 
 
+\plr{not sure if we need this section}
+
 Fluxes across lines through the landscape
 describe something about population movement,
 but are not as helpful 
@@ -719,8 +722,7 @@ to specify for each location on the map
 the probability distribution of where 
 the children of a parent living at that location would end up.
 
-To build an intuition for this,
-suppose that in each small section of the map,
+Suppose that in each small section of the map,
 we recorded all the dispersal events.
 We could describe this collection of dispersal events 
 with the following statistics:
@@ -733,9 +735,9 @@ and is flanked by impassable ridges might be found up-valley
 or down-valley in equal proportion, 
 leading to zero mean dispersal,
 but a high covariance along the axis of the valley.
-Alternatively, the children of a parent in an lotic environment 
-might disperse more frequently down-current than up-current, 
-leading to a net downstream direction of dispersal.
+Alternatively, the children in a wind-dispersed species
+might disperse more frequently down-wind than up-wind, 
+leading to a net down-wind direction of dispersal.
 
 To visualize this,
 we could then plot the mean displacement as a vector field over the map,
@@ -745,6 +747,7 @@ whose radius in any particular direction would be equal to the variance in dispe
 along that direction.
 Areas with longer-distance dispersal would have larger ellipses,
 while areas where dispersal is anisotropic would be visible as flattened ellipses.
+This sort of description is used in models of anisotropic diffusion.
 However, this visualization would not capture the frequency of ``long-distance'' dispersal events,
 which may be important in some species \citep{levin_et_al_seed_dispersal}
 and can drive important differences in gene flow dynamics \citep{HallatschekFisher2014}.
