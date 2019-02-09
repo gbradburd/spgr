@@ -107,35 +107,33 @@ especially the work of Sewall Wright \citep{Wright1940,Wright1943,wright1946isol
 and Gustave Mal\'ecot \citep{malecot}
 much of the early body of theory was focused on
 developing expectations for discrete populations.
-The focus theory maintained on results in discrete populations
-both informed and was informed by early empirical datasets,
+This focus was informed by early empirical datasets,
 most of which
-(although again,
-with some exceptions \citep[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947},
+(again, with exceptions \citet[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947}),
 were well-described as discrete populations --
 e.g., samples of flies in a vial \citep{lewontin1974}.
 The first, revolutionary empirical measurements
-of molecular genetic variation
--- the inaugural ``find 'em and grind 'em" studies of Lewontin and Hubby \citep{HubbyLewontin66,LewontinHubby66} --
+of molecular genetic variation \citep{HubbyLewontin66,LewontinHubby66}
+% -- the inaugural ``find 'em and grind 'em" studies of Lewontin and Hubby \citep{HubbyLewontin66,LewontinHubby66} --
 focused on data from 43 fly strains sampled from 5 locations,
 which were treated as experimental replicates
 (rather than studied in their geographic context).
-And, on the statistical side of the business,
-the methods used to analyze these datasets --
+On the statistical side of the business,
+common methods used to analyze these datasets --
 e.g., empirical measurements of $F_{ST}$ \citep{Wright1951}
 or tests of Hardy-Weinberg equilibrium \citep{hardy1908,weinberg1908} --
-were derived using theory based on discrete populations.
+were defined based on expectations in discrete, well-mixed populations.
+This focus of theory and methods on discrete populations in turn influenced
+future sampling designs.
 
-In reality, well-delineated demes or clearly defined discrete populations are rare.
-Rather, organisms are living,
-moving (or moving their gametes) around,
-reproducing, and dying somewhere in space.
-It is much more difficult to collect data and develop theory and methods
-to capture such complexity.
-Sampling efforts are always limited by time and money
-in both the size of the area that can be covered
-and the number of individuals that can be genotyped within that area.
-And, developing theory to describe evolutionary dynamics
+To what degree does reality match this picture
+of clearly delimited yet randomly mating populations?
+% In reality, well-delineated demes or clearly defined discrete populations are rare.
+Organisms live and move (at some life stage) in real, geographic space.
+It is difficult to collect data and develop theory and methods
+to capture this additional layer of complexity.
+Sampling efforts are limited by time, money, and access.
+Developing theory to describe evolutionary dynamics
 without simplifying assumptions is,
 by definition,
 more difficult.
@@ -153,6 +151,7 @@ Advances in theory in continuous space
 \citep{felsenstein1975pain,BartonWilson1995,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, Barton2013},
 datasets of unprecedented geographical scope 
 \citep[e.g.,][]{POBI, Aguillon2017deconstructing, Shaffer195743},
+new computational tools for simulating spatial models \citep{haller2018forward,haller2018treesequence},
 and new statistical paradigms for modeling those data 
 \citep{petkova2016visualizing, ringbauer2017inferring, ringbauer2018estimating, conStruct, alasadi2018estimating}
 are together spurring a revolution in the field of spatial population genetics.
@@ -163,22 +162,23 @@ in the light of spatial population genetics,
 and, in the process, provide an introduction for empirical researchers
 to the field.
 This is a rapidly changing area of research:
-in some cases, methods for inferring these quantities do not exist, 
+in some cases, methods for estimating the quantities we discuss do not exist, 
 and in others, 
 methods currently in use may no longer be relevant
-to a reader of this review five years from now
-(although hopefully our own contributions will be immortal).
-So, rather than delving into the mechanics of specific methods,
-we instead focus on a small number of foundational questions 
+to a reader of this review five years from now.
+% (although hopefully our own contributions will be immortal).
+Rather than delving into the mechanics of specific methods,
+we focus on a small number of foundational questions 
 about the biology and history of organisms we study:
 where they are; how they move; where their ancestors were;
-whether those quantities have changed over time, 
+how those quantities have changed over time, 
 and whether there are groups of them.
 We discuss each question
 as a spatial population genetic problem, 
-in light of the concept of the spatial pedigree,
-which we introduce as a powerful heuristic
-and an organizing principle for the field.
+explained using the 
+population's genealogy embedded in geographic space,
+i.e., the \emph{spatial pedigree}.
+% which we introduce as a powerful heuristic and an organizing principle for the field.
 It is our hope that by framing our discussion around the spatial pedigree, 
 we can build intuition for --
 and spur new developments in --
@@ -188,25 +188,16 @@ the study of spatial population genetics .
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The spatial pedigree}
 
-The spatial pedigree is
-a graph denoting the pedigree relatedness of all individuals in a sample,
-indexed by the geographic position of each individual.
-All organisms are connected by a vast pedigree.
-If we had complete knowledge of this pedigree,
+The spatial pedigree 
+encodes parent-child relationships of all individuals in a population,
+both today and back through time,
+along with their geographic positions.
+If we had complete knowledge of this vast pedigree,
 we would know many evolutionary quantities
-that we would otherwise would have to estimate from data,
+that we otherwise would have to estimate from data,
 such as the true relatedness between any pair of individuals,
-or each individual's fitness.
-If we knew the spatial pedigree -- 
-both the pedigree relationships
-and the geographic positions of each individual,
-including those of individuals
-who contribute no ancestry to the present-day population 
-(Figure \ref{spatial_pedigree}) -- 
-we would know everything about
-the history of dispersal, gene flow,
-selection, and fitness in a system.
-For example, if we wanted to characterize the dispersal kernel of a species,
+or each individual's realized fitness.
+For example, if we wanted to characterize dispersal behavior of a species,
 we could simply count up the distances between offspring and their parents.
 Or, if we wanted to to know whether a particular allele
 was selected for in a given environment,
@@ -229,46 +220,34 @@ to that of those without the allele.
         \label{spatial_pedigree}
 \end{figure}
 
-The location of an individual can be a complicated quantity to describe,
-and depends strongly on the biology of the species in question.
-When we encounter an organism in nature,
-we do so at a specific location
-that is a waypoint on its total journey.
-The location of a sessile organism
-may not change appreciably throughout its life,
-although clonal organisms,
-such as aspens,
-might expand out over a large region over their lifetime,
-and organisms that grow on a living host,
-like barnacles on whale,
-may hitchhike rides across large distances.
-For motile organisms,
-the matter becomes more complicated still.
-The location in which we encounter an individual
-from a motile species may depend
-on the time, the day, the season,
-or the age or developmental stage of the individual.
+The ``location'' of an individual can be a slippery concept,
+depending on the biology of the species in question
+(as can the concept of ``individual'').
+Where does a barnacle hitchhiking on a whale live?
+A huge, clonal stand of aspen?
+In cases of doubt,
+remember it is actually the passage of genetic information that concerns us:
+the location at a particular time of the ancestor of a particular bit of DNA
+is much less ambiguous.
 To reduce ambiguity,
-and to focus on a quantity
-on which analysis of genetic data can offer an opinion,
-we define the location of an individual to be its birth location.
+we will think of the location of an individual as the place it was
+born, hatched, or germinated.
 
 In practice, we can never be certain of the exact spatial pedigree.
 Even if we could census every living individual in a species
 and establish the pedigree relationships between them all,
 we still would not know about relationships between
-and locations of individuals in previous, unobservable generations \citep{wilkins2004separationoftimescales}.
+and locations of individuals in previous, unsampled generations.
 And, in a highly dispersive species,
 or a species with a highly dispersive gamete,
 there may be only a weak relationship between observed location and birth location.
+
 Despite these complexities,
 the idea of the spatial pedigree is useful
-as a conceptual framework for organizing
-spatial population genetic questions and principles.
+as a conceptual framework for spatial population genetics.
 Although it may be difficult or impossible
-to do inference on the spatial pedigree directly,
-we can still catch glimpses of the spatial pedigree of a sample of individuals
-by collecting and analyzing their genetic data.
+to directly infer the spatial pedigree,
+we can still catch glimpses of it through the window of today's genomes.
 
 \subsection{The bias of long-term fitness}
 \todo{cut, or tie in elsewhere}
