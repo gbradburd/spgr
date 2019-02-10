@@ -96,6 +96,8 @@ population genetics, geographic variation, isolation by distance, pedigree
 % Heading 1
 \section{Introduction}
 
+\todo{clear up textit vs. emph}
+
 The field of population genetics is shaped by a continuing conversation
 between theory, methods, and data.
 We design experiments and collect empirical data
@@ -111,8 +113,9 @@ This focus was informed by early empirical datasets,
 most of which
 (again, with exceptions \citet[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947}),
 were well-described as discrete populations --
-e.g., samples of flies in a vial \citep{lewontin1974}.
-The first, revolutionary empirical measurements
+like samples of flies in a vial \citep{lewontin1974}.
+For example, 
+the first, revolutionary empirical measurements
 of molecular genetic variation \citep{HubbyLewontin66,LewontinHubby66}
 % -- the inaugural ``find 'em and grind 'em" studies of Lewontin and Hubby \citep{HubbyLewontin66,LewontinHubby66} --
 focused on data from 43 fly strains sampled from 5 locations,
@@ -129,10 +132,11 @@ future sampling designs.
 To what degree does reality match this picture
 of clearly delimited yet randomly mating populations?
 % In reality, well-delineated demes or clearly defined discrete populations are rare.
+Often, the answer is: not well.
 Organisms live, move, reproduce, and die,
 connected by a vast pedigree that is anchored in time and space.
-It is difficult to collect data and develop theory and methods
-that capture this additional layer of complexity.
+But, it is difficult to collect data and develop theory and methods
+that capture this complexity.
 Sampling and genotyping efforts are limited by time, money, and access.
 Developing theory to describe evolutionary dynamics
 without the simplifying assumption of random mating
@@ -154,7 +158,6 @@ datasets of unprecedented geographical and genomic scale
 new computational tools for simulating spatial models \citep{haller2018forward,haller2018treesequence},
 and new statistical paradigms for modeling those data 
 \citep{petkova2016visualizing, ringbauer2017inferring, ringbauer2018estimating, conStruct, alasadi2018estimating}
-\g{cite IBD-tract stuff and rare allele stuff (JoNo and Slatkin)}
 are together spurring a revolution in the field of spatial population genetics.
 
 The goal of this review
@@ -165,13 +168,6 @@ statistical methods can provide novel insights into these questions.
 In the process, 
 we hope to provide an introduction for empirical researchers
 to the field.
-%This is a rapidly changing area of research:
-%in some cases, methods for inferring these quantities do not exist, 
-%and in others, 
-%methods currently in use may no longer be relevant
-%to a reader of this review five years from now
-%(although hopefully our own contributions will be immortal).
-%So, rather than delving into the mechanics of specific methods,
 We focus on a small number of foundational questions 
 about the biology and history of organisms we study:
 where they are; how they move; where their ancestors were;
@@ -195,13 +191,13 @@ the study of spatial population genetics .
 The spatial pedigree 
 encodes parent-child relationships of all individuals in a population,
 both today and back through time,
-along with their geographic positions.
+along with their geographic positions (Figure \ref{spatial_pedigree}).
 If we had complete knowledge of this vast pedigree,
 we would know many evolutionary quantities
 that we otherwise would have to estimate from data,
 such as the true relatedness between any pair of individuals,
 or each individual's realized fitness.
-For example, if we wanted to characterize dispersal behavior of a species,
+If we wanted to characterize dispersal behavior of a species,
 we could simply count up the distances between offspring and their parents.
 Or, if we wanted to to know whether a particular allele
 was selected for in a given environment,
@@ -216,7 +212,7 @@ to that of those without the allele.
 	   	placed in its geographic context to make the spatial pedigree (right).
 		Dashed lines denote matings, and solid lines denote parentage.
 		In the spatial pedigree, 
-		each plane represents a a sampled region in a discrete (non-overlapping generation),
+		each plane represents a a sampled region in a discrete (non-overlapping) generation,
 		and each dot represents an individual.
 		The pedigree of the focal individual is highlighted in red 
 		back through time and across space.
@@ -227,12 +223,12 @@ to that of those without the allele.
 The ``location'' of an individual can be a slippery concept,
 depending on the biology of the species in question
 (as can the concept of ``individual'').
-Where does a barnacle hitchhiking on a whale live?
-A huge, clonal stand of aspen?
-In cases of doubt,
-remember it is actually the passage of genetic information that concerns us:
-the location at a particular time of the ancestor of a particular bit of DNA
-is much less ambiguous.
+Where in space does a barnacle hitchhiking on a whale live, 
+or a huge, clonal stand of aspen?
+%In cases of doubt,
+%remember it is actually the passage of genetic information that concerns us:
+%the location at a particular time of the ancestor of a particular bit of DNA
+%is much less ambiguous.
 To reduce ambiguity,
 we will think of the location of an individual as the place it was
 born, hatched, or germinated.
@@ -254,14 +250,6 @@ to directly infer the spatial pedigree,
 we can still catch glimpses of it through the window of today's genomes.
 
 \subsection{``Effective'' parameters and the bias of long-term fitness}
-
-\g{I like this section, and it makes a good point, 
-but we don't really tie much into it elsewhere, 
-and, as is, it feels like one preamble too many.
-I think I mostly want to keep it because of how well the quote fits it.
-Could we work in the message elsewhere in shorter format?
-}
-\plr{How's this?}
 
 \begin{quote}
     \textit{
@@ -297,7 +285,7 @@ this is their \textit{long-term fitness}.
 Different methods query different time periods of the pedigree,
 and are thus subject to these effects to different degrees.
 
-A familiar example is the distinction between ``census'' and ``effective'' population size.
+A familiar example of this distinction is the difference between ``census'' and ``effective'' population size.
 More subtle is the difference between dispersal distance ($\sigma$) and
 ``effective dispersal distance'' ($\sigma_e$),
 the quantity most naturally estimated from genetic data.
@@ -325,7 +313,8 @@ and so $\sigma_e < \sigma$
 
 %%%%%%%%%%%%%%
 \subsection{Where are they?}
-
+\todo{need to incorporate total size, or drop it as a main section and include it just as an afterthought,
+bc we don't really have anything to say about the reflection of total size in the spatial pedigree.}
 Perhaps the first things we might use
 to describe a geographically distributed population
 are an estimate of the total population size,
@@ -336,18 +325,26 @@ what habitat to prioritize for conservation \citep{zipkin2018synthesizing},
 which regions have higher population carrying capacities than others \citep{roughgarden1974}, 
 or whether a particular habitat is a demographic source or sink 
 \citep{pulliam1988sources}.
-Aspects of abundance and fecundity are clearly recorded in the spatial pedigree,
-but inferring maps of population density
-remains an open problem.
-
 The best measure of population density
-would be a count of the number of individuals occurring in various geographic regions.
-How close can population genetics get us to producing this map by indirect means?
+would be a count of the number of individuals occurring in various geographic regions, 
+and the best measure of total population size would be the sum of the counts across all regions.
+How close can population genetics get us to estimating these quantities by indirect means?
 Some fundamental limitations are clear:
 for instance, if we only sample adults,
-we cannot hope to estimate the proportion of juveniles that die before adulthood,
-because none of our sampled genetic material inherits from these unlucky individuals:
-they are invisible as we move back through the pedigree.
+we cannot hope to estimate the proportion of juveniles that die before adulthood.
+None of our sampled genetic material inherits from these unlucky individuals,
+so they are invisible as we move back through the pedigree.
+In addition, it is tricky to separate the inference of population density 
+from that of dispersal, 
+as the rate of dispersal to or from a region of interest 
+governs whether it makes sense to consider the pedigree in that region on its own.
+Partly because of this issue, 
+it is also difficult to estimate total size from a sample of a 
+non-panmictic population, 
+and so it is more intuitive to discuss local density first, 
+then scale up to the problem of total population size.
+The spatial pedigree contains a record of both total and regional population sizes, 
+and we can use data generated on it to learn about these quantities.
 
 
 \begin{figure}[h]
@@ -381,16 +378,18 @@ they are invisible as we move back through the pedigree.
 \end{figure}
 
 
+
 %%%%%%%%%%%%%%
 \subsubsection{Population density}
 
 Genetic information about population sizes or densities most clearly
 comes from numbers and recency of shared ancestors, 
 i.e., the rate at which coalescences are encountered moving back through the pedigree.
-The reason for this is simple:
+The relationship between density and coalescence is, in principle, straightforward:
 with fewer possible ancestors,
 individuals' common ancestors tend to be more recent.
-It is helpful to consider 
+To build an intuition for the effect of density on relatedness,
+it is helpful to consider 
 the problem of inferring the total size of the previous generation
 in a randomly-mating population
 from the number of siblings found in a random sample of size $n$.
@@ -403,23 +402,22 @@ This implies that in a sample of size $n$,
 $n(n-1)/2$ divided by the number of observed sibling pairs 
 provides an estimate of inbreeding effective population size, $N_e = N/\E[X(X-1)]$.
 In other words, we should be able to use relatedness to estimate population size
-up to the factor $\E[X(X-1)]$, which depends on demographic details.
+up to the factor $\E[X(X-1)]$, which depends on demographic details. 
 % Common ancestors -- i.e., coalescences --
 % further back in time are simply more remote sibling pairs.
 % so this calculation applies to estimates further in the past.
-However, this discussion is mostly illustrative, because
-if a dataset does contain very many siblings,
-nonrandom sampling is probably the cause,
-and direct mark-recapture methods would often be more efficient.
-
 This same logic can be applied locally:
 the (inbreeding) effective population density
 near a location $x$, denoted $\rho_e(x)$,
 can be defined as the inverse of the rate of appearance of sibling pairs
 near $x$, per unit of geographic area and per generation.
+This discussion is mostly illustrative, because
+if a dataset does contain very many siblings,
+nonrandom sampling is probably the cause,
+and direct mark-recapture methods would often be more efficient.
 
-Extending this line of reasoning,
-the local density of close relatives 
+However, we can extend this line of reasoning to see that 
+the local density of close relatives
 should reflect local population size.
 The chance that two geographic neighbors actually \textit{are} siblings 
 decreases with the number of ``possible nearby parents'':
@@ -449,11 +447,11 @@ in the locations and times where those coalescences occur.
 \subsubsection{Total population size}
 
 Rather than local differences in population density,
-It is more common to estimate the total (effective) population size
-using measures of genetic diversity such as $\pi$,
+it is more common to focus on the total (effective) population size.
+Population size is often estimated using measures of genetic diversity such as $\pi$,
 the mean density of nucleotide differences between two randomly sampled chromosomes.
 Because each such difference is the result of a mutation
-sometime since the chromosomes' most recent common ancestor at that location,
+sometime since the chromosomes' most recent common ancestor at that location on the genome,
 $\pi$ is equal to twice the mean time to most recent common ancestor
 within the sample, multiplied by the mutation rate.
 In other words, if the per-nucleotide mutation rate is $\mu$,
@@ -465,20 +463,19 @@ The quantity $T$ itself is an interesting summary of the pedigree;
 what does it have to do with population size?
 In a randomly mating, diploid population of constant effective size $N_e$,
 the discussion above implies that $T = 2N_e$.
-However, this only clearly provides a good estimate of $N_e$
+However, this only provides a good estimate of $N_e$
 if the population has been relatively stable over this period of time,
-and $\pi$ depends on geography and sampling in complex ways.
+and $\pi$ depends on geography, sampling, and dispersal in complex ways.
 
 
 %%%%%%%%%%%%%%
-\subsubsection{What does local genetic diversity tell us?}
+\subsubsection{Estimating population size and density}
+\g{feels like this is too long, but also feels like it's good to, y'know, \emph{review} some stuff}
 
-Given the practical difficulties in obtaining unbiased estimates of proportion of close relatives,
-and the dependence of $T$ on long-ago events,
-how can we hope to estimate \textit{local} population densities?
+Above, we describe the signature of population density and total size 
+on the spatial pedigree, but how can we estimate these quantities from genetic data?
 To see what signature varying population density leaves 
-on the spatial pedigree and patterns of genetic variation
-within a region,
+on patterns of genetic variation within a region,
 we use a simulated example.
 Consider two adjacent valleys, 
 one densely populated, the other sparsely populated, 
@@ -490,22 +487,26 @@ pairs of individuals in the densely populated valley.
 This happens simply because 
 each group of siblings makes up a larger proportion 
 of the more sparsely populated valley.
-Because individuals in the sparsely populated valley have more shared ancestors 
-in the more recent past, 
-the two chromosomes of samples from that valley are more closely related,
+Individuals in the sparsely populated valley 
+have more shared ancestors in the more recent past, 
+so the two chromosomes sampled in a each individual 
+from that valley are more closely related,
 i.e., have lower heterozygosity, as shown in Figure \ref{pop_density}\subref{valley_het}.
 
-However, we might also expect a similar difference in heterozygosity
+However, there are a number of caveats in the estimation 
+of density from heterozygosity.
+First, differences in heterozygosity can be shaped 
+by more than just differences in density.
+For example, we might also expect a similar difference in heterozygosity
 if the two valleys had the \textit{same} population density per unit area,
 but one valley was larger than the other,
 because heterozygosity reflects population size.
-On the other hand, if dispersal distances tend to be shorter
+Or, if dispersal distances tend to be shorter
 in the more densely populated valley -- 
 e.g., because resources are more plentiful, 
 so that individuals do not have to disperse as far to find food -- 
 there may be more inbreeding over short distances,
 despite higher genetic diversity within the valley as a whole.
-
 
 Migration into and out of a region presents another complication.
 Roughly speaking,
@@ -523,7 +524,34 @@ then the pedigree in a region cannot be considered autonomously.
 In other words,
 regions cannot be analyzed independently
 unless a region of interest sees less than one migrant per generation
-(i.e., outisde the parameter regime of the structured coalescent \citep{nagylaki1998}).
+(i.e., outside the parameter regime of the structured coalescent \citep{nagylaki1998}).
+
+There are two main alternative approaches to estimating local density: 
+measuring the rate of genetic drift  and identifying close relatives\citep{Wang2016Prediction}.
+To measure the rate of genetic drift, 
+a researcher compares allele frequencies
+in at least two samples collected in a region in different generations, 
+either at different points in time,
+or, in a species with overlapping generations, 
+between contemporaneous individuals of different life stages
+\citep{WilliamsonSlatkin1999}.
+The rate of drift is governed by, 
+and therefore provides an estimate of, 
+local population size
+\citep{ewens2004mpg,Charlesworth2009}.
+Alternatively, a researcher can use a large sample in a single generation 
+and leverage multilocus genotypes \citep{nomura2008estimation,WaplesWaples2011,Wang_2014},
+shared rare alleles \citep{NovembreSlatkin2009}, 
+or long shared haplotypes \citep[e.g.,][]{ralph2013geography}
+to identify close relatives, like sibs, half-sibs, or recent cousins.
+As discussed above, the proportion of identified close relatives out of the total (unbiased)
+sample can inform an estimate of the local population density.
+Because these latter approaches are pinned to the recent past, 
+either by the generations sampled or by the degree of closeness of relatives,
+they may offer a more accurate estimate of population density than heterozygosity does, 
+especially when density has changed over time.
+\g{more on this and about how heterozygosity reflects historical avgs?}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{How do they move?}
