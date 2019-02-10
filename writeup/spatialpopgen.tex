@@ -782,10 +782,9 @@ and can drive important differences in gene flow dynamics \citep{HallatschekFish
 
 %%%%%%%%%%%%%%
 \subsection{Where were their ancestors?}
-\todo{expand or drop - figure (and present-to-past approach) could be looped into dispersal section}
-Above, we have discussed how the dynamics of populations affect
-patterns of relatedness,
-i.e., how individuals reproduce and move across space.
+
+Above, we have discussed how population dynamics of movement and reproduction
+are reflected in the spatial pedigree.
 A complementary view is to
 start with individuals sampled in the present day,
 then, looking backwards in time,
@@ -804,13 +803,15 @@ we are often also interested in the partitioning of genetic diversity across spa
 e.g.,
 quantifying the strength of inbreeding locally,
 or assessing the capacity of a population to become locally adapted.
-Spatial locations of ancestry compared across sections of the genome
-could also be informative about the origins and mechanisms of selective sweeps.
+Spatial distributions of ancestry compared across sections of the genome
+could also be informative about 
+other processes, such as
+the origins and mechanisms of selective sweeps.
 
 
 %%%%%%%%%%
 \subsubsection{Geographic distribution of ancestry}
-\todo{expand or drop?}
+
 As one looks further back in time,
 the geographic distribution of an individual's ancestors
 is determined by the history of population size changes and movements.
@@ -875,34 +876,35 @@ than do the orange--green shared ancestors.
 
 
 %%%%%%%%%%%%%%
-\subsection{Relative genetic differentiation}
-\todo{expand or drop}
-The question of how genetic variation is partitioned across
-geography is a common and intuitively appealing one,
-albeit somewhat slippery in practice.
-The basic idea is to quantify 
-how much \textit{more} likely nearby individuals are 
-to share genetic variation than individuals in the population as a whole.
-The most common measure of this quantity is $F_{ST}$ \citep{Wright1951},
+\subsubsection{Relative genetic differentiation}
+
+In the ``two valley'' situation of Figure \ref{ancestry_spread},
+ancestors are shared within valleys over the time period shown,
+but not between valleys.
+How significant is this?
+It can be helpful to quantify the degree to which genetic variation is partitioned across geography.
+The most common measure of
+how much more closely related neighbors are to each other relative to the population as a whole
+is $F_{ST}$ \citep{Wright1951},
 which can be thought of as estimating
 one minus the ratio of mean coalescence time within subpopulations
-to that within the entire population \citep{slatkin_1991inbreeding}.
-This normalization by mean coalescence time in the entire population
+to that within the entire population \citep{slatkin_1991inbreeding}
+-- a descriptor of average tree shape in the pedigree.
+This normalization by mean overall coalescence time 
 that makes this relative measure comparable across populations of different sizes.
-In practice, 
+
+In stationary populations,
 relative genetic differentiation is determined by the tension between 
 geographic mixing (due to population flux between areas)
 and local coalescence (determined by population density).
-
-As discussed above,
-increased genetic similarity between nearby individuals
-is due to relatively recent shared ancestors.
 In the more remote past, each individual's ancestors are distributed across
 all of geography,
 so that the long-ago portion of the pedigree looks like that of a randomly mating population.
-These two phases -- recent spatial autocorrelation and distant random mating --
-are the ``scattering'' and ``collecting'' phases  \citep{Wakeley1999,wilkins2004separationoftimescales},
-as moving back through time, first lineages scatter, and then gradually meet each other.
+The transition between these two phases -- recent spatial autocorrelation and distant random mating
+(termed the ``scattering'' and ``collecting'' phases  by \citet{wilkins2004separationoftimescales})
+happens on the time scale over which a lineage crosses the species range \citep{Wakeley1999}.
+Since lineage motion is diffusive, in a continuous range of width $L \sigma_e$,
+coalescences between lineages of distanct individuals happen on a time scale of $L^2$ generations.
 Relative genetic differentiation
 is determined by the likelihood that coalescence between two nearby individuals
 occurs during the scattering phase
@@ -910,6 +912,125 @@ occurs during the scattering phase
 are correlated with each other,
 relative to the local effective population size.
 
+$F_{ST}$ may not be best measure of this quantity -- 
+others are possible that depend less on the deep history of the population.
+For instance,
+one could ask for the proportion of the genomes of two neighbors inherited in common from ancestors int he last $T$ generations
+relative to the same quantity for distant individuals,
+where $T$ is chosen to reflect the time scale of interest.
+The appropriate measure will depend on the application at hand.
+
+%%%%%%%%%%%
+\subsection{Clustering, grouping, and ``admixture''}
+
+\plr{I think there's some redundancy below.}
+
+Many tools for modern analysis of genetic data
+partition existing genetic variation into clusters labeled as (discrete) populations
+\citep[e.g.,][]{STRUCTURE, ADMIXTURE}
+% Perched on the shoulder of discrete population structure is the concept of admixture,
+% the idea that populations can be composed of ancestry from multiple discrete groups.
+The ubiquity of gene flow means that
+any conceptual model of discrete populations also requires the notion of \emph{admixture}.
+These tools provide descriptive visualizations 
+that can be extremely useful for
+describing and making sense of patterns of relatedness and genetic variation.
+Coupled with a quantification of relative genetic differentiation,
+this is useful in conservation to delineate discrete management units.
+However, in practice these discrete groups may easily be determined
+by clustering of sampling effort,
+calling into question their real-world interpretation.
+Explicitly utilizing geographic proximity can help alleviate these concerns \citep{conStruct},
+but it would still be desireable to delineate groups in a way explicitly linked
+to the actual history of relatedness, i.e., the spatial pedigree.
+
+The real-world situation when admixture between discrete populations 
+is perhaps most clearly defined is when populations that have been completely separated
+for a long period of time come back into contact.
+In this case, the discrete populations are defined by partitioning \emph{ancestral} individuals,
+and admixture of subsequent generations is determined by inheritance from them.
+For instance, suppose that 
+the two valleys of our running example
+were isolated during a long period of ``glaciation'',
+followed by glacial retreat and expansion into secondary contact.
+The valleys clearly act as discrete populations during glaciation, 
+while there are are few if any pedigree connections between the valleys.
+Pedigrees only start to overlap more recently between individuals in each valley.
+To obtain an admixture proportion,
+we can fix some ``reference'' time in the past,
+and label each subsequent individual's genomes
+according to which of the two valleys it inherited from at the reference time.
+% The precise reference time does not matter as long as there was no gene flow during isolation.
+This is shown in Figure \ref{postglacial_expansion}:
+eight generations after contact (top),
+this quantity clearly reflects the history of isolation 
+individuals in or near each valley have inherited most of their genomes 
+from ancestors in the closest valley.
+However, if we return 75 generations later, 
+we see a more complicated story (bottom).
+The continued spatial mixing has resulted in a significant 
+portion of ancestry in the west valley inherited from 
+glacial-era ancestors in the east valley, 
+and vice versa.
+Further complicating the issue, 
+the west-to-east flux across the ridge between the valleys 
+is higher than that in the opposite direction 
+because the western valley has a higher population density. 
+As a result, a much higher proportion of the genomes
+in the eastern valley are now inherited 
+from individuals that, 
+during glaciation, were found in the western valley.
+
+\begin{figure}[H]
+    \centering
+        \includegraphics[width=0.75\linewidth]{figs/valley_admixture_new}
+        \includegraphics[width=0.75\linewidth]{figs/valley_admixture_old}
+        \caption{
+            Admixture proportions after a recent secondary contact.
+            Each pie shows the proportion of a diploid individual's genomes
+            that inherit from the western (cyan) and eastern (magenta) valleys, respecitvely.
+            \textbf{(top)} Eight generations, and
+            \textbf{(bottom)} seventy-five generations 
+            after a barrier along the top of the ridge is removed.
+        }
+        \label{postglacial_expansion}
+\end{figure}
+
+This simulation highlights both the relevance of 
+a model of discrete population structure and admixture
+to spatially continuous data, 
+and also its limitations.
+Using the period of glacial isolation as our reference point, 
+it is straightforward to designate individuals in each valley 
+as members of different populations 
+(although note that, in the early stages of isolation, 
+individuals in each valley may have had recent pedigree overlap, 
+depending on the flux across the previously un-glaciated ridge).
+Likewise, 
+in the interval shortly after secondary contact, 
+it is useful to visualize patterns of genetic variation 
+by identifying the proportion of ancestry 
+each individual derives from glacial-era ancestors in each valley.
+However, 
+outside the time during and immediately following glaciation, 
+describing genotyped individuals on this landscape 
+using a model of discrete populations with admixture 
+becomes less helpful.
+Without a concrete interpretation based in the population pedigree,
+partitioning genetic variation into discrete groups, 
+and labeling of samples as admixed between those groups
+can encourage the incorrect interpretation that discrete populations are platonic ideals,
+real and unchanging.
+% As has been noted elsewhere 
+% \citep{reich_india_2009,patterson_ancient_2012,hellenthal2014genetic,lawson2018tutorial},
+% the power to infer a recent admixture event between historically separated populations
+% is a function of the recency of admixture and
+% the inclusion of populations descended 
+% from the sources of admixture in the modern day sample.
+% Indeed, the concept of admixture becomes slipperier when considered over deeper timescales,
+% as populations inferred as sources of admixture are themselves almost certainly ``admixed,"
+% and have either been isolated for long enough that the admixture is no longer detectable,
+% or, more likely, the descendants of those sources of admixture are lost in the modern sample.
 
 %%%%%%%%%%
 \subsection{How have things changed over time?}
@@ -1001,122 +1122,6 @@ As we develop more datasets that include genotype data from historical individua
 we will better be able to evaluate the prevalence of spatial discontinuity 
 and its effects on our inferences across natural systems. 
 
-
-%%%%%%%%%%%
-\subsection{Are there groups of them?}
-One of the most common steps in the analysis of population genetic data
-is to quantify and visualize population structure:
-systematic differences in genetic similarity between groups of individuals.
-Perched on the shoulder of discrete population structure is the concept of admixture,
-the idea that populations can be composed of ancestry from multiple discrete groups.
-Models of discrete population structure and admixture 
-\citep[e.g.,][]{STRUCTURE, ADMIXTURE}
-can be helpful for getting a general sense of patterns of variation in a dataset, 
-for generating hypotheses or informing future analyses, 
-and, sometimes, for conservation by, 
-e.g., delineating discrete management units.
-In spatially continuous systems, 
-we might infer discrete population structure between groups of individuals 
-when dispersal between them is reduced -- 
-either in the modern day, at some point in the past, or both -- 
-beyond that expected given their spatial remove, densities, and dispersal distance
-\citep{conStruct}.
-Similarly, we can define a spatial analogue of admixture 
-by quantifying the proportion of genome and individual 
-has inherited from ancestors that lived within a particular region 
-at a specified point in the past.
-In some systems, 
-especially when organisms are patchily distributed, 
-with high dispersal within a patch and rare dispersal between patches,
-these quantities may be useful for describing 
-and making sense of observed patterns of genetic variation.
-However, 
-they can also act as a crutch that leads to problematic or misleading inference.
-
-We illustrate these difficulties
-using a simulation of expansion from glacial refugia.
-In this scenario, 
-individuals were isolated in two valley refugia during a long period of ``glaciation,"
-followed by glacial retreat and expansion into secondary contact.
-During glaciation, 
-it is straightforward to define the valleys as discrete populations;
-there are few if any recent pedigree connections between the valleys, 
-and common recent pedigree overlap between individuals within each valley.
-After secondary contact, 
-we can track the proportion of each individual's genome that 
-was inherited from an ancestor in each of the two refugia, 
-which is analogous to an admixture proportion.
-Eight generations after contact, 
-this quantity clearly reflects the history of isolation 
-(Figure \ref{postglacial_expansion}, top): 
-individuals in or near each valley have inherited most of their genomes 
-from ancestors in the closest valley.
-However, if we return 75 generations later, 
-we see a more complicated story (Figure \ref{postglacial_expansion}, bottom). 
-The continued spatial mixing has resulted in a significant 
-portion of ancestry in the west valley inherited from 
-glacial-era ancestors in the east valley, 
-and vice versa.
-Further complicating the issue, 
-the west-to-east flux across the ridge between the valleys 
-is higher than that in the opposite direction 
-because the western valley has a higher population density. 
-As a result, a much higher proportion of the genomes
-in the eastern valley are now inherited 
-from individuals that, 
-during glaciation, were found in the western valley.
-
-\begin{figure}[H]
-    \centering
-        \includegraphics[width=0.75\linewidth]{figs/valley_admixture_new}
-        \includegraphics[width=0.75\linewidth]{figs/valley_admixture_old}
-        \caption{
-            Admixture proportions after a recent secondary contact.
-            Each pie shows the proportion of a diploid individual's genomes
-            that inherit from the western (cyan) and eastern (magenta) valleys, respecitvely.
-            \textbf{(top)} Eight generations, and
-            \textbf{(bottom)} seventy-five generations 
-            after a barrier along the top of the ridge is removed.
-        }
-        \label{postglacial_expansion}
-\end{figure}
-
-This simulation highlights both the relevance of 
-a model of discrete population structure and admixture
-to spatially continuous data, 
-and also its limitations.
-Using the period of glacial isolation as our reference point, 
-it is straightforward to designate individuals in each valley 
-as members of different populations 
-(although note that, in the early stages of isolation, 
-individuals in each valley may have had recent pedigree overlap, 
-depending on the flux across the previously un-glaciated ridge).
-Likewise, 
-in the interval shortly after secondary contact, 
-it is useful to visualize patterns of genetic variation 
-by identifying the proportion of ancestry 
-each individual derives from glacial-era ancestors in each valley.
-However, 
-outside the time during and immediately following glaciation, 
-describing genotyped individuals on this landscape 
-using a model of discrete populations with admixture 
-becomes less helpful.
-Without specifying a reference time in which ancestry 
-of modern individuals are being tracked through space, 
-the partitioning of the pedigree into discrete groups, 
-or the labeling of other samples as admixed between those groups
-can encourage the incorrect worldview that discrete populations are platonic ideals,
-real and unchanging.
-As has been noted elsewhere 
-\citep{reich_india_2009,patterson_ancient_2012,hellenthal2014genetic,lawson2018tutorial},
-the ability to identify a population as admixed
-is a function of the recency of admixture and
-the inclusion of populations descended 
-from the sources of admixture in the modern day sample.
-Indeed, the concept of admixture becomes slipperier when considered over deeper timescales,
-as populations inferred as sources of admixture are themselves almost certainly ``admixed,"
-and have either been isolated for long enough that the admixture is no longer detectable,
-or, more likely, the descendants of those sources of admixture are lost in the modern sample.
 
 %%%%%%%%%%%
 \section{Exciting directions for the field}
