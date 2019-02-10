@@ -995,47 +995,81 @@ real and unchanging.
 % and have either been isolated for long enough that the admixture is no longer detectable,
 % or, more likely, the descendants of those sources of admixture are lost in the modern sample.
 
+
 %%%%%%%%%%
 \subsection{How have things changed over time?}
 
-So far in this review, we have assumed a static world
-in which species' geographic distributions,
-individual's dispersal patterns,
-and the landscape itself all remain constant over the relevant time scale.
-The assumptions are often broken.
+As we have discussed above,
+different methods are sensitive to signal
+from different time slices of the pedigree.
+Of course, the geographic distributions and dispersal patterns of most species,
+not to mention the landscape itself,
+have changed over the time scale spanned by the pedigree of modern individuals.
 For example, 
 high-latitude tree populations may only have been established
-following the retreat of the glaciers,
+following the retreat of the glaciers
 a few tens of generations ago \citep{WhitlockMcCauley1999},
 and invasive species may have entered their current
 environment even more recently than that.
 In addition to organisms moving themselves across landscapes,
 landscapes are often changing out from under organisms' feet.
-Anthropogenic land use change
+
+Anthropogenic land use
 and global climate change
 are radically altering both where organisms can live
 and where they disperse \citep{parmesan1999}.
-The result of these changes is that many empirical systems
+The result is that many empirical systems
 are not in equilibrium,
 so that the dynamics we estimate from
 measurements of extant individuals may
 not be representative of those in the past.
 Exacerbating this problem,
-the time to reach equilibrium
+it can take a long time to reach equilibrium
 in areas of high population density
 or across regions of low flux
-can be long
 \citep{CrowAoki1984group, whitlock1992temporal, slatkin1993isolation, WhitlockMcCauley1999}.
-Theory and methods that
-reflect the empirical reality that things were not always as they are
-still are lacking, 
-as is a general awareness of this issue in many empirical systems.
-Below, we discuss one particularly thorny way in which 
-things can change over time: spatial discontinuity.
+Theory and methods that can address change across both time and space
+are still lacking,
+and present an exciting set of challenges for the field.
+
+%%%%%%%%%%
+\subsubsection{Genealogical strata}
+
+The field of population genetics
+has many heuristics for which aspects of genetic data
+contains information about older or more recent times in a population's history.
+Rare alleles tend to be recent,
+and long shared haplotypes even more so;
+pairwise statistics like $\pi$ mostly inform us about events long ago,
+on a scale of $N_e$ generations.
+Different statistics thus provide us with windows into different strata of the pedigree.
+Using rates of sibling- and cousin-ship,
+the last few generations of history would be the easiest to understand,
+but carries the perhaps unreasonable requirement of a sample 
+that is a sizeable fraction of the entire population.
+Methods for inferring the distant history of populations using a few samples
+are the most well-developed \citep[e.g.,]{dadi,psmc,momi},
+but these can incorporate very little in terms of geographic realism,
+and indeed much of the signal of geography 
+may have washed out on this coalescent time scale.
+The length spectrum of long, shared haplotypes
+(also known as IBD segments)
+can be used to peer into the strata of the pedigree between these two time scales:
+since the lengths of segments of genome inherited in common by two individuals
+from $t$ generations ago scales roughly with $1/t$, 
+these can carry substantial information about ancestors from only tens of generations ago.
+This fact has been used by \citet{alasadi2019maps}
+to create estimated maps of population density and migration rate
+for different, recent time slices.
+However, the different strata cannot be read independently
+-- the correspondence between shared haplotype length and age of common ancestor
+depends strongly on population size history \citep{ralph2013geography}.
 
 
 %%%%%%%%%%
 \subsubsection{Now is the winter of our discontinuity}
+
+\plr{shorten this up, I think, and call it something besides discontinuity? I have not heard this, and connotes other things to me.}
 
 The specter of \textit{spatial discontinuity} --
 the phenomenon in which none of the individuals 
