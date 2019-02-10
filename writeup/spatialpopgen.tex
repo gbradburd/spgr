@@ -66,10 +66,7 @@ but the complexities of the alternative --
 organisms living, dispersing, reproducing, and dying 
 somewhere in space -- 
 have been difficult to capture in a theoretical or statistical model.
-However, recent advances in theory, 
-alongside the advent of genomic datasets 
-of ever-increasing size and geographic scope 
-and methods for analyzing them,
+However, recent advances in theory, data, and methods 
 are facilitating a revolution in the study of organisms in continuous space.
 Here, we discuss some of the questions in spatial population genetics 
 that researchers want answered in their study systems.
@@ -100,10 +97,10 @@ population genetics, geographic variation, isolation by distance, pedigree
 
 The field of population genetics is shaped by a continuing conversation
 between theory, methods, and data.
-We design experiments and collect empirical data
+We design experiments and collect data
 with the methods we will use to analyze them in mind, 
 and those methods are based on theory
-that was developed to explain observations from empirical data.
+that was developed to explain observations from data.
 With some notable exceptions,
 especially the work of Sewall Wright \citep{Wright1940,Wright1943,wright1946isolation}
 and Gustave Mal\'ecot \citep{malecot}
@@ -115,7 +112,7 @@ most of which
 were well-described as discrete populations --
 like samples of flies in a vial \citep{lewontin1974}.
 For example, 
-the first, revolutionary empirical measurements
+the first revolutionary empirical measurements
 of molecular genetic variation \citep{HubbyLewontin66,LewontinHubby66}
 % -- the inaugural ``find 'em and grind 'em" studies of Lewontin and Hubby \citep{HubbyLewontin66,LewontinHubby66} --
 focused on data from 43 fly strains sampled from 5 locations,
@@ -151,14 +148,20 @@ are poorly defined.
 Despite these difficulties,
 there is now a growing body of theory, methods, and data
 that approach this biological, population-less reality.
-Advances in theory in continuous space 
+\g{The ability to generate large genomic datasets 
+is facilitating the estimation of the timing of shared ancestry 
+between individuals, 
+which in turn allows the study of processes acting within specific windows of time, 
+rather than averaged over the history of the sample.
+\citep{Li_Durbin2011,Harris_Nielsen_2013,Palamara_2012}}
+And, advances in theory in continuous space 
 \citep{felsenstein1975pain,BartonWilson1995,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, Barton2013},
-datasets of unprecedented geographical and genomic scale 
+datasets of unprecedented geographical scale
 \citep[e.g.,][]{POBI, Aguillon2017deconstructing, Shaffer195743},
 new computational tools for simulating spatial models \citep{haller2018forward,haller2018treesequence},
 and new statistical paradigms for modeling those data 
 \citep{petkova2016visualizing, ringbauer2017inferring, ringbauer2018estimating, conStruct, alasadi2018estimating}
-are together spurring a revolution in the field of spatial population genetics.
+are together bringing an understanding of the geographic distribution of genetic variation into reach.
 
 The goal of this review
 is to reframe some of the fundamental questions in population genetics 
@@ -287,7 +290,7 @@ and are thus subject to these effects to different degrees.
 
 A familiar example of this distinction is the difference between ``census'' and ``effective'' population size.
 More subtle is the difference between dispersal distance ($\sigma$) and
-``effective dispersal distance'' ($\sigma_e$),
+``effective dispersal distance'' ($\sigma_e$) \citep{Cayuela2018demographic},
 the quantity most naturally estimated from genetic data.
 Both are mean distances between parent and offspring:
 $\sigma$ is the average observed from, say, the modern population,
@@ -563,7 +566,6 @@ responses to climate change \citep{parmesan2006},
 or population demography and dynamics \citep{schreiber2010interactive}.
 We define dispersal to be the process that governs 
 the displacement between geographic locations of parent and offspring.
-This important quantity describes how quickly spatial populations mix.
 %but combines many important aspects of the organism's ecology, including
 %any movement of gametes or zygotes before maturation,
 %and subsequent daily or seasonal movement of the mature individual,
@@ -572,10 +574,8 @@ For some species,
 it may be feasible to directly measure dispersal 
 using, e.g., telemetry or banding \citep{Cayuela2018demographic},
 but this is often prohibitively expensive or difficult.
-If we knew the spatial locations of ancestors in the pedigree,
-then realized dispersal would be recorded directly;
-we usually do not, but spatial locations of modern individuals
-can give strong clues about this.
+Although we usually do not know the spatial locations of ancestors in the pedigree,
+the spatial locations of modern individuals can give strong clues about this.
 
 
 %%%%%%%%%%%%%%
@@ -585,8 +585,8 @@ We call the absolute value of the spatial displacement between parent and offspr
 the \textit{dispersal distance}, and refer to it as $\sigma$.
 The dispersal distance describes the quantity one could calculate by,
 e.g., collecting a large number of germinating seeds
-and averaging the distance from those seeds to their two parents;
-it determines how quickly spatial populations mix.
+and averaging the distance from those seeds to their two parents.
+It determines how quickly spatial populations mix.
 
 Dispersal distance could be trivially estimated by taking
 the average of these displacements across history
@@ -602,21 +602,14 @@ For example,
 the distance between siblings is the result of two dispersals,
 so an average of this distance over many pairs of siblings 
 gives an estimate of $2 \sigma$.
-First cousins would give four times the dispersal distance, and so forth:
-the mean squared displacement along
-a path of total length $n$ through the pedigree is $\sigma^2 n$.
+The mean squared displacement along
+a path of total length $n$ through the pedigree is $\sigma^2 n$:
+first cousins would give four times the dispersal distance, and so forth.
 % assuming that $n$ is short enough that boundary effects can be ignored.
 Unfortunately, basing an estimator of $\sigma$ on this observation
 is is usually infeasible in practice,
 unless a large fraction of the population has been genotyped
 \citep[e.g.,][]{Aguillon2017deconstructing}.
-Although long, shared tracts of genome can be used to identify very recent cousins,
-identification of more distant relatives is necessarily uncertain.
-
-This general idea was applied to much larger time scales by \citep{neigel1991estimation,neigel1993application},
-who used the genealogical tree relating many samples at one nonrecombining locus
-(e.g., the mitochondria) and the spatial locations of these samples
-to infer $\sigma$ using the tools of phylogenetics.
 
 Instead of identifying close relatives,
 we might use the decay of mean genetic relatedness with distance
@@ -630,15 +623,12 @@ in homogeneous space (Malec\'ot's formula)
 can be derived in various ways 
 \citep{malecot, sawyer1976branching, rousset_1997, barton-depaulis-etheridge, robledoarnuncio, ringbauer2017inferring, alasadi2018estimating},
 but is composed of two parts: 
-(a) how long has it been since the two last had ancestors that lived near to each other,
+(a) how long has it been since the two individuals last had ancestors that lived near to each other,
 and (b) how long before that did they actually share an ancestor.
 The second part is not well understood,
 but \citet{malecot} assumed that the second stage acts as in a randomly mating population
 with some local effective size, $N_\text{loc}$.
-\citet{rousset_1997} used this formula to show that
-the slope of $F_{ST}$ against the logarithm of distance
-is under these assumptions an estimator for $4 \pi \rho_e \sigma_e^2$,
-but it is not known to what degree the assumptions affect the results.
+
 
 \begin{figure}[H]
     \centering
@@ -681,9 +671,7 @@ but it is not known to what degree the assumptions affect the results.
 \end{figure}
 
 %%%%%%%%%%%%%%
-\subsubsection{Population flux}
-
-\plr{I'm tempted to call this ``dispersal flux'' instead of ``population flux''?}
+\subsubsection{Dispersal flux}
 
 Dispersal ability is not, of course, constant across real landscapes, and
 we would often like to measure the ``amount of gene flow'' across some barrier
@@ -695,10 +683,10 @@ we can ask for the number of dispersal events that cross it in a given year --
 that is, 
 how many individuals are born each year whose parents
 were born on the other side of the line?
-This quantity, which we call the \textit{population flux} across the boundary,
+This quantity, which we call the \textit{dispersal flux} across the boundary,
 is useful for investigating connectivity between different areas
 and the role of the landscape in shaping patterns of dispersal.
-Note that population flux is not constrained to be equal in both directions across a boundary:
+Note that dispersal flux is not constrained to be equal in both directions across a boundary:
 it may be easier to disperse downhill than uphill,
 downwind than upwind,
 or down-current than up-current.
@@ -722,7 +710,7 @@ only dispersal since coalescence events.
 The likely locations of these coalescent events
 depends on the maps of population density and fecundity,
 thus entangling
-the problems of inferring population flux and population density.
+the problems of inferring dispersal flux and population density.
 
 For instance, across a barrier with low flux,
 the average time to coalescence for pairs of individuals on opposite sides of the line
@@ -736,49 +724,24 @@ so estimates of flux can be converted to estimates of dispersal distance.
 
 
 %%%%%%%%%%%%%%
-\subsubsection{Maps of local dispersal}
+\subsubsection{Estimating dispersal and flux}
 
+\begin{itemize}
+\item How do we estimate effective dispersal and flux using genetic data? 
+\subitem Fst and IM models, estimating gene flow (Slatkin 1985)
+\subitem \citet{rousset_1997} used this formula to show that
+the slope of $F_{ST}$ against the logarithm of distance
+is under these assumptions an estimator for $4 \pi \rho_e \sigma_e^2$,
+but it is not known to what degree the assumptions affect the results.
+\subitem This general idea was applied to much larger time scales by \citep{neigel1991estimation,neigel1993application},
+who used the genealogical tree relating many samples at one nonrecombining locus
+(e.g., the mitochondria) and the spatial locations of these samples
+to infer $\sigma$ using phylogenetic comparative methods.
+\subitem however... see whitlock \& Mccauley
+\item alternatively, identification of relatives using shared tracts of ancestry
+\subitem (ralph and coop, palamara and pe'er, harris and nielsen, Ringbauer \& friends 2017)
+\end{itemize}
 
-\plr{not sure if we need this section}
-
-Fluxes across lines through the landscape
-describe something about population movement,
-but are not as helpful 
-as a single map that depicts regions with greater or lesser degrees of population movement.
-The general description of this kind would be 
-to specify for each location on the map
-the probability distribution of where 
-the children of a parent living at that location would end up.
-
-Suppose that in each small section of the map,
-we recorded all the dispersal events.
-We could describe this collection of dispersal events 
-with the following statistics:
-how far individuals go,
-the mean direction they travel,
-and covariance in noise about that mean.
-For example, the children of a parent 
-living in a long valley that follows a southwest-to-northeast axis 
-and is flanked by impassable ridges might be found up-valley 
-or down-valley in equal proportion, 
-leading to zero mean dispersal,
-but a high covariance along the axis of the valley.
-Alternatively, the children in a wind-dispersed species
-might disperse more frequently down-wind than up-wind, 
-leading to a net down-wind direction of dispersal.
-
-To visualize this,
-we could then plot the mean displacement as a vector field over the map,
-where presence of a small arrow would denote some amount of mean bias in offspring dispersal.
-The covariance could be summarized as a field of small ellipses,
-whose radius in any particular direction would be equal to the variance in dispersal
-along that direction.
-Areas with longer-distance dispersal would have larger ellipses,
-while areas where dispersal is anisotropic would be visible as flattened ellipses.
-This sort of description is used in models of anisotropic diffusion.
-However, this visualization would not capture the frequency of ``long-distance'' dispersal events,
-which may be important in some species \citep{levin_et_al_seed_dispersal}
-and can drive important differences in gene flow dynamics \citep{HallatschekFisher2014}.
 
 %%%%%%%%%%%%%%
 \subsection{Where were their ancestors?}
@@ -895,7 +858,7 @@ that makes this relative measure comparable across populations of different size
 
 In stationary populations,
 relative genetic differentiation is determined by the tension between 
-geographic mixing (due to population flux between areas)
+geographic mixing (due to dispersal flux between areas)
 and local coalescence (determined by population density).
 In the more remote past, each individual's ancestors are distributed across
 all of geography,
@@ -1245,10 +1208,11 @@ that might be perceived as affecting the objectivity of this review.
 % Acknowledgements
 \section*{ACKNOWLEDGMENTS}
 The authors gratefully acknowledge 
-Graham Coop, John Novembre, 
-Yaniv Brandvain, Doug Schemske, and Marjorie Weber 
-for helpful feedback and discussions, 
-as well as XXX, YYY, and ZZZ for invaluable comments on the manuscript.
+Yaniv Brandvain, Graham Coop, 
+John Novembre, Doug Schemske, 
+and Marjorie Weber for helpful discussions about spatial population genetics,
+as well as Graham Coop (again), Andy Kern, and Brad Shaffer 
+for invaluable comments on the manuscript.
 
 \bibliographystyle{plainnat}
 \bibliography{references}
