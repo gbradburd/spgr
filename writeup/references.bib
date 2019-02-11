@@ -659,7 +659,7 @@ tion of a “neighborhood” in the sense discussed below.
 }
 
 @book{malecot,
-  author="{Gustave Mal\'{e}cot}",
+  author="Mal\'{e}cot, Gustave",
   title = "Les math\'{e}matiques de l'h\'{e}r\'{e}dit\'{e}",
   year = "1948",
   publisher = "Masson",
@@ -1091,24 +1091,6 @@ year = {1992}
   timestamp = {2018-10-16T08:47:49.000+0200},
   title = {{SLiM} 3: Forward genetic simulations beyond the Wright-Fisher model},
   OPTurl = {https://www.biorxiv.org/content/early/2018/09/15/418657},
-  year = 2018
-}
-
-@article{kelleher2018efficient,
-  abstract = {In this paper we describe how to efficiently record the entire genetic history of a population in forwards-time, individual-based population genetics simulations with arbitrary breeding models, population structure and demography. This approach dramatically reduces the computational burden of tracking individual genomes by allowing us to simulate only those loci that may affect reproduction (those having non-neutral variants). The genetic history of the population is recorded as a succinct tree sequence as introduced in the software package msprime, on which neutral mutations can be quickly placed afterwards. Recording the results of each breeding event requires storage that grows linearly with time, but there is a great deal of redundancy in this information. We solve this storage problem by providing an algorithm to quickly {\textquoteright}simplify{\textquoteright} a tree sequence by removing this irrelevant history for a given set of genomes. By periodically simplifying the history with respect to the extant population, we show that the total storage space required is modest and overall large efficiency gains can be made over classical forward-time simulations. We implement a general-purpose framework for recording and simplifying genealogical data, which can be used to make simulations of any population model more efficient. We modify two popular forwards-time simulation frameworks to use this new approach and observe efficiency gains in large, whole-genome simulations of one to two orders of magnitude. In addition to speed, our method for recording pedigrees has several advantages: (1) All marginal genealogies of the simulated individuals are recorded, rather than just genotypes. (2) A population of N individuals with M polymorphic sites can be stored in O(N log N + M) space, making it feasible to store a simulation{\textquoteright}s entire final generation as well as its history. (3) A simulation can easily be initialized with a more efficient coalescent simulation of deep history. The software for recording and processing tree sequences is named tskit.},
-  OPTadded-at = {2018-07-11T21:01:11.000+0200},
-  author = {Kelleher, Jerome and Thornton, Kevin and Ashander, Jaime and Ralph, Peter},
-  OPTbiburl = {https://www.bibsonomy.org/bibtex/251ac701b088113b716b398c6cfe22f99/peter.ralph},
-  OPTdoi = {10.1101/248500},
-  OPTeprint = {https://www.biorxiv.org/content/early/2018/06/07/248500.full.pdf},
-  OPTinterhash = {b855fb1dfdb8542b91b86dff2be80c63},
-  OPTintrahash = {51ac701b088113b716b398c6cfe22f99},
-  journal = {bioRxiv},
-  keywords = {ARG empirical_genealogy forwards_simulation methods myown tree_sequence},
-  publisher = {Cold Spring Harbor Laboratory},
-  OPTtimestamp = {2018-07-11T21:01:11.000+0200},
-  title = {Efficient pedigree recording for fast population genetics simulation},
-  OPTurl = {https://www.biorxiv.org/content/early/2018/06/07/248500},
   year = 2018
 }
 
@@ -1821,4 +1803,42 @@ OPTdoi = "https://doi.org/10.1016/j.tig.2017.12.005",
 OPTurl = "http://www.sciencedirect.com/science/article/pii/S0168952517302251",
 author = "Daniel R. Schrider and Andrew D. Kern",
 abstract = "As population genomic datasets grow in size, researchers are faced with the daunting task of making sense of a flood of information. To keep pace with this explosion of data, computational methodologies for population genetic inference are rapidly being developed to best utilize genomic sequence data. In this review we discuss a new paradigm that has emerged in computational population genomics: that of supervised machine learning (ML). We review the fundamentals of ML, discuss recent applications of supervised ML to population genetics that outperform competing methods, and describe promising future directions in this area. Ultimately, we argue that supervised ML is an important and underutilized tool that has considerable potential for the world of evolutionary genomics."
+}
+
+@article{kelleher2018efficient,
+  abstract = {Author summary Sexually reproducing organisms are related to the others in their species by the complex web of parent-offspring relationships that constitute the pedigree. In this paper, we describe a way to record all of these relationships, as well as how genetic material is passed down through the pedigree, during a forwards-time population genetic simulation. To make effective use of this information, we describe both efficient storage methods for this embellished pedigree as well as a way to remove all information that is irrelevant to the genetic history of a given set of individuals, which dramatically reduces the required amount of storage space. Storing this information allows us to produce whole-genome sequence from simulations of large populations in which we have not explicitly recorded new genomic mutations; we find that this results in computational run times of up to 50 times faster than simulations forced to explicitly carry along that information.},
+  added-at = {2018-12-09T17:30:18.000+0100},
+  author = {Kelleher, Jerome and Thornton, Kevin R. and Ashander, Jaime and Ralph, Peter L.},
+  biburl = {https://www.bibsonomy.org/bibtex/2a4f12f0bb2d13faee628fec0fc2679b8/peter.ralph},
+  description = {Efficient pedigree recording for fast population genetics simulation},
+  doi = {10.1371/journal.pcbi.1006581},
+  interhash = {b855fb1dfdb8542b91b86dff2be80c63},
+  intrahash = {a4f12f0bb2d13faee628fec0fc2679b8},
+  journal = {PLOS Computational Biology},
+  keywords = {ARG methods myown simulation software tree_sequence},
+  month = {11},
+  number = 11,
+  pages = {1-21},
+  publisher = {Public Library of Science},
+  timestamp = {2018-12-09T17:30:18.000+0100},
+  title = {Efficient pedigree recording for fast population genetics simulation},
+  url = {https://doi.org/10.1371/journal.pcbi.1006581},
+  volume = 14,
+  year = 2018
+}
+
+@Article{hunter2007matplotlib,
+  Author    = {Hunter, J. D.},
+  Title     = {Matplotlib: A 2D graphics environment},
+  Journal   = {Computing In Science \& Engineering},
+  Volume    = {9},
+  Number    = {3},
+  Pages     = {90--95},
+  abstract  = {Matplotlib is a 2D graphics package used for Python
+  for application development, interactive scripting, and
+  publication-quality image generation across user
+  interfaces and operating systems.},
+  publisher = {IEEE COMPUTER SOC},
+  doi       = {10.1109/MCSE.2007.55},
+  year      = 2007
 }

@@ -17,6 +17,7 @@
 \usepackage{ulem}
 \usepackage{natbib}
 \usepackage{float}
+\usepackage[hidelinks]{hyperref}
 
 \setcounter{secnumdepth}{4}
 
@@ -93,9 +94,9 @@ population genetics, geographic variation, isolation by distance, pedigree
 The field of population genetics is shaped by a continuing conversation
 between theory, methods, and data.
 We design experiments and collect data
-with the methods we will use to analyze them in mind, 
-and those methods are based on theory
-that was developed to explain observations from data.
+with the methods we will use to analyze them in mind:
+methods that are based on theory
+developed to explain observations from data.
 With some notable exceptions,
 especially the work of Sewall Wright \citep{Wright1940,Wright1943,wright1946isolation}
 and Gustave Mal\'ecot \citep{malecot}
@@ -118,6 +119,8 @@ the statistics used to analyze these datasets --
 e.g., empirical measurements of $F_{ST}$ \citep{Wright1951}
 or tests of Hardy-Weinberg equilibrium \citep{hardy1908,weinberg1908} --
 were defined based on expectations in discrete, well-mixed populations.
+In part, this was because much more detailed mathematical predictions 
+were possible from such simplified models.
 This focus of theory and methods on discrete populations in turn influenced
 future sampling designs.
 
@@ -143,12 +146,10 @@ are poorly defined.
 Despite these difficulties,
 there is now a growing body of theory, methods, and data
 that approach this biological, population-less reality.
-\g{The ability to generate large genomic datasets 
-is facilitating the estimation of the timing of shared ancestry 
-between individuals, 
-which in turn allows the study of processes acting within specific windows of time, 
-rather than averaged over the history of the sample.
-\citep{Li_Durbin2011,Harris_Nielsen_2013,Palamara_2012}}
+Today's large genomic datasets
+are facilitating the estimation of the timing and extent of shared ancestry 
+at a much finer geographic and temporal resolution than was previously possible
+\citep{Li_Durbin2011,Palamara_2012,Harris_Nielsen_2013,ralph2013geography}.
 And, advances in theory in continuous space 
 \citep{felsenstein1975pain,BartonWilson1995,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, Barton2013},
 datasets of unprecedented geographical scale
@@ -159,10 +160,9 @@ and new statistical paradigms for modeling those data
 are together bringing an understanding of the geographic distribution of genetic variation into reach.
 
 The goal of this review
-is to reframe some of the fundamental questions in population genetics 
-as spatial population genetic questions,
-and to highlight ways that new datasets and 
-statistical methods can provide novel insights into these questions.
+is to frame some of the fundamental questions in spatial population genetics,
+and to highlight ways that new datasets and statistical methods 
+can provide novel insights into these questions.
 In the process, 
 we hope to provide an introduction for empirical researchers
 to the field.
@@ -248,7 +248,28 @@ Although it may be difficult or impossible
 to directly infer the spatial pedigree,
 we can still catch glimpses of it through the window of today's genomes.
 
+%%%%%%%%%%%
+\subsection{Simulation}
 
+It has only recently become possible to simulate whole genomes
+of reasonably large populations
+evolving across geographic landscapes.
+We produced the examples used for illustration
+with SLiM v3.1 \citep{haller2018forward},
+which enables rapid simulation of complex geographic demographies.
+We recorded the genealogical history along entire chromosomes
+of entire simulated populations
+as a \emph{tree sequence} \citep{kelleher2018efficient},
+and then used tools from \texttt{tskit} to extract relatedness information,
+plotting the results in \texttt{python} with \texttt{matplotlib} \citep{hunter2007matplotlib}.
+Our code is available at \url{https://github.com/gbradburd/spgr}.
+This new ability to not only simulate large spatial populations,
+but also to record entire chromosome-scale genealogies,
+and thus ground-truth methods using actual spatial pedigrees,
+has great promise for the field moving forward.
+
+
+%%%%%%%%%%%
 \subsection{``Effective'' parameters and the bias of long-term fitness}
 
 \begin{quote}
@@ -285,9 +306,11 @@ this is their \textit{long-term fitness}.
 Different methods query different time periods of the pedigree,
 and are thus subject to these effects to different degrees.
 
-A familiar example of this distinction is the difference between ``census'' and ``effective'' population size.
+A familiar example of this distinction is the difference between ``census'' and ``effective'' population size
+\citep{Charlesworth2009}.
 More subtle is the difference between dispersal distance ($\sigma$) and
 ``effective dispersal distance'' ($\sigma_e$) \citep{Cayuela2018demographic},
+%% Does Cayuela really discuss sigma_e?
 the quantity most naturally estimated from genetic data.
 Both are mean distances between parent and offspring:
 $\sigma$ is the average observed from, say, the modern population,
@@ -313,8 +336,8 @@ and so $\sigma_e < \sigma$
 
 %%%%%%%%%%%%%%
 \subsection{Where are they?}
-\todo{need to incorporate total size, or drop it as a main section and include it just as an afterthought,
-bc we don't really have anything to say about the reflection of total size in the spatial pedigree.}
+
+
 Perhaps the first things we might use
 to describe a geographically distributed population
 are an estimate of the total population size,
