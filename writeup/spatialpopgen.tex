@@ -652,17 +652,17 @@ with some local effective size, $N_\text{loc}$.
 
 \begin{figure}	%[H]
     \centering
-    \begin{subfigure}{0.49\linewidth}
+    \begin{subfigure}{0.85\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_cousins.pdf}
         \label{cousin_map}
     \end{subfigure}
-    \begin{subfigure}{0.49\linewidth}
+    \begin{subfigure}{0.75\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_ibd.pdf}
         \label{ibd}
     \end{subfigure}
-    \begin{subfigure}{\textwidth}
+    \begin{subfigure}{0.85\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_line_flux.pdf}
         \label{valleyflux}
@@ -706,11 +706,6 @@ is useful for investigating connectivity between different areas
 and the role of the landscape in shaping patterns of dispersal.
 Dispersal flux is a geographical analogue of
 the ``migration rate'' between discrete, isolated populations. 
-It is also related to the concepts of Isolation by Resistance 
-\citep{McRae2006,McRae_Beier_2007,McRae2008,petkova2016visualizing} 
-which describes the effective ``resistance" to gene flow 
-between points in space due to heterogeneity 
-in an organism's ability to cross the intervening landscape.
 Note that dispersal flux is not constrained to be equal in both directions across a boundary:
 it may be easier to disperse down-current than up-current.
 For instance, Figure~\ref{fig:dispersal}C
@@ -752,6 +747,7 @@ so estimates of flux can be converted to estimates of dispersal distance.
 \begin{itemize}
 \item How do we estimate effective dispersal and flux using genetic data? 
 \subitem Fst and IM models, estimating gene flow (Slatkin 1985)
+        \plr{we should mention the connection to $F_{ST}$ below in ``relative genetic differentiation''}
 \subitem \citet{rousset_1997} used this formula to show that
 the slope of $F_{ST}$ against the logarithm of distance
 is under these assumptions an estimator for $4 \pi \rho_e \sigma_e^2$,
@@ -763,7 +759,16 @@ to infer $\sigma$ using phylogenetic comparative methods.
 \subitem however... see whitlock \& Mccauley
 \item alternatively, identification of relatives using shared tracts of ancestry
 \subitem (ralph and coop, palamara and pe'er, harris and nielsen, Ringbauer \& friends 2017)
+\item maps of Isolation by Resistance 
+    \citep{McRae2006,McRae_Beier_2007,McRae2008,petkova2016visualizing} 
+    describes the effective ``resistance" to gene flow 
+    between points in space due to heterogeneity 
+    in an organism's ability to cross the intervening landscape.
 \end{itemize}
+
+\plr{Proposal: put back the section on spatial maps of dispersal (shorter?) 
+    and use it as a segue say that we've got a start at this, they are called resistance surfaces,
+    cite circuitscape, eems, maps, and Erik's paper. Unless we're too long.}
 
 
 %%%%%%%%%%%%%%
@@ -821,11 +826,10 @@ This spatial distribution of \textit{all} genetic ancestors is depicted
 at several points back in time
 for four individuals in a simulation in Figure~\ref{ancestry_spread}.
 As we look further back in time,
-we can see the ``cloud of ancestry'' spread out across space
-and become more diffuse.
+we can see the ``cloud of ancestry'' spread out across space.
 The spread is diffusive --
-the displacement of a given $n^\text{th}$-generation ancestor 
-has standard deviation $\sigma_e \sqrt{n}$,
+the mean displacement of a given $n^\text{th}$-generation ancestor 
+is of order $\sigma_e \sqrt{n}$,
 as long as this is small relative to the width of the region.
 Not shown on the map are the many genealogical ancestors
 from which the focal individuals have not inherited genome --
@@ -935,7 +939,7 @@ provide visualizations that can be helpful for
 describing and making sense of patterns of relatedness and genetic variation.
 Coupled with a quantification of relative genetic differentiation,
 they can be used in conservation to delineate discrete management units.
-However, in practice, these discrete groups may easily be determined
+However, in practice these discrete groups may easily be determined
 by clustering of sampling effort,
 calling into question their real-world interpretation.
 Explicitly utilizing geographic proximity can help alleviate these concerns \citep{conStruct},
@@ -981,12 +985,12 @@ during glaciation, were found in the western valley.
 
 \begin{figure}	%[H]
     \centering
-        \includegraphics[width=0.75\linewidth]{figs/valley_admixture_new}
-        \includegraphics[width=0.75\linewidth]{figs/valley_admixture_old}
+        \includegraphics[width=0.85\linewidth]{figs/valley_admixture_new}
+        \includegraphics[width=0.85\linewidth]{figs/valley_admixture_old}
         \caption{
             Admixture proportions after a recent secondary contact.
             Each pie shows the proportion of a diploid individual's genomes
-            that inherit from the western (cyan) and eastern (magenta) valleys, respecitvely.
+            that inherit from the western (red) and eastern (blue) valleys, respecitvely.
             \textbf{(top)} Eight generations, and
             \textbf{(bottom)} seventy-five generations 
             after a barrier along the top of the ridge is removed.
@@ -1158,7 +1162,14 @@ and its effects on our inferences across natural systems.
 
 %%%%%%%%%%%
 \section{Exciting directions for the field}
+\plr{Important directions?}
 
+In this review we have focused on \emph{demographic inference} --
+seeking to learn about past or present demographic processes
+from population genetics data.
+Since demography -- birth, reproduction, death -- 
+is the the mechanism by which natural selection occurs,
+this is fundamental not only to history and ecology but also evolutionary biology.
 Describing the geographic distribution of genetic variation -- 
 its patterns, 
 the processes that have generated and maintained it, 
@@ -1167,37 +1178,51 @@ is a fundamental goal of evolutionary biology.
 Below, we describe a few areas 
 in which we hope or expect further progress in the field to be made.
 
+
 %%%%%%%%%%%
 \subsubsection{Selection}
-One important avenue of extension is to incorporate selection into 
-models of spatially continuous populations. 
+
+Some of the most important aspects of geographic population genetics
+we have not reviewed are related to natural selection.
+Perhaps the most important avenue for future work is to 
+develop methods that jointly estimate selection and demography for spatially continuous populations. 
 The questions introduced above are all presented in the context 
 of a neutrally evolving population,
 but clearly local adaptation and natural selection will impact 
 the structure, and the spatial structure, of the pedigree.
+There is a great deal known about the expected geographical action of selection,
+e.g., how beneficial alleles spread across space \citep{fisher1932,hallatschek,ralph2010},
+how locally adaptive alleles can be maintained \citep{slatkin_local,barton,ralph_patchy},
+or how hybrid zones are maintained \citep{barton_hybrid,sedghifar}.
+In all these situations,
+demographic processes have \emph{different effects} on different regions of the genome.
 Incorporating selection into spatially continuous models 
 will facilitate a greater union of population genetic processes 
 and ecological models of population dynamics, 
-and help shed light on important evolutionary questions, 
-like where adaptive sweeps originate. 
+and help shed light on important evolutionary questions.
+% like where adaptive sweeps originate. 
+
 
 %%%%%%%%%%%
 \subsubsection{Simulation and inference} 
+
+Spatial population genetics suffers from a singular lack of concrete mathematical results
+that can be used for inference.
+What can take its' place?
 A recent advance in the field, 
 which may help improve inference models with and without selection, 
 has been the advent of powerful and flexible simulation methods, 
 such as SLiM \citep{haller2018forward,haller2018treesequence,kelleher2018efficient}.
-With these methods, 
-researchers can specify models of arbitrary complexity, 
-and use them to simulate genome-scale datasets.
+These methods allow
+researchers to simulate genome-scale datasets under models of arbitrary complexity.
 This capability offers an excellent pedagogical tool 
 and opportunity to build intuition for patterns of genetic variation 
 in complex scenarios for which theory may be lacking.
-Indeed, we generated all figures for this paper using SLiM, 
-and we have included the simulations 
-and the code used to generate all figures 
-as an online supplement to our paper 
-(available for download at XXXX).
+% Indeed, we generated all figures for this paper using SLiM, 
+% and we have included the simulations 
+% and the code used to generate all figures 
+% as an online supplement to our paper 
+% (available for download at XXXX).
 In addition, these simulation methods can be used in statistical inference.
 For example, simulated datasets can be used in the training 
 of machine learning methods \citep[e.g.,][]{SchriderKern2018}, 
@@ -1206,18 +1231,26 @@ approximate Bayesian computation \citep{MarjoramTavare2006modern}.
 Simulation-based inference presents an exciting way forward 
 for problems that may be analytically intractable.
 
+
 %%%%%%%%%%
 \subsubsection{Identifiability and ill-posedness}
 \todo{keep?}
-Another important line of attack in developing methods for inference 
-under spatial population genetic models 
-is to define the limits of our ability to learn about 
+
+Another important gap in current methods for spatial population genetics inference 
+is a quantitative understanding of the limits of our ability to learn about 
 quantities of interest.
+Demographic inference with population genetics data
+is an example of an \emph{inverse problem} --
+the mapping from parameters to data is relatively well-understood,
+but the inverse map is not.
+Many inverse problems are \emph{ill-posed},
+meaning that many distinct models give rise to statistically indistinguishable datasets,
+i.e., some degree of statistical nonidentifiability.
 For example, 
 as with effective population size \citep{Myers2008},
 we may never be able to infer rapid changes in 
 or reversals to effective population density
-\citep[although see also][]{BhaskarSong2014descartes}).
+\citep[although see also][]{BhaskarSong2014descartes}.
 Likewise, 
 the timing of heterogeneity in flux across a particular part of the landscape 
 may be difficult to disentangle from the magnitude of its change, 
@@ -1237,6 +1270,7 @@ and what data might be most useful in solving them.
 
 %%%%%%%%%%%
 \subsubsection{The Past} 
+
 The growing availability of genotype data from historical or ancient samples, 
 collected from archaeological sites or museums 
 is one of the most exciting developments in population genetics, 
