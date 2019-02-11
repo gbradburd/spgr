@@ -93,8 +93,6 @@ population genetics, geographic variation, isolation by distance, pedigree
 % Heading 1
 \section{Introduction}
 
-\todo{clear up textit vs. emph}
-
 The field of population genetics is shaped by a continuing conversation
 between theory, methods, and data.
 We design experiments and collect data
@@ -165,8 +163,8 @@ are together bringing an understanding of the geographic distribution of genetic
 
 The goal of this review
 is to reframe some of the fundamental questions in population genetics 
-in the light of spatial population genetics, 
-and highlight ways that new datasets and 
+as spatial population genetic questions,
+and to highlight ways that new datasets and 
 statistical methods can provide novel insights into these questions.
 In the process, 
 we hope to provide an introduction for empirical researchers
@@ -207,7 +205,20 @@ was selected for in a given environment,
 we could compare the mean fitness of all individuals in that environment with that allele
 to that of those without the allele.
 
-\begin{figure}[h]
+The ``location'' of an individual can be a slippery concept,
+depending on the biology of the species in question
+(as can the concept of ``individual'').
+Where in space does a barnacle hitchhiking on a whale live, 
+or a huge, clonal stand of aspen?
+%In cases of doubt,
+%remember it is actually the passage of genetic information that concerns us:
+%the location at a particular time of the ancestor of a particular bit of DNA
+%is much less ambiguous.
+To reduce ambiguity,
+we will think of the location of an individual as the place it was
+born, hatched, or germinated.
+
+\begin{figure}
     \centering
          \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
         \caption{
@@ -223,18 +234,6 @@ to that of those without the allele.
         \label{spatial_pedigree}
 \end{figure}
 
-The ``location'' of an individual can be a slippery concept,
-depending on the biology of the species in question
-(as can the concept of ``individual'').
-Where in space does a barnacle hitchhiking on a whale live, 
-or a huge, clonal stand of aspen?
-%In cases of doubt,
-%remember it is actually the passage of genetic information that concerns us:
-%the location at a particular time of the ancestor of a particular bit of DNA
-%is much less ambiguous.
-To reduce ambiguity,
-we will think of the location of an individual as the place it was
-born, hatched, or germinated.
 
 In practice, we can never be certain of the exact spatial pedigree.
 Even if we could census every living individual in a species
@@ -252,6 +251,7 @@ Although it may be difficult or impossible
 to directly infer the spatial pedigree,
 we can still catch glimpses of it through the window of today's genomes.
 
+
 \subsection{``Effective'' parameters and the bias of long-term fitness}
 
 \begin{quote}
@@ -262,10 +262,10 @@ we can still catch glimpses of it through the window of today's genomes.
     \hfill \textit{-- Randall Munroe, xkcd:674}
 \end{quote}
 
-There will be a recurring tension in this review
-between what we would like to know about (the spatial pedigree)
-and what we have information about 
-(the portion of it through which modern individuals have inherited genomes).
+%There will be a recurring tension in this review
+%between what we would like to know about (the spatial pedigree)
+%and what we have information about 
+%(the portion of it through which modern individuals have inherited genomes).
 Inferences about the past
 based on those artifacts that have survived to the present
 are fraught with difficulties and caveats in any field, 
@@ -350,7 +350,7 @@ The spatial pedigree contains a record of both total and regional population siz
 and we can use data generated on it to learn about these quantities.
 
 
-\begin{figure}[h]
+\begin{figure}	%[h]
     \centering
     \begin{subfigure}{0.45\textwidth}
         \centering
@@ -451,7 +451,7 @@ in the locations and times where those coalescences occur.
 
 Rather than local differences in population density,
 it is more common to focus on the total (effective) population size.
-Population size is often estimated using measures of genetic diversity such as $\pi$,
+Population size is often estimated using measures of genetic diversity such as $\pi$ \citep{NeiLi1979,Tajima89},
 the mean density of nucleotide differences between two randomly sampled chromosomes.
 Because each such difference is the result of a mutation
 sometime since the chromosomes' most recent common ancestor at that location on the genome,
@@ -630,7 +630,7 @@ but \citet{malecot} assumed that the second stage acts as in a randomly mating p
 with some local effective size, $N_\text{loc}$.
 
 
-\begin{figure}[H]
+\begin{figure}	%[H]
     \centering
     \begin{subfigure}{0.49\linewidth}
         \centering
@@ -676,8 +676,6 @@ with some local effective size, $N_\text{loc}$.
 Dispersal ability is not, of course, constant across real landscapes, and
 we would often like to measure the ``amount of gene flow'' across some barrier
 or between two geographic regions.
-This is a geographical analogue of
-the ``migration rate'' between discrete, isolated populations.
 For some boundary (i.e., a line on the map),
 we can ask for the number of dispersal events that cross it in a given year -- 
 that is, 
@@ -686,10 +684,15 @@ were born on the other side of the line?
 This quantity, which we call the \textit{dispersal flux} across the boundary,
 is useful for investigating connectivity between different areas
 and the role of the landscape in shaping patterns of dispersal.
+Dispersal flux is a geographical analogue of
+the ``migration rate'' between discrete, isolated populations. 
+It is also related to the concepts of Isolation by Resistance 
+\citep{McRae2006,McRae_Beier_2007,McRae2008,petkova2016visualizing} 
+which describes the effective ``resistance" to gene flow 
+between points in space due to heterogeneity 
+in an organism's ability to cross the intervening landscape.
 Note that dispersal flux is not constrained to be equal in both directions across a boundary:
-it may be easier to disperse downhill than uphill,
-downwind than upwind,
-or down-current than up-current.
+it may be easier to disperse down-current than up-current.
 For instance, Figure~\ref{fig:dispersal}C
 shows the number of dispersal events crossing two lines on our simulated valley landscape
 over a few generations.
@@ -775,6 +778,8 @@ the origins and mechanisms of selective sweeps.
 %%%%%%%%%%
 \subsubsection{Geographic distribution of ancestry}
 
+\todo{estimation section? or parallel structure with other sections?}
+
 As one looks further back in time,
 the geographic distribution of an individual's ancestors
 is determined by the history of population size changes and movements.
@@ -783,18 +788,18 @@ each portion of each individual's genome can be associated
 with the ancestor from whom they inherited it.
 Their genetic ancestry can therefore be apportioned across space according
 to the locations of the ancestors from whom they inherited their genome.
-There are a number of natural questions that arise from a description of this process.
-How much of an average individual's ancestry is still within a given region, 
-at some point in the past?
-How long in the past was it since a typical individual in one location had an ancestor
-in another geographic region (say, the next valley over)?
-How far back in time do you have to go before 
-the average proportion of ancestry that an individual inherits
-from the local region they live in drops below (say) 90\%?
+%There are a number of natural questions that arise from a description of this process.
+%How much of an average individual's ancestry is still within a given region, 
+%at some point in the past?
+%How long in the past was it since a typical individual in one location had an ancestor
+%in another geographic region (say, the next valley over)?
+%How far back in time do you have to go before 
+%the average proportion of ancestry that an individual inherits
+%from the local region they live in drops below (say) 90\%?
 
-This is depicted in a simulation in Figure~\ref{ancestry_spread},
-showing the spatial distribution of \textit{all} ancestors of four individuals
-at several points back in time.
+This spatial distribution of \textit{all} genetic ancestors is depicted 
+at several points back in time
+for four individuals in a simulation in Figure~\ref{ancestry_spread}.
 As we look further back in time,
 we can see the ``cloud of ancestry'' spread out across space
 and become more diffuse.
@@ -808,7 +813,7 @@ even by the second figure,
 each focal individual is genealogically descended from nearly everyone alive,
 even those living in the other valley \citep{chang1999}.
 
-\begin{figure}[H]
+\begin{figure}	%[H]
         \includegraphics[width=0.75\linewidth]{figs/valley_ancestry_01.pdf}
         \includegraphics[width=0.75\linewidth]{figs/valley_ancestry_60.pdf}
         \includegraphics[width=0.75\linewidth]{figs/valley_ancestry_300.pdf}
@@ -828,11 +833,13 @@ even those living in the other valley \citep{chang1999}.
         \label{ancestry_spread}
 \end{figure}
 
-Although Figure~\ref{ancestry_spread} does not distinguish ancestors \textit{shared} by two of the focal individuals,
+Although Figure~\ref{ancestry_spread} does not highlight 
+ancestors \textit{shared} by any pair of the focal individuals,
 it is clear that these occur in the overlap between their two clouds of ancestry.
-For instance, any ancestors shared by this point between the pink and purple individuals
+For instance, any ancestors shared over the time interval shown
+between the pink and purple individuals
 must be in the western valley,
-and it is these that tell us about relative population densities in the two valleys.
+and it is these shared ancestors that tell us about relative population densities in the two valleys.
 In fact, we know from Figure~\ref{pop_density}B that these recent shared pink--purple ancestors
 must represent a larger fraction of the genome
 than do the orange--green shared ancestors.
@@ -841,20 +848,22 @@ than do the orange--green shared ancestors.
 %%%%%%%%%%%%%%
 \subsubsection{Relative genetic differentiation}
 
-In the ``two valley'' situation of Figure \ref{ancestry_spread},
+In the ``two valley'' simulation of Figure \ref{ancestry_spread},
 ancestors are shared within valleys over the time period shown,
 but not between valleys.
-How significant is this?
-It can be helpful to quantify the degree to which genetic variation is partitioned across geography.
+The difference in the geographic distribution of shared ancestors 
+results in higher relatedness between the pairs of individuals 
+from the same valley, 
+and it underlies all measurements of relative genetic differentiation.
 The most common measure of
 how much more closely related neighbors are to each other relative to the population as a whole
 is $F_{ST}$ \citep{Wright1951},
 which can be thought of as estimating
 one minus the ratio of mean coalescence time within subpopulations
-to that within the entire population \citep{slatkin_1991inbreeding}
--- a descriptor of average tree shape in the pedigree.
-This normalization by mean overall coalescence time 
-that makes this relative measure comparable across populations of different sizes.
+to that within the entire population \citep{slatkin_1991inbreeding}.
+%-- a descriptor of average tree shape in the pedigree. 
+The normalization by mean overall coalescence time 
+makes this relative measure comparable across populations of different sizes.
 
 In stationary populations,
 relative genetic differentiation is determined by the tension between 
@@ -863,11 +872,15 @@ and local coalescence (determined by population density).
 In the more remote past, each individual's ancestors are distributed across
 all of geography,
 so that the long-ago portion of the pedigree looks like that of a randomly mating population.
-The transition between these two phases -- recent spatial autocorrelation and distant random mating
-(termed the ``scattering'' and ``collecting'' phases  by \citet{wilkins2004separationoftimescales})
+Tracing the pedigree backward in time, 
+remote ancestors have ``forgotten" the geographic position of their 
+modern-day descendants.
+The transition between these two phases -- recent spatial autocorrelation 
+(``scattering") and distant random mating (``collecting")
+\citep{Wakeley1999,wilkins2004separationoftimescales}
 happens on the time scale over which a lineage crosses the species range \citep{Wakeley1999}.
 Since lineage motion is diffusive, in a continuous range of width $L \sigma_e$,
-coalescences between lineages of distanct individuals happen on a time scale of $L^2$ generations.
+coalescences between lineages of distant individuals happen on a time scale of $L^2$ generations.
 Relative genetic differentiation
 is determined by the likelihood that coalescence between two nearby individuals
 occurs during the scattering phase
@@ -878,7 +891,8 @@ relative to the local effective population size.
 $F_{ST}$ may not be best measure of this quantity -- 
 others are possible that depend less on the deep history of the population.
 For instance,
-one could ask for the proportion of the genomes of two neighbors inherited in common from ancestors int he last $T$ generations
+one could ask for the proportion of the genomes of two neighbors 
+inherited in common from ancestors int he last $T$ generations
 relative to the same quantity for distant individuals,
 where $T$ is chosen to reflect the time scale of interest.
 The appropriate measure will depend on the application at hand.
@@ -894,17 +908,18 @@ partition existing genetic variation into clusters labeled as (discrete) populat
 % Perched on the shoulder of discrete population structure is the concept of admixture,
 % the idea that populations can be composed of ancestry from multiple discrete groups.
 The ubiquity of gene flow means that
-any conceptual model of discrete populations also requires the notion of \emph{admixture}.
-These tools provide descriptive visualizations 
-that can be extremely useful for
+any conceptual model of discrete populations 
+must also include \emph{admixture} between them.
+Models of discrete population structure and admixture 
+provide visualizations that can be helpful for
 describing and making sense of patterns of relatedness and genetic variation.
 Coupled with a quantification of relative genetic differentiation,
-this is useful in conservation to delineate discrete management units.
-However, in practice these discrete groups may easily be determined
+they can be used in conservation to delineate discrete management units.
+However, in practice, these discrete groups may easily be determined
 by clustering of sampling effort,
 calling into question their real-world interpretation.
 Explicitly utilizing geographic proximity can help alleviate these concerns \citep{conStruct},
-but it would still be desireable to delineate groups in a way explicitly linked
+but it would still be desirable to delineate groups in a way explicitly linked
 to the actual history of relatedness, i.e., the spatial pedigree.
 
 The real-world situation when admixture between discrete populations 
@@ -917,7 +932,7 @@ the two valleys of our running example
 were isolated during a long period of ``glaciation'',
 followed by glacial retreat and expansion into secondary contact.
 The valleys clearly act as discrete populations during glaciation, 
-while there are are few if any pedigree connections between the valleys.
+during which there are are few if any pedigree connections between the valleys.
 Pedigrees only start to overlap more recently between individuals in each valley.
 To obtain an admixture proportion,
 we can fix some ``reference'' time in the past,
@@ -926,7 +941,7 @@ according to which of the two valleys it inherited from at the reference time.
 % The precise reference time does not matter as long as there was no gene flow during isolation.
 This is shown in Figure \ref{postglacial_expansion}:
 eight generations after contact (top),
-this quantity clearly reflects the history of isolation 
+this quantity clearly reflects the history of isolation;  
 individuals in or near each valley have inherited most of their genomes 
 from ancestors in the closest valley.
 However, if we return 75 generations later, 
@@ -944,7 +959,7 @@ in the eastern valley are now inherited
 from individuals that, 
 during glaciation, were found in the western valley.
 
-\begin{figure}[H]
+\begin{figure}	%[H]
     \centering
         \includegraphics[width=0.75\linewidth]{figs/valley_admixture_new}
         \includegraphics[width=0.75\linewidth]{figs/valley_admixture_old}
@@ -995,6 +1010,7 @@ real and unchanging.
 % and have either been isolated for long enough that the admixture is no longer detectable,
 % or, more likely, the descendants of those sources of admixture are lost in the modern sample.
 
+\g{estimating admixture?! could talk about the utility of chromosome painting etc.}
 
 %%%%%%%%%%
 \subsection{How have things changed over time?}
@@ -1051,7 +1067,7 @@ Methods for inferring the distant history of populations using a few samples
 are the most well-developed \citep[e.g.,]{dadi,psmc,momi},
 but these can incorporate very little in terms of geographic realism,
 and indeed much of the signal of geography 
-may have washed out on this coalescent time scale.
+may have washed out on this coalescent time scale \citep{wilkins2004separationoftimescales}.
 The length spectrum of long, shared haplotypes
 (also known as IBD segments)
 can be used to peer into the strata of the pedigree between these two time scales:
@@ -1164,7 +1180,7 @@ as an online supplement to our paper
 (available for download at XXXX).
 In addition, these simulation methods can be used in statistical inference.
 For example, simulated datasets can be used in the training 
-of machine learning methods \citep[e.g.,][]{flagel2018unreasonable}, 
+of machine learning methods \citep[e.g.,][]{SchriderKern2018}, 
 or to compare between different generative models using 
 approximate Bayesian computation \citep{MarjoramTavare2006modern}.
 Simulation-based inference presents an exciting way forward 
