@@ -372,20 +372,21 @@ and we can use data generated on it to learn about these quantities.
 
 \begin{figure}	%[h]
     \centering
-    \begin{subfigure}{0.45\textwidth}
+    \begin{subfigure}{0.95\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_density}
         \caption{map of simulation scenario}
         \label{valley_map}
     \end{subfigure}
-    \begin{subfigure}{0.45\textwidth}
+    \begin{subfigure}{0.95\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figs/valley_heterozygosity}
         \caption{individual heterozygosity}
         \label{valley_het}
     \end{subfigure}
         \caption{
-            \textbf{(left)} Map of population density of the simulations.
+            \textbf{(left)} Map of population density of the simulated population set-up
+            we use for examples throughout.
             Populations have local density-dependent regulation
             within two valleys with high local carrying capacity (indicated by contours),
             separated and surrounded by areas with lower carrying capacity.
@@ -469,9 +470,9 @@ in the locations and times where those coalescences occur.
 %%%%%%%%%%%%%%
 \subsubsection{Total population size}
 
-Rather than local differences in population density,
-it is more common to focus on the total (effective) population size.
-Population size is often estimated using measures of genetic diversity such as $\pi$ \citep{NeiLi1979,Tajima89},
+Estimates of the largest geographic scale -- total population size --
+turn out to be sensitive to changes over the longest time scales.
+Total effective population size is often estimated using measures of genetic diversity such as $\pi$ \citep{NeiLi1979,Tajima89},
 the mean density of nucleotide differences between two randomly sampled chromosomes.
 Because each such difference is the result of a mutation
 sometime since the chromosomes' most recent common ancestor at that location on the genome,
@@ -482,24 +483,23 @@ and $2T$ is the mean length of a path through the pedigree
 along which two samples have inherited a random bit of genome
 from their most recent common ancestor,
 then $\pi \approx 2 T \mu$.
-The quantity $T$ itself is an interesting summary of the pedigree;
+The quantity $T$ itself is an interesting summary of the pedigree,
+and depends on geography, sampling, and dispersal in complex ways;
 what does it have to do with population size?
 In a randomly mating, diploid population of constant effective size $N_e$,
 the discussion above implies that $T = 2N_e$.
-However, this only provides a good estimate of $N_e$
-if the population has been relatively stable over this period of time,
-and $\pi$ depends on geography, sampling, and dispersal in complex ways.
+In practice, populations are rarely constant, and so this is viewed as an average
+over the last few $N_e$ generations.
 
 
 %%%%%%%%%%%%%%
-\subsubsection{Estimating population size and density}
+\subsubsection{Example: Heterozygosity and population density}
 \g{feels like this is too long, but also feels like it's good to, y'know, \emph{review} some stuff}
+\plr{nice addition; maybe the wrong place? I've re-intro'ed this section; if you go with it, it needs a new title.}
 
-Above, we describe the signature of population density and total size 
-on the spatial pedigree, but how can we estimate these quantities from genetic data?
-To see what signature varying population density leaves 
-on patterns of genetic variation within a region,
-we use a simulated example.
+Local population size is reflected in the pedigree through rates of shared ancestry:
+all else being equal, smaller populations should have less genetic diversity.
+To gain intuition, we will look at this idea in a simulated example.
 Consider two adjacent valleys, 
 one densely populated, the other sparsely populated, 
 but both equal in geographic area 
@@ -516,10 +516,8 @@ so the two chromosomes sampled in a each individual
 from that valley are more closely related,
 i.e., have lower heterozygosity, as shown in Figure \ref{pop_density}\subref{valley_het}.
 
-However, there are a number of caveats in the estimation 
-of density from heterozygosity.
-First, differences in heterozygosity can be shaped 
-by more than just differences in density.
+Does heterozygosity predict relative population density more generally?
+Differences in heterozygosity can be shaped by other forces.
 For example, we might also expect a similar difference in heterozygosity
 if the two valleys had the \textit{same} population density per unit area,
 but one valley was larger than the other,
@@ -549,8 +547,10 @@ regions cannot be analyzed independently
 unless a region of interest sees less than one migrant per generation
 (i.e., outside the parameter regime of the structured coalescent \citep{nagylaki1998}).
 
+\plr{I think this should be moved up to the end of the local pop density section,
+    because it reiterates several things there.}
 There are two main alternative approaches to estimating local density: 
-measuring the rate of genetic drift  and identifying close relatives\citep{Wang2016Prediction}.
+measuring the rate of genetic drift  and identifying close relatives \citep{Wang2016Prediction}.
 To measure the rate of genetic drift, 
 a researcher compares allele frequencies
 in at least two samples collected in a region in different generations, 
