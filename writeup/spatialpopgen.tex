@@ -67,7 +67,7 @@ email: bradburd@msu.edu}
     In this review, we discuss how geographic aspects of the 
     distribution, movement, and reproduction of organisms
     are reflected in their pedigree across space and time.
-    Since the structure of the pedigree is what determines 
+    Because the structure of the pedigree is what determines 
     patterns of relatedness in modern genetic variation,
     our aim is to thus provide intuition for how these processes,
     leave an imprint in genetic data,
@@ -104,12 +104,6 @@ most of which
 (again, with exceptions \citet[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947}),
 were well-described as discrete populations --
 like samples of flies in a vial \citep{lewontin1974}.
-% \cut{For example, 
-% the first revolutionary empirical measurements
-% of molecular genetic variation \citep{HubbyLewontin66,LewontinHubby66}
-% focused on data from 43 fly strains sampled from 5 locations,
-% which were treated as experimental replicates
-% (rather than studied in their geographic context).}
 In turn, 
 the statistics used to analyze these datasets --
 e.g., empirical measurements of $F_{ST}$ \citep{Wright1951}
@@ -219,7 +213,6 @@ born, hatched, or germinated.
         \label{spatial_pedigree}
 \end{figure}
 
-
 In practice, we can never be certain of the exact spatial pedigree.
 Even if we could census every living individual in a species
 and establish the pedigree relationships between them all,
@@ -318,7 +311,7 @@ and are thus subject to these effects to different degrees.
 A familiar example of the limits of inference 
 is the difference between ``census'' and ``effective'' population size \citep{Charlesworth2009}.
 More subtle is the difference between dispersal distance ($\sigma$) and
-``effective dispersal distance'' ($\sigma_e$) \citep{Cayuela2018demographic}.
+``effective dispersal distance'' ($\sigma_e$) \citep[reviewed in][]{Cayuela2018demographic}.
 Both are mean distances between parent and offspring:
 $\sigma$ is the average observed from, say, the modern population,
 but $\sigma_e$ is
@@ -328,10 +321,10 @@ lineages along which genetic material is passed do not give an unbiased sample o
 they are weighted by their contribution to the population.
 For instance, if there is strong local intra-specific competition,
 individuals that dispersed farther from their parents (and their siblings)
-may have been more likely to reproduce and therefore more likely to be ancestors of today's samples,
+may have been more likely to reproduce and be ancestors of today's samples,
 which would make $\sigma_e > \sigma$.
-On the other hand, if there is substantial local adaptation,
-many individuals may be dispersing to habitats dissimilar to that of their parents
+On the other hand, if there is local adaptation,
+individuals may be dispersing to habitats dissimilar to that of their parents
 and are unlikely to transmit genetic material to the next generation
 because they are maladapted to the local environment,
 and so $\sigma_e < \sigma$
@@ -536,8 +529,8 @@ so the two chromosomes sampled in each individual
 from that valley are more closely related,
 i.e., have lower heterozygosity, as shown in Figure \ref{pop_density}\subref{valley_het}.
 
-Heterozygosity correlates with population density in this example;
-does heterozygosity predict relative density more generally?
+Heterozygosity correlates with population density in this example, 
+but does it predict relative density more generally?
 Differences in heterozygosity can be shaped by other forces.
 For example, we might also expect a similar difference in heterozygosity
 if the two valleys had the \emph{same} population density per unit area,
@@ -589,8 +582,6 @@ the spatial locations of modern individuals can give strong clues about this.
 
 %%%%%%%%%%%%%%
 \subsubsection{Dispersal (individual, diffusive movement; $\sigma$)}
-\g{also, Fst and IM models?}
-\plr{we should mention the connection to $F_{ST}$ below in ``relative genetic differentiation''}
 
 We call the absolute value of the spatial displacement between parent and offspring locations
 the \emph{dispersal distance}, and refer to it as $\sigma$.
@@ -693,12 +684,12 @@ but it is not known to what degree the assumptions affect the results.
 Of course, organisms do not live on featureless toroids, 
 and individuals in one part of a species' range may disperse more than those in another 
 due to heterogeneity in their nearby landscape.
-One way common in spatial population genetics
+In spatial population genetics, one common way 
 to describe this heterogeneity is with a spatial map of ``resistance''.
 The resistance value of a portion of the map is inversely proportional to the speed
 that organisms tend to disperse at, or (equivalently) the distance they tend to travel,
 when in that area.
-These models were introduced to spatial population genetics by \citet{McRae2006,McRae_Beier_2007,McRae2008}, 
+These models were introduced to spatial population genetics by Brad McRae \citep{McRae2006,McRae_Beier_2007,McRae2008}, 
 and represented an important step forward in modeling dispersal 
 (over, e.g., least-cost path analysis).
 A more general model of heterogeneous dispersal would allow mean \emph{bias} in dispersal
@@ -922,8 +913,6 @@ The appropriate measure will depend on the application at hand.
 %%%%%%%%%%%
 \subsection{Clustering, grouping, and ``admixture''}
 
-\plr{I think there's some redundancy below.}
-
 Many tools for modern analysis of genetic data
 partition existing genetic variation into clusters labeled as (discrete) populations
 \citep[e.g.,][]{STRUCTURE, ADMIXTURE}
@@ -997,19 +986,7 @@ This simulation highlights both the relevance of
 a model of discrete population structure and admixture
 to spatially continuous data, 
 and also its limitations.
-Using the period of glacial isolation as our reference point, 
-it is straightforward to designate individuals in each valley 
-as members of different populations 
-(although note that, in the early stages of isolation, 
-individuals in each valley may have had recent pedigree overlap, 
-depending on the flux across the previously un-glaciated ridge).
-Likewise, 
-in the interval shortly after secondary contact, 
-it is useful to visualize patterns of genetic variation 
-by identifying the proportion of ancestry 
-each individual derives from glacial-era ancestors in each valley.
-However, 
-outside the time during and immediately following glaciation, 
+Outside the time during and immediately following glaciation, 
 describing genotyped individuals on this landscape 
 using a model of discrete populations with admixture 
 becomes less helpful.
@@ -1018,18 +995,6 @@ partitioning genetic variation into discrete groups,
 and labeling of samples as admixed between those groups
 can encourage the incorrect interpretation that discrete populations are platonic ideals,
 real and unchanging.
-% As has been noted elsewhere 
-% \citep{reich_india_2009,patterson_ancient_2012,hellenthal2014genetic,lawson2018tutorial},
-% the power to infer a recent admixture event between historically separated populations
-% is a function of the recency of admixture and
-% the inclusion of populations descended 
-% from the sources of admixture in the modern day sample.
-% Indeed, the concept of admixture becomes slipperier when considered over deeper timescales,
-% as populations inferred as sources of admixture are themselves almost certainly ``admixed,"
-% and have either been isolated for long enough that the admixture is no longer detectable,
-% or, more likely, the descendants of those sources of admixture are lost in the modern sample.
-
-% {estimating admixture?! could talk about the utility of chromosome painting etc.}
 
 %%%%%%%%%%
 \subsection{How have things changed over time?}
@@ -1084,7 +1049,7 @@ There is abundant evidence of large-scale population movements
 in human datasets that include ancient or historical samples 
 \citep{skoglund2014investigating, PickrellReich2014, lazaridis_ancient_2014, haak2015massive, joseph2018inference}.
 This has been seen over recent time scales in other species using museum specimens \citep{bi2013unlocking}.
-Spatial discontinuity presents such a problem 
+Spatial discontinuity can pose a problem 
 if the models we use for inference are predicated on the assumption that 
 the observed geographic distribution of genetic variation 
 was generated in the sampled geographic context.
@@ -1095,9 +1060,6 @@ remains an open problem.
 As we develop more datasets that include genotype data from historical individuals, 
 we will better be able to evaluate the prevalence of spatial discontinuity 
 and its effects on our inferences across natural systems. 
-%Spatial discontinuity in a region is especially pernicious because, 
-%without genotyped ancient or historical individuals, 
-%it may be effectively invisible.
 
 %%%%%%%%%%
 \subsubsection{Genealogical strata}
@@ -1162,7 +1124,7 @@ Perhaps the most significant avenue for future work is to
 develop methods that jointly estimate selection and demography for spatially continuous populations. 
 We have mostly ignored this above,
 but clearly local adaptation and natural selection impact 
-the structure of the pedigree, including its' spatial patterns.
+the structure of the pedigree, including its spatial patterns.
 There is a great deal known about the expected geographical action of selection,
 e.g., how beneficial alleles spread across space \citep{fisher1932,hallatschek,ralph2010},
 how locally adaptive alleles can be maintained in the face of gene flow \citep{slatkin_local,barton,RalphCoop2015patchy},
@@ -1230,20 +1192,16 @@ in time and space.
 Mathematical theory and simulation-based tests of inference methods
 should allow us to further determine the spatial and temporal resolutions
 with which we can view history.
-% Exploring the dependence of these quantities on each other 
-% using simulations and theory 
-% will be useful for determining what problems are well-posed, 
-% and what data might be most useful in solving them.
 
 
 %%%%%%%%%%%
-\subsection{The Past} 
+\subsection{The past} 
 
 The growing availability of genotype data from historical or ancient samples, 
 collected from archaeological sites or museums,
 is one of the most exciting developments in population genetics, 
 and has the potential to revolutionize the field of spatial population genetics.
-This historical data can provide a kind of ``fossil calibration'',
+This historical data can provide a kind of ``fossil calibration,''
 helping anchor spatial pedigrees in a particular geographic context.
 Although it may be unlikely that any particular genotyped historical individual 
 is the direct genetic ancestor of any sampled extant individual, 
@@ -1257,17 +1215,26 @@ which might otherwise be invisible in datasets comprised of only modern individu
 %%%%%%%%%%%
 \section*{Conclusion}
 
-Spatial population genetics allows researchers to 
-unite the quantitative descriptions of population genetics 
-with fundamental questions about the ecology and evolution of organisms.
-The growing availability of genetic and genomic datasets 
-with a large number of individuals and high spatial resolution, 
-coupled with advances in theory and methods 
-for modeling evolution in continuous space, 
-is drawing us ever closer to that goal in many empirical systems.
-Taken together, these developments make it 
-an exciting time for spatial population genetics.
-
+There is a long history of empirical research describing spatial patterns
+in genetic variation \citep{dobzhansky,human_blood_types,landscape_genomics_review}.
+Most inference methods assume a small number of randomly mating populations,
+and it is still unknown what effect realistic geographies have on these inferences.
+This is starting to change, however,
+as larger datasets with vastly more genomic data become available,
+giving us power to bring much more of population's pedigrees into focus.
+In turn, the ability to study pedigrees and their geography 
+over the recent past is bringing about a union 
+between the fields of population genetics and ecology.
+Measures of dispersal and density based on the pedigree 
+can also inform the study of the factors governing the 
+distribution and abundance of organisms, 
+and over short timescales that might have previously been out of reach for population genetics.
+As datasets, theory, and methods in spatial population genetics continue to progress, 
+it will be exciting to explore further integration of the two disciplines.
+%Although the fundamental mathematical barriers to inference in continuous geography remain,
+%computational advances now allow us to simulate models with spatial complexity,
+%and therefore to both test the robustness of approximate methods
+%and to use simulation directly for inference.
 
 %Disclosure
 \section*{DISCLOSURE STATEMENT}
