@@ -695,6 +695,36 @@ with some local effective size, $N_\text{loc}$.
         \label{fig:dispersal}
 \end{figure}
 
+\subsubsection{Dispersal on heterogeneous landscapes}
+\todo{needs polish!}
+Of course, organisms do not live on featureless toroids, 
+and individuals in one part of a species' range may disperse more than those in another 
+due to heterogeneity in their nearby landscape.
+One way to describe this difference is with a spatial map of resistance: 
+a model in which the local value of the map describes how far organisms tend to move there.
+These models were introduced to spatial population genetics by McRae (2006,2007,2008), 
+and SOMETHING ABOUT THEM.
+Resistance models represented an important step forward in modeling dispersal 
+(over, e.g., least-cost path analysis), 
+but more complex maps would be needed to model other situations, 
+like when there is a net bias in dispersal, 
+or heterogeneity in dispersal variance across the landscape.
+One of the most promising current spatial methods is MAPS, 
+which uses information about long shared haplotype tracts (recent ancestry) 
+to build a map of both local population size and dispersal ability.  
+MAPS builds on EEMS, an analogous method 
+based on the resistance distance approximation, 
+which replaces coalescence time with commute time.
+MAPS & EEMS are a weird hybrid between continuous and discrete space.  
+They’re kinda a discrete space model that’s interpolated, 
+but they’re also kind of a regularization of the spatial map.  
+Can’t do inference on an arbitrarily fine scale map.  
+Note that the model underlying MAPS is still based on a discrete demes exchanging migrants, 
+where the parameterization is by m the discrete number of migrants per generation between demes.  
+But, what does that mean in continuous space?
+To find out more, read on!
+
+
 %%%%%%%%%%%%%%
 \subsubsection{Dispersal flux}
 
