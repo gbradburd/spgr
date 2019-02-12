@@ -108,7 +108,6 @@ like samples of flies in a vial \citep{lewontin1974}.
 For example, 
 the first revolutionary empirical measurements
 of molecular genetic variation \citep{HubbyLewontin66,LewontinHubby66}
-% -- the inaugural ``find 'em and grind 'em" studies of Lewontin and Hubby \citep{HubbyLewontin66,LewontinHubby66} --
 focused on data from 43 fly strains sampled from 5 locations,
 which were treated as experimental replicates
 (rather than studied in their geographic context).
@@ -124,7 +123,6 @@ future sampling designs.
 
 To what degree does reality match this picture
 of clearly delimited yet randomly mating populations?
-% In reality, well-delineated demes or clearly defined discrete populations are rare.
 Often, the answer is: not well.
 Organisms live, move, reproduce, and die,
 connected by a vast pedigree that is anchored in time and space.
@@ -174,7 +172,6 @@ as a spatial population genetic problem,
 explained using the 
 population's genealogy embedded in geographic space,
 i.e., the \emph{spatial pedigree}.
-% which we introduce as a powerful heuristic and an organizing principle for the field.
 It is our hope that by framing our discussion around the spatial pedigree, 
 we can build intuition for --
 and spur new developments in --
@@ -205,10 +202,6 @@ depending on the biology of the species in question
 (as can the concept of ``individual'').
 Where in space does a barnacle hitchhiking on a whale live, 
 or a huge, clonal stand of aspen?
-%In cases of doubt,
-%remember it is actually the passage of genetic information that concerns us:
-%the location at a particular time of the ancestor of a particular bit of DNA
-%is much less ambiguous.
 To reduce ambiguity,
 we will think of the location of an individual as the place it was
 born, hatched, or germinated.
@@ -301,15 +294,11 @@ has great promise for the field moving forward.
     \hfill \textit{-- Randall Munroe, xkcd:674}
 \end{quote}
 
-%There will be a recurring tension in this review
-%between what we would like to know about (the spatial pedigree)
-%and what we have information about 
-%(the portion of it through which modern individuals have inherited genomes).
 Inferences about the past
 based on those artifacts that have survived to the present
 are fraught with difficulties and caveats in any field, 
 and population genetics is no exception.
-The ancestors of modern-day genomes are \textit{not} an unbiased sample
+The ancestors of modern-day genomes are \emph{not} an unbiased sample
 from the past population -- 
 they are biased towards individuals with more descendants today.
 We cannot, of course, learn anything from modern-day genomes
@@ -323,7 +312,7 @@ If we are looking one generation back,
 this is proportional to their number of offspring, i.e., their fitness.
 If we are looking a long time in the past
 (in practice, more than 10 or 20 generations \citep{BartonEtheridge2011fitness}),
-this is their \textit{long-term fitness}.
+this is their \emph{long-term fitness}.
 Different methods query different time periods of the pedigree,
 and are thus subject to these effects to different degrees.
 
@@ -331,7 +320,6 @@ A familiar example of this distinction is the difference between ``census'' and 
 \citep{Charlesworth2009}.
 More subtle is the difference between dispersal distance ($\sigma$) and
 ``effective dispersal distance'' ($\sigma_e$) \citep{Cayuela2018demographic},
-%% Does Cayuela really discuss sigma_e?
 the quantity most naturally estimated from genetic data.
 Both are mean distances between parent and offspring:
 $\sigma$ is the average observed from, say, the modern population,
@@ -454,15 +442,11 @@ the (inbreeding) effective population density
 near a location $x$, denoted $\rho_e(x)$,
 can be defined as the inverse of the rate of appearance of sibling pairs
 near $x$, per unit of geographic area and per generation.
-%This discussion is mostly illustrative, because
-%if a dataset does contain very many siblings,
-%nonrandom sampling is probably the cause,
-%and direct mark-recapture methods would often be more efficient.
 
 We can extend this line of reasoning to see that 
 the local density of close relatives
 should reflect local population size.
-The chance that two geographic neighbors actually \textit{are} siblings 
+The chance that two geographic neighbors actually \emph{are} siblings 
 decreases with the number of ``possible nearby parents'':
 \citet{wright1946isolation} quantified this with the
 \emph{neighborhood size}, 
@@ -591,10 +575,6 @@ responses to climate change \citep{parmesan2006},
 or population demography and dynamics \citep{schreiber2010interactive}.
 We define dispersal to be the process that governs 
 the displacement between geographic locations of parent and offspring.
-%but combines many important aspects of the organism's ecology, including
-%any movement of gametes or zygotes before maturation,
-%and subsequent daily or seasonal movement of the mature individual,
-%all of which often depend on the sex of both parent and offspring.
 For some species,
 it may be feasible to directly measure dispersal 
 using, e.g., telemetry or banding \citep{Cayuela2018demographic},
@@ -605,9 +585,11 @@ the spatial locations of modern individuals can give strong clues about this.
 
 %%%%%%%%%%%%%%
 \subsubsection{Dispersal (individual, diffusive movement; $\sigma$)}
+\g{also, Fst and IM models?}
+\plr{we should mention the connection to $F_{ST}$ below in ``relative genetic differentiation''}
 
 We call the absolute value of the spatial displacement between parent and offspring locations
-the \textit{dispersal distance}, and refer to it as $\sigma$.
+the \emph{dispersal distance}, and refer to it as $\sigma$.
 The dispersal distance describes the quantity one could calculate by,
 e.g., collecting a large number of germinating seeds
 and averaging the distance from those seeds to their two parents.
@@ -630,7 +612,6 @@ gives an estimate of $2 \sigma$.
 The mean squared displacement along
 a path of total length $n$ through the pedigree is $\sigma^2 n$:
 first cousins would give four times the dispersal distance, and so forth.
-% assuming that $n$ is short enough that boundary effects can be ignored.
 Unfortunately, basing an estimator of $\sigma$ on this observation
 is is usually infeasible in practice,
 unless a large fraction of the population has been genotyped
@@ -643,6 +624,10 @@ The mean time since most recent common ancestor
 of two individuals at a random point on the genome
 is usually larger for more distant individuals \citep{ibd_review},
 a relationship that clearly has something to do with $\sigma$.
+This general idea was applied to much larger time scales by \citep{neigel1991estimation,neigel1993application},
+who used the genealogical tree relating many samples at one nonrecombining locus
+(e.g., the mitochondria) and the spatial locations of these samples
+to infer $\sigma$ using phylogenetic comparative methods.
 An approximate formula for this relationship
 in homogeneous space (Malec\'ot's formula)
 can be derived in various ways 
@@ -653,7 +638,10 @@ and (b) how long before that did they actually share an ancestor.
 The second part is not well understood,
 but \citet{malecot} assumed that the second stage acts as in a randomly mating population
 with some local effective size, $N_\text{loc}$.
-
+\citet{rousset_1997} used this formula to show that
+the slope of $F_{ST}$ against the logarithm of distance
+is under these assumptions an estimator for $4 \pi \rho_e \sigma_e^2$,
+but it is not known to what degree the assumptions affect the results.
 
 \begin{figure}	%[H]
     \centering
@@ -696,7 +684,7 @@ with some local effective size, $N_\text{loc}$.
 \end{figure}
 
 \subsubsection{Dispersal on heterogeneous landscapes}
-\todo{needs polish!}
+\todo{needs polish!, also, incorporate Erik's paper?}
 Of course, organisms do not live on featureless toroids, 
 and individuals in one part of a species' range may disperse more than those in another 
 due to heterogeneity in their nearby landscape.
@@ -709,10 +697,10 @@ Resistance models represented an important step forward in modeling dispersal
 but more complex maps would be needed to model other situations, 
 like when there is a net bias in dispersal, 
 or heterogeneity in dispersal variance across the landscape.
-One of the most promising current spatial methods is MAPS, 
+One of the most promising current spatial methods is MAPS \citep{alasadi2018estimating}, 
 which uses information about long shared haplotype tracts (recent ancestry) 
 to build a map of both local population size and dispersal ability.  
-MAPS builds on EEMS, an analogous method 
+MAPS builds on EEMS \citep{petkova2016visualizing}, an analogous method 
 based on the resistance distance approximation, 
 which replaces coalescence time with commute time.
 MAPS and EEMS are a weird hybrid between continuous and discrete space.  
@@ -736,7 +724,7 @@ we can ask for the number of dispersal events that cross it in a given year --
 that is, 
 how many individuals are born each year whose parents
 were born on the other side of the line?
-This quantity, which we call the \textit{dispersal flux} across the boundary,
+This quantity, which we call the \emph{dispersal flux} across the boundary,
 is useful for investigating connectivity between different areas
 and the role of the landscape in shaping patterns of dispersal.
 Dispersal flux is a geographical analogue of
@@ -772,38 +760,9 @@ Flux across a line is also related to mean dispersal distance, $\sigma$, discuss
 The expected flux across a straight boundary in a homogeneous area,
 per unit time and per unit of boundary length,
 is equal to the birth rate per unit area multiplied by $2 \sigma / \pi$
-\citep{buffon1777},
+\citep{buffon1777}
+where $\pi$ here refers to the mathematical constant,
 so estimates of flux can be converted to estimates of dispersal distance.
-
-
-%%%%%%%%%%%%%%
-\subsubsection{Estimating dispersal and flux}
-
-\begin{itemize}
-\item How do we estimate effective dispersal and flux using genetic data? 
-\subitem Fst and IM models, estimating gene flow (Slatkin 1985)
-        \plr{we should mention the connection to $F_{ST}$ below in ``relative genetic differentiation''}
-\subitem \citet{rousset_1997} used this formula to show that
-the slope of $F_{ST}$ against the logarithm of distance
-is under these assumptions an estimator for $4 \pi \rho_e \sigma_e^2$,
-but it is not known to what degree the assumptions affect the results.
-\subitem This general idea was applied to much larger time scales by \citep{neigel1991estimation,neigel1993application},
-who used the genealogical tree relating many samples at one nonrecombining locus
-(e.g., the mitochondria) and the spatial locations of these samples
-to infer $\sigma$ using phylogenetic comparative methods.
-\subitem however... see whitlock \& Mccauley
-\item alternatively, identification of relatives using shared tracts of ancestry
-\subitem (ralph and coop, palamara and pe'er, harris and nielsen, Ringbauer \& friends 2017)
-\item maps of Isolation by Resistance 
-    \citep{McRae2006,McRae_Beier_2007,McRae2008,petkova2016visualizing} 
-    describes the effective ``resistance" to gene flow 
-    between points in space due to heterogeneity 
-    in an organism's ability to cross the intervening landscape.
-\end{itemize}
-
-\plr{Proposal: put back the section on spatial maps of dispersal (shorter?) 
-    and use it as a segue say that we've got a start at this, they are called resistance surfaces,
-    cite circuitscape, eems, maps, and Erik's paper. Unless we're too long.}
 
 
 %%%%%%%%%%%%%%
@@ -838,8 +797,6 @@ the origins and mechanisms of selective sweeps.
 %%%%%%%%%%
 \subsubsection{Geographic distribution of ancestry}
 
-\todo{estimation section? or parallel structure with other sections?}
-
 As one looks further back in time,
 the geographic distribution of an individual's ancestors
 is determined by the history of population size changes and movements.
@@ -848,16 +805,8 @@ each portion of each individual's genome can be associated
 with the ancestor from whom they inherited it.
 Their genetic ancestry can therefore be apportioned across space according
 to the locations of the ancestors from whom they inherited their genome.
-%There are a number of natural questions that arise from a description of this process.
-%How much of an average individual's ancestry is still within a given region, 
-%at some point in the past?
-%How long in the past was it since a typical individual in one location had an ancestor
-%in another geographic region (say, the next valley over)?
-%How far back in time do you have to go before 
-%the average proportion of ancestry that an individual inherits
-%from the local region they live in drops below (say) 90\%?
 
-This spatial distribution of \textit{all} genetic ancestors is depicted 
+This spatial distribution of \emph{all} genetic ancestors is depicted 
 at several points back in time
 for four individuals in a simulation in Figure~\ref{ancestry_spread}.
 As we look further back in time,
@@ -893,7 +842,7 @@ even those living in the other valley \citep{chang1999}.
 \end{figure}
 
 Although Figure~\ref{ancestry_spread} does not highlight 
-ancestors \textit{shared} by any pair of the focal individuals,
+ancestors \emph{shared} by any pair of the focal individuals,
 it is clear that these occur in the overlap between their two clouds of ancestry.
 For instance, any ancestors shared over the time interval shown
 between the pink and purple individuals
@@ -920,7 +869,6 @@ is $F_{ST}$ \citep{Wright1951},
 which can be thought of as estimating
 one minus the ratio of mean coalescence time within subpopulations
 to that within the entire population \citep{slatkin_1991inbreeding}.
-%-- a descriptor of average tree shape in the pedigree. 
 The normalization by mean overall coalescence time 
 makes this relative measure comparable across populations of different sizes.
 
@@ -964,8 +912,6 @@ The appropriate measure will depend on the application at hand.
 Many tools for modern analysis of genetic data
 partition existing genetic variation into clusters labeled as (discrete) populations
 \citep[e.g.,][]{STRUCTURE, ADMIXTURE}
-% Perched on the shoulder of discrete population structure is the concept of admixture,
-% the idea that populations can be composed of ancestry from multiple discrete groups.
 The ubiquity of gene flow means that
 any conceptual model of discrete populations 
 must also include \emph{admixture} between them.
@@ -977,7 +923,7 @@ they can be used in conservation to delineate discrete management units.
 However, in practice these discrete groups may easily be determined
 by clustering of sampling effort,
 calling into question their real-world interpretation.
-Explicitly utilizing geographic proximity can help alleviate these concerns \citep{conStruct},
+Explicitly utilizing geographic proximity can help alleviate these concerns \citep{spacemix,conStruct},
 but it would still be desirable to delineate groups in a way explicitly linked
 to the actual history of relatedness, i.e., the spatial pedigree.
 
@@ -997,7 +943,6 @@ To obtain an admixture proportion,
 we can fix some ``reference'' time in the past,
 and label each subsequent individual's genomes
 according to which of the two valleys it inherited from at the reference time.
-% The precise reference time does not matter as long as there was no gene flow during isolation.
 This is shown in Figure \ref{postglacial_expansion}:
 eight generations after contact (top),
 this quantity clearly reflects the history of isolation;  
@@ -1108,6 +1053,43 @@ are still lacking,
 and present an exciting set of challenges for the field.
 
 %%%%%%%%%%
+\subsubsection{Now is the winter of our discontinuity}
+\plr{shorten this up, I think, and call it something besides discontinuity? I have not heard this, and connotes other things to me.}
+%So, people refer to "population continuity," although I couldn't find an original ref for the idea.
+%	seems like the opposite should be discontinuity?
+% 	I guess it should actually be ``temporal discontinuity" rather than ``spatial discontinuity",
+%	but the human literature calls it population continuity, so the non-discrete analogue seems like it should be ``spatial" something?
+
+One case of ``things changing over time" that deserves special mention 
+is \emph{spatial discontinuity}, 
+the phenomenon in which none of the individuals 
+living in a particular region at a particular point in time 
+are descended from any of the individuals living in that region 
+at some point in the past.
+Spatial discontinuity, 
+also known as population replacement, 
+can arise when regions become unoccupied
+(e.g., due to ecological disturbance or agonistic interactions) 
+and are recolonized by immigrants from elsewhere. 
+There is abundant evidence of spatial discontinuity 
+from empirical datasets that include ancient or historical samples 
+\citep{bi2013unlocking, skoglund2014investigating, PickrellReich2014, lazaridis_ancient_2014, haak2015massive, allentoft2015population, joseph2018inference}.
+Spatial discontinuity presents such a problem because 
+inference from modern samples of many of the quantities discussed above --  
+e.g., local density, dispersal, and flux --
+is predicated on the assumption that 
+the observed geographic distribution of genetic variation 
+was generated in the sampled geographic context.
+If this is not the case,
+inference made from modern samples may be unreliable.
+As we develop more datasets that include genotype data from historical individuals, 
+we will better be able to evaluate the prevalence of spatial discontinuity 
+and its effects on our inferences across natural systems. 
+%Spatial discontinuity in a region is especially pernicious because, 
+%without genotyped ancient or historical individuals, 
+%it may be effectively invisible.
+
+%%%%%%%%%%
 \subsubsection{Genealogical strata}
 
 The field of population genetics
@@ -1139,60 +1121,6 @@ for different, recent time slices.
 However, the different strata cannot be read independently
 -- the correspondence between shared haplotype length and age of common ancestor
 depends strongly on population size history \citep{ralph2013geography}.
-
-
-%%%%%%%%%%
-\subsubsection{Now is the winter of our discontinuity}
-
-\plr{shorten this up, I think, and call it something besides discontinuity? I have not heard this, and connotes other things to me.}
-
-The specter of \textit{spatial discontinuity} --
-the phenomenon in which none of the individuals 
-living in a particular region at a particular point in time 
-are descended from any of the individuals living in that region 
-at some point in the past
--- haunts the inference of historical processes
-from data genotyped from extant samples in an area.
-Spatial discontinuity, 
-also known as population replacement, 
-can arise when regions become unoccupied
-(e.g., due to ecological disturbance) 
-and are recolonized by immigrants from elsewhere, 
-or when agonistic interactions between immigrants and local individuals 
-lead to local displacement. 
-Assuming that nearby individuals are more related than distant individuals, 
-the genetic signature of spatial discontinuity will be most pronounced 
-when the immigrant genotypes are from far away.
-
-Spatial discontinuity presents such a problem because 
-inference of many of the quantities discussed above --  
-e.g., local density, dispersal, and flux --
-is predicated on the assumption that 
-the observed geographic distribution of genetic variation 
-was generated in the sampled geographic context.
-For example, 
-we assume that the flux across the ridge 
-depicted in Figure \ref{fig:dispersal}\subref{valleyflux}
-and inferred from observed divergence 
-between samples in the two adjacent valleys 
-is indicative of true dispersal across the ridge.
-If, alternatively, one of the valleys 
-has been recently colonized by individuals from elsewhere, 
-the inferred effect of the ridge on dispersal may not reflect the truth.
-Spatial discontinuity in a region is especially pernicious because, 
-without genotyped ancient or historical individuals, 
-it may be effectively invisible.
-
-There is abundant evidence of spatial discontinuity 
-from empirical datasets that include ancient or historical samples 
-\citep{bi2013unlocking, skoglund2014investigating, PickrellReich2014, lazaridis_ancient_2014, haak2015massive, allentoft2015population, joseph2018inference}.
-And, in many systems for which we have not yet genotyped historical samples, 
-we have strong reason to suspect discontinuity 
-because the local populations have been recently established 
-following, e.g., glacial retreat or human-mediated invasions.
-As we develop more datasets that include genotype data from historical individuals, 
-we will better be able to evaluate the prevalence of spatial discontinuity 
-and its effects on our inferences across natural systems. 
 
 
 %%%%%%%%%%%
@@ -1234,7 +1162,6 @@ Incorporating selection into spatially continuous models
 will facilitate a greater union of population genetic processes 
 and ecological models of population dynamics, 
 and help shed light on important evolutionary questions.
-% like where adaptive sweeps originate. 
 
 
 %%%%%%%%%%%
@@ -1252,11 +1179,6 @@ researchers to simulate genome-scale datasets under models of arbitrary complexi
 This capability offers an excellent pedagogical tool 
 and opportunity to build intuition for patterns of genetic variation 
 in complex scenarios for which theory may be lacking.
-% Indeed, we generated all figures for this paper using SLiM, 
-% and we have included the simulations 
-% and the code used to generate all figures 
-% as an online supplement to our paper 
-% (available for download at XXXX).
 In addition, these simulation methods can be used in statistical inference.
 For example, simulated datasets can be used in the training 
 of machine learning methods \citep[e.g.,][]{SchriderKern2018}, 
@@ -1268,7 +1190,6 @@ for problems that may be analytically intractable.
 
 %%%%%%%%%%
 \subsubsection{Identifiability and ill-posedness}
-\todo{keep?}
 
 Another important gap in current methods for spatial population genetics inference 
 is a quantitative understanding of the limits of our ability to learn about 
