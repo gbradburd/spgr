@@ -30,7 +30,7 @@
 % macros
 \newcommand{\g}[1]{{\color{blue}{#1}}}
 \newcommand{\plr}[1]{{\color{green}{#1}}}
-\newcommand{\triage}[1]{{\sout{\color{magenta}{#1}}}}
+\newcommand{\cut}[1]{{\sout{\color{magenta}{#1}}}}
 \newcommand{\todo}[1]{{\textbf{\color{red}{#1}}}}
 \renewcommand{\emph}[1]{{\textit{#1}}}
 \newcommand{\E}{\mathbb{E}}
@@ -95,7 +95,7 @@ We design experiments and collect data
 with the methods we will use to analyze them in mind, 
 and those methods are based on theory
 developed to explain observations from data.
-With some notable exceptions,
+With some exceptions,
 especially the work of Sewall Wright \citep{Wright1940,Wright1943,wright1946isolation}
 and Gustave Mal\'ecot \citep{malecot}
 much of the early body of theory was focused on
@@ -105,12 +105,12 @@ most of which
 (again, with exceptions \citet[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947}),
 were well-described as discrete populations --
 like samples of flies in a vial \citep{lewontin1974}.
-For example, 
+\cut{For example, 
 the first revolutionary empirical measurements
 of molecular genetic variation \citep{HubbyLewontin66,LewontinHubby66}
 focused on data from 43 fly strains sampled from 5 locations,
 which were treated as experimental replicates
-(rather than studied in their geographic context).
+(rather than studied in their geographic context).}
 In turn, 
 the statistics used to analyze these datasets --
 e.g., empirical measurements of $F_{ST}$ \citep{Wright1951}
@@ -118,7 +118,7 @@ or tests of Hardy-Weinberg equilibrium \citep{hardy1908,weinberg1908} --
 were defined based on expectations in discrete, well-mixed populations.
 In part, this was because much more detailed mathematical predictions 
 were possible from such simplified models.
-This focus of theory and methods on discrete populations in turn influenced
+The focus of theory and methods on discrete populations in turn influenced
 future sampling designs.
 
 To what degree does reality match this picture
@@ -169,9 +169,7 @@ how those quantities have changed over time,
 and whether there are groups of them.
 We discuss each question
 as a spatial population genetic problem, 
-explained using the 
-population's genealogy embedded in geographic space,
-i.e., the \emph{spatial pedigree}.
+explained using the \emph{spatial pedigree}.
 It is our hope that by framing our discussion around the spatial pedigree, 
 we can build intuition for --
 and spur new developments in --
@@ -190,17 +188,17 @@ we would know many evolutionary quantities
 that we otherwise would have to estimate from data,
 such as the true relatedness between any pair of individuals,
 or each individual's realized fitness.
-If we wanted to characterize dispersal behavior of a species,
+If we wanted to characterize the dispersal behavior of a species,
 we could simply count up the distances between offspring and their parents.
 Or, if we wanted to to know whether a particular allele
 was selected for in a given environment,
 we could compare the mean fitness of all individuals in that environment with that allele
 to that of those without the allele.
-
 The ``location'' of an individual can be a slippery concept,
 depending on the biology of the species in question
 (as can the concept of ``individual'').
-Where in space does a barnacle hitchhiking on a whale live, 
+For instance, 
+where in space does a barnacle hitchhiking on a whale live, 
 or a huge, clonal stand of aspen?
 To reduce ambiguity,
 we will think of the location of an individual as the place it was
@@ -231,7 +229,6 @@ and locations of individuals in previous, unsampled generations.
 And, in a highly dispersive species,
 or a species with a highly dispersive gamete,
 there may be only a weak relationship between observed location and birth location.
-
 Despite these complexities,
 the idea of the spatial pedigree is useful
 as a conceptual framework for spatial population genetics.
@@ -253,8 +250,8 @@ the historical average of processes like gene flow acting over long time scales,
 but fail to capture a lot of richness in the data. 
 They are especially uninformative about processes in the present or recent past, 
 or, more generally, about heterogeneity in some process over time.
-However, the ability to genotype a significant proportion of a population, 
-as well as the ability to generate whole genome sequence data for many individuals, 
+However, the ability to genotype a significant proportion of a population 
+and generate whole genome sequence data for many individuals 
 is opening the door to inference of the recent pedigree 
 via the identification of close relatives in a sample.
 In turn, we can use this pedigree, 
@@ -312,12 +309,13 @@ If we are looking one generation back,
 this is proportional to their number of offspring, i.e., their fitness.
 If we are looking a long time in the past
 (in practice, more than 10 or 20 generations \citep{BartonEtheridge2011fitness}),
+\todo{is this true in a non-panmictic population?}
 this is their \emph{long-term fitness}.
 Different methods query different time periods of the pedigree,
 and are thus subject to these effects to different degrees.
 
-A familiar example of this distinction is the difference between ``census'' and ``effective'' population size
-\citep{Charlesworth2009}.
+A familiar example of the limits of inference 
+is the difference between ``census'' and ``effective'' population size \citep{Charlesworth2009}.
 More subtle is the difference between dispersal distance ($\sigma$) and
 ``effective dispersal distance'' ($\sigma_e$) \citep{Cayuela2018demographic},
 the quantity most naturally estimated from genetic data.
