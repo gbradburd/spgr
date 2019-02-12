@@ -467,7 +467,7 @@ Relatives up to recent cousins can be identified in a large sample to varying de
 from genomic data \citep{Wang2016Prediction},
 using multilocus genotypes \citep{nomura2008estimation,WaplesWaples2011,Wang_2014},
 shared rare alleles \citep{NovembreSlatkin2009}, 
-or long shared haplotypes \citep[e.g.,][]{close_rels_from_ibd}.
+or long shared haplotypes \citep[e.g.,][]{li2014relationship}.
 An alternative approach to estimating local density
 is to measure the rate of genetic drift.
 To do this, one compares allele frequencies
@@ -626,7 +626,7 @@ we might use the decay of mean genetic relatedness with distance
 (shown in Figure \ref{fig:dispersal}\subref{ibd}).
 The mean time since most recent common ancestor 
 of two individuals at a random point on the genome
-is usually larger for more distant individuals \citep{ibd_review},
+is usually larger for more distant individuals \citep{sexton2013genetic,epperson2003geographical,charlesworth2003effects},
 a relationship that clearly has something to do with $\sigma$.
 This general idea was applied to much larger time scales by \citep{neigel1991estimation,neigel1993application},
 who used the genealogical tree relating many samples at one nonrecombining locus
@@ -635,7 +635,7 @@ to infer $\sigma$ using phylogenetic comparative methods.
 An approximate formula for this relationship
 in homogeneous space (Malec\'ot's formula)
 can be derived in various ways 
-\citep{malecot, sawyer1976branching, rousset_1997, barton-depaulis-etheridge, robledoarnuncio, ringbauer2017inferring, alasadi2018estimating},
+\citep{malecot, sawyer1976branching, rousset_1997, barton-depaulis-etheridge, robledoarnuncio2010isolation, ringbauer2017inferring, alasadi2018estimating},
 but is composed of two parts: 
 (a) how long has it been since the two individuals last had ancestors that lived near to each other,
 and (b) how long before that did they actually share an ancestor.
@@ -706,7 +706,7 @@ A more general model of heterogeneous dispersal would allow mean \emph{bias} in 
 as well as anisotropy in dispersal variance.
 As implemented, ``resistance'' methods make use of an approximation
 (for computational efficiency)
-which can be strongly misled in the presence of such bias \citep{lundgren2018}.
+which can be strongly misled in the presence of such bias \citep{lundgren2018populations}.
 
 One of the most promising current spatial methods is MAPS \citep{alasadi2018estimating}, 
 which uses information about long shared haplotype tracts (recent ancestry) 
@@ -1164,9 +1164,9 @@ We have mostly ignored this above,
 but clearly local adaptation and natural selection impact 
 the structure of the pedigree, including its' spatial patterns.
 There is a great deal known about the expected geographical action of selection,
-e.g., how beneficial alleles spread across space \citep{fisher1932,hallatschek,ralph2010},
-how locally adaptive alleles can be maintained in the face of gene flow \citep{slatkin_local,barton,RalphCoop2015patchy},
-or how hybrid zones are structured \citep{barton_hybrid,sedghifar_2015}.
+e.g., how beneficial alleles spread across space \citep{fisher1937wave,RalphCoop2010parallel,HallatschekFisher2014},
+how locally adaptive alleles can be maintained in the face of gene flow \citep{slatkin1973geneflow,kruuk1999comparison,RalphCoop2015patchy},
+or how hybrid zones are structured \citep{barton1985analysis,sedghifar_2015}.
 In all these situations,
 demographic processes have \emph{different effects} on different regions of the genome.
 Incorporating selection into spatially continuous models 
@@ -1184,7 +1184,7 @@ What can take its place?
 A recent advance in the field, 
 which may help improve inference models with and without selection, 
 has been the advent of powerful and flexible simulation methods, 
-such as SLiM \citep{haller2018forward,haller2018treesequence} and msprime \citep{kelleher2018msprime}.
+such as SLiM \citep{haller2018forward,haller2018treesequence} and msprime \citep{kelleher2016msprime}.
 These methods allow
 researchers to simulate genome-scale datasets under models of arbitrary complexity.
 This capability offers an excellent pedagogical tool 
