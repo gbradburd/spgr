@@ -157,10 +157,10 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
             raise ValueError("Illegal left, right bounds.")
         edges = self.tables.edges
         out = {n:[] for n in range(self.num_individuals)}
-        for edge in ts.edges():
-            if edges.left < right and edges.right >= left:
-                parent = ts.node(e.parent).individual
-                child = ts.node(e.child).individual
+        for edge in self.edges():
+            if edge.left < right and edge.right >= left:
+                parent = self.node(edge.parent).individual
+                child = self.node(edge.child).individual
                 if (parent is not msprime.NULL_INDIVIDUAL
                      and child is not msprime.NULL_INDIVIDUAL):
                     out[child].append(parent)
