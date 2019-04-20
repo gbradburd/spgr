@@ -7,6 +7,7 @@ writeup/*.toc
 writeup/spatialpopgen.pdf
 writeup/*.blg
 writeup/*.bbl
+writeup/*.out
 .*.swp
 writeup/figs/spatial_pedigree/gen_output/
 writeup/annotated_biblio.pdf
