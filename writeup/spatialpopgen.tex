@@ -8,8 +8,8 @@
 %
 % For tracking purposes => this is v1.0 - Apr. 2013
 \newif\ifsubmissionversion
-\submissionversionfalse
 %\submissionversiontrue
+\submissionversionfalse
 
 \ifsubmissionversion
 	\documentclass{ar-1col}
@@ -36,6 +36,10 @@
 \jvol{AA}
 \jyear{YYYY}
 \doi{10.1146/((please add article doi))}
+\fi
+
+\ifsubmissionversion
+	\graphicspath{{figs/}}
 \fi
 
 % macros
@@ -93,7 +97,7 @@ email: bradburd@msu.edu}
     are reflected in their pedigree across space and time.
     Because the structure of the pedigree is what determines 
     patterns of relatedness in modern genetic variation,
-    our aim is to thus provide intuition for how these processes,
+    our aim is to thus provide intuition for how these processes
     leave an imprint in genetic data.
     We also highlight some current methods and gaps 
     in the statistical toolbox of spatial population genetics.
@@ -233,7 +237,7 @@ born, hatched, or germinated.
 
 \begin{figure}
     \centering
-         \includegraphics[width=\linewidth]{figs/spatial_pedigree.pdf}
+         \includegraphics[width=\linewidth]{spatial_pedigree.pdf}
         \caption{
 		An example pedigree (left) of a focal individual sampled in the modern day, 
 	   	placed in its geographic context to make the spatial pedigree (right).
@@ -408,13 +412,13 @@ and we can use data generated on it to learn about these quantities.
     \centering
     \begin{subfigure}{0.95\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figs/valley_density}
+        \includegraphics[width=\linewidth]{valley_density}
         \caption{map of simulation scenario}
         \label{valley_map}
     \end{subfigure}
     \begin{subfigure}{0.95\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figs/valley_heterozygosity}
+        \includegraphics[width=\linewidth]{valley_heterozygosity}
         \caption{individual heterozygosity}
         \label{valley_het}
     \end{subfigure}
@@ -676,17 +680,17 @@ but it is not known to what degree the assumptions affect the results.
     \centering
     \begin{subfigure}{0.85\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figs/valley_cousins.pdf}
+        \includegraphics[width=\linewidth]{valley_cousins.pdf}
         \label{cousin_map}
     \end{subfigure}
     \begin{subfigure}{0.75\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figs/valley_ibd.pdf}
+        \includegraphics[width=\linewidth]{valley_ibd.pdf}
         \label{ibd}
     \end{subfigure}
     \begin{subfigure}{0.85\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{figs/valley_line_flux.pdf}
+        \includegraphics[width=\linewidth]{valley_line_flux.pdf}
         \label{valleyflux}
     \end{subfigure}
         \caption{
@@ -862,9 +866,9 @@ each focal individual is genealogically descended from nearly everyone alive,
 even those living in the other valley \citep{chang1999}.
 
 \begin{figure}	%[H]
-        \includegraphics[width=0.75\linewidth]{figs/valley_ancestry_01.pdf}
-        \includegraphics[width=0.75\linewidth]{figs/valley_ancestry_60.pdf}
-        \includegraphics[width=0.75\linewidth]{figs/valley_ancestry_300.pdf}
+        \includegraphics[width=0.75\linewidth]{valley_ancestry_01.pdf}
+        \includegraphics[width=0.75\linewidth]{valley_ancestry_60.pdf}
+        \includegraphics[width=0.75\linewidth]{valley_ancestry_300.pdf}
         \caption{
             Spatial locations of the ancestors of four individuals:
             at 
@@ -1003,8 +1007,8 @@ during glaciation, were found in the western valley.
 
 \begin{figure}	%[H]
     \centering
-        \includegraphics[width=0.85\linewidth]{figs/valley_admixture_new}
-        \includegraphics[width=0.85\linewidth]{figs/valley_admixture_old}
+        \includegraphics[width=0.85\linewidth]{valley_admixture_new}
+        \includegraphics[width=0.85\linewidth]{valley_admixture_old}
         \caption{
             Admixture proportions after a recent secondary contact.
             Each pie shows the proportion of a diploid individual's genomes

@@ -12,3 +12,4 @@ writeup/*.out
 writeup/figs/spatial_pedigree/gen_output/
 writeup/annotated_biblio.pdf
 figs.pdf
+writeup/*.pdf
