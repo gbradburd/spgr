@@ -17,10 +17,10 @@ initialize() {
 	
 	// spatial mate choice
 	initializeInteractionType(2, "xy", reciprocal=T, maxDistance=0.1);
-	i2.setInteractionFunction("n", 1.0, 0.02);
+	i2.setInteractionFunction("n", 1, 0.02);
 }
 1 late() {
-	sim.addSubpop("p1", 500);
+	sim.addSubpop("p1", 1e3);
 	
 	for (ind in p1.individuals)
 		ind.setSpatialPosition(p1.pointUniform());
