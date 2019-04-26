@@ -8,8 +8,8 @@
 %
 % For tracking purposes => this is v1.0 - Apr. 2013
 \newif\ifsubmissionversion
-%\submissionversiontrue
-\submissionversionfalse
+\submissionversiontrue
+%\submissionversionfalse
 
 \ifsubmissionversion
 	\documentclass{ar-1col}
@@ -139,8 +139,8 @@ much of the early body of theory was focused on
 developing expectations for discrete populations.
 This focus was informed by early empirical datasets,
 most of which
-(again, with exceptions \citet[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947}),
-were well-described as discrete populations --
+(again, with exceptions \citep[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947}),
+were well described as discrete populations --
 like samples of flies in a vial \citep{lewontin1974}.
 In turn, 
 the statistics used to analyze these datasets --
@@ -159,7 +159,7 @@ Organisms live, move, reproduce, and die,
 connected by a vast pedigree that is anchored in time and space.
 But, it is difficult to collect data and develop theory and methods
 that capture this complexity.
-Sampling and genotyping efforts are limited by time, money, and access.
+Sampling and genotyping efforts are limited by access, time, and money.
 Developing theory to describe evolutionary dynamics
 without the simplifying assumption of random mating
 is more difficult.
@@ -194,17 +194,17 @@ In the process,
 we hope to provide an introduction for empirical researchers
 to the field.
 We focus on a small number of foundational questions 
-about the biology and history of organisms we study:
+about the biology and history of the organisms we study:
 where they are; how they move; where their ancestors were;
 how those quantities have changed over time, 
 and whether there are groups of them.
 We discuss each question
 as a spatial population genetic problem, 
-explained using the \emph{spatial pedigree}.
+explored using the \emph{spatial pedigree}.
 It is our hope that by framing our discussion around the spatial pedigree, 
 we can build intuition for --
 and spur new developments in --
-the study of spatial population genetics .
+the study of spatial population genetics.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -241,11 +241,13 @@ born, hatched, or germinated.
         \caption{
 		An example pedigree (left) of a focal individual sampled in the modern day, 
 	   	placed in its geographic context to make the spatial pedigree (right).
-		Dashed lines denote matings, and solid lines denote parentage.
+		Dashed lines denote matings, and solid lines denote parentage, 
+		with red hues for the maternal ancestors, 
+		and blue hues for the paternal ancestors.
 		In the spatial pedigree, 
 		each plane represents a sampled region in a discrete (non-overlapping) generation,
-		and each dot represents an individual.
-		The pedigree of the focal individual is highlighted in red 
+		and each dot shows the birth location of an individual.
+		The pedigree of the focal individual is highlighted 
 		back through time and across space.
         }
         \label{spatial_pedigree}
@@ -275,7 +277,7 @@ Many of the statistics measured from early data,
 such as $\pi$, $\theta$, or $F_{ST}$,
 rely on averages of allele frequencies
 at a modest number of loci,
-and thus reflect mostly deep structure at a few genealogical trees.
+and thus reflect mostly deep structure at a few gene genealogies.
 These statistics are informative about 
 the historical average of processes like gene flow acting over long time scales, 
 but are relatively uninformative about processes in the recent past, 
@@ -294,8 +296,8 @@ to learn about processes shaping the pedigree in the recent past.
 It has only recently become possible to simulate whole genomes
 of reasonably large populations
 evolving across continuous geographic landscapes.
-Throughout this paper, 
-we illustrate concepts we discuss with simulations 
+Below, 
+we illustrate concepts we discuss with example simulations 
 produced using SLiM v3.1 \citep{haller2018forward},
 which enables rapid simulation of complex geographic demographies.
 We recorded the genealogical history along entire chromosomes
@@ -329,10 +331,10 @@ and population genetics is no exception.
 The ancestors of modern-day genomes are \emph{not} an unbiased sample
 from the past population -- 
 they are biased towards individuals with more descendants today.
-We cannot, of course, learn anything from modern-day genomes
-about populations that died out entirely.
-There are more subtle biases:
-if we trace back the path along which a random individual today 
+We know that we cannot learn anything from modern-day genomes
+about populations that died out entirely, 
+but there are more subtle biases.
+For example, if we trace back the path along which a random individual today 
 has inherited a random bit of genome,
 the chance that a particular individual living $T$ units of time ago is an ancestor
 is proportional to the amount of genetic material that individual has contributed to the modern population.
@@ -347,7 +349,7 @@ Different methods query different time periods of the pedigree,
 and are thus subject to these effects to different degrees.
 
 A familiar example of the limits of inference 
-is the difference between ``census'' and ``effective'' population size \citep{Charlesworth2009}.
+is the difference between ``census'' and ``effective'' population size \citep{Wright_1931,Charlesworth2009}.
 More subtle is the difference between dispersal distance ($\sigma$) and
 ``effective dispersal distance'' ($\sigma_e$) \citep[reviewed in][]{Cayuela2018demographic}.
 Both are mean distances between parent and offspring:
@@ -378,7 +380,7 @@ and so $\sigma_e < \sigma$
 
 Perhaps the first things we might use
 to describe a geographically distributed population
-are an estimate of the total population size,
+are an estimate of the total population size
 and a map of population density across space.
 Quantifying abundance and how it varies
 can be crucial, e.g., for understanding
@@ -462,12 +464,12 @@ a given pair of individuals are siblings
 is $\E[X (X-1)] / (N-1)$, where $X$ is the number of offspring in a randomly chosen family.
 This implies that in a sample of size $n$,
 $n(n-1)/2$ divided by the number of observed sibling pairs 
-provides an estimate of (inbreeding) \emph{effective population size}, 
+provides an estimate of \g{(inbreeding)} \emph{effective population size}, 
 $N_e = N/\E[X(X-1)]$.
 In other words, we should be able to use relatedness to estimate population size
 up to the factor $\E[X(X-1)]$, which depends on demographic details. 
 This same logic can be applied locally:
-the (inbreeding) effective population density
+the \g{(inbreeding)} effective population density
 near a location $x$, denoted $\rho_e(x)$,
 can be defined as the inverse of the rate of appearance of sibling pairs
 near $x$, per unit of geographic area and per generation.
@@ -480,8 +482,9 @@ decreases with the number of ``possible nearby parents'':
 \citet{wright1946isolation} quantified this with the
 \emph{neighborhood size}, 
 $N_\text{loc} = 4 \pi \rho_e \sigma_e^2$,
-where $\sigma_e$ is the effective dispersal distance
-and $\rho_e$ is the effective population density.
+where $\pi$ is the mathematical constant,
+$\rho_e$ is the effective population density,
+and $\sigma_e$ is the effective dispersal distance.
 Each pair of siblings gives a small amount of information
 about population density within distance $\sigma_e$ of the pair.
 The more distant the coalescent event relating a pair of individuals, 
@@ -491,21 +494,23 @@ both in the inference of their precise degree of relatedness from genetic data,
 and in the location of their shared ancestors.
 Because genetic estimates of population size 
 derive from rates of coalescence,
-they generally can only estimate population sizes 
+they generally can only be used to estimate population sizes 
 in the locations and times where those coalescences occur.
 
 Relatives up to recent cousins can be identified in a large sample to varying degrees of certainty 
-from genomic data \citep{Wang2016Prediction},
+from genomic data \citep[reviewed in][]{Wang2016Prediction},
 using multilocus genotypes \citep{nomura2008estimation,WaplesWaples2011,Wang_2014},
 shared rare alleles \citep{NovembreSlatkin2009}, 
 or long shared haplotypes \citep[e.g.,][]{li2014relationship}.
+
 An alternative approach to estimating local density
-is to measure the rate of genetic drift.
+is to measure the rate of genetic drift in an area.
 To do this, one compares allele frequencies
 in at least two samples collected in a region in different generations, 
 either at different points in time,
 or, in a species with overlapping generations, 
-between contemporaneous individuals of different life stages
+between contemporaneous individuals of different life stages, 
+e.g., saplings and mature trees
 \citep{WilliamsonSlatkin1999}.
 The rate of drift is governed by, 
 and therefore provides an estimate of, 
@@ -513,7 +518,7 @@ local population size
 \citep{ewens2004mpg,Charlesworth2009}.
 Because these approaches are pinned to the recent past, 
 either by the generations sampled or by the degree of closeness of relatives,
-they may offer a more accurate estimate of population density than heterozygosity does, 
+they may offer a more accurate estimate of recent population density than heterozygosity does, 
 especially when density has changed over time.
 
 %%%%%%%%%%%%%%
@@ -547,8 +552,9 @@ over the last few $N_e$ generations.
 
 We have seen that
 local population size is reflected in the pedigree through rates of shared ancestry:
-all else being equal, smaller populations should have less genetic diversity.
-To gain intuition, we will look at how genetic diversity on the smallest scale
+all else being equal, smaller populations should have more shared ancestry and 
+therefore less overall genetic diversity.
+To gain intuition, we can look at how genetic diversity on the smallest scale
 -- heterozygosity --
 behaves in a simulated example.
 Consider two adjacent valleys, 
@@ -585,12 +591,13 @@ Migration into and out of a region presents another complication.
 Roughly speaking,
 geographic patterns of relatedness
 are determined by a tension between population size and migration.
-Genealogical relationships form on a time scale determined by population density,
+\g{Genealogical relationships form} on a time scale determined by population density,
 because in a geographic region containing $N$ individuals
 the chance that two individuals are siblings is of order $1/N$.
-Shared ancestry is spatially autocorrelated
+Shared ancestry is \g{spatially autocorrelated}
 to the extent that this process of coalescence
-occurs more quickly than migration.
+brings lineages together backward in time more quickly than 
+migration splits them apart.
 If the migration rate into a geographic region is much greater than $1/N$ --
 i.e., if more than a few individuals in each generation had parents living outside of the region --
 then the pedigree in a region cannot be considered autonomously.
@@ -626,7 +633,7 @@ the \emph{dispersal distance}, and refer to it as $\sigma$.
 The dispersal distance describes the quantity one could calculate by,
 e.g., collecting a large number of germinating seeds
 and averaging the distance from those seeds to their two parents.
-It determines how quickly spatial populations mix.
+\g{It determines how quickly spatial populations mix}.
 
 Dispersal distance could be trivially estimated by taking
 the average of these displacements across history
@@ -636,8 +643,6 @@ the location of individuals in the present day.
 However, 
 spatial distances between individuals of different levels of relatedness
 give us information about dispersal distance, even without parental locations.
-This spatial clustering of close relatives
-is shown in Figure \ref{fig:dispersal}\subref{cousin_map}.
 For example,
 the distance between siblings is the result of two dispersals,
 so an average of this distance over many pairs of siblings 
@@ -645,21 +650,24 @@ gives an estimate of $2 \sigma$.
 The mean squared displacement along
 a path of total length $n$ through the pedigree is $\sigma^2 n$:
 first cousins would give four times the dispersal distance, and so forth.
+This spatial clustering of close relatives
+is shown in Figure \ref{fig:dispersal}\subref{cousin_map}.
 Unfortunately, basing an estimator of $\sigma$ on this observation
 is is usually infeasible in practice,
 unless a large fraction of the population has been genotyped
 \citep[e.g.,][]{Aguillon2017deconstructing}.
 
 Instead of identifying close relatives,
-we might use the decay of mean genetic relatedness with distance
-(shown in Figure \ref{fig:dispersal}\subref{ibd}).
+we might use the decay of mean genetic relatedness with distance 
+(shown in Figure \ref{fig:dispersal}\subref{ibd}) 
+to learn about dispersal.
 The mean time since most recent common ancestor 
 of two individuals at a random point on the genome
 is usually larger for more distant individuals \citep{sexton2013genetic,epperson2003geographical,charlesworth2003effects},
-a relationship that clearly has something to do with $\sigma$.
+a relationship that \g{clearly has something to do with} $\sigma$.
 This general idea was applied to much larger time scales by \citep{neigel1991estimation,neigel1993application},
 who used the genealogical tree relating many samples at one nonrecombining locus
-(e.g., the mitochondria) and the spatial locations of these samples
+(e.g., the mitochondrial genome) and the spatial locations of these samples
 to infer $\sigma$ using phylogenetic comparative methods.
 An approximate formula for this relationship
 in homogeneous space (Malec\'ot's formula)
@@ -673,7 +681,7 @@ but \citet{malecot} assumed that the second stage acts as in a randomly mating p
 with some local effective size, $N_\text{loc}$.
 \citet{rousset_1997} used this formula to show that
 the slope of $F_{ST}$ against the logarithm of distance
-is under these assumptions an estimator for $4 \pi \rho_e \sigma_e^2$,
+is under these assumptions an estimator for Wright's neighborhood size ($4 \pi \rho_e \sigma_e^2$),
 but it is not known to what degree the assumptions affect the results.
 
 \begin{figure}	%[H]
