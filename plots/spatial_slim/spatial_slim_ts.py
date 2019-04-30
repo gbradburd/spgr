@@ -193,7 +193,7 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
 
     def node_parents(self, children, left=0.0, right=None):
         """
-        Returns an arrow whose rows are all (parent, child) pairs of node IDs
+        Returns an array whose rows are all (parent, child) pairs of node IDs
         for the given children, such that child inherited from parent somewhere
         in the region [left, right).
 

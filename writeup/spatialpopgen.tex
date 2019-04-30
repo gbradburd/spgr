@@ -86,10 +86,10 @@ email: bradburd@msu.edu}
 \begin{abstract}
     Many questions that we have about the history and dynamics of organisms
     have a geographical component:
-    How many are there, and where?
+    How many are there, and where do they live?
     How do they move and interbreed across the landscape?
     How were they moving a thousand years ago,
-    and where did the ancestors of an individual today live?
+    and where were the ancestors of a particular individual alive today?
     Answers to these questions can have profound consequences
     for our understanding of history, ecology, and the evolutionary process.
     In this review, we discuss how geographic aspects of the 
@@ -133,8 +133,8 @@ with the methods we will use to analyze them in mind,
 and those methods are based on theory
 developed to explain observations from data.
 With some exceptions,
-especially the work of Sewall Wright \citep{Wright1940,Wright1943,wright1946isolation}
-and Gustave Mal\'ecot \citep{malecot}
+especially the work of Sewall Wright \citeyearpar{Wright1940,Wright1943,wright1946isolation}
+and Gustave Mal\'ecot \citeyearpar{malecot},
 much of the early body of theory was focused on
 developing expectations for discrete populations.
 This focus was informed by early empirical datasets,
@@ -164,21 +164,24 @@ Developing theory to describe evolutionary dynamics
 without the simplifying assumption of random mating
 is more difficult.
 For example, without discrete populations,
-many of the fundamental quantities in population genetics -- 
+many commonly-estimated quantities in population genetics -- 
 migration rate ($m_{ij}$), 
 effective population size ($N_e$),
 admixture proportion
 --
 are poorly defined.
-Despite these difficulties,
-there is now a growing body of theory, methods, and data
-that approach this biological, population-less reality.
+A long history of theoretical work describing geographical populations
+\citep[e.g.,][]{fisher1937wave,,haldane1948theory,slatkin1973geneflow,nagylaki1975conditions,sawyer1976branching,barton1979dynamics}
+has not had as strong an effect on empirical work \citep[but see][]{landscape_genomics_review},
+perhaps because predictions depend more strongly on (geographical) context.
+However, modern advances in acquiring both genomic and geospatial data
+is making it more possible - and, necessary - to approach this biological, population-less reality.
 Today's large genomic datasets
 are facilitating the estimation of the timing and extent of shared ancestry 
 at a much finer geographic and temporal resolution than was previously possible
 \citep{Li_Durbin2011,Palamara_2012,Harris_Nielsen_2013,ralph2013geography}.
 And, advances in theory in continuous space 
-\citep{felsenstein1975pain,BartonWilson1995,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, Barton2013},
+\citep{felsenstein1975pain,BartonWilson1995,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, hallatschek2011noisy, Barton2013},
 datasets of unprecedented geographical scale
 \citep[e.g.,][]{POBI, Aguillon2017deconstructing, Shaffer195743},
 new computational tools for simulating spatial models \citep{haller2018forward,haller2018treesequence},
@@ -205,6 +208,8 @@ It is our hope that by framing our discussion around the spatial pedigree,
 we can build intuition for --
 and spur new developments in --
 the study of spatial population genetics.
+
+\plr{perhaps we need a note about how we explictly don't cover the very fine history of spatial models?}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
