@@ -728,8 +728,7 @@ but \citet{malecot} assumed that the second stage acts as in a randomly mating p
 with some local effective size, $N_\text{loc}$.
 \citet{rousset_1997} used this formula to show that
 the slope of $F_{ST}$ against the logarithm of distance
-is under these assumptions an estimator for Wright's neighborhood size ($4 \pi \rho_e \sigma_e^2$),
-but it is not known to what degree these assumptions affect the results.
+is under these assumptions an estimator for Wright's neighborhood size ($4 \pi \rho_e \sigma_e^2$).
 See \citet{barton1995genealogies} for more discussion of these methods.
 
 \begin{figure}	%[H]
@@ -788,11 +787,12 @@ and represented an important step forward in modeling dispersal
 (over, e.g., least-cost path analysis).
 \g{A more general model of dispersal would allow mean \emph{bias} in dispersal
 (e.g., downwind, or up a fecundity gradient)
-as well as spatial differences in dispersal variance.}
-Furthermore, as implemented, ``resistance'' methods do not actually fit a mechanistic model of dispersal,
-but rather make use of an approximation
-that can result in estimates that differ widely from the truth,
-especially in the presence of dispersal bias \citep{lundgren2018populations}.
+as well as spatial differences in dispersal variance.
+Note that we are distinguishing the ``resistance model'' of organism movement
+from the (current) methods used to fit such models;
+as implemented, ``resistance'' methods make use of an approximation
+that can result in estimates that diverge widely from the truth,
+especially if dispersal is biased \citep{lundgren2018populations}.
 
 One of the most promising current spatial methods is MAPS \citep{alasadi2018estimating}, 
 which uses information about long shared haplotype tracts (recent ancestry) 
@@ -824,13 +824,14 @@ Dispersal flux is a geographical analogue of
 the ``migration rate'' between discrete, isolated populations. 
 Note that dispersal flux is not constrained to be equal in both directions across a boundary:
 it may be easier to disperse down-current than up-current.
-For instance, \g{Figure~\ref{fig:dispersal}C}
+For instance, Figure~\ref{fig:dispersal}C
 shows the number of dispersal events crossing two lines on our simulated valley landscape
 over a few generations.
-The line on the west goes through the denser valley, 
+The line on the left goes through the denser valley, 
 and so has a large flux in each direction.
-The eastern line goes along the edge of the sparser valley,
-and so has lower flux overall, and more east-to-west flux
+The line on the right goes along the edge of the sparser valley,
+and so has lower flux overall, and more east-to-west flux 
+(more red than blue arrows crossing it)
 due to the higher population density to the east of the line.
 
 As before, if we had complete knowledge of the spatial pedigree,
@@ -853,8 +854,7 @@ Flux across a line is also related to mean dispersal distance, $\sigma$, discuss
 The expected flux across a straight boundary in a homogeneous area,
 per unit time and per unit of boundary length,
 is equal to the birth rate per unit area multiplied by $2 \sigma / \pi$
-\citep{buffon1777}
-where $\pi$ here refers to the mathematical constant,
+\citep[where $\pi$ is the mathematical constant,][]{buffon1777},
 so estimates of flux can be converted to estimates of dispersal distance.
 
 
@@ -917,7 +917,8 @@ is of order $\sigma_e \sqrt{n}$,
 as long as this is small relative to the width of the region.
 Not shown on the map are the many genealogical ancestors
 from which the focal individuals have not inherited genome --
-even by 15 generations in the past,
+these spread at constant speed rather than diffusively \citep{kelleher2016spread},
+and even by 15 generations in the past,
 each focal individual is genealogically descended from nearly everyone alive,
 even those living in the other valley \citep{chang1999}.
 
@@ -944,13 +945,7 @@ even those living in the other valley \citep{chang1999}.
 Although Figure~\ref{ancestry_spread} does not highlight 
 ancestors \emph{shared} by any pair of the focal individuals,
 it is clear that these occur in the points of overlap between their two clouds of ancestry.
-For instance, genetic ancestors shared by the pink and purple individuals 
-15 or 75 generations ago
-are all found in the western valley.
-\g{These shared ancestors can be informative about relative population densities in the two valleys.
-In fact, we know from Figure~\ref{pop_density}B that these recent shared pink--purple ancestors
-must represent a larger fraction of the genome
-than do the orange--green shared ancestors.}
+These shared ancestors may be informative about relative population densities in the two valleys.
 
 
 %%%%%%%%%%%%%%
@@ -973,7 +968,7 @@ The normalization by mean overall coalescence time
 makes this measure relative, 
 and therefore comparable across populations of different sizes.
 
-In \g{stationary} populations,
+In stable populations,
 relative genetic differentiation is determined by the tension between 
 geographic mixing (due to dispersal flux between areas)
 and local coalescence (determined by population density).
@@ -994,10 +989,8 @@ is determined by the likelihood that coalescence between two nearby individuals
 occurs during the scattering phase
 -- i.e., by the length of time that two spatial clouds of ancestry of Figure \ref{ancestry_spread}
 are correlated with each other,
-relative to the local effective population size.
-So, in a species with limited dispersal 
-(i.e., small $\sigma_e$),
-
+relative to the local effective population size,
+So, in a species with limited dispersal (i.e., small $\sigma_e$),
 $F_{ST}$ may not be best measure of this quantity -- 
 others are possible that depend less on the deep history of the population.
 For instance,
@@ -1021,9 +1014,8 @@ provide visualizations that can be helpful for
 describing and making sense of patterns of relatedness and genetic variation.
 Coupled with a quantification of relative genetic differentiation,
 they can be used in conservation to delineate discrete management units.
-However, in practice, these discrete groups may easily be determined
-by clustering of sampling effort,
-which complicates their real-world interpretation.
+However, in practice, these discrete groups may in fact be determined
+by clustering of sampling effort rather than any intrisic divisions within the population.
 Explicitly incorporating the geographic proximity of samples 
 can help alleviate these concerns \citep{spacemix,conStruct},
 but it would still be desirable to delineate groups in a way explicitly linked
@@ -1036,7 +1028,7 @@ In this case, the discrete populations are defined by partitioning \emph{ancestr
 and admixture of subsequent generations is determined by inheritance from them.
 For instance, suppose that 
 the two valleys of our running example
-were isolated during a long period of ``glaciation'',
+were isolated during a long period of glaciation,
 followed by glacial retreat and expansion into secondary contact.
 The valleys clearly act as discrete populations during glaciation, 
 during which there are are few if any pedigree connections between the valleys.
@@ -1106,7 +1098,7 @@ have changed over the time scale spanned by the pedigree of modern individuals.
 For example, 
 high-latitude tree populations may only have been established
 following the retreat of the glaciers
-a few tens of generations ago \citep{WhitlockMcCauley1999},
+some tens of generations ago \citep{WhitlockMcCauley1999},
 and invasive species may have entered their current
 environment even more recently than that.
 In addition to organisms moving themselves across landscapes,
@@ -1175,7 +1167,7 @@ would shed light on the last few generations of history,
 but carries the (in many cases unreasonable) requirement of a sample 
 that is a sizable fraction of the entire population.
 Methods for inferring the distant history of populations using a few samples
-are the most well-developed \citep[e.g.,]{dadi,Li_Durbin2011,momi},
+are the most well-developed \citep[e.g.,][]{dadi,Li_Durbin2011,momi},
 but these can incorporate very little in terms of geographic realism,
 and indeed much of the signal of geography 
 may have washed out on this coalescent time scale \citep{wilkins2004separationoftimescales}.
@@ -1187,9 +1179,11 @@ from $t$ generations ago scales roughly with $1/t$,
 these can carry substantial information about ancestors from only tens of generations ago.
 This fact has been used by \citet{alasadi2018estimating}
 to create estimated maps of population density and migration rate
-for different, recent time slices.
-\g{However, the different strata cannot be read independently}
--- the correspondence between shared haplotype length and age of common ancestor
+for different, recent periods of time.
+However, the different strata cannot be read independently
+-- the periods of time that shared haplotypes of different lengths are informative about 
+overlap irrevocably
+-- and the correspondence between shared haplotype length and age of common ancestor
 depends strongly on population size history \citep{ralph2013geography}.
 
 
@@ -1208,7 +1202,7 @@ the processes that have generated and maintained it,
 and its consequences -- 
 is a fundamental goal of the field.
 We have already sketched out plenty of work for the field
--- quantitative inference with continuous geography is still an unsolved problem.
+-- quantitative inference with continuous geography is for the most part an unsolved problem.
 Nonetheless, we describe below a few more areas 
 in which we hope or expect further progress in the field to be made.
 
@@ -1223,17 +1217,16 @@ develop methods that jointly estimate selection and demography for spatially con
 We have mostly ignored this above,
 but clearly local adaptation and natural selection impact 
 the structure of the pedigree, including its spatial patterns.
-\g{For example, if a beneficial allele arises once and goes to fixation in a hard selective sweep, 
-the spatial pedigrees of all extant individuals will be forced,
-going backward in time, 
-to pass through the location of the individual in whom the sweeping mutation occurred.}
+For example, after a ``hard'' selective sweep,
+everyone in the population has inherited a single beneficial allele,
+and so the lineages of all extant individuals at that locus will pass through the lucky individual
+in whom that mutation occurred.
 There is a great deal known about the expected geographical action of selection,
 e.g., how beneficial alleles spread across space \citep{fisher1937wave,RalphCoop2010parallel,HallatschekFisher2014},
 how locally adaptive alleles can be maintained in the face of gene flow \citep{slatkin1973geneflow,kruuk1999comparison,RalphCoop2015patchy},
 or how hybrid zones are structured \citep{barton1985analysis,sedghifar_2015}.
-In all these situations,
-demographic processes have \emph{different effects} on different regions of the genome.
-\g{explain why?}
+In all these situations, selection can produce dramatically different patterns in the pedigree
+of different regions of the genome.
 Incorporating selection into spatially continuous models 
 will facilitate a greater union of population genetic processes 
 and ecological models of population dynamics, 
@@ -1243,9 +1236,11 @@ and help shed light on important evolutionary questions.
 %%%%%%%%%%%
 \subsection{Simulation and inference} 
 
-\g{Spatial population genetics suffers from a singular lack of concrete mathematical results
-that can be used for inference.}
-What can take its place?
+Spatial population genetics is hindered by a lack of concrete mathematical results
+that can be used for inference.
+Although Wright--Malec\'{o}t-like relations can be calculated numerically in heterogeneous geography,
+our understanding of demographic noise in continuous space is still fuzzy.
+What can take the place of analytic formula?
 A recent advance in the field, 
 which may help improve inference models with and without selection, 
 has been the advent of powerful and flexible simulation methods, 
