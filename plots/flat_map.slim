@@ -71,10 +71,10 @@ reproduction() {
         for (i in seqLen(rpois(1, 1/L))) {
             pos = individual.spatialPosition + rnorm(2, 0, SD);
             if (p1.pointInBounds(pos)) {
-            offspring = subpop.addCrossed(individual, mate);
-             offspring.setSpatialPosition(p1.pointReflected(pos));
-             offspring.tag = 0;
-             }
+              offspring = subpop.addCrossed(individual, mate);
+              offspring.setSpatialPosition(p1.pointReflected(pos));
+              offspring.tag = 0;
+            }
         }
     }
     return;
