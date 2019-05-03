@@ -1236,17 +1236,18 @@ and help shed light on important evolutionary questions.
 %%%%%%%%%%%
 \subsection{Simulation and inference} 
 
-Spatial population genetics is hindered by a lack of concrete mathematical results
+Spatial population genetics suffers from a lack of concrete mathematical results
 that can be used for inference.
 Although Wright--Malec\'{o}t-like relations can be calculated numerically in heterogeneous geography,
-our understanding of demographic noise in continuous space is still fuzzy.
-What can take the place of analytic formula?
+a deeper understanding -- in particular, of demographic noise --
+is required to make quantitative predictions of more complex population genetic statistics.
+How can we fill this gap?
 A recent advance in the field, 
 which may help improve inference models with and without selection, 
 has been the advent of powerful and flexible simulation methods, 
 such as SLiM \citep{haller2018forward,haller2018treesequence} and msprime \citep{kelleher2016msprime}.
 These methods allow
-researchers to simulate genome-scale datasets under models of arbitrary complexity.
+researchers to produce genome-scale datasets from simulations of arbitrary complexity.
 This capability offers an excellent pedagogical tool 
 and opportunity to build intuition for patterns of genetic variation 
 in complex scenarios for which theory may be lacking.
@@ -1254,9 +1255,14 @@ In addition, these simulation methods can be used in statistical inference.
 For example, simulated datasets can be used in the training 
 of machine learning methods \citep[e.g.,][]{SchriderKern2018}, 
 or to compare between different generative models using 
-\g{approximate Bayesian computation \citep{MarjoramTavare2006modern}.
+approximate Bayesian computation \citep{MarjoramTavare2006modern}.
 Simulation-based inference presents an exciting way forward 
-for problems that may be analytically intractable.}
+for problems that may be analytically intractable,
+although for large problems, the required computational effort is daunting.
+As an intermediate solution,
+a promising class of spatial coalescent models allows rapid simulation with geographically explicit models
+\citep{barton2010newmodel,guindon2016demographic},
+although the precise relation to forwards-time demographic models is not well understood.
 
 
 %%%%%%%%%%
@@ -1271,7 +1277,7 @@ the mapping from parameters to data is relatively well-understood,
 but the inverse map is not.
 Many inverse problems are \emph{ill-posed},
 meaning that many distinct models give rise to statistically indistinguishable datasets,
-i.e., there is some degree of statistical nonidentifiability.
+i.e., there is some degree of statistical nonidentifiability \citep{petrov2005well,stuart2010inverse}.
 For example, 
 as with estimating effective population size using the site frequency spectrum \citep{Myers2008},
 we may never be able to infer rapid changes in effective population density
@@ -1325,17 +1331,18 @@ Measures of dispersal and density based on the pedigree
 can also inform the study of the factors governing the 
 distribution and abundance of organisms 
 over short timescales that might have previously been out of reach for population genetics.
-\g{As datasets, theory, and methods in spatial population genetics continue to progress, 
-it will be exciting to explore further integration of evolution and ecology.}
+As datasets, theory, and methods in spatial population genetics continue to progress, 
+it will be exciting to further explore how population genetics
+and population ecology can inform each other.
 
 %Disclosure
-\section*{DISCLOSURE STATEMENT}
+\section*{Disclosure statement}
 If the authors have nothing to disclose, the following statement will be used: 
 The authors are not aware of any affiliations, memberships, funding, or financial holdings 
 that might be perceived as affecting the objectivity of this review.
 
 % Acknowledgements
-\section*{ACKNOWLEDGMENTS}
+\section*{Acknowledgments}
 The authors gratefully acknowledge 
 Yaniv Brandvain, Graham Coop, 
 John Novembre, Doug Schemske, 
