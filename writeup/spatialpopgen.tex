@@ -140,7 +140,7 @@ much of the early body of theory was focused on
 developing expectations for discrete populations.
 This focus was informed by early empirical datasets,
 most of which
-(again, with exceptions \citep[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947}),
+(again, with exceptions \citep[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947}) \g{fisher, haldane?},
 were well described as discrete populations --
 like samples of flies in a vial \citep{lewontin1974}.
 In turn, 
@@ -316,11 +316,16 @@ but also genealogical relatedness
 (e.g., to identify ancestors from whom an individual hasn't inherited any genome).
 We used tools from \texttt{pyslim} and \texttt{tskit} \citep{kelleher2018efficient} 
 to extract relatedness information,
+<<<<<<< HEAD
 and plotted the results in \texttt{python} with \texttt{matplotlib} \citep{hunter2007matplotlib}.
+=======
+plotting the results in \texttt{python} with \texttt{matplotlib} \citep{hunter2007matplotlib}.
+The scenarios simulated are not always realistic, 
+but they do help build an intuition for the ideas they accompany.
+>>>>>>> origin/master
 Our code is available at \url{https://github.com/gbradburd/spgr}.
 This new ability to not only simulate large spatial populations,
-but also to record entire chromosome-scale genealogies,
-and thus ground-truth methods using actual spatial pedigrees,
+but also to record entire chromosome-scale genealogies as well as spatial pedigrees,
 has great promise for the field moving forward.
 
 
@@ -474,6 +479,7 @@ from the number of siblings found in a random sample of size $n$.
 There are $x (x-1) / 2$ sibling pairs in a family with $x$ offspring,
 so the probability that, 
 in a population of size $N$, 
+<<<<<<< HEAD
 a given pair of individuals are siblings in that family is $x(x-1)/N(N-1)$.
 Averaging across families, the probabliity that a given pair of individuals
 are siblings (in any family)
@@ -484,6 +490,14 @@ provides an estimate of (inbreeding) \emph{effective population size},
 $N_e = N/\E[X(X-1)]$ 
 (a similar argument appears in \citet{mohle2003cpd}; 
 see \citet{wang2016prediction} for a review of different types of ``effective population size'').
+=======
+a given pair of individuals are siblings
+is $\E[X (X-1)] / (N-1)$, where $X$ is the number of offspring in a randomly chosen family.
+This implies that, in a sample of size $n$,
+$n(n-1)/2$ divided by the number of observed sibling pairs 
+provides an estimate of \g{(inbreeding) \emph{effective population size}}, 
+$N_e = N/\E[X(X-1)]$.
+>>>>>>> origin/master
 In other words, we should be able to use relatedness to estimate population size
 up to the factor $\E[X(X-1)]$, which depends on demographic details. 
 This same logic can be applied locally:
@@ -710,9 +724,19 @@ to learn about dispersal.
 Indeed, empirical studies usually find that
 the mean time since most recent common ancestor 
 of two individuals at a random point on the genome
+<<<<<<< HEAD
 is larger for more distant individuals \citep{sexton2013genetic,epperson2003geographical,charlesworth2003effects},
 and this relationship  of ``isolation by distance'' 
 clearly should contain some information about $\sigma$.
+=======
+is usually larger for more distant individuals \citep{sexton2013genetic,epperson2003geographical,charlesworth2003effects},
+a relationship that \g{clearly has something to do with} $\sigma$.
+This general idea was applied to much larger time scales by \citep{neigel1991estimation,neigel1993application},
+who used the genealogical tree relating many samples at one nonrecombining locus
+(e.g., the mitochondrial genome) and the spatial locations of these samples
+to infer $\sigma$ using phylogenetic comparative methods 
+\citep[although see also ][for a discussion of the limitations of these methods]{BartonWilson1995}.
+>>>>>>> origin/master
 An approximate formula for this relationship
 in homogeneous space (Malec\'ot's formula)
 can be derived in various ways 
@@ -725,9 +749,13 @@ but \citet{malecot} assumed that the second stage acts as in a randomly mating p
 with some local effective size, $N_\text{loc}$.
 \citet{rousset_1997} used this formula to show that
 the slope of $F_{ST}$ against the logarithm of distance
+<<<<<<< HEAD
 is under these assumptions an estimator for Wright's neighborhood size ($4 \pi \rho_e \sigma_e^2$),
 but it is not known to what degree these assumptions affect the results.
 See \citet{barton1995genealogies} for much more discussion of these methods.
+=======
+is under these assumptions an estimator for Wright's neighborhood size ($4 \pi \rho_e \sigma_e^2$).
+>>>>>>> origin/master
 
 \begin{figure}	%[H]
     \centering
@@ -1240,8 +1268,8 @@ and help shed light on important evolutionary questions.
 %%%%%%%%%%%
 \subsection{Simulation and inference} 
 
-Spatial population genetics suffers from a singular lack of concrete mathematical results
-that can be used for inference.
+\g{Spatial population genetics suffers from a singular lack of concrete mathematical results
+that can be used for inference.}
 What can take its place?
 A recent advance in the field, 
 which may help improve inference models with and without selection, 
