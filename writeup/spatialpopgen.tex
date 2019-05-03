@@ -1202,7 +1202,7 @@ the processes that have generated and maintained it,
 and its consequences -- 
 is a fundamental goal of the field.
 We have already sketched out plenty of work for the field
--- quantitative inference with continuous geography is still an unsolved problem.
+-- quantitative inference with continuous geography is for the most part an unsolved problem.
 Nonetheless, we describe below a few more areas 
 in which we hope or expect further progress in the field to be made.
 
@@ -1217,17 +1217,16 @@ develop methods that jointly estimate selection and demography for spatially con
 We have mostly ignored this above,
 but clearly local adaptation and natural selection impact 
 the structure of the pedigree, including its spatial patterns.
-\g{For example, if a beneficial allele arises once and goes to fixation in a hard selective sweep, 
-the spatial pedigrees of all extant individuals will be forced,
-going backward in time, 
-to pass through the location of the individual in whom the sweeping mutation occurred.}
+For example, after a ``hard'' selective sweep,
+everyone in the population has inherited a single beneficial allele,
+and so the lineages of all extant individuals at that locus will pass through the lucky individual
+in whom that mutation occurred.
 There is a great deal known about the expected geographical action of selection,
 e.g., how beneficial alleles spread across space \citep{fisher1937wave,RalphCoop2010parallel,HallatschekFisher2014},
 how locally adaptive alleles can be maintained in the face of gene flow \citep{slatkin1973geneflow,kruuk1999comparison,RalphCoop2015patchy},
 or how hybrid zones are structured \citep{barton1985analysis,sedghifar_2015}.
-In all these situations,
-demographic processes have \emph{different effects} on different regions of the genome.
-\g{explain why?}
+In all these situations, selection can produce dramatically different patterns in the pedigree
+of different regions of the genome.
 Incorporating selection into spatially continuous models 
 will facilitate a greater union of population genetic processes 
 and ecological models of population dynamics, 
@@ -1237,9 +1236,11 @@ and help shed light on important evolutionary questions.
 %%%%%%%%%%%
 \subsection{Simulation and inference} 
 
-\g{Spatial population genetics suffers from a singular lack of concrete mathematical results
-that can be used for inference.}
-What can take its place?
+Spatial population genetics is hindered by a lack of concrete mathematical results
+that can be used for inference.
+Although Wright--Malec\'{o}t-like relations can be calculated numerically in heterogeneous geography,
+our understanding of demographic noise in continuous space is still fuzzy.
+What can take the place of analytic formula?
 A recent advance in the field, 
 which may help improve inference models with and without selection, 
 has been the advent of powerful and flexible simulation methods, 
