@@ -783,12 +783,13 @@ when in that area.
 These models were introduced to spatial population genetics by Brad McRae \citep{McRae2006,McRae_Beier_2007,McRae2008}, 
 and represented an important step forward in modeling dispersal 
 (over, e.g., least-cost path analysis).
-\g{A more general model of heterogeneous dispersal would allow mean \emph{bias} in dispersal
+A more general model of dispersal would allow mean \emph{bias} in dispersal
 (e.g., downwind, or up a fecundity gradient)
-as well as anisotropy in dispersal variance.
-As implemented, ``resistance'' methods make use of an approximation
-(for computational efficiency)
-which can be strongly misled in the presence of such bias \citep{lundgren2018populations}.}
+as well as spatial differences in dispersal variance.
+Furthermore, as implemented, ``resistance'' methods do not actually fit a mechanistic model of dispersal,
+but rather make use of an approximation
+which can result in estimates that differ widely from the truth,
+especially in the presence of dispersal bias \citep{lundgren2018populations}.
 
 One of the most promising current spatial methods is MAPS \citep{alasadi2018estimating}, 
 which uses information about long shared haplotype tracts (recent ancestry) 
