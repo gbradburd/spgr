@@ -1058,39 +1058,42 @@ abstract = {Contrary to assumptions commonly made in the study of population gen
 year = {1992}
 }
 
-@article{haller2018treesequence,
-  abstract = {There is an increasing demand for evolutionary models to incorporate relatively realistic dynamics, ranging from selection at many genomic sites to complex demography, population structure, and ecological interactions. Such models can generally be implemented as individual-based forward simulations, but the large computational overhead of these models often makes simulation of whole chromosome sequences in large populations infeasible. This situation presents an important obstacle to the field that requires conceptual advances to overcome. The recently developed tree-sequence recording method (Kelleher et al., 2018), which stores the genealogical history of all genomes in the simulated population, could provide such an advance. This method has several benefits: (1) it allows neutral mutations to be omitted entirely from forward-time simulations and added later, thereby dramatically improving computational efficiency; (2) it allows neutral burn-in to be constructed extremely efficiently after the fact, using "recapitation"; (3) it allows direct examination and analysis of the genealogical trees along the genome; and (4) it provides a compact representation of a population{\textquoteright}s genealogy that can be analyzed in Python using the msprime package. We have implemented the tree-sequence recording method in SLiM 3 (a free, open-source evolutionary simulation software package) and extended it to allow the recording of non-neutral mutations, greatly broadening the utility of this method. To demonstrate the versatility and performance of this approach, we showcase several practical applications that would have been beyond the reach of previously existing methods, opening up new horizons for the modeling and exploration of evolutionary processes.},
-  OPTadded-at = {2018-09-10T06:43:55.000+0200},
+@article{haller2019treesequence,
+  abstract = {Abstract There is an increasing demand for evolutionary models to incorporate relatively realistic dynamics, ranging from selection at many genomic sites to complex demography, population structure, and ecological interactions. Such models can generally be implemented as individual-based forward simulations, but the large computational overhead of these models often makes simulation of whole chromosome sequences in large populations infeasible. This situation presents an important obstacle to the field that requires conceptual advances to overcome. The recently developed tree-sequence recording method (Kelleher, Thornton, Ashander, \& Ralph, 2018), which stores the genealogical history of all genomes in the simulated population, could provide such an advance. This method has several benefits: (1) it allows neutral mutations to be omitted entirely from forward-time simulations and added later, thereby dramatically improving computational efficiency; (2) it allows neutral burn-in to be constructed extremely efficiently after the fact, using “recapitation”; (3) it allows direct examination and analysis of the genealogical trees along the genome; and (4) it provides a compact representation of a population's genealogy that can be analysed in Python using the msprime package. We have implemented the tree-sequence recording method in SLiM 3 (a free, open-source evolutionary simulation software package) and extended it to allow the recording of non-neutral mutations, greatly broadening the utility of this method. To demonstrate the versatility and performance of this approach, we showcase several practical applications that would have been beyond the reach of previously existing methods, opening up new horizons for the modelling and exploration of evolutionary processes.},
+  added-at = {2019-04-20T07:50:34.000+0200},
   author = {Haller, Benjamin C. and Galloway, Jared and Kelleher, Jerome and Messer, Philipp W. and Ralph, Peter L.},
-  OPTbiburl = {https://www.bibsonomy.org/bibtex/24dbb90f2f8394778106175bafdbb2d24/peter.ralph},
-  OPTdoi = {10.1101/407783},
-  OPTeprint = {https://www.biorxiv.org/content/early/2018/09/04/407783.full.pdf},
-  OPTinterhash = {e93c723cea298e2fa58a0727410d6bcb},
-  OPTintrahash = {4dbb90f2f8394778106175bafdbb2d24},
-  journal = {bioRxiv},
+  biburl = {https://www.bibsonomy.org/bibtex/24240e0c1e889d9f7e546abb83fc994af/peter.ralph},
+  doi = {10.1111/1755-0998.12968},
+  eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/1755-0998.12968},
+  interhash = {94b59d323649b8edfb3b30eb40f33579},
+  intrahash = {4240e0c1e889d9f7e546abb83fc994af},
+  journal = {Molecular Ecology Resources},
   keywords = {SLiM myown simulation tree_sequence},
-  publisher = {Cold Spring Harbor Laboratory},
-  timestamp = {2018-09-10T06:43:55.000+0200},
+  number = 2,
+  pages = {552-566},
+  timestamp = {2019-04-20T07:50:34.000+0200},
   title = {Tree-sequence recording in {SLiM} opens new horizons for forward-time simulation of whole genomes},
-  OPTurl = {https://www.biorxiv.org/content/early/2018/09/04/407783},
-  year = 2018
+  url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.12968},
+  volume = 19,
+  year = 2019
 }
 
+
 @article{haller2018forward,
-  abstract = {With the desire to model population genetic processes under increasingly realistic scenarios, forward genetic simulations have become a critical part of the toolbox of modern evolutionary biology. The SLiM forward genetic simulation framework is one of the most powerful and widely used tools in this area. However, its foundation in the Wright-Fisher model has been found to pose an obstacle to implementing many types of models; it is difficult to adapt the Wright-Fisher model, with its many assumptions, to modeling ecologically realistic scenarios such as explicit space, overlapping generations, individual variation in reproduction, density-dependent population regulation, individual variation in dispersal or migration, local extinction and recolonization, mating between subpopulations, age structure, fitness-based survival and hard selection, emergent sex ratios, and so forth. In response to this need, we here introduce SLiM 3, which contains two key advancements aimed at abolishing these limitations. First, the new non-Wright-Fisher or "nonWF" model type provides a much more flexible foundation that allows the easy implementation of all of the above scenarios and many more. Second, SLiM 3 adds support for continuous space, including spatial interactions and spatial maps of environmental variables. We provide a conceptual overview of these new features, and present several example models to illustrate their use. These two key features allow SLiM 3 models to go beyond the Wright-Fisher model, opening up new horizons for forward genetic modeling.},
-  OPTadded-at = {2018-10-16T08:47:49.000+0200},
-  author = {Haller, Benjamin C. and Messer, Philipp W.},
-  OPTbiburl = {https://www.bibsonomy.org/bibtex/28ccfa851b9f2ae93c5028b985c69aa9c/peter.ralph},
-  OPTdoi = {10.1101/418657},
-  OPTeprint = {https://www.biorxiv.org/content/early/2018/09/15/418657.full.pdf},
-  OPTinterhash = {d123b83258458bfb865d2f7a2f41753c},
-  OPTintrahash = {8ccfa851b9f2ae93c5028b985c69aa9c},
-  journal = {bioRxiv},
-  keywords = {SLiM simulation software},
-  publisher = {Cold Spring Harbor Laboratory},
-  timestamp = {2018-10-16T08:47:49.000+0200},
-  title = {{SLiM} 3: Forward genetic simulations beyond the Wright-Fisher model},
-  OPTurl = {https://www.biorxiv.org/content/early/2018/09/15/418657},
+  abstract = {With the desire to model population genetic processes under increasingly realistic scenarios, forward genetic simulations have become a critical part of the toolbox of modern evolutionary biology. The SLiM forward genetic simulation framework is one of the most powerful and widely used tools in this area. However, its foundation in the Wright–Fisher model has been found to pose an obstacle to implementing many types of models; it is difficult to adapt the Wright–Fisher model, with its many assumptions, to modeling ecologically realistic scenarios such as explicit space, overlapping generations, individual variation in reproduction, density-dependent population regulation, individual variation in dispersal or migration, local extinction and recolonization, mating between subpopulations, age structure, fitness-based survival and hard selection, emergent sex ratios, and so forth. In response to this need, we here introduce SLiM 3, which contains two key advancements aimed at abolishing these limitations. First, the new non-Wright–Fisher or “nonWF” model type provides a much more flexible foundation that allows the easy implementation of all of the above scenarios and many more. Second, SLiM 3 adds support for continuous space, including spatial interactions and spatial maps of environmental variables. We provide a conceptual overview of these new features, and present several example models to illustrate their use.},
+  added-at = {2018-12-08T21:50:45.000+0100},
+  author = {Haller, Benjamin C and Messer, Philipp W},
+  biburl = {https://www.bibsonomy.org/bibtex/2279bd552a48922d68e15af2b26fa735c/peter.ralph},
+  doi = {10.1093/molbev/msy228},
+  eprint = {/oup/backfile/content_public/journal/mbe/pap/10.1093_molbev_msy228/4/msy228.pdf},
+  interhash = {d123b83258458bfb865d2f7a2f41753c},
+  intrahash = {279bd552a48922d68e15af2b26fa735c},
+  journal = {Molecular Biology and Evolution},
+  keywords = {SLiM methods simulation software},
+  pages = {msy228},
+  timestamp = {2018-12-08T21:50:45.000+0100},
+  title = {{SLiM} 3: {Forward} genetic simulations beyond the {Wright}-{Fisher} model},
+  url = {http://dx.doi.org/10.1093/molbev/msy228},
   year = 2018
 }
 
@@ -2061,13 +2064,13 @@ year = {2006}
   OPTeprint = {https://www.biorxiv.org/content/early/2018/10/23/451328.1.full.pdf},
   interhash = {4b82bd18aca317365a500d5e376351af},
   intrahash = {c4f94c035035a9492e6000f166d58289},
-  journal = {bioRxiv},
+  journal = {Molecular Ecology Resources},
   keywords = {isolation_by_distance methods myown resistance_distance},
-  publisher = {Cold Spring Harbor Laboratory},
   timestamp = {2019-02-12T23:45:21.000+0100},
   title = {Are populations like a circuit? {The} relationship between isolation by distance and isolation by resistance},
   OPTurl = {https://www.biorxiv.org/content/early/2018/10/23/451328.1},
-  year = 2018
+  year = 2019,
+  volumn = {to appear}
 }
 
 
