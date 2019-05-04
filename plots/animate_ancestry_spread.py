@@ -23,8 +23,8 @@ def animate_ancestry(ts, children, num_gens):
     ax.set_xlim(0, xmax)
     ax.set_ylim(0, ymax)
     # colors
-    colormap = lambda x: plt.get_cmap("cool")(x/max(ts.individual_ages()))
-    locs = ts.individual_locations()
+    colormap = lambda x: plt.get_cmap("cool")(x/max(ts.individual_ages))
+    locs = ts.individual_locations
     # find the mean proportion of the children's genome that each node is parental to
     child_nodes = [n for ind in children for n in ts.individual(ind).nodes]
     node_ancestry = ts.proportion_ancestry_nodes([child_nodes])[0]
@@ -62,7 +62,7 @@ for script in ("flat_map.slim", "valleys.slim"):
     outbase = ".".join(treefile.split(".")[:-1])
 
     ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
-    today = np.where(ts.individual_times() == 0)[0]
+    today = np.where(ts.individual_times == 0)[0]
 
     animation = animate_ancestry(ts, np.random.choice(today, 1), num_gens)
     animation.save(outbase + ".ancestry.mp4", writer='ffmpeg')

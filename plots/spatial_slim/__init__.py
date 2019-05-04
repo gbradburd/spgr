@@ -37,12 +37,12 @@ four_colors = ["#1b9e77", "#d95f02", "#7570b3", "#e7298a"]  # Dark2
 four_markers = ["v", "<", "^", ">"]
 
 
-def plot_density(ts, time, ax, scatter=True):
+def plot_density(ts, time, ax, scatter=True, alpha=0.8):
     """
     Plot a 2D kernel density estimate of the population density.
     """
 
-    locs = ts.individual_locations()
+    locs = ts.individual_locations[:,:2]
     xmax = max(locs[:,0])
     ymax = max(locs[:,1])
     alive = ts.individuals_alive(time)
@@ -62,6 +62,6 @@ def plot_density(ts, time, ax, scatter=True):
                    edgecolors='none')
     ax.contour(X, Y, Z,
                colors='c',
-               alpha=0.8,
+               alpha=alpha,
                zorder=-1)
 

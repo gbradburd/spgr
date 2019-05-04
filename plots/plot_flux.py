@@ -35,17 +35,18 @@ def plot_flux(ts, inout_fns, plot_ngens):
     ax.set_xlim(0, xmax)
     ax.set_ylim(0, ymax)
 
-    locs = ts.individual_locations()
-    births = ts.individual_times()
-    deaths = births - ts.individual_ages()
+    locs = ts.individual_locations
+    births = ts.individual_times
+    deaths = births - ts.individual_ages
     alive = (deaths <= plot_ngens)  # alive during the last ngens 
     ips = ts.individual_parents(list(range(ts.num_individuals)))
     born = (births[ips[:, 1]] <= plot_ngens) # pairs born during the last ngens
     # set up plot with individual locations
-    circles = ax.scatter(locs[alive, 0], locs[alive, 1], s=10, 
+    circles = ax.scatter(locs[alive, 0], locs[alive, 1], s=7, 
                          edgecolors='none', 
-                         alpha=0.5,
+                         alpha=0.2,
                          facecolors='black')
+    sps.plot_density(ts, 0, ax, scatter=False, alpha=0.5)
 
     for inout_fn in inout_fns:
         parents_in = inout_fn(locs[ips[:, 0], :])
@@ -72,8 +73,8 @@ def plot_flux(ts, inout_fns, plot_ngens):
                   locs[ips[pair_indices[po], 1], 1]
                    - locs[ips[pair_indices[po], 0], 1], # dY
                   color = colors[po],
-                  alpha = 0.5,
-                  width = 0.07,
+                  alpha = 0.4,
+                  width = 0.15,
                   units='xy', scale=1)
     return fig
 

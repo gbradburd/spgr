@@ -17,8 +17,8 @@ def animate_individuals(ts, num_gens)
     ax.set_xlim(0, xmax)
     ax.set_ylim(0, ymax)
     # colors
-    colormap = lambda x: plt.get_cmap("cool")(x/max(ts.individual_ages()))
-    locs = ts.individual_locations()
+    colormap = lambda x: plt.get_cmap("cool")(x/max(ts.individual_ages))
+    locs = ts.individual_locations
     inds = ts.individuals_by_time(num_gens)
     next_inds = ts.individuals_by_time(num_gens - 1)
     circles = ax.scatter(locs[inds, 0], locs[inds, 1], s=10, 

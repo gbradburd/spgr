@@ -48,8 +48,8 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
         if time is None:
             out = np.repeat(True, self.num_individuals)
         else:
-            births = self.individual_times()
-            ages = self.individual_ages()
+            births = self.individual_times
+            ages = self.individual_ages
             out = np.logical_and(births >= time, births - ages <= time)
         return out
 
@@ -64,7 +64,7 @@ class SpatialSlimTreeSequence(pyslim.SlimTreeSequence):
 
         :param float time: The reference time ago.
         """
-        ages = self.individual_times() - time
+        ages = self.individual_times - time
         ages[np.logical_not(self.individuals_alive(time))] = np.nan
         return ages
 

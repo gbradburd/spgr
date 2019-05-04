@@ -31,9 +31,9 @@ def animate_tree(ts, children, num_gens):
     ax.set_xlim(0, xmax)
     ax.set_ylim(0, ymax)
     # colors
-    colormap = lambda x: plt.get_cmap("cool")(x/max(ts.individual_ages()))
+    colormap = lambda x: plt.get_cmap("cool")(x/max(ts.individual_ages))
     # treecolors = [plt.get_cmap("viridis")(x) for x in np.linspace(0, 1, len(children))]
-    locs = ts.individual_locations()
+    locs = ts.individual_locations
     inds = ts.individuals_by_time(0)
     circles = ax.scatter(locs[inds, 0], locs[inds, 1], s=10, 
                          edgecolors=colormap([0 for _ in inds]),
@@ -72,7 +72,7 @@ outbase = ".".join(treefile.split(".")[:-1])
 
 ts = sps.SpatialSlimTreeSequence(pyslim.load(treefile), dim=2)
 
-today = np.where(ts.individual_times() == 0)[0]
+today = np.where(ts.individual_times == 0)[0]
 animation = animate_tree(ts, np.random.choice(today, 10), num_gens)
 animation.save(outbase + ".trees.mp4", writer='ffmpeg')
 

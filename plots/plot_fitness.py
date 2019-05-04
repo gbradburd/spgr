@@ -20,7 +20,7 @@ def animate_fitness(ts, num_gens):
     ax.set_xlim(0, xmax)
     ax.set_ylim(0, ymax)
     # colors
-    locs = ts.individual_locations()
+    locs = ts.individual_locations
     # find the mean number of the present-day's genomes that each node is ancestral to
     today = ts.individuals_by_time(0)
     today_nodes = ts.individual_nodes(today, flatten=True)
@@ -37,7 +37,7 @@ def animate_fitness(ts, num_gens):
         nodes = np.where(nodes_alive)[0]
         ins = [(ts.node(p).individual, c) for p,c in ts.node_children(nodes) if nodes_alive[c]]
         # testing
-        ages = ts.individual_ages()
+        ages = ts.individual_ages
         for i,n in ins:
             assert(ts.node(ts.individual(i).nodes[0]).time > time)
             assert(ts.node(ts.individual(i).nodes[0]).time - ages[i] <= time)
