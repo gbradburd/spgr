@@ -43,10 +43,6 @@
 \fi
 
 % macros
-\newcommand{\g}[1]{{\color{blue}{#1}}}
-\newcommand{\plr}[1]{{\color{green}{#1}}}
-\newcommand{\cut}[1]{{\sout{\color{magenta}{#1}}}}
-\newcommand{\todo}[1]{{\textbf{\color{red}{#1}}}}
 \renewcommand{\emph}[1]{{\textit{#1}}}
 \newcommand{\E}{\mathbb{E}}
 \renewcommand{\P}{\mathbb{P}}
@@ -140,8 +136,8 @@ much of the early body of theory was focused on
 developing expectations for discrete populations.
 This focus was informed by early empirical datasets,
 most of which
-(again, with exceptions \citep[e.g.,][]{Dobzhansky_Wright1943, dobzhansky1947})
-were well described as discrete populations --
+\citep[again, with exceptions, like][]{Dobzhansky_Wright1943, dobzhansky1947}
+were well-described as discrete populations --
 like samples of flies in a vial \citep{lewontin1974}.
 In turn, 
 the statistics used to analyze these datasets --
@@ -173,7 +169,7 @@ admixture proportion
 are poorly defined.
 A long history of theoretical work describing geographical populations
 \citep[e.g.,][]{fisher1937wave,haldane1948theory,slatkin1973geneflow,nagylaki1975conditions,sawyer1976branching,barton1979dynamics}
-has not had as strong an effect on empirical work \citep[but see][]{landscape_genomics_review}.
+has not had that strong an effect on empirical work \citep[but see][]{landscape_genomics_review}.
 % perhaps because predictions depend more strongly on (geographical) context.
 However, modern advances in acquiring both genomic and geospatial data
 is making it more possible -- and, necessary -- to explicitly model geography.
@@ -182,7 +178,7 @@ are facilitating the estimation of the timing and extent of shared ancestry
 at a much finer geographic and temporal resolution than was previously possible
 \citep{Li_Durbin2011,Palamara_2012,Harris_Nielsen_2013,ralph2013geography}.
 And, advances in theory in continuous space 
-\citep{felsenstein1975pain,barton1995genealogies,barton-depaulis-etheridge, barton2010modelling, barton2010newmodel, hallatschek2011noisy, Barton2013},
+\citep{felsenstein1975pain,barton1995genealogies,barton-depaulis-etheridge, barton2010newmodel, hallatschek2011noisy, barton2010modelling, Barton2013},
 datasets of unprecedented geographical scale
 \citep[e.g.,][]{POBI, Aguillon2017deconstructing, Shaffer195743},
 new computational tools for simulating spatial models \citep{haller2018forward,haller2019treesequence},
@@ -261,8 +257,9 @@ born, hatched, or germinated.
 In practice, we can never be certain of the exact spatial pedigree.
 Even if we could census every living individual in a species
 and establish the pedigree relationships between them all,
-we still would not know all relationships between
-and locations of individuals in previous, unsampled generations.
+we still would not know all relationships between -- 
+and locations of -- 
+individuals in previous, unsampled generations.
 And, in a highly dispersive species,
 or a species with a highly dispersive gamete,
 there may be only a weak relationship between observed location and birth location.
@@ -319,7 +316,7 @@ and plotted the results in \texttt{python} with \texttt{matplotlib} \citep{hunte
 Using SLiM's spatial interaction capabilities,
 we maintained stable local population densities by increasing mortality rates of individuals
 in regions of high density,
-and chose parameter values with relatively strong spatial structure
+and chose parameter values to generate relatively strong spatial structure
 (dispersal distance between 1 and 4 units of distance 
 and mean population density 5 individuals per unit area).
 Our code is available at \url{https://github.com/gbradburd/spgr}.
@@ -440,13 +437,13 @@ and we can use the genomes transmitted through it to learn about these quantitie
         \label{valley_het}
     \end{subfigure}
         \caption{
-            \textbf{(left)} Map of population density of the simulated population scenario
+            \textbf{(a)} Map of population density of the simulated population scenario
             we use for examples throughout.
             Populations have local density-dependent regulation
             within two valleys with high local carrying capacity (indicated by contours),
             separated and surrounded by areas with lower carrying capacity.
             The western valley has a carrying capacity about twice as large as that of the eastern valley.
-            \textbf{(right)} Heterozygosity of a sample of 100 individuals across the range.
+            \textbf{(b)} Heterozygosity of a sample of 100 individuals across the range.
             Circle sizes are proportional to heterozygosity,
             and circle color indicates relative values
             (green: above the mean; white: mean; purple: below the mean).
@@ -545,8 +542,9 @@ e.g., saplings and mature trees
 \citep{WilliamsonSlatkin1999}.
 The rate of drift is governed by, 
 and therefore provides an estimate of, 
-local population size
-\citep[analogous to \emph{variance effective size} of a population][]{ewens2004mpg,Charlesworth2009,wang2016prediction}.
+local population size; 
+this is analogous to the \emph{variance effective size} of a population
+\citep{ewens2004mpg,Charlesworth2009,wang2016prediction}.
 Because these approaches are pinned to the recent past, 
 either by the generations sampled or by the degree of closeness of relatives,
 they should offer a more accurate estimate of recent population density than heterozygosity does, 
@@ -625,7 +623,7 @@ geographic patterns of relatedness
 are determined by a tension between population size and migration.
 As discussed above,
 genealogical relationships form on a time scale determined by population density,
-because in a geographic region containing $N$ individuals
+because in a geographic region containing $N$ individuals,
 the chance that two individuals are siblings is of order $1/N$.
 Shared ancestry -- and thus, genetic variation -- is spatially autocorrelated
 to the extent that this process of coalescence
@@ -693,7 +691,7 @@ unless a large, unbiased fraction of the population has been genotyped
 \citep[e.g.,][]{Aguillon2017deconstructing}.
 
 Empirical datasets do not usually contain many close relatives,
-but using phylogenetic methods on non-recombining loci (e.g., the mitochondria)
+but using phylogenetic methods on non-recombining loci (e.g., the mitochondria),
 we can obtain good estimates of times since common ancestor
 between much more distantly related individuals.
 This general idea was put into practice by \citet{neigel1993application}, % and \citet{neigel1991estimation}
@@ -704,7 +702,7 @@ clearly can only apply if the geographic distance it predicts
 is much less than the width of the species range.
 In many species this is not true,
 because the typical time to common ancestor between two sampled individuals is long enough 
-for their lineages to have crossed the species range several times \citet{barton1995genealogies}.
+for their lineages to have crossed the species range several times \citep{barton1995genealogies}.
 
 Instead of identifying close relatives,
 we might use the decay of mean genetic relatedness with distance 
@@ -713,7 +711,7 @@ to learn about dispersal.
 Empirical studies usually find that
 the mean time since most recent common ancestor 
 of two individuals at a random point on the genome
-is larger for more distant individuals \citep{sexton2013genetic,epperson2003geographical,charlesworth2003effects},
+is larger for more distant individuals \citep{epperson2003geographical,charlesworth2003effects,sexton2013genetic},
 and this relationship  of ``isolation by distance'' 
 clearly should contain some information about $\sigma$.
 An approximate formula for this relationship
@@ -733,37 +731,40 @@ See \citet{barton1995genealogies} for more discussion of these methods.
 
 \begin{figure}	%[H]
     \centering
-    \begin{subfigure}{0.85\textwidth}
+    \begin{subfigure}{0.8\textwidth}
         \centering
         \includegraphics[width=\linewidth]{valley_cousins.pdf}
+        \caption{map of relatives}
         \label{cousin_map}
     \end{subfigure}
-    \begin{subfigure}{0.75\textwidth}
+    \begin{subfigure}{0.7\textwidth}
         \centering
         \includegraphics[width=\linewidth]{valley_ibd.pdf}
+        \caption{isolation by distance}
         \label{ibd}
     \end{subfigure}
-    \begin{subfigure}{0.85\textwidth}
+    \begin{subfigure}{0.8\textwidth}
         \centering
         \includegraphics[width=\linewidth]{valley_line_flux.pdf}
+        \caption{dispersal flux}
         \label{valleyflux}
     \end{subfigure}
         \caption{
-            \textbf{(top)} Map of close genealogical relatives of four focal individuals.
+            \textbf{(a)} Map of close genealogical relatives of four focal individuals.
             Geographic locations of 
             genealogical relatives are shown as larger triangles, with one color for each focal individual,
-            with circle area proportional to the expected proportion of genome shared
+            with triangle size proportional to the expected proportion of genome shared
             (i.e., $2^{-k}$, where $k$ is the number of steps in the shortest path through the pedigree to the focal individual).
-            \textbf{(middle)}
+            \textbf{(b)}
             Genetic against geographic distance between each of four focal individuals
-            (colors the same as in the top figure)
-            and 100 other individuals, from the same map as above.
+            and 100 other individuals, 
+            from the same map, and using the same colors, as in \textbf{(a)}.
             Genetic distance (calculated as expected sequence divergence)
             increases with geographic distance within and between each valley at similar rates,
             but levels off within each valley at different values
             due to different population sizes.
-            \textbf{(bottom)}
-            Flux across two boundaries on the same continuous map as above.
+            \textbf{(c)}
+            Flux across two boundaries on the same continuous map as \textbf{(a)}.
             All individuals across about 8 generations are shown as small dots,
             and every parent-child relationship that crosses each of the dotted lines
             is illustrated by an arrow, colored either red (if it crosses west-to-east) or blue (east-to-west).
@@ -785,9 +786,10 @@ when in that area.
 These models were introduced to spatial population genetics by Brad McRae \citep{McRae2006,McRae_Beier_2007,McRae2008}, 
 and represented an important step forward in modeling dispersal 
 (over, e.g., least-cost path analysis).
-However, resistance models do not allow asymmetry in gene flow,
-as would be seen up a fecundity gradient or following a bias in offspring dispersal downwind,
-or spatial differences in dispersal variance.
+However, resistance models do not allow 
+spatial differences in dispersal variance 
+or asymmetry in gene flow,
+as would be seen up a fecundity gradient or following a bias in offspring dispersal downwind.
 Note furthermore that we are distinguishing the ``resistance model'' of organism movement
 from the (current) methods used to fit such models;
 as implemented, ``resistance'' methods make use of an approximation
@@ -814,7 +816,7 @@ We would often like to measure the ``amount of gene flow'' across some barrier
 or between two geographic regions.
 To do this,
 we can ask for the number of dispersal events in a given year that cross 
-a given line drawn on a map (e.g., the boundary between two adjacent regions),
+a given line drawn on a map (e.g., the boundary between two adjacent regions)
 -- that is, 
 how many individuals are born each year whose parents
 were born on the other side of the line?
@@ -825,7 +827,7 @@ Dispersal flux is a geographical analogue of
 the ``migration rate'' between discrete, isolated populations. 
 Note that dispersal flux is not constrained to be equal in both directions across a boundary:
 it may be easier to disperse down-current than up-current.
-For instance, Figure~\ref{fig:dispersal}C
+For instance, Figure \ref{fig:dispersal}\subref{valleyflux}
 shows the number of dispersal events crossing two lines on our simulated valley landscape
 over a few generations.
 The line on the left goes through the denser valley, 
@@ -909,7 +911,7 @@ from the local region they live in drops below (say) 90\%?
 
 This spatial distribution of \emph{all} genetic ancestors is depicted 
 at several points back in time
-for four individuals in a simulation in Figure~\ref{ancestry_spread}.
+for four individuals in a simulation in Figure \ref{ancestry_spread}.
 As we look further back in time,
 we can see the ``cloud of ancestry'' spread out across space.
 The spread is diffusive,
@@ -924,26 +926,41 @@ each focal individual is genealogically descended from nearly everyone alive,
 even those living in the other valley \citep{chang1999}.
 
 \begin{figure}	%[H]
-        \includegraphics[width=0.75\linewidth]{valley_ancestry_01.pdf}
-        \includegraphics[width=0.75\linewidth]{valley_ancestry_60.pdf}
-        \includegraphics[width=0.75\linewidth]{valley_ancestry_300.pdf}
+	\begin{subfigure}{0.85\textwidth}
+		\centering
+	        \includegraphics[width=\linewidth]{valley_ancestry_01.pdf}
+		\caption{one generation ago}
+		\label{1gen}
+	\end{subfigure}\\
+	\begin{subfigure}{0.85\textwidth}
+		\centering
+	        \includegraphics[width=\linewidth]{valley_ancestry_60.pdf}
+	        \caption{Sixty generations ago}
+		\label{60gen}
+	\end{subfigure}\\
+	\begin{subfigure}{0.85\textwidth}
+        		\centering
+        		\includegraphics[width=\linewidth]{valley_ancestry_300.pdf}
+                \caption{Three hundred generations ago}
+		\label{300gen}
+	\end{subfigure}
         \caption{
             Spatial locations of the ancestors of four individuals:
             at 
-            \textbf{(top)} one, 
-            \textbf{(middle)} fifteen, and
-            \textbf{(bottom)} seventy-five generations in the past.
+            \textbf{(a)} one, 
+            \textbf{(b)} sixty, and
+            \textbf{(c)} three hundred generations in the past.
             All individuals from whom the four individuals have inherited genome are denoted by a circle,
             with one color for each individual,
             and with circle area proportional to the amount of genome inherited.
-            The landscape is the same as in Figure~\ref{fig:dispersal}.
+            The landscape is the same as in Figure \ref{fig:dispersal}.
             Since the simulation uses overlapping generations,
             ancestors of different degrees are present at the same time.
         }
         \label{ancestry_spread}
 \end{figure}
 
-Although Figure~\ref{ancestry_spread} does not highlight 
+Although Figure \ref{ancestry_spread} does not highlight 
 ancestors \emph{shared} by any pair of the focal individuals,
 it is clear that these occur in the points of overlap between their two clouds of ancestry.
 These shared ancestors may be informative about relative population densities in the two valleys.
@@ -990,8 +1007,8 @@ is determined by the likelihood that coalescence between two nearby individuals
 occurs during the scattering phase
 -- i.e., by the length of time that two spatial clouds of ancestry of Figure \ref{ancestry_spread}
 are correlated with each other,
-relative to the local effective population size,
-so, in a species with limited dispersal (i.e., small $\sigma_e$),
+relative to the local effective population size.
+So, in a species with limited dispersal (i.e., small $\sigma_e$),
 $F_{ST}$ may not be best measure of this quantity -- 
 others are possible that depend less on the deep history of the population.
 For instance,
@@ -1038,13 +1055,13 @@ To obtain an admixture proportion,
 we can fix some ``reference'' time in the past,
 and label the genomes of each individual in subsequent generations 
 according to which of the two valleys it inherited from at the reference time.
-This is shown in Figure \ref{postglacial_expansion}:
-eight generations after contact (top),
+This is shown in Figure \ref{postglacial_expansion}\subref{8gen}:
+eight generations after contact,
 this quantity clearly reflects the history of isolation;  
 individuals in or near each valley have inherited most of their genomes 
 from ancestors in the closest valley.
 However, if we return 75 generations later, 
-we see a more complicated story (bottom).
+we see a more complicated story (Figure \ref{postglacial_expansion}\subref{75gen}).
 The continued spatial mixing has resulted in a significant 
 portion of ancestry in the west valley inherited from 
 glacial-era ancestors in the east valley, 
@@ -1060,14 +1077,25 @@ during glaciation, were found in the western valley.
 
 \begin{figure}	%[H]
     \centering
-        \includegraphics[width=0.85\linewidth]{valley_admixture_new}
-        \includegraphics[width=0.85\linewidth]{valley_admixture_old}
+    	\begin{subfigure}{0.85\textwidth}
+		\centering
+        		\includegraphics[width=\linewidth]{valley_admixture_new}
+	        \caption{eight generations post-contact}
+	        \label{8gen}
+    	\end{subfigure}
+    	\begin{subfigure}{0.85\textwidth}
+		\centering
+	        \includegraphics[width=\linewidth]{valley_admixture_old}
+	        \caption{seventy-five generations post-contact}
+	        \label{75gen}
+    	\end{subfigure}
         \caption{
             Admixture proportions after a recent secondary contact.
             Each pie shows the proportion of a diploid individual's genomes
             that inherit from the western (red) and eastern (blue) valleys, respectively.
-            \textbf{(top)} Eight generations, and
-            \textbf{(bottom)} seventy-five generations 
+            The plots show the geographic distribution of that ancestry 
+            \textbf{(a)} Eight generations, and
+            \textbf{(b)} seventy-five generations 
             after a barrier along the top of the ridge is removed.
         }
         \label{postglacial_expansion}
@@ -1135,10 +1163,10 @@ Spatial discontinuities in the pedigree occur when when regions become unoccupie
 and are recolonized by immigrants from elsewhere. 
 Discontinuity is expected over long enough time scales that ranges have shifted,
 and vicariance--secondary-contact events have occurred.
-There is abundant evidence of large-scale population movements
+There is abundant evidence of large-scale population movements or changes 
 in human datasets that include ancient or historical samples 
-\citep{skoglund2014investigating, PickrellReich2014, lazaridis_ancient_2014, haak2015massive, joseph2018inference}.
-This has been seen over recent time scales in other species using museum specimens \citep{bi2013unlocking}.
+\citep{skoglund2014investigating, PickrellReich2014, lazaridis_ancient_2014, haak2015massive, joseph2018inference},
+as well as in other species over recent time scales using museum specimens \citep{bi2013unlocking,bi2019chipmunks}.
 Spatial discontinuity can pose a problem 
 if the models we use for inference are predicated on the assumption that 
 the observed geographic distribution of genetic variation 
@@ -1312,7 +1340,7 @@ the geographic position of the historical sample and its
 relatedness to modern individuals is nonetheless informative 
 about the geography of any modern individual's ancestors.
 These historical data can also illuminate temporal heterogeneity 
-in some of the processes described in section 3.4, 
+in some of the processes described in Section 3.4, 
 which might otherwise be invisible in datasets comprised of only modern individuals.
 
 %%%%%%%%%%%
@@ -1337,7 +1365,6 @@ it will be exciting to explore further integration of the two disciplines.
 
 %Disclosure
 \section*{Disclosure statement}
-If the authors have nothing to disclose, the following statement will be used: 
 The authors are not aware of any affiliations, memberships, funding, or financial holdings 
 that might be perceived as affecting the objectivity of this review.
 
