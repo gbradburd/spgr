@@ -8,8 +8,8 @@
 %
 % For tracking purposes => this is v1.0 - Apr. 2013
 \newif\ifsubmissionversion
-\submissionversiontrue
-%\submissionversionfalse
+%\submissionversiontrue
+\submissionversionfalse
 
 \ifsubmissionversion
 	\documentclass{ar-1col}
@@ -38,9 +38,9 @@
 \doi{10.1146/((please add article doi))}
 \fi
 
-\ifsubmissionversion
+%\ifsubmissionversion
 	\graphicspath{{figs/}}
-\fi
+%\fi
 
 % macros
 \renewcommand{\emph}[1]{{\textit{#1}}}
@@ -935,13 +935,13 @@ even those living in the other valley \citep{chang1999}.
 	\begin{subfigure}{0.85\textwidth}
 		\centering
 	        \includegraphics[width=\linewidth]{valley_ancestry_60.pdf}
-	        \caption{Sixty generations ago}
+	        \caption{sixty generations ago}
 		\label{60gen}
 	\end{subfigure}\\
 	\begin{subfigure}{0.85\textwidth}
         		\centering
         		\includegraphics[width=\linewidth]{valley_ancestry_300.pdf}
-                \caption{Three hundred generations ago}
+                \caption{three hundred generations ago}
 		\label{300gen}
 	\end{subfigure}
         \caption{
