@@ -476,11 +476,11 @@ There are $x (x-1) / 2$ sibling pairs in a family with $x$ offspring,
 so the probability that, 
 in a population of size $N$, 
 a given pair of individuals are siblings in that family is $x(x-1)/N(N-1)$.
-Averaging across families, the probability that a given pair of individuals
+Averaging across $N/2$ families (and assuming monogamy), the probability that a given pair of individuals
 are siblings (in any family)
-is therefore $\E[X (X-1)] / (N-1)$, where $X$ is the number of offspring in a randomly chosen family.
+is therefore $\E[X (X-1)] / 2 (N-1)$, where $X$ is the number of offspring in a randomly chosen family.
 This implies that in a sample of size $n$,
-$n(n-1)/2$ divided by the number of observed sibling pairs 
+$n(n-1)/4$ divided by the number of observed sibling pairs 
 provides an estimate of \emph{effective population size}, 
 $N_e = N/\E[X(X-1)]$.
 A similar argument appears in \citet{mohle2003cpd}; 
