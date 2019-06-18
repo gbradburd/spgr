@@ -663,7 +663,7 @@ We call the absolute value of the spatial displacement between parent and offspr
 the \emph{dispersal distance}, and refer to it as $\sigma$.
 The dispersal distance describes the quantity one could calculate by,
 e.g., collecting a large number of germinating seeds
-and averaging the distance from those seeds to their two parents.
+and taking the square root of the average squared distance from those seeds to their parents.
 It determines how quickly spatial populations mix:
 larger dispersal spreads relatedness, and thus genetic variation,
 throughout the species' range faster.
@@ -678,11 +678,11 @@ spatial distances between individuals of different levels of relatedness
 give us information about dispersal distance, even without parental locations.
 For example,
 the distance between siblings is the result of two dispersals,
-so an average of this distance over many pairs of siblings 
-gives an estimate of $2 \sigma$.
+so an average over many pairs of siblings of this distance squared
+gives an estimate of $2 \sigma^2$.
 The mean squared displacement along
 a path of total length $n$ through the pedigree is $\sigma^2 n$:
-first cousins would give four times the dispersal distance, and so forth.
+first cousins would give four times the squared dispersal distance, and so forth.
 This spatial clustering of close relatives
 is shown in Figure \ref{fig:dispersal}\subref{cousin_map}.
 Unfortunately, basing an estimator of $\sigma$ on this observation
